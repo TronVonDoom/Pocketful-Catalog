@@ -82,6 +82,26 @@ python tools/audit.py                          # check it, exit 1 on a new hole
 python tools/audit.py --accept                 # record today's holes as the baseline
 ```
 
+`series_report.py` walks the catalog era by era, oldest first, and answers the two
+questions `audit.py` deliberately does not: **is every card's picture as good as every
+other card's**, and **does every card carry the same kind of information as its
+neighbours**. Neither is a hole, so neither fails the audit, and both are exactly what
+someone notices when they open a binder.
+
+Every finding it prints raises the same question -- did the pull drop this, or was it
+never there? `--check-upstream N` samples N of them and asks TCGdex directly, so that is
+a command rather than an afternoon.
+
+```bash
+python tools/series_report.py --serie base --check-upstream 20
+```
+
+Every card in the catalog now carries a picture at 600x825 or better, or none at all;
+there is no middle tier. That was not true at first -- the TCGplayer fallback was
+fetching a 437px box, which renders ~310x437, roughly half the linear resolution of
+every other card. Fine in a grid tile and visibly soft the moment anyone opened one full
+size. The box is 874 now, which lands at ~620x874, slightly larger than TCGdex's own.
+
 There is also a viewer, for the checks a script cannot make — whether the art on a card
 is *the right art*:
 

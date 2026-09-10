@@ -53,7 +53,14 @@ CATALOG = ROOT / "catalog"
 
 PTCGIO = "https://api.pokemontcg.io/v2"
 TCGDEX = "https://api.tcgdex.net/v2"
-TCGPLAYER_IMAGE = "https://product-images.tcgplayer.com/fit-in/437x437/{}.jpg"
+# 874x874 rather than the 437x437 this used to ask for.
+#
+# These are a resizer's bounding box, not a stored size: a card fits it as ~620x874, which
+# is slightly larger than TCGdex's own high.png at 600x825. The 437 box produced ~310x437,
+# roughly half the linear resolution of every other card in the catalog -- fine in a
+# 132px grid tile and visibly soft the moment anyone opened one full size. A filled card
+# should be indistinguishable from a native one at any size the app draws.
+TCGPLAYER_IMAGE = "https://product-images.tcgplayer.com/fit-in/874x874/{}.jpg"
 
 USER_AGENT = "Pocketful-catalog-builder/0.2 (+https://github.com/TronVonDoom/Pocketful)"
 WORKERS = 4
