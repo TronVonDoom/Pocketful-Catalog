@@ -72,6 +72,12 @@ jobs:
       - name: Audit
         run: python tools/audit.py --verbose || true
 
+      # Regenerated so the pull request carries the health delta. Reviewing "this set
+      # lost its artwork" as three changed numbers in summary.json is possible; reviewing
+      # it across 23,000 changed card records is not.
+      - name: Summarise
+        run: python tools/series_report.py --write-summary
+
       - name: Propose the change
         uses: peter-evans/create-pull-request@v6
         with:

@@ -110,7 +110,16 @@ python tools/serve.py          # http://127.0.0.1:8765/tools/viewer/index.html
 ```
 
 Series in the sidebar, sets under them, every card as a thumbnail, and the raw JSON
-behind any card you click. Cards filled from a second source are badged with which one,
+behind any card you click. Each era carries its own health -- card count, holes, soft
+images -- and each set a coloured dot for the worst thing true of it, so "where is the
+catalog weak" is answered by looking rather than by opening twenty sets. Open a set and
+it shows the mix of renditions its pictures come from, and which fields some of its
+cards carry and others do not.
+
+Those rollups come from `catalog/summary.json`, written by
+`series_report.py --write-summary`. It is derived and regenerable, but committed anyway:
+a weekly refresh that quietly drops a set's artwork shows up there as a few changed
+numbers, which is reviewable in a way that 23,000 changed card records is not. Cards filled from a second source are badged with which one,
 and cards with no art anywhere are badged as holes, so the two are never confused on
 screen either. It reads the working tree directly and caches nothing, which means it can
 be left open while a pull runs.

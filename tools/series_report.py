@@ -153,6 +153,20 @@ def report_set(doc: dict, verbose: bool) -> dict:
         "soft": len(soft),
         "inconsistent": len(inconsistent),
         "flagged": flagged,
+        "summary": {
+            "serie": (doc.get("serie") or {}).get("id"),
+            "name": doc.get("name"),
+            "releaseDate": doc.get("releaseDate"),
+            "cards": len(cards),
+            "listed": listed,
+            "official": official or None,
+            "renditions": dict(renditions),
+            "soft": soft,
+            "fields": [
+                {"category": c, "field": f, "missing": m, "total": t}
+                for c, f, m, t in sorted(inconsistent, key=lambda x: -x[2])
+            ],
+        },
     }
 
 
@@ -194,12 +208,60 @@ def check_upstream(cards: list[tuple[str, str]], limit: int) -> None:
           else f"\n  None of {len(picked)} were dropped here -- the gaps are upstream's.")
 
 
+def write_summary(sets: dict[str, dict]) -> None:
+    """
+    Writes what the viewer cannot work out for itself.
+
+    Series-level health -- how many cards an era holds, how many have no artwork, how
+    many are soft -- needs every set in that era read at once. The viewer loads one set
+    at a time on purpose, because loading 218 files to draw a sidebar is not a sidebar.
+    So the number is computed here, where every set is already open, and the viewer reads
+    one small file instead of the whole catalog.
+
+    Derived, never authored: delete it and the next report rebuilds it. Committed
+    anyway, unlike dist/, because its diff is the interesting part -- a weekly refresh
+    PR that drops a set's art coverage or adds a field gap shows up here as a few
+    changed numbers, which is a far easier thing to review than 23,000 changed cards.
+    """
+    import time
+
+    eras: dict[str, dict] = {}
+    for set_id, entry in sets.items():
+        serie = entry["serie"] or "?"
+        era = eras.setdefault(serie, {
+            "id": serie, "sets": 0, "cards": 0, "art": 0, "filled": 0,
+            "holes": 0, "soft": 0, "fields": 0, "from": "9999",
+        })
+        renditions = entry["renditions"]
+        era["sets"] += 1
+        era["cards"] += entry["cards"]
+        era["art"] += renditions.get("tcgdex 600x825", 0)
+        era["filled"] += sum(n for label, n in renditions.items()
+                             if label not in ("tcgdex 600x825", "none"))
+        era["holes"] += renditions.get("none", 0)
+        era["soft"] += len(entry["soft"])
+        era["fields"] += len(entry["fields"])
+        if entry["releaseDate"] and entry["releaseDate"] < era["from"]:
+            era["from"] = entry["releaseDate"]
+
+    path = CATALOG / "summary.json"
+    path.write_text(json.dumps({
+        "generatedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "series": eras,
+        "sets": sets,
+    }, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    print(f"\nWrote {path.relative_to(ROOT)} "
+          f"({path.stat().st_size / 1024:.0f} KiB, {len(sets)} sets, {len(eras)} eras)")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--serie", help="only this era")
     ap.add_argument("--verbose", "-v", action="store_true")
     ap.add_argument("--check-upstream", type=int, metavar="N", default=0,
                     help="ask TCGdex about N flagged cards: did we drop it, or do they lack it?")
+    ap.add_argument("--write-summary", action="store_true",
+                    help="write catalog/summary.json for the viewer to read")
     args = ap.parse_args()
 
     docs = load()
@@ -221,6 +283,7 @@ def main() -> None:
     grand: Counter = Counter()
     soft_total = 0
     flagged: list[tuple[str, str]] = []
+    summaries: dict[str, dict] = {}
     for serie_id, sets in ordered:
         sets.sort(key=lambda d: (d.get("releaseDate") or "9999", d["id"]))
         name = ((sets[0].get("serie") or {}).get("name")) or serie_id
@@ -233,6 +296,10 @@ def main() -> None:
             grand.update(result["renditions"])
             soft_total += result["soft"]
             flagged += result["flagged"]
+            summaries[doc["id"]] = result["summary"]
+
+    if args.write_summary:
+        write_summary(summaries)
 
     if args.check_upstream and flagged:
         check_upstream(flagged, args.check_upstream)
