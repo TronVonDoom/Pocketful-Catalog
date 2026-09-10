@@ -59,8 +59,13 @@ EXPECTED_AT = 0.80
 
 # Fields a card may carry. Checked per category, so the report says "17 of 102 Pokemon
 # have no illustrator" rather than counting Trainers that were never going to have one.
+# `image` is deliberately absent. Artwork is already answered above, by rendition(),
+# which knows that a card carrying `imageAlt` has a picture -- and a plain `image` check
+# here does not, so the two halves of one report disagreed about the same cards. pop6
+# read "2 of 17 Pokemon carry no image" beside a rendition line saying both were filled
+# at 620x874. A report that contradicts itself is worse than one that says less.
 FIELDS = (
-    "image", "rarity", "illustrator", "localId", "name", "category",
+    "rarity", "illustrator", "localId", "name", "category",
     "hp", "types", "stage", "description", "retreat", "variants",
     "attacks", "weaknesses", "dexId",
 )
@@ -70,8 +75,7 @@ def load() -> list[dict]:
     directory = CATALOG / "sets"
     if not directory.is_dir():
         raise SystemExit(f"No catalog at {directory}.")
-    docs = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(directory.glob("*.json"))]
-    return [d for d in docs if d.get("cards")] + [d for d in docs if not d.get("cards")]
+    return [json.loads(p.read_text(encoding="utf-8")) for p in sorted(directory.glob("*.json"))]
 
 
 def rendition(card: dict) -> tuple[str, bool]:
@@ -263,6 +267,16 @@ def main() -> None:
     ap.add_argument("--write-summary", action="store_true",
                     help="write catalog/summary.json for the viewer to read")
     args = ap.parse_args()
+
+    # The summary is what the viewer reads for every era's health, so it has to describe
+    # the whole catalog. A filtered run used to write a filtered summary straight over
+    # the top of it -- `--serie base --write-summary` silently replaced 218 sets with 7,
+    # and the viewer simply lost the other twenty eras with nothing saying why.
+    if args.write_summary and args.serie:
+        raise SystemExit(
+            "--write-summary describes the whole catalog and --serie would write only "
+            f"{args.serie!r} over it. Run them separately."
+        )
 
     docs = load()
     eras: dict[str, list[dict]] = defaultdict(list)
