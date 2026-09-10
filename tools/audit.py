@@ -49,7 +49,8 @@ KINDS = {
     "no-rarity": "no rarity",
     "no-local-id": "no printed number",
     "unsafe-id": "id unusable in a URL or GraphQL literal",
-    "incomplete-pull": "fewer cards than upstream lists -- this pull lost some",
+    "incomplete-pull": "fewer cards than upstream offered -- this pull lost some",
+    "unverifiable-count": "pulled before the offered count was recorded",
     "short-set": "fewer cards than the set claims to hold -- upstream is missing them",
     "duplicate-local-id": "two cards share a printed number",
 }
@@ -75,7 +76,7 @@ def load_holes() -> dict:
     return json.loads(HOLES.read_text(encoding="utf-8"))
 
 
-def inspect(set_id: str, doc: dict) -> tuple[Counter, dict[str, list[str]]]:
+def inspect(set_id: str, doc: dict) -> tuple[Counter, dict[str, list[str]], list[str]]:
     """
     One set's holes, counted by kind and itemised by card.
 
@@ -85,13 +86,21 @@ def inspect(set_id: str, doc: dict) -> tuple[Counter, dict[str, list[str]]]:
     """
     counts: Counter = Counter()
     offenders: dict[str, list[str]] = defaultdict(list)
+    filled: list[str] = []
     cards = doc.get("cards") or []
 
     for card in cards:
         cid = card.get("id") or "<no id>"
         if not card.get("image"):
-            counts["no-image"] += 1
-            offenders["no-image"].append(cid)
+            # A card filled from a second source is not a hole -- it has artwork, just
+            # not TCGdex's. Counting it as one would put 1,719 entries in the baseline
+            # when only 468 of them are actually missing anything, and a baseline that
+            # permits a thousand non-problems cannot fail usefully on a real one.
+            if card.get("imageAlt"):
+                filled.append(cid)
+            else:
+                counts["no-image"] += 1
+                offenders["no-image"].append(cid)
         if not (card.get("name") or "").strip():
             counts["no-name"] += 1
             offenders["no-name"].append(cid)
@@ -111,30 +120,30 @@ def inspect(set_id: str, doc: dict) -> tuple[Counter, dict[str, list[str]]]:
             counts["duplicate-local-id"] += 1
             offenders["duplicate-local-id"].append(f"{set_id}-{local_id} x{n}")
 
-    # Two different questions, and conflating them hid a real bug for a whole afternoon.
-    #
-    # `total` is how many cards upstream actually lists for this set, secret rares
-    # included, so falling short of it means *this pull* lost cards. `official` is how
-    # many the set claims to have been printed with, so falling short of that means
-    # *upstream* is missing cards nobody here can supply.
-    #
-    # Checking only against `official` misses the first case entirely whenever a set has
-    # secret rares: swsh1 lists 216 cards and claims 202, so a pull that silently dropped
-    # ten still cleared the bar. That is exactly how a 187-card loss in swshp went
-    # unnoticed until the counts were compared by hand.
     count = doc.get("cardCount") or {}
-    total = count.get("total") or 0
     official = count.get("official") or 0
+    listed = doc.get("cardsListed")
 
-    if total and len(cards) < total:
-        counts["incomplete-pull"] += total - len(cards)
-        offenders["incomplete-pull"].append(f"{len(cards)} of {total} listed upstream")
+    # `cardsListed` is what the set document actually offered when it was pulled, written
+    # down by the pull itself. Comparing against it is the only way to say for certain
+    # that *this pull* lost cards.
+    #
+    # cardCount.total was the obvious thing to use and it was wrong twice over: it is
+    # upstream metadata, so for `jumbo` it claims 160 while the set lists none, which made
+    # every genuinely-empty set report as a failed pull. And a set without secret rares
+    # has total == official, so the two checks agreed and neither was informative.
+    if listed is not None and len(cards) < listed:
+        counts["incomplete-pull"] += listed - len(cards)
+        offenders["incomplete-pull"].append(f"{len(cards)} of {listed} offered upstream")
+    elif listed is None:
+        counts["unverifiable-count"] += 1
+        offenders["unverifiable-count"].append("pulled before cardsListed was recorded")
 
     if official and len(cards) < official:
         counts["short-set"] += official - len(cards)
         offenders["short-set"].append(f"{len(cards)} of {official} printed")
 
-    return counts, offenders
+    return counts, offenders, filled
 
 
 def main() -> None:
@@ -161,8 +170,10 @@ def main() -> None:
 
     findings: dict[str, Counter] = {}
     details: dict[str, dict[str, list[str]]] = {}
+    filled_total = 0
     for set_id, doc in sorted(sets.items()):
-        counts, offenders = inspect(set_id, doc)
+        counts, offenders, filled = inspect(set_id, doc)
+        filled_total += len(filled)
         if counts:
             findings[set_id] = counts
             details[set_id] = offenders

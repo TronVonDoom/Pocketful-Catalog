@@ -318,6 +318,14 @@ def pull_static(s: requests.Session, set_id: str):
     return {
         "id": detail["id"],
         "name": detail["name"],
+        # How many cards the set document listed when this was pulled.
+        #
+        # The audit needs to tell "this pull lost cards" from "upstream has fewer cards
+        # than the set claims", and cardCount.total cannot answer that -- it is upstream
+        # metadata, and for sets like `jumbo` it says 160 while the set lists none. So the
+        # pull writes down what it was actually offered and the audit compares against
+        # that. An observation, not a claim.
+        "cardsListed": len(ids),
         "serie": detail.get("serie"),
         "releaseDate": detail.get("releaseDate"),
         "cardCount": detail.get("cardCount"),
@@ -388,11 +396,43 @@ def pull_prices(s: requests.Session, set_id: str):
     }
 
 
+def refresh_counts(s: requests.Session, set_id: str) -> tuple[int, int] | None:
+    """
+    Stamps `cardsListed` onto a set already on disk, without re-fetching its cards.
+
+    One request per set, so the whole catalog is two minutes rather than twenty-five.
+
+    Worth having as its own mode, not just as scaffolding: this is the cheap question
+    "has any set gained cards since we last pulled it" -- which is exactly what happens
+    when a set is still being filled in the week after it releases. Asking it costs 218
+    requests; answering it by pulling every card costs 23,500.
+    """
+    path = OUT / "sets" / f"{set_id}.json"
+    if not path.exists():
+        return None
+    detail = get_json(s, f"{BASE}/{LANG}/sets/{set_id}")
+    if not detail:
+        print(f"  !! {set_id}: set document unavailable", file=sys.stderr)
+        return None
+
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    listed = len(detail.get("cards") or [])
+    doc["cardsListed"] = listed
+    # Written back in the same key order the pull produces, so a refresh does not show up
+    # as a whole-file diff.
+    ordered = {k: doc[k] for k in doc if k != "cards"}
+    ordered["cards"] = doc.get("cards", [])
+    path.write_text(json.dumps(ordered, indent=1, ensure_ascii=False), encoding="utf-8")
+    return len(doc.get("cards") or []), listed
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     half = ap.add_mutually_exclusive_group(required=True)
     half.add_argument("--static", action="store_true", help="the immutable half (GraphQL)")
     half.add_argument("--prices", action="store_true", help="the volatile half (REST)")
+    half.add_argument("--counts", action="store_true",
+                      help="refresh cardsListed only, one request per set")
 
     which = ap.add_mutually_exclusive_group(required=True)
     which.add_argument("--sets", nargs="+", help="explicit set ids")
@@ -428,7 +468,15 @@ def main() -> None:
     started = time.time()
     for n, set_id in enumerate(wanted, 1):
         print(f"[{n}/{len(wanted)}] {set_id} ...", end=" ", flush=True)
-        if args.static:
+        if args.counts:
+            result = refresh_counts(s, set_id)
+            if not result:
+                print("not on disk")
+                continue
+            have, listed = result
+            drift = "" if have == listed else f"  <-- SHORT {listed - have}"
+            print(f"{have} on disk, {listed} offered upstream{drift}")
+        elif args.static:
             doc = pull_static(s, set_id)
             if not doc:
                 continue

@@ -23,6 +23,7 @@
   "expanded": true,
   "standard": false
  },
+ "cardsListed": 188,
  "cards": [
   {
    "id": "me01-001",
@@ -9101,42 +9102,42 @@
     359
    ],
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
-   "variants_detailed": [
-    {
-     "type": "holo",
-     "size": "standard"
-    }
-   ],
    "attacks": [
     {
-     "name": "Terminal Period",
      "cost": [
       "Darkness",
       "Colorless"
      ],
+     "name": "Terminal Period",
      "effect": "If your opponent's Active Pokémon has exactly 6 damage counters on it, that Pokémon is Knocked Out."
     },
     {
-     "name": "Claw of Darkness",
      "cost": [
       "Darkness",
       "Darkness",
       "Colorless"
      ],
-     "damage": "200",
-     "effect": "Your opponent reveals their hand, and you discard a card you find there."
+     "name": "Claw of Darkness",
+     "effect": "Your opponent reveals their hand, and you discard a card you find there.",
+     "damage": 200
     }
    ],
    "weaknesses": [
     {
      "type": "Grass",
      "value": "×2"
+    }
+   ],
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
     }
    ]
   },
@@ -9160,37 +9161,31 @@
     303
    ],
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
-   "variants_detailed": [
-    {
-     "type": "holo",
-     "size": "standard"
-    }
-   ],
    "attacks": [
     {
-     "name": "Gobble Down",
      "cost": [
       "Metal",
       "Metal"
      ],
-     "damage": "80×",
-     "effect": "This attack does 80 damage for each Prize card you have taken."
+     "name": "Gobble Down",
+     "effect": "This attack does 80 damage for each Prize card you have taken.",
+     "damage": "80×"
     },
     {
-     "name": "Huge Bite",
      "cost": [
       "Metal",
       "Metal",
       "Colorless"
      ],
-     "damage": "260",
-     "effect": "If your opponent's Active Pokémon already has any damage counters on it, this attack's base damage is 30."
+     "name": "Huge Bite",
+     "effect": "If your opponent's Active Pokémon already has any damage counters on it, this attack's base damage is 30.",
+     "damage": 260
     }
    ],
    "weaknesses": [
@@ -9203,6 +9198,12 @@
     {
      "type": "Grass",
      "value": "-30"
+    }
+   ],
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
     }
    ]
   },
@@ -9226,36 +9227,36 @@
     380
    ],
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
-   "variants_detailed": [
-    {
-     "type": "holo",
-     "size": "standard"
-    }
-   ],
    "attacks": [
     {
-     "name": "Strafe",
      "cost": [
       "Colorless"
      ],
-     "damage": "40",
-     "effect": "You may switch this Pokémon with 1 of your Benched Pokémon."
+     "name": "Strafe",
+     "effect": "You may switch this Pokémon with 1 of your Benched Pokémon.",
+     "damage": 40
     },
     {
-     "name": "Illusory Impulse",
      "cost": [
       "Fire",
       "Psychic",
       "Colorless"
      ],
-     "damage": "300",
-     "effect": "Discard all Energy from this Pokémon."
+     "name": "Illusory Impulse",
+     "effect": "Discard all Energy from this Pokémon.",
+     "damage": 300
+    }
+   ],
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
     }
    ]
   },
@@ -9279,28 +9280,22 @@
     115
    ],
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
-   "variants_detailed": [
-    {
-     "type": "holo",
-     "size": "standard"
-    }
-   ],
    "attacks": [
     {
-     "name": "Rapid-Fire Combo",
      "cost": [
       "Colorless",
       "Colorless",
       "Colorless"
      ],
-     "damage": "200+",
-     "effect": "Flip a coin until you get tails. This attack does 50 more damage for each heads."
+     "name": "Rapid-Fire Combo",
+     "effect": "Flip a coin until you get tails. This attack does 50 more damage for each heads.",
+     "damage": "200+"
     }
    ],
    "abilities": [
@@ -9314,6 +9309,12 @@
     {
      "type": "Fighting",
      "value": "×2"
+    }
+   ],
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
     }
    ]
   },
@@ -9329,10 +9330,10 @@
    "trainerType": "Supporter",
    "effect": "You can use this card only if your opponent has 2 or fewer Prize cards remaining.\n\nChoose 1 of your Pokémon in play. During your opponent's next turn, prevent all damage from and effects of attacks done to that Pokémon by your opponent's Pokémon ex.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -9354,10 +9355,10 @@
    "trainerType": "Tool",
    "effect": "The Retreat Cost of the Pokémon this card is attached to is {C}{C} less.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -9379,10 +9380,10 @@
    "trainerType": "Item",
    "effect": "Search your deck for up to 2 Basic Pokémon with 70 HP or less and put them onto your Bench. Then, shuffle your deck.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -9404,10 +9405,10 @@
    "trainerType": "Item",
    "effect": "Search your deck for a Basic {F} Energy card or a Basic {F} Pokémon, reveal it, and put it into your hand. Then, shuffle your deck.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -9429,10 +9430,10 @@
    "trainerType": "Supporter",
    "effect": "Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -9454,10 +9455,10 @@
    "trainerType": "Supporter",
    "effect": "Ask your opponent if each player may take a Prize card. If yes, each player takes a Prize card. If no, you draw 4 cards.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -9479,10 +9480,10 @@
    "trainerType": "Item",
    "effect": "Search your deck for a Mega Evolution Pokémon ex, reveal it, and put it into your hand. Then, shuffle your deck.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -9504,10 +9505,10 @@
    "trainerType": "Stadium",
    "effect": "Once during each player's turn, that player may discard an Energy card from their hand in order to draw cards until they have as many cards in their hand as they have {P} Pokémon in play.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -9529,10 +9530,10 @@
    "trainerType": "Item",
    "effect": "Put a Pokémon or a Basic Energy card from your discard pile into your hand.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -9554,10 +9555,10 @@
    "trainerType": "Item",
    "effect": "During this turn, attacks used by your {F} Pokémon do 30 more damage to your opponent's Active Pokémon (before applying Weakness and Resistance).",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -9579,10 +9580,10 @@
    "trainerType": "Item",
    "effect": "Choose 1 of your Basic Pokémon in play. If you have a Stage 2 card in your hand that evolves from that Pokémon, put that card onto the Basic Pokémon to evolve it, skipping the Stage 1. You can't use this card during your first turn or on a Basic Pokémon that was put into play this turn.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -9604,10 +9605,10 @@
    "trainerType": "Supporter",
    "effect": "Heal all damage from 1 of your Mega Evolution Pokémon ex. If you healed any damage in this way, put all Energy attached to that Pokémon into your hand.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -9638,29 +9639,23 @@
     3
    ],
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
-   "variants_detailed": [
-    {
-     "type": "holo",
-     "size": "standard"
-    }
-   ],
    "attacks": [
     {
-     "name": "Jungle Dump",
      "cost": [
       "Grass",
       "Grass",
       "Grass",
       "Grass"
      ],
-     "damage": "240",
-     "effect": "Heal 30 damage from this Pokémon."
+     "name": "Jungle Dump",
+     "effect": "Heal 30 damage from this Pokémon.",
+     "damage": 240
     }
    ],
    "abilities": [
@@ -9674,6 +9669,12 @@
     {
      "type": "Fire",
      "value": "×2"
+    }
+   ],
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
     }
    ]
   },
@@ -9698,33 +9699,27 @@
     282
    ],
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
-   "variants_detailed": [
-    {
-     "type": "holo",
-     "size": "standard"
-    }
-   ],
    "attacks": [
     {
-     "name": "Overflowing Wishes",
      "cost": [
       "Psychic"
      ],
+     "name": "Overflowing Wishes",
      "effect": "For each of your Benched Pokémon, search your deck for a Basic {P} Energy card and attach it to that Pokémon. Then, shuffle your deck."
     },
     {
-     "name": "Mega Symphonia",
      "cost": [
       "Psychic"
      ],
-     "damage": "50×",
-     "effect": "This attack does 50 damage for each {P} Energy attached to all of your Pokémon."
+     "name": "Mega Symphonia",
+     "effect": "This attack does 50 damage for each {P} Energy attached to all of your Pokémon.",
+     "damage": "50×"
     }
    ],
    "weaknesses": [
@@ -9737,6 +9732,12 @@
     {
      "type": "Fighting",
      "value": "-30"
+    }
+   ],
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
     }
    ]
   },
@@ -9761,41 +9762,41 @@
     448
    ],
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
-   "variants_detailed": [
-    {
-     "type": "holo",
-     "size": "standard"
-    }
-   ],
    "attacks": [
     {
-     "name": "Aura Jab",
      "cost": [
       "Fighting"
      ],
-     "damage": "130",
-     "effect": "Attach up to 3 Basic {F} Energy cards from your discard pile to your Benched Pokémon in any way you like."
+     "name": "Aura Jab",
+     "effect": "Attach up to 3 Basic {F} Energy cards from your discard pile to your Benched Pokémon in any way you like.",
+     "damage": 130
     },
     {
-     "name": "Mega Brave",
      "cost": [
       "Fighting",
       "Fighting"
      ],
-     "damage": "270",
-     "effect": "During your next turn, this Pokémon can't use Mega Brave."
+     "name": "Mega Brave",
+     "effect": "During your next turn, this Pokémon can't use Mega Brave.",
+     "damage": 270
     }
    ],
    "weaknesses": [
     {
      "type": "Psychic",
      "value": "×2"
+    }
+   ],
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
     }
    ]
   },
@@ -9819,42 +9820,42 @@
     359
    ],
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
-   "variants_detailed": [
-    {
-     "type": "holo",
-     "size": "standard"
-    }
-   ],
    "attacks": [
     {
-     "name": "Terminal Period",
      "cost": [
       "Darkness",
       "Colorless"
      ],
+     "name": "Terminal Period",
      "effect": "If your opponent's Active Pokémon has exactly 6 damage counters on it, that Pokémon is Knocked Out."
     },
     {
-     "name": "Claw of Darkness",
      "cost": [
       "Darkness",
       "Darkness",
       "Colorless"
      ],
-     "damage": "200",
-     "effect": "Your opponent reveals their hand, and you discard a card you find there."
+     "name": "Claw of Darkness",
+     "effect": "Your opponent reveals their hand, and you discard a card you find there.",
+     "damage": 200
     }
    ],
    "weaknesses": [
     {
      "type": "Grass",
      "value": "×2"
+    }
+   ],
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
     }
    ]
   },
@@ -9878,36 +9879,36 @@
     380
    ],
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
-   "variants_detailed": [
-    {
-     "type": "holo",
-     "size": "standard"
-    }
-   ],
    "attacks": [
     {
-     "name": "Strafe",
      "cost": [
       "Colorless"
      ],
-     "damage": "40",
-     "effect": "You may switch this Pokémon with 1 of your Benched Pokémon."
+     "name": "Strafe",
+     "effect": "You may switch this Pokémon with 1 of your Benched Pokémon.",
+     "damage": 40
     },
     {
-     "name": "Illusory Impulse",
      "cost": [
       "Fire",
       "Psychic",
       "Colorless"
      ],
-     "damage": "300",
-     "effect": "Discard all Energy from this Pokémon."
+     "name": "Illusory Impulse",
+     "effect": "Discard all Energy from this Pokémon.",
+     "damage": 300
+    }
+   ],
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
     }
    ]
   },
@@ -9931,28 +9932,22 @@
     115
    ],
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
-   "variants_detailed": [
-    {
-     "type": "holo",
-     "size": "standard"
-    }
-   ],
    "attacks": [
     {
-     "name": "Rapid-Fire Combo",
      "cost": [
       "Colorless",
       "Colorless",
       "Colorless"
      ],
-     "damage": "200+",
-     "effect": "Flip a coin until you get tails. This attack does 50 more damage for each heads."
+     "name": "Rapid-Fire Combo",
+     "effect": "Flip a coin until you get tails. This attack does 50 more damage for each heads.",
+     "damage": "200+"
     }
    ],
    "abilities": [
@@ -9966,6 +9961,12 @@
     {
      "type": "Fighting",
      "value": "×2"
+    }
+   ],
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
     }
    ]
   },
@@ -9981,10 +9982,10 @@
    "trainerType": "Supporter",
    "effect": "You can use this card only if your opponent has 2 or fewer Prize cards remaining.\n\nChoose 1 of your Pokémon in play. During your opponent's next turn, prevent all damage from and effects of attacks done to that Pokémon by your opponent's Pokémon ex.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -10006,10 +10007,10 @@
    "trainerType": "Supporter",
    "effect": "Shuffle your hand into your deck. Then, draw 6 cards. If you have exactly 6 Prize cards remaining, draw 8 cards instead.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -10031,10 +10032,10 @@
    "trainerType": "Supporter",
    "effect": "Ask your opponent if each player may take a Prize card. If yes, each player takes a Prize card. If no, you draw 4 cards.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -10056,10 +10057,10 @@
    "trainerType": "Supporter",
    "effect": "Heal all damage from 1 of your Mega Evolution Pokémon ex. If you healed any damage in this way, put all Energy attached to that Pokémon into your hand.",
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
    "variants_detailed": [
@@ -10090,33 +10091,27 @@
     282
    ],
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
-   "variants_detailed": [
-    {
-     "type": "holo",
-     "size": "standard"
-    }
-   ],
    "attacks": [
     {
-     "name": "Overflowing Wishes",
      "cost": [
       "Psychic"
      ],
+     "name": "Overflowing Wishes",
      "effect": "For each of your Benched Pokémon, search your deck for a Basic {P} Energy card and attach it to that Pokémon. Then, shuffle your deck."
     },
     {
-     "name": "Mega Symphonia",
      "cost": [
       "Psychic"
      ],
-     "damage": "50×",
-     "effect": "This attack does 50 damage for each {P} Energy attached to all of your Pokémon."
+     "name": "Mega Symphonia",
+     "effect": "This attack does 50 damage for each {P} Energy attached to all of your Pokémon.",
+     "damage": "50×"
     }
    ],
    "weaknesses": [
@@ -10129,6 +10124,12 @@
     {
      "type": "Fighting",
      "value": "-30"
+    }
+   ],
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
     }
    ]
   },
@@ -10153,41 +10154,41 @@
     448
    ],
    "variants": {
-    "normal": false,
-    "holo": true,
-    "reverse": false,
     "firstEdition": false,
+    "holo": true,
+    "normal": false,
+    "reverse": false,
     "wPromo": false
    },
-   "variants_detailed": [
-    {
-     "type": "holo",
-     "size": "standard"
-    }
-   ],
    "attacks": [
     {
-     "name": "Aura Jab",
      "cost": [
       "Fighting"
      ],
-     "damage": "130",
-     "effect": "Attach up to 3 Basic {F} Energy cards from your discard pile to your Benched Pokémon in any way you like."
+     "name": "Aura Jab",
+     "effect": "Attach up to 3 Basic {F} Energy cards from your discard pile to your Benched Pokémon in any way you like.",
+     "damage": 130
     },
     {
-     "name": "Mega Brave",
      "cost": [
       "Fighting",
       "Fighting"
      ],
-     "damage": "270",
-     "effect": "During your next turn, this Pokémon can't use Mega Brave."
+     "name": "Mega Brave",
+     "effect": "During your next turn, this Pokémon can't use Mega Brave.",
+     "damage": 270
     }
    ],
    "weaknesses": [
     {
      "type": "Psychic",
      "value": "×2"
+    }
+   ],
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
     }
    ]
   }
