@@ -108,6 +108,16 @@
   .dlg .close { position: absolute; top: 10px; right: 14px; background: none; border: 0; color: var(--ink2); font-size: 22px; cursor: pointer; }
   .links a { color: var(--accent); font-size: 11.5px; word-break: break-all; }
   .empty { color: var(--ink3); padding: 40px; text-align: center; }
+  .note {
+    margin-bottom: 12px; padding: 9px 12px; border-radius: 8px; line-height: 1.5;
+    background: var(--panel); border: 1px solid var(--line); color: var(--ink2);
+  }
+  .note b { color: var(--ink); }
+  .note code { background: var(--bg); padding: 1px 5px; border-radius: 4px; font-size: 11.5px; }
+  .note.bad  { border-color: color-mix(in srgb, var(--bad) 45%, transparent); }
+  .note.bad b { color: var(--bad); }
+  .note.warn { border-color: color-mix(in srgb, var(--warn) 45%, transparent); }
+  .note.warn b { color: var(--warn); }
   @media (max-width: 860px) {
     main { grid-template-columns: 1fr; }
     aside { display: none; }
@@ -214,9 +224,19 @@ function renderSet(doc) {
   const withArt = cards.filter(c => c.image).length;
   const filled = cards.filter(c => !c.image && c.imageAlt).length;
   const holes = cards.filter(c => !c.image && !c.imageAlt).length;
-  const total = doc.cardCount?.total ?? 0;
+  // `cardsListed` is what the set document actually offered when it was pulled. It is the
+  // only number that can say whether *this pull* lost cards.
+  //
+  // cardCount.total looks like the same fact and is not: it is upstream metadata, and for
+  // six sets it disagrees with what upstream will actually hand over -- jumbo claims 160
+  // and lists none. Reading it here made the viewer show a red "this pull is short 160
+  // cards" on a set the pull fetched perfectly, blaming the fetch for an upstream gap.
+  // That is the exact confusion this repository exists to remove, so the viewer and
+  // audit.py now measure completeness the same way.
+  const listed = doc.cardsListed ?? null;
   const official = doc.cardCount?.official ?? 0;
-  const short = total && cards.length < total;
+  const lost = listed !== null && cards.length < listed;
+  const upstreamShort = official > 0 && cards.length < official;
 
   const q = $('#q').value.trim().toLowerCase();
   const only = $('#holesOnly').checked;
@@ -235,15 +255,24 @@ function renderSet(doc) {
       </div>
       <div class="badges">
         <span class="badge">${cards.length} on disk</span>
-        ${total ? `<span class="badge ${short ? 'bad' : 'ok'}">${total} listed upstream</span>` : ''}
-        ${official ? `<span class="badge">${official} printed</span>` : ''}
+        ${listed !== null ? `<span class="badge ${lost ? 'bad' : 'ok'}">${listed} offered upstream</span>` : ''}
+        ${official ? `<span class="badge ${upstreamShort ? 'warn' : ''}">${official} printed</span>` : ''}
         <span class="badge ok">${withArt} with art</span>
         ${filled ? `<span class="badge alt">${filled} filled</span>` : ''}
         ${holes ? `<span class="badge bad">${holes} no art</span>` : ''}
       </div>
     </div>
-    ${short ? `<div class="badge bad" style="margin-bottom:12px;display:inline-block">
-      This pull is short ${total - cards.length} cards — audit.py would call that incomplete-pull, not a hole.</div>` : ''}
+    ${lost ? `<div class="note bad">
+      <b>incomplete-pull.</b> Upstream offered ${listed} cards and only ${cards.length} are on
+      disk, so ${listed - cards.length} were lost fetching this set. Re-run
+      <code>pull_catalog.py --static --sets ${esc(doc.id)}</code>.</div>` : ''}
+    ${upstreamShort ? `<div class="note warn">
+      <b>short-set.</b> This set claims ${official} printed cards and upstream only offers
+      ${listed ?? cards.length}. Nothing here can supply the other ${official - cards.length} —
+      the gap is in TCGdex's own data, not in this pull.</div>` : ''}
+    ${cards.length > official && official > 0 ? `<div class="note">
+      ${cards.length - official} card${cards.length - official === 1 ? '' : 's'} numbered past the
+      printed total — secret rares. Expected, not a fault.</div>` : ''}
     ${shown.length ? `<div class="grid">${shown.map(cardTile).join('')}</div>`
                    : `<div class="empty">No cards match.</div>`}`;
 }
