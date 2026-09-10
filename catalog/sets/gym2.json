@@ -1,0 +1,7214 @@
+{
+ "id": "gym2",
+ "name": "Gym Challenge",
+ "serie": {
+  "id": "gym",
+  "name": "Gym"
+ },
+ "releaseDate": "2000-10-16",
+ "cardCount": {
+  "firstEd": 130,
+  "holo": 42,
+  "normal": 226,
+  "official": 132,
+  "reverse": 0,
+  "total": 132
+ },
+ "logo": "https://assets.tcgdex.net/en/gym/gym2/logo",
+ "symbol": "https://assets.tcgdex.net/univ/gym/gym2/symbol",
+ "abbreviation": {
+  "official": "G2"
+ },
+ "legal": {
+  "expanded": false,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "gym2-1",
+   "localId": "1",
+   "name": "Blaine's Arcanine",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/1",
+   "hp": 90,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Growlithe",
+   "retreat": 3,
+   "dexId": [
+    59
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Heat Tackle",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Blaine's Arcanine does 10 damage to itself."
+    },
+    {
+     "name": "Firestorm",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Fire",
+      "Fire"
+     ],
+     "damage": "120",
+     "effect": "Discard 3 Fire Energy cards attached to Blaine's Arcanine in order to use this attack."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-2",
+   "localId": "2",
+   "name": "Blaine's Charizard",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/2",
+   "hp": 100,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Charmeleon",
+   "retreat": 3,
+   "dexId": [
+    6
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    },
+    {
+     "type": "holo",
+     "subtype": "energy-symbol-error",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Roaring Flames",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "20+",
+     "effect": "Discard all Fire Energy cards attached to Blaine's Charizard. If all Energy cards attached to Blaine's Charizard provide 2 Fire Energy, discard all of them. This attack does 20 damage plus 20 more damage for each Fire Energy discarded in this way."
+    },
+    {
+     "name": "Flame Jet",
+     "cost": [
+      "Fire",
+      "Fire"
+     ],
+     "effect": "Flip a coin. If heads, choose 1 of your opponent's Pokémon. This attack does 40 damage to that Pokémon. Don't apply Weakness and Resistance for this attack. (Any other effects that would happen after applying Weakness and Resistance still happen.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-3",
+   "localId": "3",
+   "name": "Brock's Ninetales",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/3",
+   "hp": 70,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Vulpix",
+   "retreat": 1,
+   "dexId": [
+    38
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Will-o'-the-wisp",
+     "cost": [
+      "Fire",
+      "Fire"
+     ],
+     "damage": "30"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Shapeshift",
+     "effect": "Once during your turn (before your attack), you may attach an Evolution card from your hand to Brock's Ninetales. (This doesn't count as evolving Brock's Ninetales.) Treat Brock's Ninetales as if it were that Pokémon instead. It can't evolve, devolve, or use the Pokémon Power of that Pokémon. During your turn, you may discard the Evolution card attached to Brock's Ninetales. This power can't be used if Brock's Ninetales is Asleep, Confused, or Paralyzed. If Brock's Ninetales becomes Asleep, Confused, or Paralyzed, discard all Evolution cards attached to it."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-4",
+   "localId": "4",
+   "name": "Erika's Venusaur",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/4",
+   "hp": 90,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Ivysaur",
+   "retreat": 2,
+   "dexId": [
+    3
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Growth",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "Flip a coin. If heads, you may attach up to 2 Grass Energy cards from your hand to Erika's Venusaur."
+    },
+    {
+     "name": "Wide Solarbeam",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Grass",
+      "Grass"
+     ],
+     "damage": "20",
+     "effect": "If your opponent has any Benched Pokémon, choose 2 of them (or 1 if he or she only has 1). This attack does 20 damage to each of them. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-5",
+   "localId": "5",
+   "name": "Giovanni's Gyarados",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/5",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Magikarp",
+   "retreat": 3,
+   "dexId": [
+    130
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Summon Storm",
+     "cost": [
+      "Water"
+     ],
+     "effect": "Flip 2 coins. If both of them are heads, this attack does 20 damage to each other Pokémon (even your own). Don't apply Weakness and Resistance for this attack."
+    },
+    {
+     "name": "Dragon Tornado",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Unless this attack Knocks Out the Defending Pokémon, choose 1 of your opponent's Benched Pokémon and switch it with the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-6",
+   "localId": "6",
+   "name": "Giovanni's Machamp",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/6",
+   "hp": 100,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Machoke",
+   "retreat": 3,
+   "dexId": [
+    68
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hurricane Punch",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "30x",
+     "effect": "Flip 4 coins. This attack does 30 damage times the number of heads."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Fortitude",
+     "effect": "If Giovanni's Machamp would be Knocked Out by an opponent's attack, flip a coin. If heads, Giovanni's Machamp is not Knocked Out and its remaining HP become 10 instead. This power can't be used if Giovanni's Machamp is already Asleep, Confused, or Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-7",
+   "localId": "7",
+   "name": "Giovanni's Nidoking",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/7",
+   "hp": 120,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Nidorino",
+   "retreat": 3,
+   "dexId": [
+    34
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Intimidate",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "If the Defending Pokémon's maximum HP is 50 or less, it can't attack Giovanni's Nidoking during your opponent's next turn. (Benching or evolving either Pokémon ends this effect.)"
+    },
+    {
+     "name": "Tumbling Attack",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "40+",
+     "effect": "Flip a coin. If heads, this attack does 40 damage plus 30 more damage; if tails, this attack does 40 damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-8",
+   "localId": "8",
+   "name": "Giovanni's Persian",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/8",
+   "hp": 60,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Meowth",
+   "retreat": 0,
+   "dexId": [
+    53
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ambush",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Flip a coin. If heads, this attack does 20 damage plus 20 more damage; if tails, this attack does 20 damage."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Call the Boss",
+     "effect": "When you play Giovanni's Persian from your hand, you may search your deck for the Trainer card named Giovanni, show it to your opponent, and put it into your hand. Shuffle your deck afterward."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-9",
+   "localId": "9",
+   "name": "Koga's Beedrill",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/9",
+   "hp": 80,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Kakuna",
+   "retreat": 0,
+   "dexId": [
+    15
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Nerve Poison",
+     "cost": [
+      "Grass",
+      "Grass"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed and Poisoned."
+    },
+    {
+     "name": "Hyper Needle",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If tails, this attack does nothing. Either way, you can't use this attack again as long as Koga's Beedrill stays in play (even putting Koga's Beedrill on the Bench won't let you use it again)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-10",
+   "localId": "10",
+   "name": "Koga's Ditto",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/10",
+   "hp": 40,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    132
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Giant Growth",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, Koga's Ditto's maximum HP is now 80 and Koga's Ditto's Pound attack's base damage is 30 instead of 10. (Benching Koga's Ditto ends this effect.)"
+    },
+    {
+     "name": "Pound",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-11",
+   "localId": "11",
+   "name": "Lt. Surge's Raichu",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/11",
+   "hp": 80,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Pikachu",
+   "retreat": 2,
+   "dexId": [
+    26
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Kerzap",
+     "cost": [
+      "Lightning",
+      "Lightning"
+     ],
+     "damage": "20+",
+     "effect": "Flip a coin. If heads, this attack does 20 damage plus 30 more damage to the Defending Pokémon and discard all Lightning Energy cards attached to Lt. Surge's Raichu. If tails, this attack does 20 damage."
+    },
+    {
+     "name": "Thundertackle",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed. If tails, Lt. Surge's Raichu does 20 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-12",
+   "localId": "12",
+   "name": "Misty's Golduck",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/12",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Psyduck",
+   "retreat": 1,
+   "dexId": [
+    55
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Electro Beam",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Flip a coin. If tails, discard all Energy cards attached to Misty's Golduck."
+    },
+    {
+     "name": "Super Removal",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, choose 1 Energy card attached to each of your opponent's Pokémon that has any Energy cards and discard those Energy cards."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-13",
+   "localId": "13",
+   "name": "Misty's Gyarados",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/13",
+   "hp": 100,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Magikarp",
+   "retreat": 3,
+   "dexId": [
+    130
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tidal Wave",
+     "cost": [
+      "Water",
+      "Water",
+      "Water",
+      "Water"
+     ],
+     "damage": "70"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Rebellion",
+     "effect": "Whenever Misty's Gyarados attacks, flip 2 coins. If both of them are tails, that attack does nothing. Instead, shuffle Misty's Gyarados and all cards attached to it into your deck. (This power works even if Misty's Gyarados is Confused.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-14",
+   "localId": "14",
+   "name": "Rocket's Mewtwo",
+   "rarity": "Holo Rare",
+   "illustrator": "Shin-ichi Yoshida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/14",
+   "hp": 70,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    150
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    },
+    {
+     "type": "holo",
+     "size": "jumbo",
+     "stamp": [
+      "winner"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Juxtapose",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Flip a coin. If heads, switch the number of damage counters on Rocket's Mewtwo with the number of damage counters on the Defending Pokémon (even if it would Knock Out either Pokémon). (It's okay if 1 of the Pokémon has no damage counters on it.)"
+    },
+    {
+     "name": "Hypnoblast",
+     "cost": [
+      "Psychic",
+      "Psychic"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Asleep."
+    },
+    {
+     "name": "Psyburn",
+     "cost": [
+      "Psychic",
+      "Psychic",
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "60"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-15",
+   "localId": "15",
+   "name": "Rocket's Zapdos",
+   "rarity": "Holo Rare",
+   "illustrator": "Shin-ichi Yoshida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/15",
+   "hp": 70,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    145
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Plasma",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "20",
+     "effect": "If there are any Lightning Energy cards in your discard pile, attach 1 of them to Rocket's Zapdos."
+    },
+    {
+     "name": "Electroburn",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "70",
+     "effect": "Rocket's Zapdos does damage to itself equal to 10 times the number of Lightning Energy cards attached to it."
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-16",
+   "localId": "16",
+   "name": "Sabrina's Alakazam",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/16",
+   "hp": 80,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Kadabra",
+   "retreat": 3,
+   "dexId": [
+    65
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Mega Burn",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "You can't use this attack during your next turn."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Psylink",
+     "effect": "Sabrina's Alakazam always has a copy of every attack your Psychic Pokémon in play have (including their Energy costs and anything else required in order to use those attacks, such as discarding Energy cards). This power can't be used if Sabrina's Alakazam is Asleep, Confused, or Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-17",
+   "localId": "17",
+   "name": "Blaine",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/17",
+   "effect": "During this turn, instead of attaching your free Energy card, you may instead attach 2 Fire Energy cards to 1 of your Pokémon with Blaine in its name. (Playing additional copies of this card this turn has no effect.)",
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-18",
+   "localId": "18",
+   "name": "Giovanni",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/18",
+   "effect": "Choose 1 of your Pokémon in play with Giovanni in its name. For the rest of your turn, you may evolve that Pokémon even if you just played or evolved it this turn or if this is your first turn. This effect also applies to the Pokémon it evolves into.",
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-19",
+   "localId": "19",
+   "name": "Koga",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/19",
+   "effect": "If an attack from a Pokémon with Koga in its name does damage to a Defending Pokémon this turn, that Pokémon is then Poisoned.",
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-20",
+   "localId": "20",
+   "name": "Sabrina",
+   "rarity": "Holo Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/20",
+   "effect": "Take all Energy cards attached to 1 of your Pokémon with Sabrina in its name and attach them to another 1 of your Pokémon with Sabrina in its name.",
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-21",
+   "localId": "21",
+   "name": "Blaine's Ninetales",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/21",
+   "hp": 60,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Vulpix",
+   "retreat": 2,
+   "dexId": [
+    38
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Burn Up",
+     "cost": [
+      "Fire",
+      "Fire"
+     ],
+     "damage": "50",
+     "effect": "Flip a coin. If tails, discard all Fire Energy cards attached to Blaine's Ninetales."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Healing Fire",
+     "effect": "Whenever you attach a Fire Energy card from your hand to Blaine's Ninetales, remove 1 damage counter from it, if it has any. This power stops working when Blaine's Ninetales is Asleep, Confused, or Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-22",
+   "localId": "22",
+   "name": "Brock's Dugtrio",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/22",
+   "hp": 60,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Diglett",
+   "retreat": 1,
+   "dexId": [
+    51
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Lie Low",
+     "cost": [
+      "Fighting"
+     ],
+     "effect": "All damage done to Brock's Dugtrio during your opponent's next turn is reduced by 20 (after applying Weakness and Resistance)."
+    },
+    {
+     "name": "Earthdrill",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Colorless"
+     ],
+     "effect": "This attack can't be used unless Brock's Dugtrio used its Lie Low attack last turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-23",
+   "localId": "23",
+   "name": "Giovanni's Nidoqueen",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/23",
+   "hp": 100,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Nidorina",
+   "retreat": 3,
+   "dexId": [
+    31
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Mega Kick",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "40"
+    },
+    {
+     "name": "Love Lariat",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50+",
+     "effect": "Flip a coin. If heads, this attack does 50 damage plus 50 more damage if you have at least 1 Giovanni's Nidoking on your Bench. If tails, this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-24",
+   "localId": "24",
+   "name": "Giovanni's Pinsir",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/24",
+   "hp": 70,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    127
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Snapping Pincers",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 10 more damage; if tails, this attack does 10 damage."
+    },
+    {
+     "name": "Overhead Toss",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "If you have any Benched Pokémon, flip a coin. If tails, choose 1 of your Benched Pokémon. This attack does 20 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-25",
+   "localId": "25",
+   "name": "Koga's Arbok",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/25",
+   "hp": 90,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Ekans",
+   "retreat": 2,
+   "dexId": [
+    24
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Poison Buildup",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "Koga's Arbok is now Poisoned."
+    },
+    {
+     "name": "Poison Power",
+     "cost": [
+      "Grass",
+      "Grass"
+     ],
+     "effect": "If Koga's Arbok is Poisoned, this attack's base damage is 40 instead of 20 and the Defending Pokémon is now Poisoned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-26",
+   "localId": "26",
+   "name": "Koga's Muk",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/26",
+   "hp": 80,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Grimer",
+   "retreat": 3,
+   "dexId": [
+    89
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sludge Whirlpool",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "40"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Energy Drain",
+     "effect": "If an opponent's attack does damage to Koga's Muk (even if Koga's Muk is Knocked Out), flip a coin. If heads and if it has any, choose 1 Energy card attached to the attacking Pokémon and discard it. This power can't be used if Koga's Muk is already Asleep, Confused, or Paralyzed when your opponent attacks."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-27",
+   "localId": "27",
+   "name": "Koga's Pidgeotto",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/27",
+   "hp": 60,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Pidgey",
+   "retreat": 0,
+   "dexId": [
+    17
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Quick Turn",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30x",
+     "effect": "Flip 2 coins. This attack does 30 damage times the number of heads."
+    },
+    {
+     "name": "Aerial Maneuvers",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 30 more damage, and, during your opponent's next turn, prevent all effects of attacks, including damage, done to Koga's Pidgeotto. If tails, this attack does 10 damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-28",
+   "localId": "28",
+   "name": "Lt. Surge's Jolteon",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/28",
+   "hp": 70,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Eevee",
+   "retreat": 1,
+   "dexId": [
+    135
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "High Voltage",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, your opponent can't play Trainer cards during his or her next turn."
+    },
+    {
+     "name": "Thunder Flare",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Lightning"
+     ],
+     "damage": "30+",
+     "effect": "Does 30 damage plus 10 damage times the number of damage counters on Lt. Surge's Jolteon, then flip a coin. If tails, Lt. Surge's Jolteon does 30 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-29",
+   "localId": "29",
+   "name": "Sabrina's Gengar",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/29",
+   "hp": 90,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Haunter",
+   "retreat": 2,
+   "dexId": [
+    94
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Dark Wave",
+     "cost": [
+      "Psychic",
+      "Psychic"
+     ],
+     "damage": "20",
+     "effect": "All Pokémon Powers stop working until the end of your opponent's next turn."
+    },
+    {
+     "name": "Shadow Bind",
+     "cost": [
+      "Psychic",
+      "Psychic",
+      "Psychic"
+     ],
+     "damage": "40",
+     "effect": "The Defending Pokémon can't retreat during your opponent's next turn."
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-30",
+   "localId": "30",
+   "name": "Sabrina's Golduck",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/30",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Psyduck",
+   "retreat": 2,
+   "dexId": [
+    55
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Damage Shift",
+     "cost": [
+      "Psychic",
+      "Psychic"
+     ],
+     "effect": "Move 1 damage counter from each of your Pokémon that has any on it to the Defending Pokémon. (Don't apply Weakness and Resistance.)"
+    },
+    {
+     "name": "Water Spray",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Flip a coin. If heads, this attack does 20 damage plus 20 more damage; if tails, this attack does 20 damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-31",
+   "localId": "31",
+   "name": "Blaine's Charmeleon",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/31",
+   "hp": 70,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Charmander",
+   "retreat": 2,
+   "dexId": [
+    5
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fire Claws",
+     "cost": [
+      "Fire",
+      "Fire"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Bonfire",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Fire"
+     ],
+     "damage": "10",
+     "effect": "Flip 3 coins. For each heads, discard 1 Fire Energy card attached to Blaine's Charmeleon. If you can't discard Energy cards, this attack does nothing. This attack does 10 damage times the number of heads to each of your opponent's Pokémon. Don't apply Weakness and Resistance for this attack. (Any other effects that would happen after applying Weakness and Resistance still happen.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-32",
+   "localId": "32",
+   "name": "Blaine's Dodrio",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/32",
+   "hp": 70,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Doduo",
+   "retreat": 1,
+   "dexId": [
+    85
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Mega Peck",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-33",
+   "localId": "33",
+   "name": "Blaine's Rapidash",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/33",
+   "hp": 70,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Ponyta",
+   "retreat": 0,
+   "dexId": [
+    78
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fire Mane",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Stamp",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "Flip a coin. If heads, this attack does 30 damage plus 10 more damage (to the Defending Pokémon) and 10 damage to each of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.) If tails, this attack does 30 damage (to the Defending Pokémon)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-34",
+   "localId": "34",
+   "name": "Brock's Graveler",
+   "rarity": "Uncommon",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/34",
+   "hp": 70,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Geodude",
+   "retreat": 2,
+   "dexId": [
+    75
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tackle",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Detonate",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Fighting"
+     ],
+     "damage": "50",
+     "effect": "Does 10 damage to each Pokémon on each player's bench. (Don't apply Weakness and Resistance for Benched Pokémon.) Brock's Graveler does 50 damage to itself. If there is a Stadium card in play, discard it."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-35",
+   "localId": "35",
+   "name": "Brock's Primeape",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/35",
+   "hp": 70,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Mankey",
+   "retreat": 1,
+   "dexId": [
+    57
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Mega Thrash",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Fighting"
+     ],
+     "damage": "60",
+     "effect": "Brock's Primeape does 20 damage to itself. If there is a Stadium card in play, discard it."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Scram",
+     "effect": "If Brock's Primeape ever has exactly 10 HP left, shuffle it and all cards attached to it into your deck. This power stops working while Brock's Primeape is Asleep, Confused, or Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-36",
+   "localId": "36",
+   "name": "Brock's Sandslash",
+   "rarity": "Uncommon",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/36",
+   "hp": 70,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Sandshrew",
+   "retreat": 1,
+   "dexId": [
+    28
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Swift",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "This attack's damage isn't affected by Weakness, Resistance, Pokémon Powers, or any other effects on the Defending Pokémon."
+    },
+    {
+     "name": "Needle Ball",
+     "cost": [
+      "Fighting",
+      "Fighting"
+     ],
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Poisoned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-37",
+   "localId": "37",
+   "name": "Brock's Vulpix",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/37",
+   "hp": 50,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    37
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "wotc"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hypnotic Gaze",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "The Defending Pokémon is now Asleep."
+    },
+    {
+     "name": "Fire Ring",
+     "cost": [
+      "Fire",
+      "Fire"
+     ],
+     "damage": "20",
+     "effect": "If your opponent has any Benched Pokémon, choose 1 of them and this attack does 10 damage to it. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-38",
+   "localId": "38",
+   "name": "Erika's Bellsprout",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/38",
+   "hp": 40,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    69
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Stretch Vine",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10",
+     "effect": "Choose 1 of your opponent's Benched Pokémon, and this attack does 10 damage to it. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Soak Up",
+     "effect": "Once during your turn (before your attack), you may take up to 2 Grass Energy cards attached to your other Pokémon and attach them to Erika's Bellsprout. This power can't be used if Erika's Bellsprout is Asleep, Confused, or Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-39",
+   "localId": "39",
+   "name": "Erika's Bulbasaur",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/39",
+   "hp": 50,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    1
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sleep Seed",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10",
+     "effect": "The Defending Pokémon is now Asleep."
+    },
+    {
+     "name": "Errand-Running",
+     "cost": [
+      "Grass",
+      "Grass"
+     ],
+     "effect": "Flip a coin. If heads, you may search your deck for a Trainer card. Show it to your opponent and put it into your hand. Shuffle your deck afterward."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-40",
+   "localId": "40",
+   "name": "Erika's Clefairy",
+   "rarity": "Uncommon",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/40",
+   "hp": 50,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    35
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Lunar Power",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, search your deck for a card that evolves from 1 of your Benched Pokémon and put that card on that Pokémon. (This counts as evolving that Pokémon.) Shuffle your deck afterward."
+    },
+    {
+     "name": "Moon Kick",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-41",
+   "localId": "41",
+   "name": "Erika's Ivysaur",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/41",
+   "hp": 60,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Bulbasaur",
+   "retreat": 2,
+   "dexId": [
+    2
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Double Razor Leaf",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Grass"
+     ],
+     "damage": "40x",
+     "effect": "Flip 2 coins. This attack does 40 damage times the number of heads."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Relaxing Scent",
+     "effect": "As long as Erika's Ivysaur is your Active Pokémon, whenever an attack (even your own) does damage to any Pokémon (after applying Weakness and Resistance), that attack only does half the damage to that Pokémon (rounded up to the nearest 10). (Any other effects of attacks still happen.) This power stops working while Erika's Ivysaur is Asleep, Confused, or Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-42",
+   "localId": "42",
+   "name": "Giovanni's Machoke",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/42",
+   "hp": 80,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Machop",
+   "retreat": 2,
+   "dexId": [
+    67
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Risky Attack",
+     "cost": [
+      "Fighting"
+     ],
+     "effect": "Flip a coin. If tails, this attack does no damage to the Defending Pokémon and Giovanni's Machoke does 100 damage to itself."
+    },
+    {
+     "name": "Headlock",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Flip a coin. If heads, this attack does 20 damage plus 20 more damage and the Defending Pokémon is now Paralyzed. If tails, this attack does 20 damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-43",
+   "localId": "43",
+   "name": "Giovanni's Meowth",
+   "rarity": "Uncommon",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/43",
+   "hp": 40,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    52
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "False Charity",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, look at the top card of your opponent's deck. If it's a Trainer card, put it in your opponent's discard pile; otherwise, put it into his or her hand."
+    },
+    {
+     "name": "Double Scratch",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20x",
+     "effect": "Flip 2 coins. This attack does 20 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-44",
+   "localId": "44",
+   "name": "Giovanni's Nidorina",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/44",
+   "hp": 80,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Nidoran♀",
+   "retreat": 2,
+   "dexId": [
+    30
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Poison Sting Tackle",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "effect": "Giovanni's Nidorina does 20 damage to itself. Flip a coin. If heads, the Defending Pokémon is now Poisoned."
+    },
+    {
+     "name": "Body Slam",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-45",
+   "localId": "45",
+   "name": "Giovanni's Nidorino",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/45",
+   "hp": 70,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Nidoran♂",
+   "retreat": 2,
+   "dexId": [
+    33
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rend",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "If the Defending Pokémon already has any damage counters on it, this attack does 20 damage plus 20 more damage. If not, this attack does 20 damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-46",
+   "localId": "46",
+   "name": "Koga's Golbat",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/46",
+   "hp": 60,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Zubat",
+   "retreat": 0,
+   "dexId": [
+    42
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bite",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Sonic Scream",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Grass"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Confused."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-47",
+   "localId": "47",
+   "name": "Koga's Kakuna",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/47",
+   "hp": 60,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Weedle",
+   "retreat": 2,
+   "dexId": [
+    14
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Toxic Secretion",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Poisoned. It now takes 20 Poison damage instead of 10 after each player's turn (even if it was already Poisoned)."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Emerge",
+     "effect": "Once during your turn (before your attack), you may flip a coin. If heads, search your deck for an Evolution card named Koga's Beedrill and put it on Koga's Kakuna. (This counts as evolving Koga's Kakuna.) Shuffle your deck afterward. This power can't be used if Koga's Kakuna is Asleep, Confused, or Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-48",
+   "localId": "48",
+   "name": "Koga's Koffing",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/48",
+   "hp": 50,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    109
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Smokescreen",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10",
+     "effect": "If the Defending Pokémon tries to attack during your opponent's next turn, your opponent flips a coin. If tails, that attack does nothing."
+    },
+    {
+     "name": "Obscuring Gas",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin. If heads, shuffle Koga's Koffing and all cards attached to it into your deck (after doing damage)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-49",
+   "localId": "49",
+   "name": "Koga's Pidgey",
+   "rarity": "Uncommon",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/49",
+   "hp": 40,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    16
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Messenger",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Put Koga's Pidgey and all cards attached to it on top of your deck. Then search your deck for any Basic Pokémon or Evolution card not named Koga's Pidgey. Show that card to your opponent, then put it into your hand. Shuffle your deck afterward."
+    },
+    {
+     "name": "Wing Attack",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-50",
+   "localId": "50",
+   "name": "Koga's Weezing",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/50",
+   "hp": 70,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Koffing",
+   "retreat": 2,
+   "dexId": [
+    110
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Spontaneous Explosion",
+     "cost": [
+      "Grass",
+      "Grass"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 30 more damage and Koga's Weezing does 30 damage to itself; if tails, this attack does 10 damage."
+    },
+    {
+     "name": "Toxic Cloud",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, this Defending Pokémon is now Poisoned. It now takes 20 Poison damage instead of 10 after each player's turn (even if it was already Poisoned)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-51",
+   "localId": "51",
+   "name": "Lt. Surge's Eevee",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/51",
+   "hp": 40,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    133
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Surprise",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Look at a random card from your opponent's hand. Your opponent shuffles that card into his or her deck."
+    },
+    {
+     "name": "Scratch",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-52",
+   "localId": "52",
+   "name": "Lt. Surge's Electrode",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/52",
+   "hp": 70,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Voltorb",
+   "retreat": 2,
+   "dexId": [
+    101
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Power Ball",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "Flip 3 coins. This attack does 30 damage plus 10 more damage for each heads."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Shock Blast",
+     "effect": "If Lt. Surge's Electrode is your Active Pokémon and gets damaged (even if it's Knocked Out), flip a coin. If tails, this power does 20 damage to each Active Pokémon. This power works even if Lt. Surge's Electrode is already Asleep, Confused, or Paralyzed when it takes damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-53",
+   "localId": "53",
+   "name": "Lt. Surge's Raticate",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/53",
+   "hp": 60,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Rattata",
+   "retreat": 1,
+   "dexId": [
+    20
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Focus Energy",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "During your next turn, Lt. Surge's Raticate's Double-edge attack's damage (base damage and damage to itself) is doubled."
+    },
+    {
+     "name": "Double-edge",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Lt. Surge's Raticate does 20 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-54",
+   "localId": "54",
+   "name": "Misty's Dewgong",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/54",
+   "hp": 80,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Seel",
+   "retreat": 2,
+   "dexId": [
+    87
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ice Throw",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "effect": "If the Defending Pokémon is Fighting, this attack's base damage is doubled."
+    },
+    {
+     "name": "Take Down",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Misty's Dewgong does 20 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-55",
+   "localId": "55",
+   "name": "Sabrina's Haunter",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/55",
+   "hp": 70,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Gastly",
+   "retreat": 0,
+   "dexId": [
+    93
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Nightmare",
+     "cost": [
+      "Psychic",
+      "Psychic"
+     ],
+     "damage": "20",
+     "effect": "The Defending Pokémon is now Asleep."
+    },
+    {
+     "name": "Shadow Attack",
+     "cost": [
+      "Psychic",
+      "Psychic",
+      "Psychic"
+     ],
+     "effect": "Flip a coin. If heads, and if your opponent has any Benched Pokémon, choose 1 of them and this attack does 30 damage to it. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-56",
+   "localId": "56",
+   "name": "Sabrina's Hypno",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/56",
+   "hp": 70,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Drowzee",
+   "retreat": 2,
+   "dexId": [
+    97
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Invigorate",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Choose 1 Basic Pokémon in any player's discard pile. Put it onto that player's Bench. Put a number of damage counters on that Pokémon equal to half its HP (rounded down to the nearest 10). (You can't put a Pokémon on a Bench that's full.)"
+    },
+    {
+     "name": "Pendulum Curse",
+     "cost": [
+      "Psychic",
+      "Psychic"
+     ],
+     "damage": "20x",
+     "effect": "Flip a number of coins equal to the number of damage counters on the Defending Pokémon. This attack does 20 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-57",
+   "localId": "57",
+   "name": "Sabrina's Jynx",
+   "rarity": "Uncommon",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/57",
+   "hp": 60,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    124
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Helping Hand",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon. Remove any number of damage counters from that Pokémon, then draw that many cards."
+    },
+    {
+     "name": "Hug",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, the Defending Pokémon can't retreat during your opponent's next turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-58",
+   "localId": "58",
+   "name": "Sabrina's Kadabra",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/58",
+   "hp": 70,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Abra",
+   "retreat": 1,
+   "dexId": [
+    64
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Life Drain",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Flip a coin. If heads, put a number of damage counters on the Defending Pokémon so that its remaining HP are 10."
+    },
+    {
+     "name": "Psyshot",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-59",
+   "localId": "59",
+   "name": "Sabrina's Mr. Mime",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/59",
+   "hp": 60,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    122
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Magic Darts",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Choose 1 of your opponent's Pokémon and flip 3 coins. This attack does 10 damage times the number of heads to that Pokémon. Don't apply Weakness and Resistance for this attack."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-60",
+   "localId": "60",
+   "name": "Blaine's Charmander",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/60",
+   "hp": 50,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    4
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fire Tail Slap",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "20",
+     "effect": "Use this attack only if there are any Fire Energy cards attached to Blaine's Charmander. Flip a coin. If tails, discard 1 of those cards."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-61",
+   "localId": "61",
+   "name": "Blaine's Doduo",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/61",
+   "hp": 50,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    84
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Wild Kick",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    },
+    {
+     "name": "Retaliate",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10x",
+     "effect": "Does 10 damage times the number of damage counters on Blaine's Doduo."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-62",
+   "localId": "62",
+   "name": "Blaine's Growlithe",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/62",
+   "hp": 60,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    58
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Stoke",
+     "cost": [
+      "Fire"
+     ],
+     "effect": "Search your deck for a Fire Energy card and attach it to Blaine's Growlithe. Shuffle your deck afterward."
+    },
+    {
+     "name": "Body Slam",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-63",
+   "localId": "63",
+   "name": "Blaine's Mankey",
+   "rarity": "Common",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/63",
+   "hp": 40,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    56
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Pranks",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, choose a card from your opponent's discard pile and put it on top of his or her deck."
+    },
+    {
+     "name": "Fury Swipes",
+     "cost": [
+      "Fighting"
+     ],
+     "damage": "10x",
+     "effect": "Flip 3 coins. This attack does 10 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-64",
+   "localId": "64",
+   "name": "Blaine's Ponyta",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/64",
+   "hp": 50,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    77
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hind Kick",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "If you have any Benched Pokémon, flip a coin. If heads, switch Blaine's Ponyta with 1 of your Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-65",
+   "localId": "65",
+   "name": "Blaine's Rhyhorn",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/65",
+   "hp": 60,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    111
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Horn Charge",
+     "cost": [
+      "Fighting"
+     ],
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    },
+    {
+     "name": "Overrun",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads and if your opponent has any Benched Pokémon, choose 1 of them and this attack does 20 damage to it. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-66",
+   "localId": "66",
+   "name": "Blaine's Vulpix",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/66",
+   "hp": 50,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    37
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bite",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Call Will-o'-the-wisp",
+     "cost": [
+      "Fire"
+     ],
+     "effect": "Flip 3 coins. For each heads, if you have a Fire Energy card in your discard pile, put it into your hand."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-67",
+   "localId": "67",
+   "name": "Brock's Diglett",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/67",
+   "hp": 40,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    50
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Surprise Attack",
+     "cost": [
+      "Fighting"
+     ],
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    },
+    {
+     "name": "Tremor",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Does 10 damage to each of your own Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-68",
+   "localId": "68",
+   "name": "Brock's Geodude",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/68",
+   "hp": 50,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    74
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rock Toss",
+     "cost": [
+      "Fighting"
+     ],
+     "damage": "10x",
+     "effect": "Flip 3 coins. This attack does 10 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-69",
+   "localId": "69",
+   "name": "Erika's Jigglypuff",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/69",
+   "hp": 50,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    39
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Group Therapy",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "You and your opponent remove 1 damage counter from each of your Pokémon with damage counters on them."
+    },
+    {
+     "name": "Pulled Punch",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "If the Defending Pokémon has no damage counters on it, this attack does 40 damage. If it has any damage counters on it, this attack does 10 damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-70",
+   "localId": "70",
+   "name": "Erika's Oddish",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/70",
+   "hp": 40,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    43
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Strange Powder",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Confused; if tails, the Defending Pokémon is now Asleep."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-71",
+   "localId": "71",
+   "name": "Erika's Paras",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/71",
+   "hp": 50,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    46
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Irongrip",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Poison Spore",
+     "cost": [
+      "Grass",
+      "Grass"
+     ],
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Poisoned and this attack does 10 damage to each of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-72",
+   "localId": "72",
+   "name": "Giovanni's Machop",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/72",
+   "hp": 50,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    66
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Chop",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Fury Punch",
+     "cost": [
+      "Fighting",
+      "Fighting"
+     ],
+     "damage": "20x",
+     "effect": "Flip a coin. If heads, this attack does 20 damage times the number of damage counters on Giovanni's Machop."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-73",
+   "localId": "73",
+   "name": "Giovanni's Magikarp",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/73",
+   "hp": 30,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    129
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ancestral Memory",
+     "cost": [
+      "Water"
+     ],
+     "effect": "Flip a coin. If tails, this attack does nothing. Either way, you can't use this attack again as long as Giovanni's Magikarp stays in play (even putting Giovanni's Magikarp on the Bench won't let you use it again)."
+    },
+    {
+     "name": "Flail Around",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "10x",
+     "effect": "Flip 3 coins. This attack does 10 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-74",
+   "localId": "74",
+   "name": "Giovanni's Meowth",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/74",
+   "hp": 50,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    52
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Cat Fleas",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Confused."
+    },
+    {
+     "name": "Cat Kick",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-75",
+   "localId": "75",
+   "name": "Giovanni's Nidoran ♀",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/75",
+   "hp": 50,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    29
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Horn Thrust",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    },
+    {
+     "name": "Double-edge",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Giovanni's Nidoran ♀ does 20 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-76",
+   "localId": "76",
+   "name": "Giovanni's Nidoran ♂",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/76",
+   "hp": 40,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    32
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Double Kick",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10x",
+     "effect": "Flip 2 coins. This attack does 10 damage times the number of heads."
+    },
+    {
+     "name": "Retaliation",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "30",
+     "effect": "You can't use this attack unless Giovanni's Nidoran ♂ has 2 or more damage counters on it."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-77",
+   "localId": "77",
+   "name": "Koga's Ekans",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/77",
+   "hp": 50,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    23
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fast-Acting Poison",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "Flip 2 coins. If both are heads, the Defending Pokémon is now Confused and Poisoned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-78",
+   "localId": "78",
+   "name": "Koga's Grimer",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/78",
+   "hp": 50,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    88
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sludge Grip",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10",
+     "effect": "If your opponent has any Benched Pokémon, flip a coin. If heads, choose 1 of your opponent's Benched Pokémon and switch it with the Defending Pokémon. The new Defending Pokémon is now Poisoned."
+    },
+    {
+     "name": "Sludge Toss",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-79",
+   "localId": "79",
+   "name": "Koga's Koffing",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/79",
+   "hp": 40,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    109
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Smelly Gas",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, this attack does 10 damage to each Benched Pokémon (including your own). (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-80",
+   "localId": "80",
+   "name": "Koga's Pidgey",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/80",
+   "hp": 50,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    16
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Peck",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Sand-attack",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "If the Defending Pokémon tries to attack during your opponent's next turn, your opponent flips a coin. If tails, that attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-81",
+   "localId": "81",
+   "name": "Koga's Tangela",
+   "rarity": "Common",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/81",
+   "hp": 50,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    114
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sleep Powder",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10",
+     "effect": "The Defending Pokémon is now Asleep."
+    },
+    {
+     "name": "Grasping Vine",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, draw 2 cards."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-82",
+   "localId": "82",
+   "name": "Koga's Weedle",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/82",
+   "hp": 40,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    13
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sting",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Sharp Stinger",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Poisoned; if tails, the Defending Pokémon is now Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-83",
+   "localId": "83",
+   "name": "Koga's Zubat",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/83",
+   "hp": 40,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    41
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Group Attack",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "10x",
+     "effect": "Does 10 damage times the number of Koga's Zubats you have in play. Before doing damage, you may search your deck for any number of Basic Pokémon named Koga's Zubat and put them onto your Bench. (You can't get more cards with this attack than you have room on your Bench.) If you do, shuffle your deck afterward."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-84",
+   "localId": "84",
+   "name": "Lt. Surge's Pikachu",
+   "rarity": "Common",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/84",
+   "hp": 40,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Quick Attack",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 20 more damage; if tails, this attack does 10 damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-85",
+   "localId": "85",
+   "name": "Lt. Surge's Rattata",
+   "rarity": "Common",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/85",
+   "hp": 30,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    19
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Focus Energy",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "During your next turn, Lt. Surge's Rattata's Quick Attack's base damage is doubled."
+    },
+    {
+     "name": "Quick Attack",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 20 more damage; if tails, this attack does 10 damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-86",
+   "localId": "86",
+   "name": "Lt. Surge's Voltorb",
+   "rarity": "Common",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/86",
+   "hp": 50,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    100
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bouncing Ball",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin. If tails, Lt. Surge's Voltorb does 10 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-87",
+   "localId": "87",
+   "name": "Misty's Horsea",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/87",
+   "hp": 50,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    116
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ink Spurt",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, whenever the Defending Pokémon tries to attack, your opponent flips a coin. If tails, that attack does nothing. (This effect lasts until the Defending Pokémon evolves or is Benched.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-88",
+   "localId": "88",
+   "name": "Misty's Magikarp",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/88",
+   "hp": 30,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    129
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Play Dead",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, during your opponent's next turn, prevent all effects of attacks, including damage, done to Misty's Magikarp."
+    },
+    {
+     "name": "Leap",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-89",
+   "localId": "89",
+   "name": "Misty's Poliwag",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/89",
+   "hp": 50,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    60
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bubbles",
+     "cost": [
+      "Water"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If tails, you can't use this attack during your next turn."
+    },
+    {
+     "name": "Amnesia",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "effect": "Choose 1 of the Defending Pokémon's attacks. That Pokémon can't use that attack during your opponent's next turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-90",
+   "localId": "90",
+   "name": "Misty's Psyduck",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/90",
+   "hp": 60,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    54
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "ESP",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Flip 3 coins. If exactly 1 is heads, draw a card. If exactly 2 are heads, this attack does 20 damage. If all 3 are heads, choose 1 of the Defending Pokémon's attacks. Misty's Psyduck copies that attack except for its Energy costs. (No matter what type the Defending Pokémon is, Misty's Psyduck's type is still Water.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-91",
+   "localId": "91",
+   "name": "Misty's Seel",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/91",
+   "hp": 50,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    86
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Frostbite",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10",
+     "effect": "The Defending Pokémon can't retreat during your opponent's next turn."
+    },
+    {
+     "name": "Mirage",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "If the Defending Pokémon tries to attack during your opponent's next turn, your opponent flips a coin. If tails, that attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-92",
+   "localId": "92",
+   "name": "Misty's Staryu",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/92",
+   "hp": 40,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    120
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Star Boomerang",
+     "cost": [
+      "Water"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, return Misty's Staryu and all cards attached to it to your hand. (Either way, this attack does its damage.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-93",
+   "localId": "93",
+   "name": "Sabrina's Abra",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/93",
+   "hp": 40,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    63
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Pound",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Synchronize",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "This attack can't be used unless Sabrina's Abra and the Defending Pokémon have the same number of Energy cards attached to them."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-94",
+   "localId": "94",
+   "name": "Sabrina's Abra",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/94",
+   "hp": 50,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    63
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Psyscan",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Look at your opponent's hand."
+    },
+    {
+     "name": "Quick Attack",
+     "cost": [
+      "Psychic"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 20 more damage; if tails, this attack does 10 damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-95",
+   "localId": "95",
+   "name": "Sabrina's Drowzee",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/95",
+   "hp": 50,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    96
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Energy Support",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Search your deck for a Psychic Energy card. Show that card to your opponent, then put it into your hand. Shuffle your deck afterward."
+    },
+    {
+     "name": "Mind Shock",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Don't apply Weakness and Resistance for this attack. (Any other effects that would happen after applying Weakness and Resistance still happen.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-96",
+   "localId": "96",
+   "name": "Sabrina's Gastly",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/96",
+   "hp": 30,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    92
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Lick",
+     "cost": [
+      "Psychic"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    },
+    {
+     "name": "Fade Out",
+     "cost": [
+      "Psychic",
+      "Psychic"
+     ],
+     "damage": "30",
+     "effect": "Return Sabrina's Gastly and all Energy cards attached to it to your hand. (Discard all other cards attached to Sabrina's Gastly.)"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-97",
+   "localId": "97",
+   "name": "Sabrina's Gastly",
+   "rarity": "Common",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/97",
+   "hp": 40,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    92
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Suffocating Gas",
+     "cost": [
+      "Psychic",
+      "Psychic"
+     ],
+     "damage": "30"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Pokemon Power",
+     "name": "Gaseous Form",
+     "effect": "Sabrina's Gastly gets +10 HP for each Psychic Energy card attached to it. This power works even if Sabrina's Gastly is Asleep, Confused, or Paralyzed."
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-98",
+   "localId": "98",
+   "name": "Sabrina's Porygon",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/98",
+   "hp": 40,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    137
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sharp Point",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Barrier Attack",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "All damage done by attacks to Sabrina's Porygon during your opponent's next turn is reduced by 10 (after applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "gym2-99",
+   "localId": "99",
+   "name": "Sabrina's Psyduck",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/99",
+   "hp": 50,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    54
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Scratch",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Random ESP",
+     "cost": [
+      "Psychic"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Confused. If tails, this attack does no damage and Sabrina's Psyduck is now Confused."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "gym2-100",
+   "localId": "100",
+   "name": "Blaine",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/100",
+   "effect": "During this turn, instead of attaching your free Energy card, you may instead attach 2 Fire Energy cards to 1 of your Pokémon with Blaine in its name. (Playing additional copies of this card this turn has no effect.)",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-101",
+   "localId": "101",
+   "name": "Brock's Protection",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/101",
+   "effect": "Attach Brock's Protection to 1 of your Pokémon with Brock in its name. Energy cards attached to that Pokémon can't be removed by your opponent's attacks or Trainer cards. (This doesn't stop the rest of the attack or Trainer card from working normally.)",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-102",
+   "localId": "102",
+   "name": "Chaos Gym",
+   "rarity": "Rare",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/102",
+   "trainerType": "Stadium",
+   "effect": "This card stays in play after being played. Discard this card if another Stadium card comes into play. Whenever a player plays a Trainer card other than a Stadium card, he or she flips a coin. If heads, that player plays that card normally. If tails, the player can't play that card. If the card isn't put into play, the player's opponent may use that card instead, if he or she does everything required in order to play that card (like discarding cards). Either way, the card goes to its owner's discard pile.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-103",
+   "localId": "103",
+   "name": "Erika's Kindness",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/103",
+   "effect": "Remove 2 damage counters from each Pokémon (yours and your opponent's) with any damage counters on it. If a Pokémon has just 1 damage counter, remove it.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-104",
+   "localId": "104",
+   "name": "Giovanni",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/104",
+   "effect": "Choose 1 of your Pokémon in play with Giovanni in its name. For the rest of your turn, you may evolve that Pokémon even if you just played or evolved it this turn or if this is your first turn. This effect also applies to the Pokémon it evolves into.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-105",
+   "localId": "105",
+   "name": "Giovanni's Last Resort",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/105",
+   "effect": "Remove all damage counters from 1 of your Pokémon with Giovanni in its name. Then discard your hand.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-106",
+   "localId": "106",
+   "name": "Koga",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/106",
+   "effect": "If an attack from a Pokémon with Koga in its name does damage to a Defending Pokémon this turn, that Pokémon is then Poisoned.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-107",
+   "localId": "107",
+   "name": "Lt. Surge's Secret Plan",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/107",
+   "effect": "Put 1 card from your hand face down onto your Bench. (You can't play this card if your Bench is full.) Treat that card as a Basic Pokémon as long as it's face down. Flip the card if either player needs to know what it is in order to use an attack, a Pokémon Power, or a Trainer card. Flip the card if it ever uses an attack or Pokémon Power, evolves, retreats, is damaged by an attack, or is otherwise affected by an attack. At any time during your turn, you may flip the card over. When you flip that card over, if it isn't a Basic Pokémon, discard it and all cards attached to it.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-108",
+   "localId": "108",
+   "name": "Misty's Wish",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/108",
+   "effect": "Look at 1 of your Prize cards. Then, ask your opponent if you may switch that card with 1 of the cards in your hand. If your opponent accepts and if you have any other cards in your hand, switch those cards. If your opponent declines, return the Prize card face down and draw a card.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-109",
+   "localId": "109",
+   "name": "Resistance Gym",
+   "rarity": "Rare",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/109",
+   "trainerType": "Stadium",
+   "effect": "This card stays in play after being played. Discard this card if another Stadium card comes into play. Each Pokémon's Resistance is reduced by 20. (If a Pokémon's Resistance is -30, it becomes -10.)",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-110",
+   "localId": "110",
+   "name": "Sabrina",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/110",
+   "effect": "Take all Energy cards attached to 1 of your Pokémon with Sabrina in its name and attach them to another 1 of your Pokémon with Sabrina in its name.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-111",
+   "localId": "111",
+   "name": "Blaine's Quiz #2",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/111",
+   "effect": "Put a card from your hand face down in front of you. Your opponent guesses whether it is an Energy card, a Trainer card, or a Pokémon (Basic or Evolution) card. Flip the card over. If your opponent guessed right, he or she draws 2 cards. If your opponent guessed wrong, you draw 2 cards. Either way, return the card to your hand.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-112",
+   "localId": "112",
+   "name": "Blaine's Quiz #3",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/112",
+   "effect": "Put a Basic or Evolution card from your hand face down in front of you and tell your opponent the name of an attack of that card. Your opponent guesses the name of that card. Flip the card over. If your opponent guessed right, he or she draws 3 cards. If your opponent guessed wrong, you draw 3 cards. Either way, return the card to your hand.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-113",
+   "localId": "113",
+   "name": "Cinnabar City Gym",
+   "rarity": "Uncommon",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/113",
+   "trainerType": "Stadium",
+   "effect": "This card stays in play after being played. Discard this card if another Stadium card comes into play. Ignore Weakness when a Water Pokémon does damage to a Pokémon with Blaine in its name.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-114",
+   "localId": "114",
+   "name": "Fuchsia City Gym",
+   "rarity": "Uncommon",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/114",
+   "trainerType": "Stadium",
+   "effect": "This card stays in play after being played. Discard this card if another Stadium card comes into play. Once during each player's turn (before attacking), that player may flip a coin. If heads, that player may shuffle 1 of his or her Pokémon in play with Koga in its name and any cards attached to it into his or her deck.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-115",
+   "localId": "115",
+   "name": "Koga's Ninja Trick",
+   "rarity": "Uncommon",
+   "illustrator": "Sumiyoshi Kizuki",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/115",
+   "effect": "Attach Koga's Ninja Trick to your Active Pokémon with Koga in its name. If this Pokémon goes to your Bench, discard this card. When your opponent attacks, you may switch this Pokémon with 1 of your Benched Pokémon (before damage or other effects of attacks).",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-116",
+   "localId": "116",
+   "name": "Master Ball",
+   "rarity": "Uncommon",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/116",
+   "effect": "Look at 7 cards from the top of your deck. You may choose a Basic Pokémon or Evolution card from those cards, show it to your opponent, then put it into your hand. Shuffle the rest into your deck.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-117",
+   "localId": "117",
+   "name": "Max Revive",
+   "rarity": "Uncommon",
+   "illustrator": "Hikaru Koike",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/117",
+   "effect": "Discard 2 Energy cards from your hand in order to put 1 Basic Pokémon from your discard pile onto your Bench. (You can't play Max Revive if your Bench is full.)",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-118",
+   "localId": "118",
+   "name": "Misty's Tears",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/118",
+   "effect": "Discard 1 of the other cards in your hand in order to search your deck for up to 2 Water Energy cards. Show those cards to your opponent, then put them into your hand. Shuffle your deck afterward.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-119",
+   "localId": "119",
+   "name": "Rocket's Minefield Gym",
+   "rarity": "Uncommon",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/119",
+   "trainerType": "Stadium",
+   "effect": "This card stays in play after being played. Discard this card if another Stadium card comes into play. Whenever a player puts a Basic Pokémon onto his or her Bench from his or her hand, he or she flips a coin. If tails, put damage counters on that Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    },
+    {
+     "type": "normal",
+     "subtype": "text-error",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "gym2-120",
+   "localId": "120",
+   "name": "Rocket's Secret Experiment",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/120",
+   "effect": "Flip a coin. If heads, search your deck for any card and put it into your hand. Shuffle your deck afterward. If tails, you can't play Trainer cards until the end of your next turn.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-121",
+   "localId": "121",
+   "name": "Sabrina's Psychic Control",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/121",
+   "effect": "Flip a coin. If heads, choose a Trainer card in your opponent's discard pile that isn't put in play (like PlusPower or Mysterious Fossil). You may use that card as if it were in your hand, if you do everything required in order to play that card (like discarding cards). The card stays in your opponent's discard pile.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-122",
+   "localId": "122",
+   "name": "Saffron City Gym",
+   "rarity": "Uncommon",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/122",
+   "trainerType": "Stadium",
+   "effect": "This card stays in play after being played. Discard this card if another Stadium card comes into play. As often as each player like during his or her turn (before attacking), that player may return 1 basic Energy card attached to 1 of his or her Pokémon with Sabrina in its name to his or her hand.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-123",
+   "localId": "123",
+   "name": "Viridian City Gym",
+   "rarity": "Uncommon",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/123",
+   "trainerType": "Stadium",
+   "effect": "This card stays in play after being played. Discard this card if another Stadium card comes into play. Whenever a Pokémon with Giovanni in its name evolves, its owner removes 2 damage counters from that Pokémon (or 1 if it only has 1).",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-124",
+   "localId": "124",
+   "name": "Fervor",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/124",
+   "effect": "Show the top 3 cards of your deck to all players. Put any Fire Energy cards there into your hand and discard the rest.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-125",
+   "localId": "125",
+   "name": "Transparent Walls",
+   "rarity": "Common",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/125",
+   "effect": "Until the end of your opponent's next turn, prevent all damage from attacks done to your Benched Pokémon. (Any other effects of attacks still happen.)",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-126",
+   "localId": "126",
+   "name": "Warp Point",
+   "rarity": "Common",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/126",
+   "effect": "If your opponent has any Benched Pokémon, he or she chooses 1 of them and switches it with his or her Active Pokémon, then, if you have any Benched Pokémon, you switch 1 of them with your Active Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-127",
+   "localId": "127",
+   "name": "Fighting Energy",
+   "rarity": "Common",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Energy",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/127",
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-128",
+   "localId": "128",
+   "name": "Fire Energy",
+   "rarity": "Common",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Energy",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/128",
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-129",
+   "localId": "129",
+   "name": "Grass Energy",
+   "rarity": "Common",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Energy",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/129",
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-130",
+   "localId": "130",
+   "name": "Lightning Energy",
+   "rarity": "Common",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Energy",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/130",
+   "stage": "Basic",
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-131",
+   "localId": "131",
+   "name": "Psychic Energy",
+   "rarity": "Common",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Energy",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/131",
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gym2-132",
+   "localId": "132",
+   "name": "Water Energy",
+   "rarity": "Common",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Energy",
+   "image": "https://assets.tcgdex.net/en/gym/gym2/132",
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": true,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "1st-edition"
+     ]
+    }
+   ]
+  }
+ ]
+}

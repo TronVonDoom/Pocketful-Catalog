@@ -1,0 +1,562 @@
+{
+ "id": "tk-dp-m",
+ "name": "DP trainer Kit (Manaphy)",
+ "serie": {
+  "id": "tk",
+  "name": "Trainer kits"
+ },
+ "releaseDate": "2007-09-01",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 1,
+  "normal": 11,
+  "official": 12,
+  "reverse": 0,
+  "total": 12
+ },
+ "logo": null,
+ "symbol": "https://assets.tcgdex.net/univ/tk/tk-dp-m/symbol",
+ "abbreviation": {
+  "official": "TK3M"
+ },
+ "legal": {
+  "expanded": false,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "tk-dp-m-1",
+   "localId": "1",
+   "name": "Buizel",
+   "rarity": "None",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It has a flotation that is like an inflatable collar. It floats on water with its head out.",
+   "retreat": 1,
+   "dexId": [
+    418
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Splash About",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10+",
+     "effect": "If Buizel has less Energy attached to it than the Defending Pokémon, this attack does 10 damage plus 10 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-m-2",
+   "localId": "2",
+   "name": "Floatzel",
+   "rarity": "None",
+   "illustrator": "Masahiko Ishii",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Buizel",
+   "description": "It floats using its well-developed floation sac. It assists in the rescues of drowning people.",
+   "retreat": 1,
+   "dexId": [
+    419
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Screw Tail",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin. If heads, discard an Energy attached to the Defending Pokémon."
+    },
+    {
+     "name": "Water Gun",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "damage": "40",
+     "effect": "Does 40 damage plus 20 more damage for each Water Energy attached to Floatzel but not used to pay for this attack's Energy cost. You can't add more than 40 damage in this way."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-m-3",
+   "localId": "3",
+   "name": "Goldeen",
+   "rarity": "None",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It swims elegantly by flittering its tail fin as if it were a dress. It has the look of a queen.",
+   "retreat": 1,
+   "dexId": [
+    118
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Horn Attack",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Take Down",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Goldeen does 10 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-m-4",
+   "localId": "4",
+   "name": "Manaphy",
+   "rarity": "None",
+   "illustrator": "Daisuke Ito",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "Born on a cold seafloor, it will swim great distances to return to its birthplace.",
+   "retreat": 1,
+   "dexId": [
+    490
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Call for Family",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for a Basic Pokémon and put it onto your Bench. Shuffle your deck afterward."
+    },
+    {
+     "name": "Aqua Ring",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "damage": "30",
+     "effect": "Switch Manaphy with 1 of your Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-m-5",
+   "localId": "5",
+   "name": "Piplup",
+   "rarity": "None",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "Because it is very proud, it hates accepting food from people. Its thick down guards it from cold.",
+   "retreat": 1,
+   "dexId": [
+    393
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Peck",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Water Splash",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Flip a coin. If heads, this attack does 20 more damage plus 10 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-m-6",
+   "localId": "6",
+   "name": "Prinplup",
+   "rarity": "None",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Piplup",
+   "description": "It lives alone, away from others. Apparently, every one of them believes it is the most important.",
+   "retreat": 1,
+   "dexId": [
+    394
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Aqua Shower",
+     "cost": [
+      "Water"
+     ],
+     "effect": "Does 10 damage to each of your opponent's Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Brine",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon that has any damage counters on it. This attack does 40 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-m-7",
+   "localId": "7",
+   "name": "Seaking",
+   "rarity": "None",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Goldeen",
+   "description": "It makes its nest by hollowing out boulders in streams with its horn. It defends its eggs with its life.",
+   "retreat": 1,
+   "dexId": [
+    119
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flail",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10×",
+     "effect": "Does 10 damage times the number of damage counters on Seaking."
+    },
+    {
+     "name": "Horn Drill",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "damage": "50"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-m-8",
+   "localId": "8",
+   "name": "Totodile",
+   "rarity": "None",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It has the habit of biting anything with its developed jaws. Even its Trainer needs to be careful.",
+   "retreat": 1,
+   "dexId": [
+    158
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bite",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Shining Fang",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10+",
+     "effect": "If the Defending Pokémon already has any damage counters on it, this attack does 10 damage plus 10 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-m-9",
+   "localId": "9",
+   "name": "Dusk Ball",
+   "rarity": "None",
+   "illustrator": "Ryo Ueda",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "effect": "Look at the 7 cards from the bottom of your deck. Choose 1 Pokémon you find there, show it to your opponent, and put it into your hand. Put the remaining cards back on top of your deck. Shuffle your deck afterward.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-m-10",
+   "localId": "10",
+   "name": "Energy Search",
+   "rarity": "None",
+   "illustrator": "Kai Ishikawa",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "effect": "Search your deck for a basic Energy card, show it to your opponent, and put it into your hand. Shuffle your deck afterward.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-m-11",
+   "localId": "11",
+   "name": "Potion",
+   "rarity": "None",
+   "illustrator": "Shin-ichi Yoshikawa",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "effect": "Remove 2 damage counters from 1 of your Pokémon (remove 1 damage counter if that Pokémon has only 1).",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-m-12",
+   "localId": "12",
+   "name": "Water Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  }
+ ]
+}

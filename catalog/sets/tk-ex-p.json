@@ -1,0 +1,519 @@
+{
+ "id": "tk-ex-p",
+ "name": "EX trainer Kit 2 (Plusle)",
+ "serie": {
+  "id": "tk",
+  "name": "Trainer kits"
+ },
+ "releaseDate": "2006-03-01",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 1,
+  "normal": 11,
+  "official": 12,
+  "reverse": 0,
+  "total": 12
+ },
+ "logo": null,
+ "symbol": "https://assets.tcgdex.net/univ/tk/tk-ex-p/symbol",
+ "abbreviation": {
+  "official": "TK2P"
+ },
+ "legal": {
+  "expanded": false,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "tk-ex-p-1",
+   "localId": "1",
+   "name": "Beldum",
+   "rarity": "None",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    374
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Call for Family",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for a Basic Pokémon and put it onto your Bench. Shuffle your deck afterward."
+    },
+    {
+     "name": "Metal Ball",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Put 1 damage counter on the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-p-2",
+   "localId": "2",
+   "name": "Electrike",
+   "rarity": "None",
+   "illustrator": "Hiroki Fuchino",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    309
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Recharge",
+     "cost": [
+      "Lightning"
+     ],
+     "effect": "Search your deck for a Lightning Energy card and attach it to Electrike. Shuffle your deck afterward."
+    },
+    {
+     "name": "Quick Attack",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 20 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-p-3",
+   "localId": "3",
+   "name": "Grumpig",
+   "rarity": "None",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Spoink",
+   "retreat": 1,
+   "dexId": [
+    326
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Snap Tail",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon. This attack does 10 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Psypunch",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "40"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-p-4",
+   "localId": "4",
+   "name": "Meowth",
+   "rarity": "None",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    52
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Collect",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Draw a card."
+    },
+    {
+     "name": "Cat Kick",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-p-5",
+   "localId": "5",
+   "name": "Metang",
+   "rarity": "None",
+   "illustrator": "Hisao Nakamura",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Beldum",
+   "retreat": 2,
+   "dexId": [
+    375
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Psychic Boom",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Does 10 damage plus 10 more damage for each Energy attached to the Defending Pokémon."
+    },
+    {
+     "name": "Quick Blow",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40+",
+     "effect": "Flip a coin. If heads, this attack does 40 damage plus 20 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-p-6",
+   "localId": "6",
+   "name": "Plusle",
+   "rarity": "None",
+   "illustrator": "Katsura Tabata",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    311
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Pickup Power",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your discard pile for an Energy card, show it to your opponent, and put it into your hand."
+    },
+    {
+     "name": "Rear Spark",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Does 20 damage to 1 of your opponent’s Benched Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-p-7",
+   "localId": "7",
+   "name": "Spoink",
+   "rarity": "None",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    325
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Knock Away",
+     "cost": [
+      "Psychic"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 10 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-p-8",
+   "localId": "8",
+   "name": "Energy Search",
+   "rarity": "None",
+   "illustrator": "Kai Ishikawa",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "effect": "Search your deck for a basic Energy card, show it to your opponent, and put it into your hand. Shuffle your deck afterward",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-p-9",
+   "localId": "9",
+   "name": "Potion",
+   "rarity": "None",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "effect": "Remove 2 damage counters from 1 of your Pokémon (remove 1 damage counter if that Pokémon has only 1).",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-p-10",
+   "localId": "10",
+   "name": "Professor Cozmo's Discovery",
+   "rarity": "None",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Supporter",
+   "effect": "You can play only one Supporter card each turn. When you play this card, put it next to your Active Pokémon. When your turn ends, discard this card. Flip a coin. If heads, draw the bottom 3 cards of your deck. If tails, draw the top 2 cards of your deck.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-p-11",
+   "localId": "11",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "stage": "Basic",
+   "retreat": 0,
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-p-12",
+   "localId": "12",
+   "name": "Psychic Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  }
+ ]
+}

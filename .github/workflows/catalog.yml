@@ -1,0 +1,121 @@
+# Rebuilds the immutable half, checks it, and proposes the change as a pull request.
+#
+# Weekly rather than nightly, because this half changes when a set is printed -- four to
+# eight times a year -- and a daily job would spend TCGdex's capacity confirming that
+# 1999 still happened.
+#
+# It opens a PR instead of committing. A new set arriving is exactly the moment when
+# somebody should look: a set that shows up half-populated, or with every card missing
+# art, is normal for the first days after a release, and committing that automatically
+# would bake a temporary upstream gap into the file the app ships with.
+#
+# The audit runs on every push as well, where it is the actual gate: it touches no
+# network, so it cannot fail because the API was having an afternoon, and a failure
+# means the catalog on disk is wrong.
+name: Catalog
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'catalog/**'
+      - 'tools/**'
+      - '.github/workflows/catalog.yml'
+  pull_request:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: catalog-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      # No pip install: the audit is deliberately dependency-free and offline, so this
+      # job cannot be broken by a network that is having a bad day.
+      - run: python tools/audit.py --verbose
+
+  refresh:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Pull the static half
+        run: python tools/pull_catalog.py --static --all
+
+      - name: Resolve missing artwork
+        run: python tools/fill_gaps.py
+
+      # Reported, not enforced. A new set with no art yet is a true finding and not a
+      # reason to fail the job -- the PR is where a person decides whether it is a gap
+      # worth waiting out or one worth recording.
+      - name: Audit
+        run: python tools/audit.py --verbose || true
+
+      - name: Propose the change
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: catalog/refresh
+          title: 'Catalog refresh'
+          commit-message: 'Refresh the static catalog'
+          body: |
+            Automated weekly rebuild of `catalog/sets/`.
+
+            Check before merging:
+
+            - A new set here should have its full card count, not a partial one.
+            - A set that has gone from having art to having none is upstream breakage,
+              not a hole to accept.
+            - New holes need a reason in `catalog/holes.json`, or the audit will fail
+              on every commit after this one.
+          delete-branch: true
+
+  publish:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Pack
+        run: python tools/pack.py --static
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        # Same fixed-tag arrangement as the prices job, and for the same reason: the app
+        # needs one URL that always means "the current catalog". The schema version is in
+        # the *filename*, so an app built against v1 keeps asking for v1 and publishing a
+        # v2 alongside it cannot reach back and break installs that predate it.
+        run: |
+          gh release view catalog --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
+            || gh release create catalog \
+                 --repo "$GITHUB_REPOSITORY" \
+                 --title "Card catalog" \
+                 --notes "Every set and card, without prices. Replaced in place as sets are released."
+          gh release upload catalog dist/catalog-v1.json.gz \
+            --repo "$GITHUB_REPOSITORY" --clobber

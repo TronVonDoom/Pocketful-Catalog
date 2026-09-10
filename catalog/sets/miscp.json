@@ -1,0 +1,73 @@
+{
+ "id": "miscp",
+ "name": "Miscellaneous Promos",
+ "serie": {
+  "id": "misc",
+  "name": "Miscellaneous"
+ },
+ "releaseDate": "1996-01-01",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 1,
+  "normal": 0,
+  "official": 1,
+  "reverse": 0,
+  "total": 1
+ },
+ "logo": null,
+ "symbol": null,
+ "abbreviation": null,
+ "legal": {
+  "expanded": false,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "miscp-001",
+   "localId": "001",
+   "name": "Ancient Mew",
+   "rarity": "Promo",
+   "category": "Pokemon",
+   "hp": 30,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "description": "New Species. Little God or Evil?",
+   "retreat": 2,
+   "dexId": [
+    151
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "cosmos"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Psyche",
+     "cost": [
+      "Psychic",
+      "Psychic"
+     ],
+     "damage": "40"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  }
+ ]
+}

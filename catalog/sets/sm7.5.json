@@ -1,0 +1,4031 @@
+{
+ "id": "sm7.5",
+ "name": "Dragon Majesty",
+ "serie": {
+  "id": "sm",
+  "name": "Sun & Moon"
+ },
+ "releaseDate": "2018-09-07",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 0,
+  "normal": 0,
+  "official": 70,
+  "reverse": 0,
+  "total": 78
+ },
+ "logo": null,
+ "symbol": null,
+ "abbreviation": {
+  "official": "DRM"
+ },
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "sm7.5-1",
+   "localId": "1",
+   "name": "Charmander",
+   "rarity": "Common",
+   "illustrator": "tetsuya koizumi",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "From the time it is born, a flame burns at the tip of its tail. Its life would end if the flame were to go out.",
+   "retreat": 2,
+   "dexId": [
+    4
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fire Fang",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Your opponent’s Active Pokémon is now Burned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-2",
+   "localId": "2",
+   "name": "Charmeleon",
+   "rarity": "Uncommon",
+   "illustrator": "kodama",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Charmander",
+   "description": "When it swings its burning tail, it elevates the air temperature to unbearably high levels.",
+   "retreat": 2,
+   "dexId": [
+    5
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flamethrower",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "80",
+     "effect": "Discard an Energy from this Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Burning Fighter",
+     "effect": "When you play this Pokémon from your hand to evolve 1 of your Pokémon during your turn, you may discard the top 5 cards of your deck. If any of those cards are Fire Energy cards, attach them to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-3",
+   "localId": "3",
+   "name": "Charizard",
+   "rarity": "Rare",
+   "illustrator": "Ryota Murayama",
+   "category": "Pokemon",
+   "hp": 160,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Charmeleon",
+   "description": "Its wings can carry this Pokémon close to an altitude of 4,600 feet. It blows out fire at very high temperatures.",
+   "retreat": 2,
+   "dexId": [
+    6
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fiery Blast",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "130",
+     "effect": "Discard an Energy from this Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Resolute Flame",
+     "effect": "This Pokémon’s attacks do 30 more damage to your opponent’s Active Pokémon for each of their Pokémon-GX and Pokémon-EX in play."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-4",
+   "localId": "4",
+   "name": "Torchic",
+   "rarity": "Common",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "A fire burns inside, so it feels very warm to hug. It launches fireballs of 1,800 degrees Fahrenheit.",
+   "retreat": 1,
+   "dexId": [
+    255
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Singe",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, your opponent’s Active Pokémon is now Burned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-5",
+   "localId": "5",
+   "name": "Combusken",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Torchic",
+   "description": "During a battle, the hot flame in its body increases. Its kicks have outstanding destructive power.",
+   "retreat": 1,
+   "dexId": [
+    256
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Lunge",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Natural Cure",
+     "effect": "Whenever you attach an Energy card from your hand to this Pokémon, remove all Special Conditions from it."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-6",
+   "localId": "6",
+   "name": "Blaziken",
+   "rarity": "Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "hp": 150,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Combusken",
+   "description": "When facing a tough foe, it looses flames from its wrists. Its powerful legs let it jump clear over buildings.",
+   "retreat": 2,
+   "dexId": [
+    257
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fire Stream",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "90",
+     "effect": "Discard a Fire Energy from this Pokémon. This attack does 20 damage to each of your opponent’s Benched Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Firestarter",
+     "effect": "Once during your turn (before your attack), you may attach a Fire Energy card from your discard pile to 1 of your Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-7",
+   "localId": "7",
+   "name": "Victini ◇",
+   "rarity": "Rare",
+   "illustrator": "Shin Nagasawa",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "When it shares the infinite energy it creates, that being's entire body will be overflowing with power.",
+   "retreat": 1,
+   "dexId": [
+    494
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Infinity",
+     "cost": [
+      "Fire",
+      "Fire"
+     ],
+     "damage": "20×",
+     "effect": "This attack does 20 damage for each basic Energy card in your discard pile. Then, shuffle those cards into your deck."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-8",
+   "localId": "8",
+   "name": "Darumaka",
+   "rarity": "Common",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "When it sleeps, it pulls its limbs into its body and its internal fire goes down to 1,100 degrees Fahrenheit.",
+   "retreat": 2,
+   "dexId": [
+    554
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Damage Rush",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin until you get tails. This attack does 30 more damage for each heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-9",
+   "localId": "9",
+   "name": "Darmanitan",
+   "rarity": "Uncommon",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "hp": 130,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Darumaka",
+   "description": "Its internal fire burns at 2,500 degrees Fahrenheit, making enough power that it can destroy a dump truck with one punch.",
+   "retreat": 2,
+   "dexId": [
+    555
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Heat Assist",
+     "cost": [
+      "Fire"
+     ],
+     "effect": "Attach up to 3 Fire Energy cards from your hand to your Pokémon in any way you like."
+    },
+    {
+     "name": "Darmani-Hands",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "Flip 4 coins. This attack does 50 more damage for each heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-10",
+   "localId": "10",
+   "name": "Heatmor",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 110,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "It draws in air through its tail, transforms it into fire, and uses it like a tongue. It melts Durant and eats them.",
+   "retreat": 2,
+   "dexId": [
+    631
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Singe",
+     "cost": [
+      "Fire"
+     ],
+     "effect": "Your opponent’s Active Pokémon is now Burned."
+    },
+    {
+     "name": "Charring Breath",
+     "cost": [
+      "Fire",
+      "Fire"
+     ],
+     "damage": "120",
+     "effect": "If your opponent’s Active Pokémon isn’t Burned, this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-11",
+   "localId": "11",
+   "name": "Reshiram GX",
+   "rarity": "Ultra Rare",
+   "illustrator": "PLANETA Otani",
+   "category": "Pokemon",
+   "hp": 180,
+   "types": [
+    "Fire"
+   ],
+   "retreat": 2,
+   "suffix": "GX",
+   "dexId": [
+    643
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flame Charge",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for up to 2 Fire Energy cards and attach them to this Pokémon. Then, shuffle your deck."
+    },
+    {
+     "name": "Scorching Column",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "110",
+     "effect": "Your opponent’s Active Pokémon is now Burned."
+    },
+    {
+     "name": "Vermilion GX",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "180",
+     "effect": "You may attach up to 5 Fire Energy cards from your hand to your Pokémon in any way you like. (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-12",
+   "localId": "12",
+   "name": "Litten",
+   "rarity": "Common",
+   "illustrator": "Ryota Murayama",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "While grooming itself, it builds up fur inside its stomach. It sets the fur alight and spews fiery attacks, which change based on how it coughs.",
+   "retreat": 1,
+   "dexId": [
+    725
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fury Swipes",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "10×",
+     "effect": "Flip 3 coins. This attack does 10 damage for each heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-13",
+   "localId": "13",
+   "name": "Salandit",
+   "rarity": "Common",
+   "illustrator": "MAHOU",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "Volcanoes or dry, craggy places are its home. It emanates a sweet-smelling poisonous gas that attracts bug Pokémon, then attacks them.",
+   "retreat": 1,
+   "dexId": [
+    757
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Call for Family",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for a Basic Pokémon and put it onto your Bench. Then, shuffle your deck."
+    },
+    {
+     "name": "Dig Claws",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-14",
+   "localId": "14",
+   "name": "Salazzle",
+   "rarity": "Uncommon",
+   "illustrator": "Naoki Saito",
+   "category": "Pokemon",
+   "hp": 110,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Salandit",
+   "description": "Filled with pheromones, its poisonous gas can be diluted to use in the production of luscious perfumes.",
+   "retreat": 1,
+   "dexId": [
+    758
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ring of Fire",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "20",
+     "effect": "Your opponent’s Active Pokémon is now Burned. It can’t retreat during your opponent’s next turn."
+    },
+    {
+     "name": "Flamethrower",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "80",
+     "effect": "Discard an Energy from this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-15",
+   "localId": "15",
+   "name": "Horsea",
+   "rarity": "Common",
+   "illustrator": "Yukiko Baba",
+   "category": "Pokemon",
+   "hp": 40,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It makes its nest in the shade of corals. If it senses danger, it spits murky ink and flees.",
+   "retreat": 1,
+   "dexId": [
+    116
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Splatter",
+     "cost": [
+      "Water"
+     ],
+     "effect": "This attack does 20 damage to 1 of your opponent’s Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-16",
+   "localId": "16",
+   "name": "Horsea",
+   "rarity": "Common",
+   "illustrator": "Mizue",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It makes its nest in the shade of corals. If it senses danger, it spits murky ink and flees.",
+   "retreat": 1,
+   "dexId": [
+    116
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hydro Pump",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "This attack does 10 more damage times the amount of Water Energy attached to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-17",
+   "localId": "17",
+   "name": "Seadra",
+   "rarity": "Uncommon",
+   "illustrator": "Yumi",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Horsea",
+   "description": "It is capable of swimming backwards by rapidly flapping its winglike pectoral fins and stout tail.",
+   "retreat": 1,
+   "dexId": [
+    117
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hydro Pump",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "This attack does 20 more damage times the amount of Water Energy attached to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-18",
+   "localId": "18",
+   "name": "Kingdra GX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "hp": 230,
+   "types": [
+    "Water"
+   ],
+   "evolveFrom": "Seadra",
+   "retreat": 2,
+   "suffix": "GX",
+   "dexId": [
+    230
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hydro Pump",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "This attack does 50 more damage times the amount of Water Energy attached to this Pokémon."
+    },
+    {
+     "name": "Reverse Thrust",
+     "cost": [
+      "Water"
+     ],
+     "damage": "30",
+     "effect": "Switch this Pokémon with 1 of your Benched Pokémon."
+    },
+    {
+     "name": "Maelstrom GX",
+     "cost": [
+      "Water"
+     ],
+     "effect": "This attack does 40 damage to each of your opponent’s Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.) (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-19",
+   "localId": "19",
+   "name": "Magikarp",
+   "rarity": "Common",
+   "illustrator": "Sekio",
+   "category": "Pokemon",
+   "hp": 30,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "Its reckless leaps make it easy pickings for predators. On the bright side, many Pokémon enjoy longer life spans, thanks to Magikarp.",
+   "retreat": 1,
+   "dexId": [
+    129
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Water Splash",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-20",
+   "localId": "20",
+   "name": "Gyarados",
+   "rarity": "Rare",
+   "illustrator": "kawayoo",
+   "category": "Pokemon",
+   "hp": 160,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Magikarp",
+   "description": "There are people who swear that any place Gyarados appears is fated for destruction.",
+   "retreat": 4,
+   "dexId": [
+    130
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Wild Tail",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "160",
+     "effect": "You may discard any Stadium card in play."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Commotion",
+     "effect": "If this Pokémon is your Active Pokémon and is damaged by an opponent’s attack (even if this Pokémon is Knocked Out), put 2 damage counters on each of your Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-21",
+   "localId": "21",
+   "name": "Lapras",
+   "rarity": "Uncommon",
+   "illustrator": "Saya Tsuruta",
+   "category": "Pokemon",
+   "hp": 120,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "These Pokémon were once near extinction due to poaching. Following protective regulations, there is now an overabundance of them.",
+   "retreat": 2,
+   "dexId": [
+    131
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Aqua Bullet",
+     "cost": [
+      "Water"
+     ],
+     "damage": "20",
+     "effect": "This attack does 20 damage to 1 of your opponent’s Benched Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Hydro Pump",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70+",
+     "effect": "This attack does 10 more damage times the amount of Water Energy attached to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-22",
+   "localId": "22",
+   "name": "Totodile",
+   "rarity": "Common",
+   "illustrator": "Hironobu Yoshida",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "Its powerful, well-developed jaws are capable of crushing anything. Even its Trainer must be careful.",
+   "retreat": 1,
+   "dexId": [
+    158
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Leer",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, your opponent’s Active Pokémon is now Paralyzed."
+    },
+    {
+     "name": "Fury Swipes",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10×",
+     "effect": "Flip 3 coins. This attack does 10 damage for each heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-23",
+   "localId": "23",
+   "name": "Croconaw",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Totodile",
+   "description": "Once it bites down, it won't let go until it loses its fangs. New fangs quickly grow into place.",
+   "retreat": 2,
+   "dexId": [
+    159
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tackle",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Sweep Away",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "90",
+     "effect": "Discard the top 3 cards of your deck."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-24",
+   "localId": "24",
+   "name": "Feraligatr",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 160,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Croconaw",
+   "description": "When it bites with its massive and powerful jaws, it shakes its head and savagely tears its victim up.",
+   "retreat": 3,
+   "dexId": [
+    160
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Riptide",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "damage": "10+",
+     "effect": "This attack does 20 more damage for each Water Energy card in your discard pile. Then, shuffle those cards into your deck."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Downpour",
+     "effect": "As often as you like during your turn (before your attack), you may discard a Water Energy card from your hand."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-25",
+   "localId": "25",
+   "name": "Wooper",
+   "rarity": "Common",
+   "illustrator": "Shibuzoh.",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "When the temperature cools in the evening, they emerge from water to seek food along the shore.",
+   "retreat": 1,
+   "dexId": [
+    194
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ram",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Rain Splash",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-26",
+   "localId": "26",
+   "name": "Quagsire",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 120,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Wooper",
+   "description": "This carefree Pokémon has an easygoing nature. While swimming, it always bumps into boat hulls.",
+   "retreat": 2,
+   "dexId": [
+    195
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hydro Pump",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60+",
+     "effect": "This attack does 20 more damage times the amount of Water Energy attached to this Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Wash Out",
+     "effect": "As often as you like during your turn (before your attack), you may move a Water Energy from 1 of your Benched Pokémon to your Active Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-27",
+   "localId": "27",
+   "name": "Corsola",
+   "rarity": "Common",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "Pursued by Mareanie for the branches on its head, this Pokémon will sometimes snap its own branches off as a diversion while it escapes.",
+   "retreat": 1,
+   "dexId": [
+    222
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bubble Shoot",
+     "cost": [
+      "Water"
+     ],
+     "effect": "This attack does 20 damage times the amount of Water Energy attached to this Pokémon to 1 of your opponent’s Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-28",
+   "localId": "28",
+   "name": "Feebas",
+   "rarity": "Common",
+   "illustrator": "Shin Nagasawa",
+   "category": "Pokemon",
+   "hp": 30,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "Although unattractive and unpopular, this Pokémon's marvelous vitality has made it a subject of research.",
+   "retreat": 1,
+   "dexId": [
+    349
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rain Splash",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Submerge",
+     "effect": "As long as this Pokémon is on your Bench, prevent all damage done to this Pokémon by attacks (both yours and your opponent’s)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-29",
+   "localId": "29",
+   "name": "Milotic",
+   "rarity": "Uncommon",
+   "illustrator": "hatachu",
+   "category": "Pokemon",
+   "hp": 120,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Feebas",
+   "description": "It lives at the bottom of clear lakes. In times of war, it shows itself, which soothes people's minds and hearts.",
+   "retreat": 1,
+   "dexId": [
+    350
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Aurora Wave",
+     "cost": [
+      "Water"
+     ],
+     "damage": "30",
+     "effect": "Your opponent’s Active Pokémon is now Confused."
+    },
+    {
+     "name": "Aqua Split",
+     "cost": [
+      "Water",
+      "Water",
+      "Water"
+     ],
+     "damage": "40",
+     "effect": "This attack does 40 damage to 2 of your opponent’s Benched Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-30",
+   "localId": "30",
+   "name": "Phione",
+   "rarity": "Uncommon",
+   "illustrator": "kawayoo",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It drifts in warm seas. It always returns to where it was born, no matter how far it may have drifted.",
+   "retreat": 1,
+   "dexId": [
+    489
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Water Pulse",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "damage": "30",
+     "effect": "Your opponent’s Active Pokémon is now Asleep."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Murmurs of the Sea",
+     "effect": "Your Water Pokémon can’t be Confused. If those Pokémon are already Confused, remove that Special Condition."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-31",
+   "localId": "31",
+   "name": "Wishiwashi",
+   "rarity": "Common",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "hp": 30,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It's awfully weak and notably tasty, so everyone is always out to get it. As it happens, anyone trying to bully it receives a painful lesson.",
+   "retreat": 1,
+   "dexId": [
+    746
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Water Gun",
+     "cost": [
+      "Water"
+     ],
+     "damage": "20"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Meet Up",
+     "effect": "Your Wishiwashi-GX in play get +20 HP, and their attacks do 20 more damage to your opponent’s Active Pokémon (before applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-32",
+   "localId": "32",
+   "name": "Trapinch",
+   "rarity": "Common",
+   "illustrator": "Naoyo Kimura",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "description": "As it digs through the sand, its giant jaws crush any rocks that obstruct its path. It builds a funnel-shaped nest.",
+   "retreat": 1,
+   "dexId": [
+    328
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Mini Earthquake",
+     "cost": [
+      "Fighting"
+     ],
+     "damage": "20",
+     "effect": "This attack does 10 damage to each of your Benched Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-33",
+   "localId": "33",
+   "name": "Hydreigon",
+   "rarity": "Rare",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "hp": 160,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Zweilous",
+   "description": "The heads on their arms do not have brains. They use all three heads to consume and destroy everything.",
+   "retreat": 2,
+   "dexId": [
+    635
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Dark Destruction",
+     "cost": [
+      "Darkness",
+      "Darkness",
+      "Colorless"
+     ],
+     "damage": "120",
+     "effect": "You may discard an Energy from this Pokémon. If you do, discard an Energy from your opponent’s Active Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Weed Out",
+     "effect": "Once during your turn (before your attack), you may choose 3 of your Benched Pokémon. Then, discard your other Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-34",
+   "localId": "34",
+   "name": "Dratini",
+   "rarity": "Common",
+   "illustrator": "Ayaka Yoshida",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Basic",
+   "description": "After a 10-hour struggle, a fisherman was able to pull one up and confirm its existence.",
+   "retreat": 2,
+   "dexId": [
+    147
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Wrap",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, your opponent’s Active Pokémon is now Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-35",
+   "localId": "35",
+   "name": "Dratini",
+   "rarity": "Common",
+   "illustrator": "Anesaki Dynamic",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Basic",
+   "description": "After a 10-hour struggle, a fisherman was able to pull one up and confirm its existence.",
+   "retreat": 2,
+   "dexId": [
+    147
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tail Whap",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "30"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-36",
+   "localId": "36",
+   "name": "Dragonair",
+   "rarity": "Uncommon",
+   "illustrator": "sui",
+   "category": "Pokemon",
+   "hp": 100,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Dratini",
+   "description": "From time immemorial, it has been venerated by agricultural peoples as an entity able to control the weather.",
+   "retreat": 2,
+   "dexId": [
+    148
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Dragon Tail",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60×",
+     "effect": "Flip 2 coins. This attack does 60 damage for each heads."
+    },
+    {
+     "name": "Waterfall",
+     "cost": [
+      "Water",
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "80"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-37",
+   "localId": "37",
+   "name": "Dragonite GX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "hp": 250,
+   "types": [
+    "Dragon"
+   ],
+   "evolveFrom": "Dragonair",
+   "retreat": 3,
+   "suffix": "GX",
+   "dexId": [
+    149
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Dragon Claw",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "70"
+    },
+    {
+     "name": "Giga Impact",
+     "cost": [
+      "Water",
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "200",
+     "effect": "This Pokémon can’t attack during your next turn."
+    },
+    {
+     "name": "Dragonporter GX",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Put 3 Dragon Pokémon from your discard pile onto your Bench. (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-38",
+   "localId": "38",
+   "name": "Vibrava",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Trapinch",
+   "description": "To help make its wings grow, it dissolves quantities of prey in its digestive juices and guzzles them down every day.",
+   "retreat": 1,
+   "dexId": [
+    329
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sonic Edge",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "This attack’s damage isn’t affected by any effects on your opponent’s Active Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-39",
+   "localId": "39",
+   "name": "Flygon",
+   "rarity": "Uncommon",
+   "illustrator": "Shigenori Negishi",
+   "category": "Pokemon",
+   "hp": 140,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Vibrava",
+   "description": "This Pokémon hides in the heart of sandstorms it creates and seldom appears where people can see it.",
+   "retreat": 1,
+   "dexId": [
+    330
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sand Tomb",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "110",
+     "effect": "The Defending Pokémon can’t retreat during your opponent’s next turn."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Dragon Guard",
+     "effect": "Prevent all effects of your opponent’s attacks, except damage, done to your Dragon Pokémon. (Existing effects are not removed.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-40",
+   "localId": "40",
+   "name": "Altaria",
+   "rarity": "Rare",
+   "illustrator": "Kyoko Umemoto",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Swablu",
+   "description": "On sunny days, it flies freely through the sky and blends into the clouds. It sings in a beautiful soprano.",
+   "retreat": 1,
+   "dexId": [
+    334
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Pierce",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Fight Song",
+     "effect": "Your Dragon Pokémon’s attacks do 20 more damage to your opponent’s Active Pokémon (before applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-41",
+   "localId": "41",
+   "name": "Altaria GX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "hp": 200,
+   "types": [
+    "Dragon"
+   ],
+   "evolveFrom": "Swablu",
+   "retreat": 1,
+   "suffix": "GX",
+   "dexId": [
+    334
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bright Tone",
+     "cost": [
+      "Fairy",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "During your opponent’s next turn, prevent all damage done to this Pokémon by attacks from Pokémon-GX and Pokémon-EX."
+    },
+    {
+     "name": "Sonic Edge",
+     "cost": [
+      "Water",
+      "Fairy",
+      "Colorless"
+     ],
+     "damage": "110",
+     "effect": "This attack’s damage isn’t affected by any effects on your opponent’s Active Pokémon."
+    },
+    {
+     "name": "Euphoria GX",
+     "cost": [
+      "Fairy",
+      "Colorless"
+     ],
+     "effect": "Your opponent’s Active Pokémon is now Asleep. Heal all damage from all of your Pokémon. (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-42",
+   "localId": "42",
+   "name": "Bagon",
+   "rarity": "Common",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Basic",
+   "description": "With its steel-hard stone head, it headbutts indiscriminately. This is because of the stress it feels at being unable to fly.",
+   "retreat": 1,
+   "dexId": [
+    371
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Risky Kick",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    },
+    {
+     "name": "Dragon Eye",
+     "cost": [
+      "Fire",
+      "Water"
+     ],
+     "damage": "20",
+     "effect": "Your opponent’s Active Pokémon is now Asleep."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-43",
+   "localId": "43",
+   "name": "Shelgon",
+   "rarity": "Uncommon",
+   "illustrator": "Yuka Morii",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Bagon",
+   "description": "They lurk deep within caves—motionless, neither eating nor drinking. Why they don't die is not known.",
+   "retreat": 2,
+   "dexId": [
+    372
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rollout",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Energy Guard",
+     "effect": "If this Pokémon has any basic Energy attached to it, it takes 20 less damage from attacks (after applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-44",
+   "localId": "44",
+   "name": "Salamence GX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "hp": 250,
+   "types": [
+    "Dragon"
+   ],
+   "evolveFrom": "Shelgon",
+   "retreat": 2,
+   "suffix": "GX",
+   "dexId": [
+    373
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bright Flame",
+     "cost": [
+      "Fire",
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "200",
+     "effect": "Discard 2 Energy from this Pokémon."
+    },
+    {
+     "name": "Flame Jet GX",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "This attack does 120 damage to 1 of your opponent’s Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.) (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Dragon Lift",
+     "effect": "Your Pokémon in play have no Retreat Cost, except Pokémon-GX and Pokémon-EX."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-45",
+   "localId": "45",
+   "name": "Druddigon",
+   "rarity": "Uncommon",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "hp": 110,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Basic",
+   "description": "It warms its body by absorbing sunlight with its wings. When its body temperature falls, it can no longer move.",
+   "retreat": 1,
+   "dexId": [
+    621
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Dragon Claw",
+     "cost": [
+      "Fire",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "100"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Rough Skin",
+     "effect": "If this Pokémon is your Active Pokémon and is damaged by an opponent’s attack (even if this Pokémon is Knocked Out), put 3 damage counters on the Attacking Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-46",
+   "localId": "46",
+   "name": "Zekrom",
+   "rarity": "Rare",
+   "illustrator": "Hasuno",
+   "category": "Pokemon",
+   "hp": 130,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Basic",
+   "description": "Concealing itself in lightning clouds, it flies throughout the Unova region. It creates electricity in its tail.",
+   "retreat": 3,
+   "dexId": [
+    644
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Shred",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70",
+     "effect": "This attack’s damage isn’t affected by any effects on your opponent’s Active Pokémon."
+    },
+    {
+     "name": "Bolt Strike",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "150",
+     "effect": "Flip a coin. If tails, this Pokémon does 50 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-47",
+   "localId": "47",
+   "name": "Kyurem",
+   "rarity": "Rare",
+   "illustrator": "TOKIYA",
+   "category": "Pokemon",
+   "hp": 130,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Basic",
+   "description": "It generates a powerful, freezing energy inside itself, but its body became frozen when the energy leaked out.",
+   "retreat": 2,
+   "dexId": [
+    646
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Outrage",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "This attack does 10 more damage for each damage counter on this Pokémon."
+    },
+    {
+     "name": "Frost Spear",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "100",
+     "effect": "This attack does 20 damage to 1 of your opponent’s Benched Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-48",
+   "localId": "48",
+   "name": "White Kyurem GX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "hp": 190,
+   "types": [
+    "Dragon"
+   ],
+   "retreat": 3,
+   "suffix": "GX",
+   "dexId": [
+    646
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Shred",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "40",
+     "effect": "This attack’s damage isn’t affected by any effects on your opponent’s Active Pokémon."
+    },
+    {
+     "name": "Raging Blade",
+     "cost": [
+      "Fire",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "80+",
+     "effect": "If this Pokémon has any damage counters on it, this attack does 80 more damage."
+    },
+    {
+     "name": "Dragon Nova GX",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "200",
+     "effect": "Your opponent’s Active Pokémon is now Burned and Paralyzed. (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-49",
+   "localId": "49",
+   "name": "Zygarde",
+   "rarity": "Uncommon",
+   "illustrator": "Misa Tsutsui",
+   "category": "Pokemon",
+   "hp": 130,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Basic",
+   "description": "It's thought to be monitoring the ecosystem. There are rumors that even greater power lies hidden within it.",
+   "retreat": 3,
+   "dexId": [
+    718
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rumble",
+     "cost": [
+      "Fighting"
+     ],
+     "damage": "20",
+     "effect": "The Defending Pokémon can’t retreat during your opponent’s next turn."
+    },
+    {
+     "name": "Raging Blade",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60+",
+     "effect": "If this Pokémon has any damage counters on it, this attack does 60 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-50",
+   "localId": "50",
+   "name": "Turtonator",
+   "rarity": "Uncommon",
+   "illustrator": "Sumiyoshi Kizuki",
+   "category": "Pokemon",
+   "hp": 110,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Basic",
+   "description": "It gushes fire and poisonous gases from its nostrils. Its dung is an explosive substance and can be put to various uses.",
+   "retreat": 3,
+   "dexId": [
+    776
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Explosive Jet",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Fire"
+     ],
+     "damage": "50×",
+     "effect": "Discard any amount of Fire Energy from your Pokémon. This attack does 50 damage for each card you discarded in this way."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-51",
+   "localId": "51",
+   "name": "Drampa",
+   "rarity": "Uncommon",
+   "illustrator": "Sanosuke Sakuma",
+   "category": "Pokemon",
+   "hp": 120,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Basic",
+   "description": "This Pokémon is friendly to people and loves children most of all. It comes from deep in the mountains to play with children it likes in town.",
+   "retreat": 1,
+   "dexId": [
+    780
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Dragon Wisdom",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Attach a basic Energy card from your discard pile to 1 of your Dragon Pokémon."
+    },
+    {
+     "name": "Hyper Voice",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "80"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-52",
+   "localId": "52",
+   "name": "Jangmo-o",
+   "rarity": "Common",
+   "illustrator": "Yusuke Ohmura",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Basic",
+   "description": "They live in mountains where no trace of humans can be detected. Jangmo-o grow little by little as they battle one another.",
+   "retreat": 1,
+   "dexId": [
+    782
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rigidify",
+     "cost": [
+      "Lightning"
+     ],
+     "effect": "During your opponent’s next turn, this Pokémon takes 20 less damage from attacks (after applying Weakness and Resistance)."
+    },
+    {
+     "name": "Dragon Claw",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-53",
+   "localId": "53",
+   "name": "Hakamo-o",
+   "rarity": "Common",
+   "illustrator": "hatachu",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Jangmo-o",
+   "description": "It sheds and regrows its scales on a continuous basis. The scales become harder and sharper each time they're regrown.",
+   "retreat": 2,
+   "dexId": [
+    783
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Guard Press",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "During your opponent’s next turn, this Pokémon takes 30 less damage from attacks (after applying Weakness and Resistance)."
+    },
+    {
+     "name": "Dragon Claw",
+     "cost": [
+      "Lightning",
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "70"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-54",
+   "localId": "54",
+   "name": "Kommo-o",
+   "rarity": "Rare",
+   "illustrator": "so-taro",
+   "category": "Pokemon",
+   "hp": 160,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Hakamo-o",
+   "description": "Its rigid scales function as offense and defense. In the past, its scales were processed and used to make weapons and other commodities.",
+   "retreat": 2,
+   "dexId": [
+    784
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Guard Press",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "During your opponent’s next turn, this Pokémon takes 30 less damage from attacks (after applying Weakness and Resistance)."
+    },
+    {
+     "name": "Raging Uppercut",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "90+",
+     "effect": "If this Pokémon has 8 or more damage counters on it, this attack does 120 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-55",
+   "localId": "55",
+   "name": "Kangaskhan",
+   "rarity": "Common",
+   "illustrator": "Naoyo Kimura",
+   "category": "Pokemon",
+   "hp": 120,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "The child in its pouch leaves home after roughly three years. That is the only time the mother is heard to cry wildly.",
+   "retreat": 2,
+   "dexId": [
+    115
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fetch",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Draw a card."
+    },
+    {
+     "name": "Headbutt",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "One-Two Punch",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60+",
+     "effect": "Flip a coin. If heads, this attack does 30 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-56",
+   "localId": "56",
+   "name": "Swablu",
+   "rarity": "Common",
+   "illustrator": "Yukiko Baba",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "It constantly grooms its cotton-like wings. It takes a shower to clean itself if it becomes dirty.",
+   "retreat": 1,
+   "dexId": [
+    333
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Collect",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Draw a card."
+    },
+    {
+     "name": "Peck",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-57",
+   "localId": "57",
+   "name": "Swablu",
+   "rarity": "Common",
+   "illustrator": "Shibuzoh.",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "It constantly grooms its cotton-like wings. It takes a shower to clean itself if it becomes dirty.",
+   "retreat": 1,
+   "dexId": [
+    333
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sing",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Your opponent’s Active Pokémon is now Asleep."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-58",
+   "localId": "58",
+   "name": "Blaine’s Last Stand",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "trainerType": "Supporter",
+   "effect": "You can play this card only when it is the last card in your hand.\n\nDraw 2 cards for each Fire Pokémon you have in play.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-59",
+   "localId": "59",
+   "name": "Dragon Talon",
+   "rarity": "Uncommon",
+   "illustrator": "Toyste Beach",
+   "category": "Trainer",
+   "trainerType": "Tool",
+   "effect": "If the Dragon Pokémon this card is attached to is your Active Pokémon and is damaged by an opponent’s attack (even if that Pokémon is Knocked Out), put 3 damage counters on the Attacking Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-60",
+   "localId": "60",
+   "name": "Fiery Flint",
+   "rarity": "Uncommon",
+   "illustrator": "Eske Yoshinob",
+   "category": "Trainer",
+   "trainerType": "Item",
+   "effect": "You can play this card only if you discard 2 other cards from your hand.\n\nSearch your deck for up to 4 Fire Energy cards, reveal them, and put them into your hand. Then, shuffle your deck.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-61",
+   "localId": "61",
+   "name": "Lance ◇",
+   "rarity": "Rare",
+   "illustrator": "kodama",
+   "category": "Trainer",
+   "trainerType": "Supporter",
+   "effect": "You can play this card only if 1 of your Pokémon was Knocked Out during your opponent’s last turn.\n\nSearch your deck for up to 2 Dragon Pokémon and put them onto your Bench. Then, shuffle your deck.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-62",
+   "localId": "62",
+   "name": "Switch Raft",
+   "rarity": "Uncommon",
+   "illustrator": "Yoshinobu Saito",
+   "category": "Trainer",
+   "trainerType": "Item",
+   "effect": "Switch your Active Water Pokémon with 1 of your Benched Pokémon. If you do, heal 30 damage from the Pokémon you moved to your Bench.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-63",
+   "localId": "63",
+   "name": "Wela Volcano Park",
+   "rarity": "Uncommon",
+   "illustrator": "5ban Graphics",
+   "category": "Trainer",
+   "trainerType": "Stadium",
+   "effect": "Whenever a player flips a coin for the Special Condition Burned between turns, that Special Condition isn’t removed even if the result is heads.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-64",
+   "localId": "64",
+   "name": "Zinnia",
+   "rarity": "Uncommon",
+   "illustrator": "Megumi Mizutani",
+   "category": "Trainer",
+   "trainerType": "Supporter",
+   "effect": "You can play this card only if 1 of your Pokémon was Knocked Out during your opponent’s last turn.\n\nAttach up to 2 basic Energy cards from your hand to 1 of your Dragon Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-65",
+   "localId": "65",
+   "name": "Reshiram GX",
+   "rarity": "Ultra Rare",
+   "illustrator": "PLANETA Igarashi",
+   "category": "Pokemon",
+   "hp": 180,
+   "types": [
+    "Fire"
+   ],
+   "retreat": 2,
+   "suffix": "GX",
+   "dexId": [
+    643
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flame Charge",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for up to 2 Fire Energy cards and attach them to this Pokémon. Then, shuffle your deck."
+    },
+    {
+     "name": "Scorching Column",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "110",
+     "effect": "Your opponent’s Active Pokémon is now Burned."
+    },
+    {
+     "name": "Vermilion GX",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "180",
+     "effect": "You may attach up to 5 Fire Energy cards from your hand to your Pokémon in any way you like. (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-66",
+   "localId": "66",
+   "name": "Kingdra GX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "hp": 230,
+   "types": [
+    "Water"
+   ],
+   "evolveFrom": "Seadra",
+   "retreat": 2,
+   "suffix": "GX",
+   "dexId": [
+    230
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hydro Pump",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "This attack does 50 more damage times the amount of Water Energy attached to this Pokémon."
+    },
+    {
+     "name": "Reverse Thrust",
+     "cost": [
+      "Water"
+     ],
+     "damage": "30",
+     "effect": "Switch this Pokémon with 1 of your Benched Pokémon."
+    },
+    {
+     "name": "Maelstrom GX",
+     "cost": [
+      "Water"
+     ],
+     "effect": "This attack does 40 damage to each of your opponent’s Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.) (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-67",
+   "localId": "67",
+   "name": "Dragonite GX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "hp": 250,
+   "types": [
+    "Dragon"
+   ],
+   "evolveFrom": "Dragonair",
+   "retreat": 3,
+   "suffix": "GX",
+   "dexId": [
+    149
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Dragon Claw",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "70"
+    },
+    {
+     "name": "Giga Impact",
+     "cost": [
+      "Water",
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "200",
+     "effect": "This Pokémon can’t attack during your next turn."
+    },
+    {
+     "name": "Dragonporter GX",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Put 3 Dragon Pokémon from your discard pile onto your Bench. (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-68",
+   "localId": "68",
+   "name": "Altaria GX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "hp": 200,
+   "types": [
+    "Dragon"
+   ],
+   "evolveFrom": "Swablu",
+   "retreat": 1,
+   "suffix": "GX",
+   "dexId": [
+    334
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bright Tone",
+     "cost": [
+      "Fairy",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "During your opponent’s next turn, prevent all damage done to this Pokémon by attacks from Pokémon-GX and Pokémon-EX."
+    },
+    {
+     "name": "Sonic Edge",
+     "cost": [
+      "Water",
+      "Fairy",
+      "Colorless"
+     ],
+     "damage": "110",
+     "effect": "This attack’s damage isn’t affected by any effects on your opponent’s Active Pokémon."
+    },
+    {
+     "name": "Euphoria GX",
+     "cost": [
+      "Fairy",
+      "Colorless"
+     ],
+     "effect": "Your opponent’s Active Pokémon is now Asleep. Heal all damage from all of your Pokémon. (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-69",
+   "localId": "69",
+   "name": "Blaine’s Last Stand",
+   "rarity": "Ultra Rare",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Trainer",
+   "trainerType": "Supporter",
+   "effect": "You can play this card only when it is the last card in your hand.\n\nDraw 2 cards for each Fire Pokémon you have in play.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-70",
+   "localId": "70",
+   "name": "Zinnia",
+   "rarity": "Ultra Rare",
+   "illustrator": "Hideki Ishikawa",
+   "category": "Trainer",
+   "trainerType": "Supporter",
+   "effect": "You can play this card only if 1 of your Pokémon was Knocked Out during your opponent’s last turn.\n\nAttach up to 2 basic Energy cards from your hand to 1 of your Dragon Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-71",
+   "localId": "71",
+   "name": "Reshiram GX",
+   "rarity": "Secret Rare",
+   "illustrator": "PLANETA Igarashi",
+   "category": "Pokemon",
+   "hp": 180,
+   "types": [
+    "Fire"
+   ],
+   "retreat": 2,
+   "suffix": "GX",
+   "dexId": [
+    643
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flame Charge",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for up to 2 Fire Energy cards and attach them to this Pokémon. Then, shuffle your deck."
+    },
+    {
+     "name": "Scorching Column",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "110",
+     "effect": "Your opponent’s Active Pokémon is now Burned."
+    },
+    {
+     "name": "Vermilion GX",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "180",
+     "effect": "You may attach up to 5 Fire Energy cards from your hand to your Pokémon in any way you like. (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-72",
+   "localId": "72",
+   "name": "Altaria GX",
+   "rarity": "Secret Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "hp": 200,
+   "types": [
+    "Dragon"
+   ],
+   "evolveFrom": "Swablu",
+   "retreat": 1,
+   "suffix": "GX",
+   "dexId": [
+    334
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bright Tone",
+     "cost": [
+      "Fairy",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "During your opponent’s next turn, prevent all damage done to this Pokémon by attacks from Pokémon-GX and Pokémon-EX."
+    },
+    {
+     "name": "Sonic Edge",
+     "cost": [
+      "Water",
+      "Fairy",
+      "Colorless"
+     ],
+     "damage": "110",
+     "effect": "This attack’s damage isn’t affected by any effects on your opponent’s Active Pokémon."
+    },
+    {
+     "name": "Euphoria GX",
+     "cost": [
+      "Fairy",
+      "Colorless"
+     ],
+     "effect": "Your opponent’s Active Pokémon is now Asleep. Heal all damage from all of your Pokémon. (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-73",
+   "localId": "73",
+   "name": "Salamence GX",
+   "rarity": "Secret Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "hp": 250,
+   "types": [
+    "Dragon"
+   ],
+   "evolveFrom": "Shelgon",
+   "retreat": 2,
+   "suffix": "GX",
+   "dexId": [
+    373
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bright Flame",
+     "cost": [
+      "Fire",
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "200",
+     "effect": "Discard 2 Energy from this Pokémon."
+    },
+    {
+     "name": "Flame Jet GX",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "This attack does 120 damage to 1 of your opponent’s Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.) (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Dragon Lift",
+     "effect": "Your Pokémon in play have no Retreat Cost, except Pokémon-GX and Pokémon-EX."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-74",
+   "localId": "74",
+   "name": "White Kyurem GX",
+   "rarity": "Secret Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "hp": 190,
+   "types": [
+    "Dragon"
+   ],
+   "retreat": 3,
+   "suffix": "GX",
+   "dexId": [
+    646
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Shred",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "40",
+     "effect": "This attack’s damage isn’t affected by any effects on your opponent’s Active Pokémon."
+    },
+    {
+     "name": "Raging Blade",
+     "cost": [
+      "Fire",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "80+",
+     "effect": "If this Pokémon has any damage counters on it, this attack does 80 more damage."
+    },
+    {
+     "name": "Dragon Nova GX",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "200",
+     "effect": "Your opponent’s Active Pokémon is now Burned and Paralyzed. (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-75",
+   "localId": "75",
+   "name": "Dragon Talon",
+   "rarity": "Secret Rare",
+   "illustrator": "Toyste Beach",
+   "category": "Trainer",
+   "trainerType": "Tool",
+   "effect": "If the Dragon Pokémon this card is attached to is your Active Pokémon and is damaged by an opponent’s attack (even if that Pokémon is Knocked Out), put 3 damage counters on the Attacking Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-76",
+   "localId": "76",
+   "name": "Fiery Flint",
+   "rarity": "Secret Rare",
+   "illustrator": "Eske Yoshinob",
+   "category": "Trainer",
+   "trainerType": "Item",
+   "effect": "You can play this card only if you discard 2 other cards from your hand.\n\nSearch your deck for up to 4 Fire Energy cards, reveal them, and put them into your hand. Then, shuffle your deck.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-77",
+   "localId": "77",
+   "name": "Switch Raft",
+   "rarity": "Secret Rare",
+   "illustrator": "Yoshinobu Saito",
+   "category": "Trainer",
+   "trainerType": "Item",
+   "effect": "Switch your Active Water Pokémon with 1 of your Benched Pokémon. If you do, heal 30 damage from the Pokémon you moved to your Bench.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "sm7.5-78",
+   "localId": "78",
+   "name": "Ultra Necrozma GX",
+   "rarity": "Secret Rare",
+   "illustrator": "PLANETA Igarashi",
+   "category": "Pokemon",
+   "hp": 190,
+   "types": [
+    "Dragon"
+   ],
+   "retreat": 2,
+   "suffix": "GX",
+   "dexId": [
+    800
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Photon Geyser",
+     "cost": [
+      "Psychic",
+      "Metal"
+     ],
+     "damage": "20+",
+     "effect": "Discard all basic Psychic Energy from this Pokémon. This attack does 80 more damage for each card you discarded in this way."
+    },
+    {
+     "name": "Sky-Scorching Light GX",
+     "cost": [
+      "Psychic",
+      "Metal"
+     ],
+     "effect": "You can use this attack only if the total of both players’ remaining Prize cards is 6 or less. Put 6 damage counters on each of your opponent’s Pokémon. (You can’t use more than 1 GX attack in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fairy",
+     "value": "×2"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,5687 @@
+{
+ "id": "bw4",
+ "name": "Next Destinies",
+ "serie": {
+  "id": "bw",
+  "name": "Black & White"
+ },
+ "releaseDate": "2012-02-08",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 0,
+  "normal": 0,
+  "official": 99,
+  "reverse": 0,
+  "total": 103
+ },
+ "logo": "https://assets.tcgdex.net/en/bw/bw4/logo",
+ "symbol": "https://assets.tcgdex.net/univ/bw/bw4/symbol",
+ "abbreviation": {
+  "official": "NXD"
+ },
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "bw4-1",
+   "localId": "1",
+   "name": "Pinsir",
+   "rarity": "Rare",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/1",
+   "hp": 80,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "description": "It grips prey with its pincers until the prey is torn in half. What it can't tear, it tosses far.",
+   "retreat": 2,
+   "dexId": [
+    127
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Power Pinch",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Flip 2 coins. For each heads, discard an Energy attached to the Defending Pokémon."
+    },
+    {
+     "name": "Grip and Squeeze",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "70",
+     "effect": "The Defending Pokémon can't retreat during your opponent's next turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-2",
+   "localId": "2",
+   "name": "Seedot",
+   "rarity": "Common",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/2",
+   "hp": 40,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "description": "When it dangles from a tree branch, it looks just like an acorn. It enjoys scaring other Pokémon.",
+   "retreat": 1,
+   "dexId": [
+    273
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Trip Over",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, this attack does 10 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Water",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-3",
+   "localId": "3",
+   "name": "Kricketot",
+   "rarity": "Common",
+   "illustrator": "MAHOU",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/3",
+   "hp": 60,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "description": "Its legs are short. Whenever it stumbles, its stiff antennae clack with a xylophone-like sound.",
+   "retreat": 1,
+   "dexId": [
+    401
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Beat",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Double Headbutt",
+     "cost": [
+      "Grass",
+      "Grass"
+     ],
+     "damage": "10",
+     "effect": "Flip 2 coins. This attack does 10 more damage for each heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-4",
+   "localId": "4",
+   "name": "Kricketune",
+   "rarity": "Uncommon",
+   "illustrator": "Naoyo Kimura",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/4",
+   "hp": 90,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Kricketot",
+   "description": "There is a village that hosts a contest based on the amazingly variable cries of this Pokémon.",
+   "retreat": 1,
+   "dexId": [
+    402
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "White Noise",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "The Defending Pokémon is now Asleep."
+    },
+    {
+     "name": "Draining Cut",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Flip 2 coins. This attack does 40 damage times the number of heads. Heal from this Pokémon the same amount of damage you did to the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-5",
+   "localId": "5",
+   "name": "Shaymin-EX",
+   "rarity": "Rare",
+   "illustrator": "Shizurow",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/5",
+   "hp": 110,
+   "types": [
+    "Grass"
+   ],
+   "retreat": 1,
+   "suffix": "EX",
+   "dexId": [
+    492
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Synthesis",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "Search your deck for a Grass Energy card and attach it to 1 of your Pokémon. Shuffle your deck afterward."
+    },
+    {
+     "name": "Revenge Blast",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Does 30 more damage for each Prize card your opponent has taken."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-6",
+   "localId": "6",
+   "name": "Pansage",
+   "rarity": "Common",
+   "illustrator": "Megumi Mizutani",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/6",
+   "hp": 70,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "description": "This Pokémon dwells deep in the forest. Eating a leaf from its head whisks weariness away as if by magic.",
+   "retreat": 1,
+   "dexId": [
+    511
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Seed Bomb",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "30"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Water",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-7",
+   "localId": "7",
+   "name": "Simisage",
+   "rarity": "Rare",
+   "illustrator": "kawayoo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/7",
+   "hp": 90,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Pansage",
+   "description": "Ill tempered, it fights by swinging its barbed tail around wildly. The leaf growing on its head is very bitter.",
+   "retreat": 2,
+   "dexId": [
+    512
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Collect",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "Draw 3 cards."
+    },
+    {
+     "name": "Stadium Drain",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "If there is any Stadium card in play, this attack does 30 more damage and heal 30 damage from this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Water",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-8",
+   "localId": "8",
+   "name": "Foongus",
+   "rarity": "Common",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/8",
+   "hp": 40,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "description": "It lures people in with its Poké Ball pattern, then releases poison spores. Why it resembles a Poké Ball is unknown.",
+   "retreat": 1,
+   "dexId": [
+    590
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Find a Friend",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, search your deck for a Pokémon, reveal it, and put it into your hand. Shuffle your deck afterward."
+    },
+    {
+     "name": "Rising Lunge",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, this attack does 20 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Water",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-9",
+   "localId": "9",
+   "name": "Amoonguss",
+   "rarity": "Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/9",
+   "hp": 90,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Foongus",
+   "description": "It lures prey close by dancing and waving its arm caps, which resemble Poké Balls, in a swaying motion.",
+   "retreat": 2,
+   "dexId": [
+    591
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rising Lunge",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, this attack does 30 more damage."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Sporprise",
+     "effect": "When you play this Pokémon from your hand to evolve 1 of your Pokémon, you may use this Ability. If you do, your opponent’s Active Pokémon is now Confused and Poisoned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Water",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-10",
+   "localId": "10",
+   "name": "Growlithe",
+   "rarity": "Common",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/10",
+   "hp": 80,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "A Pokémon with a loyal nature, it will remain motionless until it is given an order by its Trainer.",
+   "retreat": 3,
+   "dexId": [
+    58
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Stoke",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, search your deck for a Fire Energy card and attach it to this Pokémon. Shuffle your deck afterward."
+    },
+    {
+     "name": "Firebreathing",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, this attack does 20 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-11",
+   "localId": "11",
+   "name": "Growlithe",
+   "rarity": "Common",
+   "illustrator": "Mizue",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/11",
+   "hp": 80,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "A Pokémon with a loyal nature, it will remain motionless until it is given an order by its Trainer.",
+   "retreat": 2,
+   "dexId": [
+    58
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Combustion",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-12",
+   "localId": "12",
+   "name": "Arcanine",
+   "rarity": "Rare",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/12",
+   "hp": 130,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Growlithe",
+   "description": "Its proud and regal appearance has captured the hearts of people since long ago.",
+   "retreat": 3,
+   "dexId": [
+    59
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fire Spin",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "100",
+     "effect": "Flip a coin. If tails, discard 2 Energy attached to this Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Blazing Mane",
+     "effect": "If this Pokémon is your Active Pokémon and is damaged by an opponent’s attack (even if this Pokémon is Knocked Out),the Attacking Pokémon is now Burned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-13",
+   "localId": "13",
+   "name": "Arcanine",
+   "rarity": "Uncommon",
+   "illustrator": "Ryo Ueda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/13",
+   "hp": 120,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Growlithe",
+   "description": "Its proud and regal appearance has captured the hearts of people since long ago.",
+   "retreat": 3,
+   "dexId": [
+    59
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Crunch",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin. If heads, discard an Energy attached to the Defending Pokémon."
+    },
+    {
+     "name": "Heat Blast",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-14",
+   "localId": "14",
+   "name": "Moltres",
+   "rarity": "Rare",
+   "illustrator": "Ryo Ueda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/14",
+   "hp": 120,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "One of the legendary bird Pokémon. It is said that its appearance indicates the coming of spring.",
+   "retreat": 2,
+   "dexId": [
+    146
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Searing Flame",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "The Defending Pokémon is now Burned."
+    },
+    {
+     "name": "Fire Blast",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "90",
+     "effect": "Discard a Fire Energy attached to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-15",
+   "localId": "15",
+   "name": "Pansear",
+   "rarity": "Common",
+   "illustrator": "James Turner",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/15",
+   "hp": 70,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "When it is angered, the temperature of its head tuft reaches 600° F. It uses its tuft to roast berries.",
+   "retreat": 1,
+   "dexId": [
+    513
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flare",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "30"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-16",
+   "localId": "16",
+   "name": "Simisear",
+   "rarity": "Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/16",
+   "hp": 90,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Pansear",
+   "description": "It loves sweets because they become energy for the fire burning inside its body.",
+   "retreat": 1,
+   "dexId": [
+    514
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Collect",
+     "cost": [
+      "Fire"
+     ],
+     "effect": "Draw 3 cards."
+    },
+    {
+     "name": "Stadium Burn",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "If there is any Stadium card in play, this attack does 30 more damage and the Defending Pokémon is now Burned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-17",
+   "localId": "17",
+   "name": "Darumaka",
+   "rarity": "Common",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/17",
+   "hp": 80,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "Darumaka's droppings are hot, so people used to put them in their clothes to keep themselves warm.",
+   "retreat": 3,
+   "dexId": [
+    554
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hammer In",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-18",
+   "localId": "18",
+   "name": "Litwick",
+   "rarity": "Common",
+   "illustrator": "Kanako Eo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/18",
+   "hp": 60,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "While shining a light and pretending to be a guide, it leaches off the life force of any who follow it.",
+   "retreat": 1,
+   "dexId": [
+    607
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flare",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "10"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-19",
+   "localId": "19",
+   "name": "Lampent",
+   "rarity": "Uncommon",
+   "illustrator": "Midori Harada",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/19",
+   "hp": 80,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Litwick",
+   "description": "It arrives near the moment of death and steals spirit from the body.",
+   "retreat": 1,
+   "dexId": [
+    608
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ember",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Flip a coin. If tails, discard an Energy attached to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-20",
+   "localId": "20",
+   "name": "Chandelure",
+   "rarity": "Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/20",
+   "hp": 120,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Lampent",
+   "description": "Being consumed in Chandelure's flame burns up the spirit, leaving the body behind.",
+   "retreat": 2,
+   "dexId": [
+    609
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flame Burst",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "30",
+     "effect": "Does 30 damage to 2 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Inferno",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "80",
+     "effect": "Discard all Energy attached to this Pokémon. The Defending Pokémon is now Burned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-21",
+   "localId": "21",
+   "name": "Reshiram",
+   "rarity": "Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/21",
+   "hp": 130,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "This Pokémon appears in legends. It sends flames into the air from its tail, burning up everything around it.",
+   "retreat": 2,
+   "dexId": [
+    643
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Outrage",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Does 10 more damage for each damage counter on this Pokémon."
+    },
+    {
+     "name": "Blue Flare",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "120",
+     "effect": "Discard 2 Fire Energy attached to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-22",
+   "localId": "22",
+   "name": "Reshiram-EX",
+   "rarity": "Rare",
+   "illustrator": "Shizurow",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/22",
+   "hp": 180,
+   "types": [
+    "Fire"
+   ],
+   "retreat": 3,
+   "suffix": "EX",
+   "dexId": [
+    643
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Glinting Claw",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Flip a coin. If heads, this attack does 30 more damage."
+    },
+    {
+     "name": "Brave Fire",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "150",
+     "effect": "Flip a coin. If tails, this Pokémon does 50 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-23",
+   "localId": "23",
+   "name": "Staryu",
+   "rarity": "Common",
+   "illustrator": "Naoyo Kimura",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/23",
+   "hp": 60,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "If its body is torn, it can grow back if the red core remains. The core flashes at midnight.",
+   "retreat": 1,
+   "dexId": [
+    120
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Recover",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Discard an Energy attached to this Pokémon and heal all damage from this Pokémon."
+    },
+    {
+     "name": "Water Gun",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-24",
+   "localId": "24",
+   "name": "Starmie",
+   "rarity": "Uncommon",
+   "illustrator": "Shin Nagasawa",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/24",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Staryu",
+   "description": "At the center of its body is a red core, which sends mysterious radio signals into the night sky.",
+   "retreat": 0,
+   "dexId": [
+    121
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Confuse Ray",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "The Defending Pokémon is now Confused."
+    },
+    {
+     "name": "Swift",
+     "cost": [
+      "Water"
+     ],
+     "damage": "50",
+     "effect": "This attack's damage isn't affected by Weakness, Resistance, or any other effects on the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-25",
+   "localId": "25",
+   "name": "Lapras",
+   "rarity": "Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/25",
+   "hp": 100,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It loves crossing the sea with people and Pokémon on its back. It understands human speech.",
+   "retreat": 2,
+   "dexId": [
+    131
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Call for Family",
+     "cost": [
+      "Water"
+     ],
+     "effect": "Search your deck for 2 Basic Pokémon and put them onto your Bench. Shuffle your deck afterward."
+    },
+    {
+     "name": "Reckless Charge",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "This Pokémon does 20 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-26",
+   "localId": "26",
+   "name": "Lapras",
+   "rarity": "Uncommon",
+   "illustrator": "Mizue",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/26",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It loves crossing the sea with people and Pokémon on its back. It understands human speech.",
+   "retreat": 2,
+   "dexId": [
+    131
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Water Arrow",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "effect": "This attack does 20 damage to 1 of your opponent's Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Surf",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "60"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-27",
+   "localId": "27",
+   "name": "Articuno",
+   "rarity": "Rare",
+   "illustrator": "Ryo Ueda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/27",
+   "hp": 120,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "A legendary bird Pokémon. It can create blizzards by freezing moisture in the air.",
+   "retreat": 2,
+   "dexId": [
+    144
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ice Beam",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    },
+    {
+     "name": "Ice Wing",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "80"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-28",
+   "localId": "28",
+   "name": "Panpour",
+   "rarity": "Common",
+   "illustrator": "Reiko Tanoue",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/28",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "The water stored inside the tuft on its head is full of nutrients. Plants that receive its water grow large.",
+   "retreat": 1,
+   "dexId": [
+    515
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Water Gun",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "30"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-29",
+   "localId": "29",
+   "name": "Simipour",
+   "rarity": "Rare",
+   "illustrator": "Akira Komayama",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/29",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Panpour",
+   "description": "The tuft on its head holds water. When the level runs low, it replenishes the tuft by siphoning up water with its tail.",
+   "retreat": 1,
+   "dexId": [
+    516
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Collect",
+     "cost": [
+      "Water"
+     ],
+     "effect": "Draw 3 cards."
+    },
+    {
+     "name": "Stadium Wave",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "If there is any Stadium card in play, this attack does 30 more damage and the Defending Pokémon is now Asleep."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-30",
+   "localId": "30",
+   "name": "Basculin",
+   "rarity": "Uncommon",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/30",
+   "hp": 80,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "Red and blue Basculin usually do not get along, but sometimes members of one school mingle with the other's school.",
+   "retreat": 1,
+   "dexId": [
+    550
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bite",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Bared Fangs",
+     "cost": [
+      "Water"
+     ],
+     "damage": "40",
+     "effect": "If, before this Pokémon does damage, the Defending Pokémon has no damage counters on it, this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-31",
+   "localId": "31",
+   "name": "Vanillite",
+   "rarity": "Common",
+   "illustrator": "Kanako Eo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/31",
+   "hp": 60,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "The temperature of their breath is -58° F. They create snow crystals and make snow fall in the areas around them.",
+   "retreat": 1,
+   "dexId": [
+    582
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Beat",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Icy Snow",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-32",
+   "localId": "32",
+   "name": "Vanillish",
+   "rarity": "Uncommon",
+   "illustrator": "Mizue",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/32",
+   "hp": 80,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Vanillite",
+   "description": "Snowy mountains are this Pokémon's habitat. During an ancient ice age, they moved to southern areas.",
+   "retreat": 2,
+   "dexId": [
+    583
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Icy Snow",
+     "cost": [
+      "Water"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Icy Wind",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Asleep."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-33",
+   "localId": "33",
+   "name": "Vanilluxe",
+   "rarity": "Rare",
+   "illustrator": "Akira Komayama",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/33",
+   "hp": 130,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Vanillish",
+   "description": "Swallowing large amounts of water, they make snow clouds inside their bodies and attack their foes with violent blizzards.",
+   "retreat": 2,
+   "dexId": [
+    584
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Crushing Ice",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Does 10 more damage for each Colorless in the Defending Pokémon's Retreat Cost."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Slippery Soles",
+     "effect": "Once during your turn (before your attack), you may switch your Active Pokémon with 1 of your Benched Pokémon. If you do, your opponent switches his or her Active Pokémon with 1 of his or her Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-34",
+   "localId": "34",
+   "name": "Frillish",
+   "rarity": "Uncommon",
+   "illustrator": "Suwama Chiaki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/34",
+   "hp": 80,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "They paralyze prey with poison, then drag them down to their lairs, five miles below the surface.",
+   "retreat": 2,
+   "dexId": [
+    592
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bubble",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    },
+    {
+     "name": "Spit Poison",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "effect": "The Defending Pokémon is now Poisoned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-35",
+   "localId": "35",
+   "name": "Jellicent",
+   "rarity": "Rare",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/35",
+   "hp": 120,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Frillish",
+   "description": "They propel themselves by expelling absorbed seawater from their bodies. Their favorite food is life energy.",
+   "retreat": 2,
+   "dexId": [
+    593
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Vengeful Wish",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "If this Pokémon was damaged by an attack during your opponent's last turn, this attack does the same amount of damage to the Defending Pokémon."
+    },
+    {
+     "name": "Absorb Life",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Heal 30 damage from this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-36",
+   "localId": "36",
+   "name": "Cubchoo",
+   "rarity": "Common",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/36",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "Its nose is always running. It sniffs the snot back up because the mucus provides the raw material for its moves.",
+   "retreat": 3,
+   "dexId": [
+    613
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sniffle",
+     "cost": [
+      "Water"
+     ],
+     "effect": "During your next turn, this Pokémon's Belt attack's base damage is 40."
+    },
+    {
+     "name": "Belt",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-37",
+   "localId": "37",
+   "name": "Beartic",
+   "rarity": "Rare",
+   "illustrator": "kawayoo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/37",
+   "hp": 120,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Cubchoo",
+   "description": "It can make its breath freeze at will. Very able in the water, it swims around in northern seas and catches prey.",
+   "retreat": 3,
+   "dexId": [
+    614
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Daunt",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "During your opponent's next turn, any damage done by attacks from the Defending Pokémon is reduced by 20 (before applying Weakness and Resistance)."
+    },
+    {
+     "name": "Ambush",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Flip a coin. If heads, this attack does 30 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-38",
+   "localId": "38",
+   "name": "Kyurem-EX",
+   "rarity": "Rare",
+   "illustrator": "Shizurow",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/38",
+   "hp": 180,
+   "types": [
+    "Water"
+   ],
+   "retreat": 3,
+   "suffix": "EX",
+   "dexId": [
+    646
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Frozen Wings",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Discard a Special Energy attached to the Defending Pokémon."
+    },
+    {
+     "name": "Hail Blizzard",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "120",
+     "effect": "This Pokémon can't use Hail Blizzard during your next turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-39",
+   "localId": "39",
+   "name": "Pikachu",
+   "rarity": "Common",
+   "illustrator": "Akira Komayama",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/39",
+   "hp": 60,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "It occasionally uses an electric shock to recharge a fellow Pikachu that is in a weakened state.",
+   "retreat": 1,
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Thundershock",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    },
+    {
+     "name": "Tail Whap",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-40",
+   "localId": "40",
+   "name": "Raichu",
+   "rarity": "Uncommon",
+   "illustrator": "Naoki Saito",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/40",
+   "hp": 90,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Pikachu",
+   "description": "Its tail discharges electricity into the ground, protecting it from getting shocked.",
+   "retreat": 1,
+   "dexId": [
+    26
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Thundershock",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    },
+    {
+     "name": "Slam",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "80",
+     "effect": "Flip 2 coins. This attack does 80 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-41",
+   "localId": "41",
+   "name": "Zapdos",
+   "rarity": "Rare",
+   "illustrator": "Ryo Ueda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/41",
+   "hp": 120,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "A legendary Pokémon that is said to live in thunderclouds. It freely controls lightning bolts.",
+   "retreat": 2,
+   "dexId": [
+    145
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Random Spark",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "This attack does 50 damage to 1 of your opponent's Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Thundering Hurricane",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Flip 4 coins. This attack does 50 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-42",
+   "localId": "42",
+   "name": "Shinx",
+   "rarity": "Common",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/42",
+   "hp": 60,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "The extension and contraction of its muscles generates electricity. It glows when in trouble.",
+   "retreat": 1,
+   "dexId": [
+    403
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Jump On",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, this attack does 10 more damage."
+    },
+    {
+     "name": "Static Shock",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-43",
+   "localId": "43",
+   "name": "Shinx",
+   "rarity": "Common",
+   "illustrator": "Naoki Saito",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/43",
+   "hp": 60,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "The extension and contraction of its muscles generates electricity. It glows when in trouble.",
+   "retreat": 1,
+   "dexId": [
+    403
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Reckless Charge",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "This Pokémon does 10 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-44",
+   "localId": "44",
+   "name": "Luxio",
+   "rarity": "Uncommon",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/44",
+   "hp": 80,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Shinx",
+   "description": "Strong electricity courses through the tips of its sharp claws. A light scratch causes fainting in foes.",
+   "retreat": 1,
+   "dexId": [
+    404
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Jump On",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, this attack does 30 more damage."
+    },
+    {
+     "name": "Wild Charge",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "This Pokémon does 10 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-45",
+   "localId": "45",
+   "name": "Luxio",
+   "rarity": "Uncommon",
+   "illustrator": "Naoki Saito",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/45",
+   "hp": 80,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Shinx",
+   "description": "Strong electricity courses through the tips of its sharp claws. A light scratch causes fainting in foes.",
+   "retreat": 0,
+   "dexId": [
+    404
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Quick Turn",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "20",
+     "effect": "Flip 2 coins. This attack does 20 damage times the number of heads."
+    },
+    {
+     "name": "Bite",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-46",
+   "localId": "46",
+   "name": "Luxray",
+   "rarity": "Rare",
+   "illustrator": "Shin Nagasawa",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/46",
+   "hp": 140,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Luxio",
+   "description": "It can see clearly through walls to track down its prey and seek its lost young.",
+   "retreat": 1,
+   "dexId": [
+    405
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flash Impact",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "60",
+     "effect": "Does 20 damage to 1 of your Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Crunch",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "80",
+     "effect": "Flip a coin. If heads, discard an Energy attached to the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-47",
+   "localId": "47",
+   "name": "Blitzle",
+   "rarity": "Common",
+   "illustrator": "sui",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/47",
+   "hp": 60,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "Its mane shines when it discharges electricity. They use their flashing manes to communicate with one another.",
+   "retreat": 1,
+   "dexId": [
+    522
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Thunder Jolt",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin. If tails, this Pokémon does 10 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-48",
+   "localId": "48",
+   "name": "Zebstrika",
+   "rarity": "Rare",
+   "illustrator": "Naoki Saito",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/48",
+   "hp": 90,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Blitzle",
+   "description": "They have lightning-like movements. When Zebstrika run at full speed, the sound of thunder reverberates.",
+   "retreat": 0,
+   "dexId": [
+    523
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Disconnect",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Your opponent can't play any Item cards from his or her hand during his or her next turn."
+    },
+    {
+     "name": "Lightning Crash",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Colorless"
+     ],
+     "effect": "Discard all Lightning Energy attached to this Pokémon. This attack does 80 damage to 1 of your opponent's Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-49",
+   "localId": "49",
+   "name": "Emolga",
+   "rarity": "Uncommon",
+   "illustrator": "Akira Komayama",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/49",
+   "hp": 70,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "The energy made in its cheeks' electric pouches is stored inside its membrane and released while it is gliding.",
+   "retreat": 1,
+   "dexId": [
+    587
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bounce",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Switch this Pokémon with 1 of your Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-50",
+   "localId": "50",
+   "name": "Zekrom",
+   "rarity": "Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/50",
+   "hp": 130,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "This Pokémon appears in legends. In its tail, it has a giant generator that creates electricity.",
+   "retreat": 2,
+   "dexId": [
+    644
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Outrage",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Does 10 more damage for each damage counter on this Pokémon."
+    },
+    {
+     "name": "Bolt Strike",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "120",
+     "effect": "This Pokémon does 40 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-51",
+   "localId": "51",
+   "name": "Zekrom-EX",
+   "rarity": "Rare",
+   "illustrator": "Shizurow",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/51",
+   "hp": 180,
+   "types": [
+    "Lightning"
+   ],
+   "retreat": 3,
+   "suffix": "EX",
+   "dexId": [
+    644
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Glinting Claw",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Flip a coin. If heads, this attack does 30 more damage."
+    },
+    {
+     "name": "Strong Volt",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "150",
+     "effect": "Discard 2 Energy attached to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-52",
+   "localId": "52",
+   "name": "Grimer",
+   "rarity": "Common",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/52",
+   "hp": 70,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "description": "It was born when sludge in a dirty stream was exposed to the moon's X-rays. It appears among filth.",
+   "retreat": 2,
+   "dexId": [
+    88
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Nasty Goo",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-53",
+   "localId": "53",
+   "name": "Muk",
+   "rarity": "Rare",
+   "illustrator": "match",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/53",
+   "hp": 110,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Grimer",
+   "description": "A toxic fluids seeps from its body. The fluid instantly kills plants and trees on contact.",
+   "retreat": 4,
+   "dexId": [
+    89
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Gentle Wrap",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "The Defending Pokémon can't retreat during your opponent's next turn."
+    },
+    {
+     "name": "Toxic Secretion",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "The Defending Pokémon is now Poisoned. Put 2 damage counters instead of 1 on that Pokémon between turns."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-54",
+   "localId": "54",
+   "name": "Mewtwo-EX",
+   "rarity": "Rare",
+   "illustrator": "Shizurow",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/54",
+   "hp": 170,
+   "types": [
+    "Psychic"
+   ],
+   "retreat": 2,
+   "suffix": "EX",
+   "dexId": [
+    150
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "X Ball",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Does 20 damage times the amount of Energy attached to this Pokémon and the Defending Pokémon."
+    },
+    {
+     "name": "Psydrive",
+     "cost": [
+      "Psychic",
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "120",
+     "effect": "Discard an Energy attached to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-55",
+   "localId": "55",
+   "name": "Ralts",
+   "rarity": "Common",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/55",
+   "hp": 60,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "description": "If its horns capture the warm feelings of people or Pokémon, its body warms up slightly.",
+   "retreat": 1,
+   "dexId": [
+    280
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Psyshot",
+     "cost": [
+      "Psychic"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Smack",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-56",
+   "localId": "56",
+   "name": "Kirlia",
+   "rarity": "Uncommon",
+   "illustrator": "MAHOU",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/56",
+   "hp": 80,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Ralts",
+   "description": "If its Trainer becomes happy, it overflows with energy, dancing joyously while spinning about.",
+   "retreat": 1,
+   "dexId": [
+    281
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Smack",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Psychic",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Does 10 more damage for each Energy attached to the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-57",
+   "localId": "57",
+   "name": "Gardevoir",
+   "rarity": "Rare",
+   "illustrator": "Mizue",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/57",
+   "hp": 110,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Kirlia",
+   "description": "To protect its Trainer, it will expend all its psychic power to create a small black hole.",
+   "retreat": 2,
+   "dexId": [
+    282
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Mind Shock",
+     "cost": [
+      "Psychic",
+      "Psychic",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "This attack's damage isn't affected by Weakness or Resistance."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Psychic Mirage",
+     "effect": "Each basic Psychic Energy attached to your Psychic Pokémon provides PsychicPsychic Energy. You can’t apply more than 1 Psychic Mirage Ability at a time."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-58",
+   "localId": "58",
+   "name": "Munna",
+   "rarity": "Common",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/58",
+   "hp": 70,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "description": "It eats the dreams of people and Pokémon. When it eats a pleasant dream, it expels pink-colored mist.",
+   "retreat": 2,
+   "dexId": [
+    517
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ram",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-59",
+   "localId": "59",
+   "name": "Musharna",
+   "rarity": "Rare",
+   "illustrator": "Maiko Fujiwara",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/59",
+   "hp": 100,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Munna",
+   "description": "With the mist from its forehead, it can create shapes of things from dreams it has eaten.",
+   "retreat": 3,
+   "dexId": [
+    518
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fluffy Dream",
+     "cost": [
+      "Psychic",
+      "Psychic"
+     ],
+     "damage": "40",
+     "effect": "This Pokémon is now Asleep."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Forewarn",
+     "effect": "Once during your turn (before your attack), you may look at the top 2 cards of your deck, choose 1 of them, and put it into your hand. Put the other card back on top of your deck."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-60",
+   "localId": "60",
+   "name": "Darmanitan",
+   "rarity": "Rare",
+   "illustrator": "Shin Nagasawa",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/60",
+   "hp": 110,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Darumaka",
+   "description": "When weakened in battle, it transforms into a stone statue. Then it sharpens its mind and fights on mentally.",
+   "retreat": 3,
+   "dexId": [
+    555
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Synchrodraw",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Shuffle your hand into your deck. Then, draw a number of cards equal to the number of cards in your opponent's hand."
+    },
+    {
+     "name": "DarMAXitan",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Flip a coin for each Energy attached to this Pokémon. This attack does 50 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-61",
+   "localId": "61",
+   "name": "Elgyem",
+   "rarity": "Common",
+   "illustrator": "Sumiyoshi Kizuki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/61",
+   "hp": 60,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "description": "It uses its strong psychic power to squeeze its opponent's brain, causing unendurable headaches.",
+   "retreat": 1,
+   "dexId": [
+    605
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Psy Bolt",
+     "cost": [
+      "Psychic"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-62",
+   "localId": "62",
+   "name": "Beheeyem",
+   "rarity": "Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/62",
+   "hp": 80,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Elgyem",
+   "description": "It can manipulate an opponent's memory. Apparently, it communicates by flashing its three different-colored fingers.",
+   "retreat": 1,
+   "dexId": [
+    606
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Brain Control",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Your opponent reveals his or her hand. Choose a card from there and put it on the bottom of your opponent's deck."
+    },
+    {
+     "name": "Psybeam",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "The Defending Pokémon is now Confused."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-63",
+   "localId": "63",
+   "name": "Riolu",
+   "rarity": "Common",
+   "illustrator": "Sumiyoshi Kizuki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/63",
+   "hp": 70,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "description": "It has the peculiar power of being able to see emotions such as joy and rage in the form of waves.",
+   "retreat": 1,
+   "dexId": [
+    447
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Punch",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Quick Attack",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, this attack does 20 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-64",
+   "localId": "64",
+   "name": "Lucario",
+   "rarity": "Rare",
+   "illustrator": "Naoki Saito",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/64",
+   "hp": 100,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Riolu",
+   "description": "A well-trained one can sense auras to identify and take in the feelings of creatures over half a mile away.",
+   "retreat": 1,
+   "dexId": [
+    448
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Aura Sphere",
+     "cost": [
+      "Fighting",
+      "Fighting"
+     ],
+     "damage": "50",
+     "effect": "Does 20 damage to 1 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Reflexive Retaliation",
+     "effect": "If this Pokémon is your Active Pokémon and is damaged by an opponent’s attack (even if this Pokémon is Knocked Out), put 2 damage counters on the Attacking Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-65",
+   "localId": "65",
+   "name": "Hippopotas",
+   "rarity": "Common",
+   "illustrator": "match",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/65",
+   "hp": 90,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "description": "It shuts its nostrils tight then travels through sand as if walking. They form colonies of around ten.",
+   "retreat": 4,
+   "dexId": [
+    449
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sand Jet",
+     "cost": [
+      "Fighting"
+     ],
+     "effect": "This attack does 20 damage to 1 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Bite",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-66",
+   "localId": "66",
+   "name": "Hippowdon",
+   "rarity": "Uncommon",
+   "illustrator": "Naoki Saito",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/66",
+   "hp": 130,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Hippopotas",
+   "description": "It is surprisingly quick to anger. It holds its mouth agape as a display of its strength.",
+   "retreat": 4,
+   "dexId": [
+    450
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sand Bazooka",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70",
+     "effect": "You may move a basic Energy attached to this Pokémon to 1 of your Benched Pokémon."
+    },
+    {
+     "name": "Rock Tumble",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "90",
+     "effect": "This attack's damage isn't affected by Resistance."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-67",
+   "localId": "67",
+   "name": "Mienfoo",
+   "rarity": "Common",
+   "illustrator": "Midori Harada",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/67",
+   "hp": 60,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "description": "They has mastered elegant combos. As they concentrate, their battle moves become swifter and more precise.",
+   "retreat": 1,
+   "dexId": [
+    619
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Triple Smash",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Flip 3 coins. This attack does 10 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-68",
+   "localId": "68",
+   "name": "Mienshao",
+   "rarity": "Uncommon",
+   "illustrator": "Suwama Chiaki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/68",
+   "hp": 90,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Mienfoo",
+   "description": "They use the long fur on their arms as a whip to strike their opponents.",
+   "retreat": 1,
+   "dexId": [
+    620
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Haul In",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for 2 Pokémon Tool cards, reveal them, and put them into your hand. Shuffle your deck afterward."
+    },
+    {
+     "name": "Meditate",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Does 10 more damage for each damage counter on the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-69",
+   "localId": "69",
+   "name": "Sneasel",
+   "rarity": "Common",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/69",
+   "hp": 60,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Basic",
+   "description": "A smart and sneaky Pokémon. A pair may work together to steal eggs by having one lure the parents away.",
+   "retreat": 1,
+   "dexId": [
+    215
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Corner",
+     "cost": [
+      "Darkness"
+     ],
+     "damage": "10",
+     "effect": "The Defending Pokémon can't retreat during your opponent's next turn."
+    },
+    {
+     "name": "Scratch",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-70",
+   "localId": "70",
+   "name": "Weavile",
+   "rarity": "Rare",
+   "illustrator": "Akira Komayama",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/70",
+   "hp": 90,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Sneasel",
+   "description": "Evolution made it even more devious. It communicates by clawing signs in boulders.",
+   "retreat": 1,
+   "dexId": [
+    461
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Dark Penalty",
+     "cost": [
+      "Darkness"
+     ],
+     "damage": "90",
+     "effect": "If the Defending Pokémon has no Pokémon Tool card attached to it, this attack does nothing."
+    },
+    {
+     "name": "Fury Swipes",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Flip 3 coins. This attack does 30 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-71",
+   "localId": "71",
+   "name": "Nuzleaf",
+   "rarity": "Uncommon",
+   "illustrator": "Naoyo Kimura",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/71",
+   "hp": 80,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Seedot",
+   "description": "The sound of its grass flute makes its listeners uneasy. It lives deep in forests.",
+   "retreat": 1,
+   "dexId": [
+    274
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Surprise Punch",
+     "cost": [
+      "Darkness",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Move an Energy attached to the Defending Pokémon to 1 of your opponent's Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-72",
+   "localId": "72",
+   "name": "Shiftry",
+   "rarity": "Rare",
+   "illustrator": "match",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/72",
+   "hp": 130,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Nuzleaf",
+   "description": "By flapping its leafy fan, it can whip up gusts of 100 ft/second that can level houses.",
+   "retreat": 1,
+   "dexId": [
+    275
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Whirlwind",
+     "cost": [
+      "Darkness",
+      "Darkness",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Your opponent switches the Defending Pokémon with 1 of his or her Benched Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Giant Fan",
+     "effect": "When you play this Pokémon from your hand to evolve 1 of your Pokémon, you may flip a coin. If heads, choose 1 of your opponent’s Pokémon. Your opponent shuffles that Pokémon and all cards attached to it into his or her deck."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-73",
+   "localId": "73",
+   "name": "Scraggy",
+   "rarity": "Uncommon",
+   "illustrator": "Mizue",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/73",
+   "hp": 70,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Basic",
+   "description": "It immediately headbutts anyones that makes eye contact with it. Its skull is massively thick.",
+   "retreat": 2,
+   "dexId": [
+    559
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Shed Skin",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Heal 40 damage from this Pokémon."
+    },
+    {
+     "name": "Lunge",
+     "cost": [
+      "Darkness",
+      "Darkness"
+     ],
+     "damage": "40",
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-74",
+   "localId": "74",
+   "name": "Scrafty",
+   "rarity": "Rare",
+   "illustrator": "Naoki Saito",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/74",
+   "hp": 90,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Scraggy",
+   "description": "It can smash concrete blocks with its kicking attacks. The one with the biggest crest is the group leader.",
+   "retreat": 2,
+   "dexId": [
+    560
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rock Head",
+     "cost": [
+      "Darkness"
+     ],
+     "damage": "20",
+     "effect": "During your opponent's next turn, any damage done to this Pokémon by attacks is reduced by 20 (after applying Weakness and Resistance)."
+    },
+    {
+     "name": "Hammer Kick",
+     "cost": [
+      "Darkness",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "If this Pokémon has fewer remaining HP than the Defending Pokémon, this attack does 30 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-75",
+   "localId": "75",
+   "name": "Bronzor",
+   "rarity": "Common",
+   "illustrator": "Naoki Saito",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/75",
+   "hp": 70,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Basic",
+   "description": "There are researchers who believe this Pokémon reflected like a mirror in the distant past.",
+   "retreat": 3,
+   "dexId": [
+    436
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Knock Away",
+     "cost": [
+      "Metal",
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, this attack does 10 more damage."
+    },
+    {
+     "name": "Spinning Attack",
+     "cost": [
+      "Metal",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-76",
+   "localId": "76",
+   "name": "Bronzong",
+   "rarity": "Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/76",
+   "hp": 110,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Bronzor",
+   "description": "It brought rains by opening portals to another world. It was revered as a bringer of plentiful harvests.",
+   "retreat": 4,
+   "dexId": [
+    437
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Oracle Inflict",
+     "cost": [
+      "Metal",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Does 10 more damage for each card in your opponent's hand."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Heal Block",
+     "effect": "Damage can’t be healed from any Pokémon (both yours and your opponent’s). (Damage counters can still be moved.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-77",
+   "localId": "77",
+   "name": "Ferroseed",
+   "rarity": "Common",
+   "illustrator": "match",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/77",
+   "hp": 60,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Basic",
+   "description": "When threatened, it attacks by shooting a barrage of spikes, which gives it a chance to escape by rolling away.",
+   "retreat": 3,
+   "dexId": [
+    597
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Self Destruct",
+     "cost": [
+      "Metal",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "This Pokémon does 60 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-78",
+   "localId": "78",
+   "name": "Jigglypuff",
+   "rarity": "Uncommon",
+   "illustrator": "sui",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/78",
+   "hp": 70,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "When it wavers its big, round eyes, it begins singing a lullaby that makes everyone drowsy.",
+   "retreat": 2,
+   "dexId": [
+    39
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sing",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "The Defending Pokémon is now Asleep."
+    },
+    {
+     "name": "Double Slap",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip 2 coins. This attack does 20 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-79",
+   "localId": "79",
+   "name": "Wigglytuff",
+   "rarity": "Rare",
+   "illustrator": "Shin Nagasawa",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/79",
+   "hp": 90,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Jigglypuff",
+   "description": "Its fine fur feels sublime to the touch. It can expand its body by inhaling air.",
+   "retreat": 2,
+   "dexId": [
+    40
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Round",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Does 20 damage times the number of your Pokémon that have the Round attack."
+    },
+    {
+     "name": "Hypnoblast",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Asleep."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-80",
+   "localId": "80",
+   "name": "Meowth",
+   "rarity": "Common",
+   "illustrator": "Naoki Saito",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/80",
+   "hp": 70,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "It is nocturnal in nature. If it spots something shiny, its eyes glitter brightly.",
+   "retreat": 1,
+   "dexId": [
+    52
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Double Scratch",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Flip 2 coins. This attack does 10 damage times the number of heads."
+    },
+    {
+     "name": "Cat Kick",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-81",
+   "localId": "81",
+   "name": "Persian",
+   "rarity": "Rare",
+   "illustrator": "Shigenori Negishi",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/81",
+   "hp": 90,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Meowth",
+   "description": "A very haughty Pokémon. Among fans, the size of the jewel in its forehead is a topic of much talk.",
+   "retreat": 1,
+   "dexId": [
+    53
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Nasty Plot",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for a card and put it into your hand. Shuffle your deck afterward."
+    },
+    {
+     "name": "Shadow Claw",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin. If heads, discard a random card from your opponent's hand."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-82",
+   "localId": "82",
+   "name": "Regigigas-EX",
+   "rarity": "Rare",
+   "illustrator": "Shizurow",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/82",
+   "hp": 180,
+   "types": [
+    "Colorless"
+   ],
+   "retreat": 4,
+   "suffix": "EX",
+   "dexId": [
+    486
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Giga Power",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "You may do 20 more damage. If you do, this Pokémon does 20 damage to itself."
+    },
+    {
+     "name": "Raging Hammer",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Does 10 more damage for each damage counter on this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-83",
+   "localId": "83",
+   "name": "Pidove",
+   "rarity": "Common",
+   "illustrator": "MAHOU",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/83",
+   "hp": 60,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "These Pokémon live in cities. They are accustomed to people. Flocks often gather in parks and plazas.",
+   "retreat": 1,
+   "dexId": [
+    519
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Scout",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Your opponent reveals his or her hand."
+    },
+    {
+     "name": "Gust",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-84",
+   "localId": "84",
+   "name": "Minccino",
+   "rarity": "Uncommon",
+   "illustrator": "Tomohiro Kitakaze",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/84",
+   "hp": 60,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "These Pokémon prefer a tidy habitat. They are always sweeping and dusting, using their tails as brooms.",
+   "retreat": 1,
+   "dexId": [
+    572
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Call for Family",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for a Basic Pokémon and put it onto your Bench. Shuffle your deck afterward."
+    },
+    {
+     "name": "Tail Smack",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-85",
+   "localId": "85",
+   "name": "Cinccino",
+   "rarity": "Rare",
+   "illustrator": "Kanako Eo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/85",
+   "hp": 90,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Minccino",
+   "description": "Their white fur is coated in a special oil that makes it easy for them to deflect attacks.",
+   "retreat": 1,
+   "dexId": [
+    573
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Echoed Voice",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "During your next turn, this Pokémon's Echoed Voice attack does 50 more damage (before applying Weakness and Resistance)."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Smooth Coat",
+     "effect": "If any damage is done to this Pokémon by attacks, flip a coin. If heads, prevent that damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-86",
+   "localId": "86",
+   "name": "Cilan",
+   "rarity": "Uncommon",
+   "illustrator": "Yusuke Ohmura",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/86",
+   "trainerType": "Supporter",
+   "effect": "Search your deck for 3 basic Energy cards, reveal them, and put them into your hand. Shuffle your deck afterward.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "bw4-87",
+   "localId": "87",
+   "name": "Exp. Share",
+   "rarity": "Uncommon",
+   "illustrator": "Ryo Ueda",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/87",
+   "trainerType": "Tool",
+   "effect": "When your Active Pokémon is Knocked Out by damage from an opponent’s attack, you may move 1 basic Energy card that was attached to that Pokémon to the Pokémon this card is attached to.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "bw4-88",
+   "localId": "88",
+   "name": "Heavy Ball",
+   "rarity": "Uncommon",
+   "illustrator": "Ryo Ueda",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/88",
+   "trainerType": "Item",
+   "effect": "Search your deck for a Pokémon with a Retreat Cost of 3 or more, reveal it, and put it into your hand. Shuffle your deck afterward.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "bw4-89",
+   "localId": "89",
+   "name": "Level Ball",
+   "rarity": "Uncommon",
+   "illustrator": "5ban Graphics",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/89",
+   "trainerType": "Item",
+   "effect": "Search your deck for a Pokémon with 90 HP or less, reveal it, and put it into your hand. Shuffle your deck afterward.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "bw4-90",
+   "localId": "90",
+   "name": "Pokémon Center",
+   "rarity": "Uncommon",
+   "illustrator": "5ban Graphics",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/90",
+   "trainerType": "Stadium",
+   "effect": "Once during each player’s turn, that player may heal 20 damage from 1 of his or her Benched Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "bw4-91",
+   "localId": "91",
+   "name": "Skyarrow Bridge",
+   "rarity": "Uncommon",
+   "illustrator": "Ryo Ueda",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/91",
+   "trainerType": "Stadium",
+   "effect": "The Retreat Cost of each Basic Pokémon in play is Colorless less.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "bw4-92",
+   "localId": "92",
+   "name": "Double Colorless Energy",
+   "rarity": "Uncommon",
+   "illustrator": "5ban Graphics",
+   "category": "Energy",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/92",
+   "energyType": "Special",
+   "effect": "Double Colorless Energy provides ColorlessColorless Energy.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "bw4-93",
+   "localId": "93",
+   "name": "Prism Energy",
+   "rarity": "Uncommon",
+   "illustrator": "5ban Graphics",
+   "category": "Energy",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/93",
+   "energyType": "Special",
+   "effect": "This card provides Colorless Energy. If the Pokémon this card is attached to is a Basic Pokémon, this card provides every type of Energy but provides only 1 Energy at a time.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "bw4-94",
+   "localId": "94",
+   "name": "Shaymin-EX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/94",
+   "hp": 110,
+   "types": [
+    "Grass"
+   ],
+   "retreat": 1,
+   "suffix": "EX",
+   "dexId": [
+    492
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Synthesis",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "Search your deck for a Grass Energy card and attach it to 1 of your Pokémon. Shuffle your deck afterward."
+    },
+    {
+     "name": "Revenge Blast",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Does 30 more damage for each Prize card your opponent has taken."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-95",
+   "localId": "95",
+   "name": "Reshiram-EX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/95",
+   "hp": 180,
+   "types": [
+    "Fire"
+   ],
+   "retreat": 3,
+   "suffix": "EX",
+   "dexId": [
+    643
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Glinting Claw",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Flip a coin. If heads, this attack does 30 more damage."
+    },
+    {
+     "name": "Brave Fire",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "150",
+     "effect": "Flip a coin. If tails, this Pokémon does 50 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-96",
+   "localId": "96",
+   "name": "Kyurem-EX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/96",
+   "hp": 180,
+   "types": [
+    "Water"
+   ],
+   "retreat": 3,
+   "suffix": "EX",
+   "dexId": [
+    646
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Frozen Wings",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Discard a Special Energy attached to the Defending Pokémon."
+    },
+    {
+     "name": "Hail Blizzard",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "120",
+     "effect": "This Pokémon can't use Hail Blizzard during your next turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-97",
+   "localId": "97",
+   "name": "Zekrom-EX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/97",
+   "hp": 180,
+   "types": [
+    "Lightning"
+   ],
+   "retreat": 3,
+   "suffix": "EX",
+   "dexId": [
+    644
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Glinting Claw",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Flip a coin. If heads, this attack does 30 more damage."
+    },
+    {
+     "name": "Strong Volt",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "150",
+     "effect": "Discard 2 Energy attached to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-98",
+   "localId": "98",
+   "name": "Mewtwo-EX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/98",
+   "hp": 170,
+   "types": [
+    "Psychic"
+   ],
+   "retreat": 2,
+   "suffix": "EX",
+   "dexId": [
+    150
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "X Ball",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Does 20 damage times the amount of Energy attached to this Pokémon and the Defending Pokémon."
+    },
+    {
+     "name": "Psydrive",
+     "cost": [
+      "Psychic",
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "120",
+     "effect": "Discard an Energy attached to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-99",
+   "localId": "99",
+   "name": "Regigigas-EX",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/99",
+   "hp": 180,
+   "types": [
+    "Colorless"
+   ],
+   "retreat": 4,
+   "suffix": "EX",
+   "dexId": [
+    486
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Giga Power",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "You may do 20 more damage. If you do, this Pokémon does 20 damage to itself."
+    },
+    {
+     "name": "Raging Hammer",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Does 10 more damage for each damage counter on this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-100",
+   "localId": "100",
+   "name": "Emboar",
+   "rarity": "Secret Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/100",
+   "hp": 150,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Pignite",
+   "description": "This extremely rare Pokémon is a different color than usual. It is very hard to find.",
+   "retreat": 4,
+   "dexId": [
+    500
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Heat Crash",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "80"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Inferno Fandango",
+     "effect": "As often as you like during your turn (before your attack), you may attach a Fire Energy card from your hand to 1 of your Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-101",
+   "localId": "101",
+   "name": "Chandelure",
+   "rarity": "Secret Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/101",
+   "hp": 130,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Lampent",
+   "description": "This extremely rare Pokémon is a different color than usual. It is very hard to find.",
+   "retreat": 2,
+   "dexId": [
+    609
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Eerie Glow",
+     "cost": [
+      "Psychic",
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "The Defending Pokémon is now Burned and Confused."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Cursed Shadow",
+     "effect": "Once during your turn (before your attack), if this Pokémon is your Active Pokémon, you may put 3 damage counters on your opponent’s Pokémon in any way you like."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "bw4-102",
+   "localId": "102",
+   "name": "Zoroark",
+   "rarity": "Secret Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/102",
+   "hp": 100,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Zorua",
+   "description": "This extremely rare Pokémon is a different color than usual. It is very hard to find.",
+   "retreat": 1,
+   "dexId": [
+    571
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Nasty Plot",
+     "cost": [
+      "Darkness"
+     ],
+     "effect": "Search your deck for a card and put it into your hand. Shuffle your deck afterward."
+    },
+    {
+     "name": "Foul Play",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Choose 1 of the Defending Pokémon's attacks and use it as this attack."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "bw4-103",
+   "localId": "103",
+   "name": "Hydreigon",
+   "rarity": "Secret Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/bw/bw4/103",
+   "hp": 150,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Zweilous",
+   "description": "This extremely rare Pokémon is a different color than usual. It is very hard to find.",
+   "retreat": 3,
+   "dexId": [
+    635
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Berserker Blade",
+     "cost": [
+      "Darkness",
+      "Darkness",
+      "Darkness",
+      "Darkness"
+     ],
+     "damage": "60",
+     "effect": "Does 40 damage to 2 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Dark Aura",
+     "effect": "All Energy attached to this Pokémon are Darkness Energy instead of their usual type."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  }
+ ]
+}

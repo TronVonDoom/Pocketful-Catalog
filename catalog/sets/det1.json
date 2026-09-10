@@ -1,0 +1,989 @@
+{
+ "id": "det1",
+ "name": "Detective Pikachu",
+ "serie": {
+  "id": "sm",
+  "name": "Sun & Moon"
+ },
+ "releaseDate": "2019-03-29",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 0,
+  "normal": 0,
+  "official": 18,
+  "reverse": 0,
+  "total": 18
+ },
+ "logo": "https://assets.tcgdex.net/en/sm/det1/logo",
+ "symbol": "https://assets.tcgdex.net/univ/sm/det1/symbol",
+ "abbreviation": {
+  "official": "DET"
+ },
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "det1-1",
+   "localId": "1",
+   "name": "Bulbasaur",
+   "rarity": "Common",
+   "illustrator": "MPC Film",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/1",
+   "hp": 60,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "description": "A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.",
+   "retreat": 1,
+   "dexId": [
+    1
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Find a Friend",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "Search your deck for a Grass Pokémon, reveal it, and put it into your hand. Then, shuffle your deck."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-2",
+   "localId": "2",
+   "name": "Ludicolo",
+   "rarity": "Rare",
+   "illustrator": "Framestore",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/2",
+   "hp": 140,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Lombre",
+   "description": "If it hears festive music, all its muscles fill with energy. It can't help breaking out into a dance.",
+   "retreat": 3,
+   "dexId": [
+    272
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Punch and Run",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70",
+     "effect": "Switch this Pokémon with 1 of your Benched Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Table Service",
+     "effect": "Once during your turn (before your attack), you may heal 30 damage from 1 of your Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-3",
+   "localId": "3",
+   "name": "Morelull",
+   "rarity": "Common",
+   "illustrator": "MPC Film",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/3",
+   "hp": 50,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "description": "It scatters its shining spores around itself. Even though they're dangerous, nighttime tours of forests where Morelull live are popular.",
+   "retreat": 1,
+   "dexId": [
+    755
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sleep Spore",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10",
+     "effect": "Your opponent’s Active Pokémon is now Asleep."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-4",
+   "localId": "4",
+   "name": "Charmander",
+   "rarity": "Common",
+   "illustrator": "MPC Film",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/4",
+   "hp": 60,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "The flame on its tail indicates Charmander's life force. If it is healthy, the flame burns brightly.",
+   "retreat": 1,
+   "dexId": [
+    4
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Reckless Charge",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "This Pokémon does 10 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-5",
+   "localId": "5",
+   "name": "Charizard",
+   "rarity": "Ultra Rare",
+   "illustrator": "Framestore",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/5",
+   "hp": 180,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Charmeleon",
+   "description": "When expelling a blast of superhot fire, the red flame at the tip of its tail burns more intensely.",
+   "retreat": 3,
+   "dexId": [
+    6
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Slash",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70"
+    },
+    {
+     "name": "Wild Tackle",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "180",
+     "effect": "This Pokémon does 50 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-6",
+   "localId": "6",
+   "name": "Arcanine",
+   "rarity": "Rare",
+   "illustrator": "MPC Film",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/6",
+   "hp": 120,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Growlithe",
+   "description": "Legends tell of its fighting alongside a general and conquering a whole country.",
+   "retreat": 3,
+   "dexId": [
+    59
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sharp Fang",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "90"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Security Guard",
+     "effect": "As long as this Pokémon is your Active Pokémon, all of your Pokémon take 30 less damage from your opponent’s attacks (after applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-7",
+   "localId": "7",
+   "name": "Psyduck",
+   "rarity": "Common",
+   "illustrator": "Framestore",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/7",
+   "hp": 80,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "Using psychokinesis gives it a headache, so it normally passes the time spacing out and doing as little as possible.",
+   "retreat": 3,
+   "dexId": [
+    54
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Panic",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10",
+     "effect": "This Pokémon is now Confused."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-8",
+   "localId": "8",
+   "name": "Magikarp",
+   "rarity": "Common",
+   "illustrator": "Framestore",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/8",
+   "hp": 30,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "In the distant past, they were fairly strong, but they have become gradually weaker over time.",
+   "retreat": 1,
+   "dexId": [
+    129
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hold Still",
+     "cost": [
+      "Water"
+     ],
+     "effect": "Heal 10 damage from this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-9",
+   "localId": "9",
+   "name": "Greninja",
+   "rarity": "Ultra Rare",
+   "illustrator": "MPC Film",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/9",
+   "hp": 140,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Frogadier",
+   "description": "It creates throwing stars out of compressed water. When it spins them and throws them at high speed, these stars can split metal in two.",
+   "retreat": 1,
+   "dexId": [
+    658
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Furious Shurikens",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "effect": "This attack does 50 damage to 2 of your opponent’s Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Evasion Jutsu",
+     "effect": "If any damage is done to this Pokémon by attacks, flip a coin. If heads, prevent that damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-10",
+   "localId": "10",
+   "name": "Detective Pikachu",
+   "rarity": "Rare",
+   "illustrator": "MPC Film",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/10",
+   "hp": 90,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "He loves to show off his vast knowledge. This expressive Pikachu is like a middle-aged man.",
+   "retreat": 2,
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Scout",
+     "cost": [
+      "Lightning"
+     ],
+     "effect": "Your opponent reveals their hand."
+    },
+    {
+     "name": "Surprise Attack",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "80",
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "det1-11",
+   "localId": "11",
+   "name": "Mr. Mime",
+   "rarity": "Rare",
+   "illustrator": "MPC Film",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/11",
+   "hp": 80,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "description": "Its pantomime skills are wonderful. You may become enraptured while watching it, but next thing you know, Mr. Mime has made a real wall.",
+   "retreat": 1,
+   "dexId": [
+    122
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Juggling",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "20×",
+     "effect": "Flip 4 coins. This attack does 20 damage for each heads."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Pantomime",
+     "effect": "When you play this Pokémon from your hand onto your Bench during your turn, you may switch 1 of your face-down Prize cards with the top card of your deck."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-12",
+   "localId": "12",
+   "name": "Mewtwo",
+   "rarity": "Ultra Rare",
+   "illustrator": "MPC Film",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/12",
+   "hp": 130,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "description": "This Pokémon was created by years of horrific gene splicing and DNA engineering experiments.",
+   "retreat": 2,
+   "dexId": [
+    150
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Psyjack",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Choose 1 of your opponent’s Active Pokémon’s attacks. That Pokémon can’t use that attack during your opponent’s next turn."
+    },
+    {
+     "name": "Break Burn",
+     "cost": [
+      "Psychic",
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "130",
+     "effect": "Discard 2 Psychic Energy from this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-13",
+   "localId": "13",
+   "name": "Machamp",
+   "rarity": "Rare",
+   "illustrator": "MPC Film",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/13",
+   "hp": 160,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Machoke",
+   "description": "It grasps its opponents with its four arms and twists them up in an intricate hold. People call it \"the Machamp special.\"",
+   "retreat": 2,
+   "dexId": [
+    68
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Directing Traffic",
+     "cost": [
+      "Fighting"
+     ],
+     "effect": "Look at the top 5 cards of your deck and put them back in any order."
+    },
+    {
+     "name": "Cross Chop",
+     "cost": [
+      "Fighting",
+      "Fighting"
+     ],
+     "damage": "80+",
+     "effect": "Flip a coin. If heads, this attack does 60 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-14",
+   "localId": "14",
+   "name": "Jigglypuff",
+   "rarity": "Common",
+   "illustrator": "Framestore",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/14",
+   "hp": 60,
+   "types": [
+    "Fairy"
+   ],
+   "stage": "Basic",
+   "description": "Recordings of Jigglypuff's strange lullabies can be purchased from department stores. These CDs can be found near the bedding area.",
+   "retreat": 1,
+   "dexId": [
+    39
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Healing Melody",
+     "cost": [
+      "Fairy"
+     ],
+     "effect": "Heal 10 damage from each of your Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Darkness",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "det1-15",
+   "localId": "15",
+   "name": "Snubbull",
+   "rarity": "Common",
+   "illustrator": "Framestore",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/15",
+   "hp": 70,
+   "types": [
+    "Fairy"
+   ],
+   "stage": "Basic",
+   "description": "It grows close to others easily and is also easily spoiled. The disparity between its face and its actions makes many young people wild about it.",
+   "retreat": 2,
+   "dexId": [
+    209
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Play Rough",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 30 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Darkness",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "det1-16",
+   "localId": "16",
+   "name": "Lickitung",
+   "rarity": "Common",
+   "illustrator": "MPC Film",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/16",
+   "hp": 100,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "It checks out whatever's around it by licking everything. If you don't clean off a spot where it's licked you, you'll break out in a rash!",
+   "retreat": 3,
+   "dexId": [
+    108
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Continuous Lick",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20×",
+     "effect": "Flip a coin until you get tails. This attack does 20 damage for each heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-17",
+   "localId": "17",
+   "name": "Ditto",
+   "rarity": "Ultra Rare",
+   "illustrator": "MPC Film",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/17",
+   "hp": 60,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "While it can transform into anything, each Ditto apparently has its own strengths and weaknesses when it comes to transformations.",
+   "retreat": 1,
+   "dexId": [
+    132
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Copy Anything",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Choose 1 of your opponent’s Pokémon’s attacks and use it as this attack. If this Pokémon doesn’t have the necessary Energy to use that attack, this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "det1-18",
+   "localId": "18",
+   "name": "Slaking",
+   "rarity": "Rare",
+   "illustrator": "Framestore",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/sm/det1/18",
+   "hp": 180,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Vigoroth",
+   "description": "The world's laziest Pokémon. It moves to another spot when there's no food left within its reach.",
+   "retreat": 4,
+   "dexId": [
+    289
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Pitch",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "150",
+     "effect": "Your opponent switches their Active Pokémon with 1 of their Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  }
+ ]
+}

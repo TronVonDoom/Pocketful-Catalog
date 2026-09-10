@@ -1,0 +1,7470 @@
+{
+ "id": "pl2",
+ "name": "Rising Rivals",
+ "serie": {
+  "id": "pl",
+  "name": "Platinum"
+ },
+ "releaseDate": "2009-05-16",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 35,
+  "normal": 116,
+  "official": 111,
+  "reverse": 116,
+  "total": 120
+ },
+ "logo": "https://assets.tcgdex.net/en/pl/pl2/logo",
+ "symbol": "https://assets.tcgdex.net/univ/pl/pl2/symbol",
+ "abbreviation": {
+  "official": "RR"
+ },
+ "legal": {
+  "expanded": false,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "pl2-1",
+   "localId": "1",
+   "name": "Arcanine",
+   "rarity": "Holo Rare",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/1",
+   "hp": 100,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Growlithe",
+   "retreat": 2,
+   "dexId": [
+    59
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Burn Out",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "You may do 30 damage plus 30 more damage. If you do, Arcanine is now Burned."
+    },
+    {
+     "name": "Flames of Rage",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60+",
+     "effect": "Discard a Fire Energy attached to Arcanine. This attack does 60 damage plus 10 more damage for each damage counter on Arcanine."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Flare Condition",
+     "effect": "As long as Arcanine has any Fire Energy attached to it, Arcanine has no Weakness."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-RT1",
+   "localId": "RT1",
+   "name": "Fan Rotom",
+   "rarity": "Rare",
+   "illustrator": "Motofumi Fujiwara",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/RT1",
+   "hp": 70,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    479
+   ],
+   "variants": {
+    "normal": false,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "cracked-ice"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Spin Storm",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, your opponent returns the Defending Pokémon and all cards attached to it to his or her hand."
+    },
+    {
+     "name": "Air Slash",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Flip a coin. If tails, discard an Energy attached to Fan Rotom."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Fan Shift",
+     "effect": "Once during your turn (before your attack), you may use this power. Fan Rotom's type is Colorless until the end of your turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Colorless",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-2",
+   "localId": "2",
+   "name": "Bastiodon GL",
+   "rarity": "Holo Rare",
+   "illustrator": "Hajime Kusajima",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/2",
+   "hp": 90,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "dexId": [
+    411
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bounce Back",
+     "cost": [
+      "Metal",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Your opponent switches the Defending Pokémon with 1 of his or her Benched Pokémon."
+    },
+    {
+     "name": "Smack Attack",
+     "cost": [
+      "Metal",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Remove 1 damage counter from Bastiodon GL."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-RT2",
+   "localId": "RT2",
+   "name": "Frost Rotom",
+   "rarity": "Rare",
+   "illustrator": "Hironobu Yoshida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/RT2",
+   "hp": 90,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "dexId": [
+    479
+   ],
+   "variants": {
+    "normal": false,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "cracked-ice"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hail",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "This attack does 10 damage to each of your opponent's Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Crushing Ice",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40+",
+     "effect": "Does 40 damage plus 10 more damage for each Colorless Energy in the Defending Pokémon's Retreat Cost (after applying effects to the Retreat Cost)."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Frost Shift",
+     "effect": "Once during your turn (before your attack), you may use this power. Frost Rotom's type is Water until the end of your turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Colorless",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-3",
+   "localId": "3",
+   "name": "Darkrai G",
+   "rarity": "Holo Rare",
+   "illustrator": "Makoto Imai",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/3",
+   "hp": 90,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "suffix": "SP",
+   "dexId": [
+    491
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Darkness Sleep",
+     "cost": [
+      "Darkness",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "If the Defending Pokémon already has any damage counters on it, that Pokémon is now Asleep."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Eerie Aura",
+     "effect": "Put 1 damage counter on each of your opponent's Pokémon that remains Asleep between turns."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-RT3",
+   "localId": "RT3",
+   "name": "Heat Rotom",
+   "rarity": "Rare",
+   "illustrator": "Lee HyunJung",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/RT3",
+   "hp": 80,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    479
+   ],
+   "variants": {
+    "normal": false,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "cracked-ice"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Warm Up",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for a Fire Energy card and attach it to 1 of your Benched Pokémon. Shuffle your deck afterward."
+    },
+    {
+     "name": "Heat Burn",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "The Defending Pokémon is now Burned."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Heat Shift",
+     "effect": "Once during your turn (before your attack), you may use this power. Heat Rotom's type is Fire until the end of your turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Colorless",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-4",
+   "localId": "4",
+   "name": "Floatzel GL",
+   "rarity": "Holo Rare",
+   "illustrator": "Midori Harada",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/4",
+   "hp": 80,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    419
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Incite",
+     "effect": "Search your discard pile for up to 2 Supporter cards, show them to your opponent, and put them into your hand."
+    },
+    {
+     "name": "Giant Wave",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "damage": "50",
+     "effect": "Floatzel GL can't use Giant Wave during your next turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-RT4",
+   "localId": "RT4",
+   "name": "Mow Rotom",
+   "rarity": "Rare",
+   "illustrator": "Yusuke Ohmura",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/RT4",
+   "hp": 90,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    479
+   ],
+   "variants": {
+    "normal": false,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "cracked-ice"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Slash",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Mow Down",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Flip a coin. If heads, discard an Energy card attached to each of your opponent's Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Mow Shift",
+     "effect": "Once during your turn (before your attack), you may use this power. Mow Rotom's type is Grass until the end of your turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Colorless",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-5",
+   "localId": "5",
+   "name": "Flygon",
+   "rarity": "Holo Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/5",
+   "hp": 120,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Vibrava",
+   "retreat": 0,
+   "dexId": [
+    330
+   ],
+   "variants": {
+    "normal": true,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "david-cohen"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sand Wall",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Discard a Stadium card your opponent has in play. If you do, prevent all effects of an attack, including damage, done to Flygon during your opponent's next turn."
+    },
+    {
+     "name": "Power Swing",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60+",
+     "effect": "Does 60 damage plus 10 more damage for each Evolved Pokémon on your Bench."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Rainbow Float",
+     "effect": "If any basic Energy card attached to Flygon is the same type as any of your Pokémon, the Retreat Cost for those Pokémon is 0."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Colorless",
+     "value": "+30"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-RT5",
+   "localId": "RT5",
+   "name": "Wash Rotom",
+   "rarity": "Rare",
+   "illustrator": "Hiroki Fuchino",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/RT5",
+   "hp": 90,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    479
+   ],
+   "variants": {
+    "normal": false,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "cracked-ice"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Cleanse Away",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Remove 3 damage counters from each of your Benched Pokémon."
+    },
+    {
+     "name": "Drain Wash",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin until you get tails. For each heads, choose 1 card from your opponent's hand without looking and discard it."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Wash Shift",
+     "effect": "Once during your turn (before your attack), you may use this power. Wash Rotom's type is Water until the end of your turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Colorless",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-6",
+   "localId": "6",
+   "name": "Froslass GL",
+   "rarity": "Holo Rare",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/6",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    478
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sleep Inducer",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Switch the Defending Pokémon with 1 of your opponent's Benched Pokémon. The new Defending Pokémon is now Asleep."
+    },
+    {
+     "name": "Wake-Up Slap",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "If the Defending Pokémon is affected by any Special Conditions, this attack does 30 damage plus 20 more damage. Then, remove all Special Conditions from the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-RT6",
+   "localId": "RT6",
+   "name": "Charon's Choice",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/RT6",
+   "trainerType": "Supporter",
+   "effect": "You can play only one Supporter card each turn. When you play this card, put it next to your Active Pokémon. When your turn ends, put this card into your hand instead of discarding it. Search your deck for any Rotom and switch it with any Rotom you have in play. Any cards attached to Rotom and damage counters on it are now on the new Pokémon. (Remove all Special Conditions and effects from Rotom.) Put Rotom on top of your deck. Shuffle your deck afterward.",
+   "variants": {
+    "normal": false,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "cracked-ice"
+    }
+   ]
+  },
+  {
+   "id": "pl2-7",
+   "localId": "7",
+   "name": "Jirachi",
+   "rarity": "Holo Rare",
+   "illustrator": "Kenkichi Toyama",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/7",
+   "hp": 60,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    385
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Detour",
+     "effect": "If you have a Supporter card in play, use the effect of that card as the effect of this attack."
+    },
+    {
+     "name": "Swift",
+     "cost": [
+      "Metal"
+     ],
+     "damage": "20",
+     "effect": "This attack's damage isn't affected by Weakness, Resistance, Poké-Powers, Poké-Bodies, or any other effects on the Defending Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Final Wish",
+     "effect": "Once during your opponent's turn, if Jirachi would be Knocked Out by damage from an attack, you may search your deck for any 1 card and put it into your hand. Shuffle your deck afterward."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-8",
+   "localId": "8",
+   "name": "Lucario GL",
+   "rarity": "Holo Rare",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/8",
+   "hp": 80,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    448
+   ],
+   "variants": {
+    "normal": true,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "tsubasa-nakamura"
+     ]
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "yuta-komatsuda"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Combo Throw",
+     "cost": [
+      "Metal",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "Does 30 damage plus 10 more damage for each Energy attached to the Defending Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Boundary Aura",
+     "effect": "Apply Weakness for each Pokémon (both yours and your opponent's) as x2 instead."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-9",
+   "localId": "9",
+   "name": "Luxray GL",
+   "rarity": "Holo Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/9",
+   "hp": 80,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    405
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "tsubasa-nakamura"
+     ]
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "stephen-silvestro"
+     ]
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "yuta-komatsuda"
+     ]
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "mychael-bryan"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bite",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Trash Bolt",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70",
+     "effect": "Discard an Energy card from your hand. (If you can't discard a card from your hand, this attack does nothing.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-10",
+   "localId": "10",
+   "name": "Mismagius GL",
+   "rarity": "Holo Rare",
+   "illustrator": "Naoyo Kimura",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/10",
+   "hp": 80,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    429
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Psychic Removal",
+     "cost": [
+      "Psychic"
+     ],
+     "damage": "10",
+     "effect": "Flip 2 coins. If both of them are heads, discard all Energy attached to the Defending Pokémon."
+    },
+    {
+     "name": "Grudge",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Does 20 damage plus 10 more damage for each Prize card your opponent has taken."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Colorless",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-11",
+   "localId": "11",
+   "name": "Rampardos GL",
+   "rarity": "Holo Rare",
+   "illustrator": "Suwama Chiaki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/11",
+   "hp": 90,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    409
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Trample",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "effect": "Flip a coin for each Benched Pokémon (both yours and your opponent's). If that coin flip is heads, this attack does 30 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Rend",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40+",
+     "effect": "If the Defending Pokémon has any damage counters on it, this attack does 40 damage plus 20 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-12",
+   "localId": "12",
+   "name": "Roserade GL",
+   "rarity": "Holo Rare",
+   "illustrator": "Kanako Eo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/12",
+   "hp": 80,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    407
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Poison Bind",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "The Defending Pokémon is now Poisoned and can't retreat during your opponent's next turn."
+    },
+    {
+     "name": "Long Whip",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "If the Defending Pokémon is affected by any Special Conditions, you may do 30 damage to any 1 Benched Pokémon instead. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-13",
+   "localId": "13",
+   "name": "Shiftry",
+   "rarity": "Holo Rare",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/13",
+   "hp": 130,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Nuzleaf",
+   "retreat": 1,
+   "dexId": [
+    275
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Conform",
+     "cost": [
+      "Darkness",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "If you have the same number of cards in your hand as your opponent, the Defending Pokémon is now Confused."
+    },
+    {
+     "name": "Seal Off",
+     "cost": [
+      "Darkness",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "The Defending Pokémon can't use any Poké-Powers or Poké-Bodies during your opponent's next turn."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Unlucky Wind",
+     "effect": "As long as Shiftry is your Active Pokémon, whenever your opponent flips a coin during his or her turn, treat it as tails."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "+30"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-14",
+   "localId": "14",
+   "name": "Aggron",
+   "rarity": "Rare",
+   "illustrator": "Naoyo Kimura",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/14",
+   "hp": 130,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Lairon",
+   "retreat": 3,
+   "dexId": [
+    306
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Return Blow",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "If Aggron was damaged by an attack during your opponent's last turn, this attack does the same amount of damage done to Aggron to the Defending Pokémon."
+    },
+    {
+     "name": "Metal Fang",
+     "cost": [
+      "Metal",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "You may discard the top card of your deck. If you do, remove 2 damage counters and all Special Conditions from Aggron."
+    },
+    {
+     "name": "Heavy Impact",
+     "cost": [
+      "Metal",
+      "Metal",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "+30"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-15",
+   "localId": "15",
+   "name": "Beedrill",
+   "rarity": "Rare",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/15",
+   "hp": 110,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Kakuna",
+   "description": "Its best attack involves flying around at high speed, striking with poison needles, then flying off.",
+   "retreat": 1,
+   "dexId": [
+    15
+   ],
+   "variants": {
+    "normal": true,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "stephen-silvestro"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Needle Shock",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "The Defending Pokémon is now Paralyzed and Poisoned. Ignore this effect if any of your Pokémon used Needle Shock during your last turn."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Flutter Wings",
+     "effect": "Once during your turn (before your attack), you may search your deck for a Grass Pokémon, show it to your opponent, and put it into your hand. Shuffle your deck afterward. This power can't be used if Beedrill is affected by a Special Condition."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "+30"
+    }
+   ]
+  },
+  {
+   "id": "pl2-16",
+   "localId": "16",
+   "name": "Bronzong E4",
+   "rarity": "Rare",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/16",
+   "hp": 90,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "dexId": [
+    437
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hand Refresh",
+     "effect": "Each player shuffles his or her hand into his or her deck and draws up to 4 cards. (You draw your cards first.)"
+    },
+    {
+     "name": "Payback",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "If your opponent has only 1 Prize card left, this attack does 10 damage plus 50 more damage and the Defending Pokémon is now Confused."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fire",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-17",
+   "localId": "17",
+   "name": "Drapion E4",
+   "rarity": "Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/17",
+   "hp": 100,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "dexId": [
+    452
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Body Slam",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    },
+    {
+     "name": "Mega Impact",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-18",
+   "localId": "18",
+   "name": "Espeon E4",
+   "rarity": "Rare",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/18",
+   "hp": 80,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    196
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hypnosis",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "The Defending Pokémon is now Asleep."
+    },
+    {
+     "name": "Psywave",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Does 20 damage plus 10 more damage for each Energy attached to the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-19",
+   "localId": "19",
+   "name": "Flareon",
+   "rarity": "Rare",
+   "illustrator": "Midori Harada",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/19",
+   "hp": 80,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Eevee",
+   "retreat": 1,
+   "dexId": [
+    136
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tail Slap",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Evolving Flare",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "40+",
+     "effect": "If Flareon evolved from Eevee during this turn, this attack does 40 damage plus 20 more damage and the Defending Pokémon is now Burned."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Undevelop",
+     "effect": "Once during your turn (before your attack), you may devolve Flareon and put Flareon into your hand. This power can't be used if Flareon is affected by a Special Condition."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-20",
+   "localId": "20",
+   "name": "Gallade E4",
+   "rarity": "Rare",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/20",
+   "hp": 80,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    475
+   ],
+   "variants": {
+    "normal": true,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "cosmos"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Chop Up",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Does 10 damage to each of your opponent's Benched Pokémon that has any damage counters on it. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Feint",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "This attack's damage isn't affected by Resistance."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-21",
+   "localId": "21",
+   "name": "Gastrodon East Sea",
+   "rarity": "Rare",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/21",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Shellos East Sea",
+   "retreat": 1,
+   "dexId": [
+    423
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Calling Wave",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for up to 2 Gastrodon and put them onto your Bench as Basic Pokémon. Put 2 damage counters on each of them. Shuffle your deck afterward."
+    },
+    {
+     "name": "Wave Splash",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "40"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Sticky Hold",
+     "effect": "If Gastrodon East Sea is switched or retreats to your Bench, move as many Energy cards attached to Gastrodon East Sea as you like to the new Active Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "+30"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-22",
+   "localId": "22",
+   "name": "Gastrodon West Sea",
+   "rarity": "Rare",
+   "illustrator": "Kyoko Umemoto",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/22",
+   "hp": 110,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Shellos West Sea",
+   "retreat": 3,
+   "dexId": [
+    423
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tackle",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50"
+    },
+    {
+     "name": "Muddy Bomb",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon. This attack does 30 damage to that Pokémon and 10 damage to each of your opponent's other Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Raging Sea",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60+",
+     "effect": "Does 60 damage plus 10 more damage for each of your Benched Pokémon that has any damage counters on it."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "+30"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-23",
+   "localId": "23",
+   "name": "Golem E4",
+   "rarity": "Rare",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/23",
+   "hp": 110,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 4,
+   "dexId": [
+    76
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rage",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Does 20 damage plus 10 more damage for each damage counter on Golem GL."
+    },
+    {
+     "name": "Double-edge",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "100",
+     "effect": "Golem E4 does 60 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-24",
+   "localId": "24",
+   "name": "Heracross E4",
+   "rarity": "Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/24",
+   "hp": 90,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    214
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Focus Energy",
+     "effect": "During your next turn, Heracross E4's Megahorn attack's base damage is 100."
+    },
+    {
+     "name": "Megahorn",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-25",
+   "localId": "25",
+   "name": "Hippowdon",
+   "rarity": "Rare",
+   "illustrator": "Tomoaki Imakuni",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/25",
+   "hp": 110,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Hippopotas",
+   "retreat": 4,
+   "dexId": [
+    450
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Save Sand",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Does 20 damage plus 10 more damage for each Energy attached to Hippowdon. Before doing damage, you may search your discard pile for a Fighting Energy card and attach it to Hippowdon."
+    },
+    {
+     "name": "Groundquake",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "80",
+     "effect": "Does 10 damage to each Benched Pokémon that isn't an Evolved Pokémon (both yours and your opponent's). (Don't apply Weakness and Resistance for Benched Pokémon)."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Sand Cover",
+     "effect": "As long as Hippowdon is your Active Pokémon, put 1 damage counter on each of your opponent's Pokémon LV.X between turns."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-26",
+   "localId": "26",
+   "name": "Jolteon",
+   "rarity": "Rare",
+   "illustrator": "Hajime Kusajima",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/26",
+   "hp": 80,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Eevee",
+   "retreat": 0,
+   "dexId": [
+    135
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Quick Attack",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 30 more damage."
+    },
+    {
+     "name": "Evolving Thunder",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "If Jolteon evolved from Eevee during this turn, this attack does 10 damage to each of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon)."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Undevelop",
+     "effect": "Once during your turn (before your attack), you may devolve Jolteon and put Jolteon into your hand. This power can't be used if Jolteon is affected by a Special Condition."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-27",
+   "localId": "27",
+   "name": "Mamoswine GL",
+   "rarity": "Rare",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/27",
+   "hp": 100,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 4,
+   "dexId": [
+    473
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Avalanche",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Flip a coin. If heads, this attack does 10 damage to each of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Icy Aura",
+     "effect": "As long as Mamoswine GL is your Active Pokémon, put 1 damage counter on each Active Pokémon (excluding Water Pokémon) (both yours and your opponent's) between turns."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-28",
+   "localId": "28",
+   "name": "Mr. Mime E4",
+   "rarity": "Rare",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/28",
+   "hp": 70,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    122
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Magic Heal",
+     "effect": "Flip 3 coins. Remove a number of damage counters equal to the number of heads from your Pokémon in any way you like."
+    },
+    {
+     "name": "Barrier Attack",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "During your opponent's next turn, any damage done to Mr. Mime E4 by attacks is reduced by 10 (after applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-29",
+   "localId": "29",
+   "name": "Nidoking",
+   "rarity": "Rare",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/29",
+   "hp": 130,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Nidorino",
+   "retreat": 2,
+   "dexId": [
+    34
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fling Away",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "If your opponent has any Benched Pokémon, this attack's base damage is 30 instead of 60 and this attack does 30 damage to 1 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Giga Horn",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "100",
+     "effect": "Flip 2 coins. If both of them are tails, this attack does nothing."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Territoriality",
+     "effect": "If your Active Pokémon is damaged by an opponent's attack (even if that Pokémon is Knocked Out), put 2 damage counters on the Attacking Pokémon. You can't put more than 2 damage counters in this way."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "+30"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-30",
+   "localId": "30",
+   "name": "Nidoqueen",
+   "rarity": "Rare",
+   "illustrator": "Midori Harada",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/30",
+   "hp": 120,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Nidorina",
+   "retreat": 3,
+   "dexId": [
+    31
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "jason-martinez"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "david-cohen"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Mega Punch",
+     "cost": [
+      "Psychic"
+     ],
+     "damage": "40"
+    },
+    {
+     "name": "Ruthless Tail",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50+",
+     "effect": "Does 50 damage plus 10 more damage for each of your opponent's Benched Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Maternal Comfort",
+     "effect": "At any times between turns, remove 1 damage counter from each of your Pokémon. You can't use more than 1 Maternal Comfort Poké-Body between turns."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "+30"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-31",
+   "localId": "31",
+   "name": "Raichu GL",
+   "rarity": "Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/31",
+   "hp": 80,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    26
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Thunder Throw",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Choose 2 of your opponent's Benched Pokémon. This attack does 10 damage to each of them. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Repeat Lightning",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "Does 30 damage plus 10 more damage for each of your opponent's Benched Pokémon that has any damage counters on it."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-32",
+   "localId": "32",
+   "name": "Rhyperior E4",
+   "rarity": "Rare",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/32",
+   "hp": 100,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "dexId": [
+    464
+   ],
+   "variants": {
+    "normal": true,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Double Lariat",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "30x",
+     "effect": "Flip 2 coins. This attack does 30 damage times the number of heads."
+    },
+    {
+     "name": "Rock Tumble",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "This attack's damage isn't affected by Resistance."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-33",
+   "localId": "33",
+   "name": "Snorlax",
+   "rarity": "Rare",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/33",
+   "hp": 100,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "It stops eating only to sleep. It doesn't feel full unless it eats nearly 900 pounds a day.",
+   "retreat": 4,
+   "dexId": [
+    143
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "league"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Pick and Collect",
+     "effect": "Search your discard pile for up to 4 basic Energy cards, show them to your opponent, and put them into your hand."
+    },
+    {
+     "name": "Roll Over",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Flip a coin. If heads, both Snorlax and the Defending Pokémon are now Asleep. If tails, Snorlax is now Asleep."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-34",
+   "localId": "34",
+   "name": "Vaporeon",
+   "rarity": "Rare",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/34",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Eevee",
+   "retreat": 2,
+   "dexId": [
+    134
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Muddy Water",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Does 10 damage to 1 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Evolving Aqua",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon that has any damage counters on it. This attack does 40 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.) If Vaporeon evolved from Eevee during this turn, this attack does 60 damage instead."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Undevelop",
+     "effect": "Once during your turn (before your attack), you may devolve Vaporeon and put Vaporeon into your hand. This power can't be used if Vaporeon is affected by a Special Condition."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-35",
+   "localId": "35",
+   "name": "Vespiquen E4",
+   "rarity": "Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/35",
+   "hp": 80,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    416
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Leaf Needle",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "Flip a coin for each Grass Energy attached to Vespiquen E4. This attack does 30 damage plus 20 more damage for each heads."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Royal Gain",
+     "effect": "When you attach a Grass Energy card from your hand to Vespiquen E4, remove 1 damage counter from Vespiquen E4."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-36",
+   "localId": "36",
+   "name": "Walrein",
+   "rarity": "Rare",
+   "illustrator": "kawayoo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/36",
+   "hp": 140,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Sealeo",
+   "description": "It shatters ice with its big tusks. Its thick blubber repels not only the cold, but also enemy attacks.",
+   "retreat": 4,
+   "dexId": [
+    365
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Cold Crush",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70",
+     "effect": "Discard an Energy card attached to Walrein and then discard an Energy card attached to the Defending Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Gather Ice",
+     "effect": "Once during your turn (before your attack), when you play Walrein from your hand to evolve 1 of your Pokémon, you may attach as many Water Energy cards from your hand to Walrein as you like."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "+30"
+    }
+   ]
+  },
+  {
+   "id": "pl2-37",
+   "localId": "37",
+   "name": "Yanmega E4",
+   "rarity": "Rare",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/37",
+   "hp": 90,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    469
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Skill Dive",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon. This attack does 10 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Whirlwind",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Your opponent switches the Defending Pokémon with 1 of his or her Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-38",
+   "localId": "38",
+   "name": "Alakazam E4",
+   "rarity": "Uncommon",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/38",
+   "hp": 80,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    65
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Recover",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Discard a Psychic Energy attached to Alakazam E4 and remove 4 damage counters from Alakazam E4."
+    },
+    {
+     "name": "Mysterious Beam",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin. If heads, discard an Energy card attached to the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-39",
+   "localId": "39",
+   "name": "Electrode G",
+   "rarity": "Uncommon",
+   "illustrator": "Yusuke Ishikawa",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/39",
+   "hp": 70,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "suffix": "SP",
+   "dexId": [
+    101
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Reckless Bomb",
+     "cost": [
+      "Lightning"
+     ],
+     "effect": "This attack does 20 damage to each of your opponent's Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.) Electrode G does 100 damage to itself."
+    },
+    {
+     "name": "Reflect Energy",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Move an Energy card attached to Electrode G to 1 of your Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-40",
+   "localId": "40",
+   "name": "Gengar GL",
+   "rarity": "Uncommon",
+   "illustrator": "Naoyo Kimura",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/40",
+   "hp": 70,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    94
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Confuse Ray",
+     "cost": [
+      "Psychic"
+     ],
+     "damage": "10",
+     "effect": "The Defending Pokémon is now Confused."
+    },
+    {
+     "name": "Attack and Hide",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Put 3 damage counters on 1 of your opponent's Pokémon. You may shuffle Gengar GL and all cards attached to it back into your deck."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Colorless",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-41",
+   "localId": "41",
+   "name": "Glaceon",
+   "rarity": "Uncommon",
+   "illustrator": "Naoyo Kimura",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/41",
+   "hp": 80,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Eevee",
+   "retreat": 1,
+   "dexId": [
+    471
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ice Blade",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon. This attack does 30 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Ice Bind",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "If your opponent doesn't discard a card from his or her hand, the Defending Pokémon is now Paralyzed."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Frost Wind",
+     "effect": "As long as Glaceon is your Active Pokémon, any damage done to your Pokémon by your opponent's attacks is reduced by 10 (after applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-42",
+   "localId": "42",
+   "name": "Hippowdon E4",
+   "rarity": "Uncommon",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/42",
+   "hp": 90,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    450
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bite and Crush",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "Flip 2 coins. This attack does 30 damage plus 10 more damage for each heads."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Sand Armor",
+     "effect": "If Hippowdon E4 has any Fighting Energy attached to it, any damage done to Hippowdon E4 by attacks is reduced by 10 (after applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-43",
+   "localId": "43",
+   "name": "Infernape E4",
+   "rarity": "Uncommon",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/43",
+   "hp": 90,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    392
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Split Bomb",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "effect": "Choose 2 of your opponent's Pokémon. This attack does 20 damage to each of them. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "High Jump Kick",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-44",
+   "localId": "44",
+   "name": "Lairon",
+   "rarity": "Uncommon",
+   "illustrator": "Yukiko Baba",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/44",
+   "hp": 80,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Aron",
+   "description": "For food, it digs up iron ore. It smashes its steely body against others to fight over territory.",
+   "retreat": 2,
+   "dexId": [
+    305
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Heavy Metal",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin for each Metal Energy attached to Lairon. This attack does 10 damage plus 20 more damage for each heads."
+    },
+    {
+     "name": "Granite Head",
+     "cost": [
+      "Metal",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "During your opponent's next turn, any damage done to Lairon by attacks is reduced by 10 (after applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-45",
+   "localId": "45",
+   "name": "Leafeon",
+   "rarity": "Uncommon",
+   "illustrator": "Suwama Chiaki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/45",
+   "hp": 90,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Eevee",
+   "retreat": 2,
+   "dexId": [
+    470
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Plus Energy",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Attach a basic Energy card from your hand to 1 of your Pokémon."
+    },
+    {
+     "name": "Soothing Scent",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "The Defending Pokémon is now Asleep."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Energy Refresh",
+     "effect": "As long as Leafeon is your Active Pokémon, whenever you attach an Energy card from your hand to 1 of your Pokémon, remove 2 damage counters from that Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Water",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-46",
+   "localId": "46",
+   "name": "Machamp GL",
+   "rarity": "Uncommon",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/46",
+   "hp": 100,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "dexId": [
+    68
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Cross-Cut",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "If the Defending Pokémon is an Evolved Pokémon, this attack does 30 damage plus 20 more damage."
+    },
+    {
+     "name": "Brush Off",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Put the Defending Pokémon and all cards attached to it on top of your opponent's deck. Your opponent shuffles his or her deck afterward. (If your opponent doesn't have any Benched Pokémon, this attack does nothing.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-47",
+   "localId": "47",
+   "name": "Rapidash E4",
+   "rarity": "Uncommon",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/47",
+   "hp": 70,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    78
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Pickup Power",
+     "effect": "Flip 3 coins. For each heads, search your discard pile for a basic Energy card, show it to your opponent, and put it into your hand."
+    },
+    {
+     "name": "Fire Mane",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-48",
+   "localId": "48",
+   "name": "Scizor E4",
+   "rarity": "Uncommon",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/48",
+   "hp": 80,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    212
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Cut",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Crushing Blow",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Flip a coin. If heads, discard an Energy card attached to the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-49",
+   "localId": "49",
+   "name": "Sharpedo",
+   "rarity": "Uncommon",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/49",
+   "hp": 90,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Carvanha",
+   "retreat": 0,
+   "dexId": [
+    319
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Crunch",
+     "cost": [
+      "Darkness",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "If an attack does damage to the Defending Pokémon (after applying Weakness and Resistance), that attack does 40 more damage to that Pokémon until the end of your next turn."
+    },
+    {
+     "name": "Sharp Fang",
+     "cost": [
+      "Darkness",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Energy Shark",
+     "effect": "If Sharpedo is your Active Pokémon and is damaged by an opponent's attack (even if Sharpedo is Knocked Out), flip a coin. If heads, discard an Energy card attached to the Attacking Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-50",
+   "localId": "50",
+   "name": "Starmie",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/50",
+   "hp": 80,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Staryu",
+   "retreat": 0,
+   "dexId": [
+    121
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Synchro Gain",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "If Starmie and the Defending Pokémon have the same amount of Energy attached to them, remove 4 damage counters from Starmie."
+    },
+    {
+     "name": "Powerful Spin",
+     "cost": [
+      "Water"
+     ],
+     "damage": "40",
+     "effect": "Starmie can't attack during your next turn."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Aqua Recycle",
+     "effect": "Once during your turn (before your attack), you may search your discard pile for a Water Energy card, show it to your opponent, and put it into your hand. This power can't be used if Starmie is affected by a Special Condition."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-51",
+   "localId": "51",
+   "name": "Steelix GL",
+   "rarity": "Uncommon",
+   "illustrator": "Hajime Kusajima",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/51",
+   "hp": 110,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Basic",
+   "retreat": 4,
+   "dexId": [
+    208
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Mend",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Search your discard pile for a Metal Energy card and attach it to Steelix GL. If you do, remove 1 damage counter from Steelix GL."
+    },
+    {
+     "name": "Squeeze",
+     "cost": [
+      "Metal",
+      "Metal",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "Flip a coin. If heads, this attack does 30 damage plus 50 more damage and the Defending Pokémon is now Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-52",
+   "localId": "52",
+   "name": "Tropius",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/52",
+   "hp": 80,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    357
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "pre-release"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "pre-release",
+      "staff"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fly",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin. If tails, this attack does nothing. If heads, prevent all effects of an attack, including damage, done to Tropius during your opponent's next turn."
+    },
+    {
+     "name": "Blessed Fruit",
+     "cost": [
+      "Grass",
+      "Grass"
+     ],
+     "effect": "Remove all damage counters from 1 of your Benched Grass Pokémon."
+    },
+    {
+     "name": "Solarbeam",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-53",
+   "localId": "53",
+   "name": "Vibrava",
+   "rarity": "Uncommon",
+   "illustrator": "Kyoko Umemoto",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/53",
+   "hp": 70,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Trapinch",
+   "description": "It violently shudders its wings, generating ultrasonic waves to induce headaches in people.",
+   "retreat": 1,
+   "dexId": [
+    329
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "david-cohen"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Energy Typhoon",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "20x",
+     "effect": "Does 20 damage times the number of Energy cards in your opponent's discard pile. Then, put those Energy cards on top of your opponent's deck. Your opponent shuffles his or her deck afterward."
+    },
+    {
+     "name": "Quick Attack",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Flip a coin. If heads, this attack does 20 damage plus 20 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Colorless",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-54",
+   "localId": "54",
+   "name": "Whiscash E4",
+   "rarity": "Uncommon",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/54",
+   "hp": 80,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    340
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Sleep Pulse",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "The Defending Pokémon is now Asleep."
+    },
+    {
+     "name": "Earthquake",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Does 10 damage to each of your Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-55",
+   "localId": "55",
+   "name": "Aerodactyl GL",
+   "rarity": "Common",
+   "illustrator": "Suwama Chiaki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/55",
+   "hp": 80,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "dexId": [
+    142
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Collect",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Draw 2 cards."
+    },
+    {
+     "name": "Primal Breath",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Your opponent can't play any Pokémon from his or her hand to Evolve or to Level-Up the Defending Pokémon during his or her next turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-56",
+   "localId": "56",
+   "name": "Ambipom G",
+   "rarity": "Common",
+   "illustrator": "Makoto Imai",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/56",
+   "hp": 80,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "suffix": "SP",
+   "dexId": [
+    424
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tail Code",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Move an Energy card attached to the Defending Pokémon to another of your opponent's Pokémon."
+    },
+    {
+     "name": "Snap Attack",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "If the Defending Pokémon has any Energy cards attached to it, this attack's base damage is 20 instead of 60."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-57",
+   "localId": "57",
+   "name": "Aron",
+   "rarity": "Common",
+   "illustrator": "Takao Unno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/57",
+   "hp": 50,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Basic",
+   "description": "It usually lives deep in mountains. However, hunger may drive it to eat railroad tracks and cars.",
+   "retreat": 1,
+   "dexId": [
+    304
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Iron Head",
+     "cost": [
+      "Metal"
+     ],
+     "damage": "10x",
+     "effect": "Flip a coin until you get tails. This attack does 10 damage times the number of heads."
+    },
+    {
+     "name": "Ram",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "+10"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-58",
+   "localId": "58",
+   "name": "Carvanha",
+   "rarity": "Common",
+   "illustrator": "Midori Harada",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/58",
+   "hp": 40,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Basic",
+   "description": "They swarm any foes that invades their territory. Their sharp fangs can tear out boat hulls.",
+   "retreat": 1,
+   "dexId": [
+    318
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Scary Face",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, the Defending Pokémon can't attack or retreat during your opponent's next turn."
+    },
+    {
+     "name": "Whirlpool",
+     "cost": [
+      "Darkness"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, discard an Energy attached to the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+10"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-59",
+   "localId": "59",
+   "name": "Eevee",
+   "rarity": "Common",
+   "illustrator": "Naoyo Kimura",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/59",
+   "hp": 50,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "Because its genetic makeup is irregular, it quickly changes its form due to a variety of causes.",
+   "retreat": 1,
+   "dexId": [
+    133
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Signs of Evolution",
+     "effect": "Search your deck for up to 2 cards that evolve from Eevee, show them to your opponent, and put them into your hand. Shuffle your deck afterward."
+    },
+    {
+     "name": "Bounce",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Switch Eevee with 1 of your Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "pl2-60",
+   "localId": "60",
+   "name": "Flareon E4",
+   "rarity": "Common",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/60",
+   "hp": 70,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    136
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "cracked-ice"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tackle",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Fire Tail Slap",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Flip a coin. If tails, discard a Fire Energy attached to Flareon ."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-61",
+   "localId": "61",
+   "name": "Forretress G",
+   "rarity": "Common",
+   "illustrator": "Ryota Saito",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/61",
+   "hp": 80,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "suffix": "SP",
+   "dexId": [
+    205
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Shell Scatter",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "This attack does 10 damage to each of your opponent's Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.) Forretress G can't use Shell Scatter during your next turn."
+    },
+    {
+     "name": "Bomb Risk",
+     "cost": [
+      "Metal",
+      "Metal",
+      "Colorless"
+     ],
+     "damage": "80",
+     "effect": "Does 10 damage to each Benched Pokémon (both yours and your opponent's). (Don't apply Weakness and Resistance for Benched Pokémon.) Flip a coin. If tails, Forretress G does 80 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-62",
+   "localId": "62",
+   "name": "Gliscor E4",
+   "rarity": "Common",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/62",
+   "hp": 80,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    472
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "cracked-ice"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Irongrip",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Loaded Needle",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 30 more damage. If tails, the Defending Pokémon is now Poisoned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-63",
+   "localId": "63",
+   "name": "Growlithe",
+   "rarity": "Common",
+   "illustrator": "Naoyo Kimura",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/63",
+   "hp": 70,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "A Pokémon with a loyal nature. It will remain motionless until it is given an order by its Trainer.",
+   "retreat": 2,
+   "dexId": [
+    58
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Stoke",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for a Fire Energy card and attach it to Growlithe. Shuffle your deck afterward."
+    },
+    {
+     "name": "Take Down",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Growlithe does 10 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-64",
+   "localId": "64",
+   "name": "Hippopotas",
+   "rarity": "Common",
+   "illustrator": "kawayoo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/64",
+   "hp": 70,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "description": "It shuts its nostrils tight then travels through sand as if walking. They form colonies of around ten.",
+   "retreat": 2,
+   "dexId": [
+    449
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Push Down",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Your opponent switches the Defending Pokémon with 1 of his or her Benched Pokémon."
+    },
+    {
+     "name": "Endeavor",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "Flip 2 coins. This attack does 30 damage plus 20 more damage for each heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "+10"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-65",
+   "localId": "65",
+   "name": "Houndoom E4",
+   "rarity": "Common",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/65",
+   "hp": 80,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    229
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Corner",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "The Defending Pokémon can't retreat during your opponent's next turn."
+    },
+    {
+     "name": "Fire Fang",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "The Defending Pokémon is now Burned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-66",
+   "localId": "66",
+   "name": "Kakuna",
+   "rarity": "Common",
+   "illustrator": "Midori Harada",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/66",
+   "hp": 80,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Weedle",
+   "description": "While awaiting evolution, it hides from predators under leaves and in nooks of branches.",
+   "retreat": 2,
+   "dexId": [
+    14
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "stephen-silvestro"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Dangerous Evolution",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "The Defending Pokémon is now Poisoned. Flip a coin. If heads, search your deck for an Evolution card that evolves from Kakuna and put it onto Kakuna. (This counts as evolving Kakuna.) Shuffle your deck afterward."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Exoskeleton",
+     "effect": "Any damage done to Kakuna by attacks is reduced by 20 (after applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-67",
+   "localId": "67",
+   "name": "Kecleon",
+   "rarity": "Common",
+   "illustrator": "Midori Harada",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/67",
+   "hp": 70,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "It can freely change its body's color. The zigzag pattern on its belly doesn't change, however.",
+   "retreat": 1,
+   "dexId": [
+    352
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Triple Smash",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip 3 coins. This attack does 10 damage plus 20 more damage for each heads."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Colorful Body",
+     "effect": "Kecleon's type is Grass Fire Water Lightning Psychic Fighting Darkness Metal Colorless."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-68",
+   "localId": "68",
+   "name": "Koffing",
+   "rarity": "Common",
+   "illustrator": "Yukiko Baba",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/68",
+   "hp": 60,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "description": "Lighter-than-air gases in its body keep it aloft. The gases not only smell, they are also explosive.",
+   "retreat": 2,
+   "dexId": [
+    109
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Offensive Gas",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Confused and Poisoned."
+    },
+    {
+     "name": "Gas Bomb",
+     "cost": [
+      "Psychic"
+     ],
+     "damage": "30",
+     "effect": "Koffing does 30 damage to itself, and don't apply Weakness and Resistance to this damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "pl2-69",
+   "localId": "69",
+   "name": "Munchlax",
+   "rarity": "Common",
+   "illustrator": "Tomokazu Komiya",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/69",
+   "hp": 70,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "In its desperation to gulp down food, it forgets about the food it has hidden under its fur.",
+   "retreat": 2,
+   "dexId": [
+    446
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "chicago-2009"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rest",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Remove all Special Conditions and 6 damage counters from Munchlax. Munchlax is now Asleep."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Baby Evolution",
+     "effect": "Once during your turn (before your attack), you may put Snorlax from your hand onto Munchlax (this counts as evolving Munchlax) and remove all damage counters from Munchlax."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "pl2-70",
+   "localId": "70",
+   "name": "Munchlax",
+   "rarity": "Common",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/70",
+   "hp": 70,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "It hides food under its long body hair. However, it forgets it has hidden the food.",
+   "retreat": 2,
+   "dexId": [
+    446
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Errand-Running",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Search your deck for a Trainer card, show it to your opponent, and put it into your hand. Shuffle your deck afterward."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Baby Evolution",
+     "effect": "Once during your turn (before your attack), you may put Snorlax from your hand onto Munchlax (this counts as evolving Munchlax) and remove all damage counters from Munchlax."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-71",
+   "localId": "71",
+   "name": "Nidoran ♀",
+   "rarity": "Common",
+   "illustrator": "Miki Tanaka",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/71",
+   "hp": 60,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "description": "While it does not prefer to fight, even one drop of the poison it secretes from barbs can be fatal.",
+   "retreat": 1,
+   "dexId": [
+    29
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "david-cohen"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "jason-martinez"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Scratch",
+     "cost": [
+      "Psychic"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Offer Help",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Search your deck for a Supporter card, show it to your opponent, and put it into your hand. Shuffle your deck afterward."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "pl2-72",
+   "localId": "72",
+   "name": "Nidoran ♂",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/72",
+   "hp": 50,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "description": "It scans its surroundings by raising its ears out of the grass. Its toxic horn is for protection.",
+   "retreat": 1,
+   "dexId": [
+    32
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Leer",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, the Defending Pokémon can't attack during your opponent's next turn."
+    },
+    {
+     "name": "Horn Hazard",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "pl2-73",
+   "localId": "73",
+   "name": "Nidorina",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/73",
+   "hp": 80,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Nidoran♀",
+   "description": "When it senses danger, it raises all the barbs on its body. These barbs grow slower than NIDORINO's.",
+   "retreat": 2,
+   "dexId": [
+    30
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "jason-martinez"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Jump Tackle",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Nidorina does 10 damage to itself, and don't apply Weakness and Resistance to this damage."
+    },
+    {
+     "name": "Stress Poison",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40+",
+     "effect": "If Nidorina has any damage counters on it, this attack does 40 damage plus 20 more damage and the Defending Pokémon is now Poisoned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-74",
+   "localId": "74",
+   "name": "Nidorino",
+   "rarity": "Common",
+   "illustrator": "kawayoo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/74",
+   "hp": 80,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Nidoran♂",
+   "description": "It has a violent disposition and stabs foes with its horn, which oozes poison upon impact.",
+   "retreat": 1,
+   "dexId": [
+    33
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Toxic",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "effect": "The Defending Pokémon is now Poisoned. Put 2 damage counters instead of 1 on the Defending Pokémon between turns."
+    },
+    {
+     "name": "Frustration",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon that doesn't have any damage counters on it. This attack does 40 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-75",
+   "localId": "75",
+   "name": "Nuzleaf",
+   "rarity": "Common",
+   "illustrator": "Yukiko Baba",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/75",
+   "hp": 80,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Seedot",
+   "description": "The sound of its grass flute makes its listeners uneasy. It lives deep in forests.",
+   "retreat": 1,
+   "dexId": [
+    274
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Blind",
+     "cost": [
+      "Darkness"
+     ],
+     "damage": "10",
+     "effect": "If the Defending Pokémon tries to attack during your opponent's next turn, your opponent flips a coin. If tails, that attack does nothing."
+    },
+    {
+     "name": "Feint Attack",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon. This attack does 30 damage to that Pokémon. This attack's damage isn't affected by Weakness, Resistance, Poké-Powers, Poké-Bodies, or any other effects on that Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Psychic",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-76",
+   "localId": "76",
+   "name": "Quagsire GL",
+   "rarity": "Common",
+   "illustrator": "Midori Harada",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/76",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    195
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Punch and Run",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "You may switch Quagsire GL with 1 of your Benched Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Submerge",
+     "effect": "As long as Quagsire GL is on your Bench, prevent all damage done to Quagsire GL by attacks (both yours and your opponent's)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-77",
+   "localId": "77",
+   "name": "Sealeo",
+   "rarity": "Common",
+   "illustrator": "Saya Tsuruta",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/77",
+   "hp": 80,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Spheal",
+   "description": "It habitually spins things on its nose. By doing so, it learns textures and odors.",
+   "retreat": 2,
+   "dexId": [
+    364
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Find Ice",
+     "effect": "Search your deck for up to 2 Water Energy cards, show them to your opponent, and put them into your hand. Shuffle your deck afterward."
+    },
+    {
+     "name": "Sheer Cold",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, the Defending Pokémon can't attack during your opponent's next turn."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-78",
+   "localId": "78",
+   "name": "Seedot",
+   "rarity": "Common",
+   "illustrator": "Miki Tanaka",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/78",
+   "hp": 40,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "description": "When it dangles from a tree branch, it looks just like an acorn. It enjoys scaring other Pokémon.",
+   "retreat": 1,
+   "dexId": [
+    273
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Harden",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "During your opponent's next turn, if Seedot would be damaged by an attack, prevent that attack's damage done to Seedot if that damage is 40 or less."
+    },
+    {
+     "name": "Astonish",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Choose 1 card from your opponent's hand without looking. Look at that card you chose, then have your opponent shuffle that card into his or her deck."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "+10"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Water",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-79",
+   "localId": "79",
+   "name": "Shellos East Sea",
+   "rarity": "Common",
+   "illustrator": "Tomokazu Komiya",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/79",
+   "hp": 60,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "Beware of pushing strongly on its squishy body, as it makes a mysterious purple fluid ooze out.",
+   "retreat": 1,
+   "dexId": [
+    422
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ripple",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, put 1 damage counter on each of your opponent's Pokémon."
+    },
+    {
+     "name": "Brine",
+     "cost": [
+      "Water"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon that has any damage counters on it. This attack does 20 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "pl2-80",
+   "localId": "80",
+   "name": "Shellos West Sea",
+   "rarity": "Common",
+   "illustrator": "Miki Tanaka",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/80",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "Beware of pushing strongly on its squishy body, as it makes a mysterious purple fluid ooze out.",
+   "retreat": 2,
+   "dexId": [
+    422
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Healing Sea",
+     "effect": "Flip 2 coins. Choose 1 of your Pokémon. For each heads, remove 1 damage counter from that Pokémon."
+    },
+    {
+     "name": "Mud Shot",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-81",
+   "localId": "81",
+   "name": "Snorlax",
+   "rarity": "Common",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/81",
+   "hp": 100,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 4,
+   "dexId": [
+    143
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Toss and Turn",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "If Snorlax is Asleep, this attack does 20 damage plus 30 more damage. (This attack can be used even if Snorlax is Asleep.)"
+    },
+    {
+     "name": "Heavy Press",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40+",
+     "effect": "Flip a coin. If heads, this attack does 40 damage plus 40 more damage. If tails, Snorlax is now Asleep."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Bad Sleeping Habits",
+     "effect": "As long as Snorlax is Asleep, your opponent's Active Pokémon can't retreat."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-82",
+   "localId": "82",
+   "name": "Spheal",
+   "rarity": "Common",
+   "illustrator": "Tomokazu Komiya",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/82",
+   "hp": 60,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It rolls across ice floes to reach shore because its body is poorly shaped for swimming.",
+   "retreat": 2,
+   "dexId": [
+    363
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Powder Snow",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10",
+     "effect": "The Defending Pokémon is now Asleep."
+    },
+    {
+     "name": "Ice Ball",
+     "cost": [
+      "Water",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "pl2-83",
+   "localId": "83",
+   "name": "Staryu",
+   "rarity": "Common",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/83",
+   "hp": 50,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "If its body is torn, it can grow back if the red core remains. The core flashes at midnight.",
+   "retreat": 1,
+   "dexId": [
+    120
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Cosmic Draw",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "If your opponent has any Evolved Pokémon in play, draw 3 cards."
+    },
+    {
+     "name": "Swift",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10",
+     "effect": "This attack's damage isn't affected by Weakness, Resistance, Poké-Powers, Poké-Bodies, or any other effects on the Defending Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "pl2-84",
+   "localId": "84",
+   "name": "Trapinch",
+   "rarity": "Common",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "description": "It makes a conical pit in desert sand and lies in wait at the bottom for prey to come tumbling down.",
+   "retreat": 1,
+   "dexId": [
+    328
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Grind",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10x",
+     "effect": "Does 10 damage times the amount of Energy attached to Trapinch."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Gather Sand",
+     "effect": "Once during your turn (before your attack), if Trapinch is your Active Pokémon, you may search your discard pile for a basic Fighting card and attach it to Trapinch."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "+10"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-85",
+   "localId": "85",
+   "name": "Turtwig GL",
+   "rarity": "Common",
+   "illustrator": "Kanako Eo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/85",
+   "hp": 90,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "dexId": [
+    387
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Giga Drain",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "After your attack, remove from Turtwig GL the number of damage counters equal to the damage you did to the Defending Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Overgrow",
+     "effect": "As long as Turtwig GL's remaining HP is 60 or less, each of Turtwig GL's attacks does 30 more damage to the Defending Pokémon (before applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Water",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-86",
+   "localId": "86",
+   "name": "Weedle",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/86",
+   "hp": 60,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "description": "It eats its weight in leaves every day. It fends off attackers with the needle on its head.",
+   "retreat": 1,
+   "dexId": [
+    13
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rescue String",
+     "effect": "Search your discard pile for up to 5 Pokémon, show them to your opponent, and shuffle them into your deck."
+    },
+    {
+     "name": "Needling Sting",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 10 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "pl2-87",
+   "localId": "87",
+   "name": "Weezing",
+   "rarity": "Common",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/87",
+   "hp": 80,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Koffing",
+   "retreat": 2,
+   "dexId": [
+    110
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Damage Breakdown",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Count the number of damage counters on Weezing. Put that many damage counters on the Defending Pokémon and Weezing is now Confused."
+    },
+    {
+     "name": "Smog",
+     "cost": [
+      "Psychic"
+     ],
+     "damage": "20",
+     "effect": "The Defending Pokémon is now Poisoned."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Camouflage Gas",
+     "effect": "If Weezing is Confused and is Knocked Out, your opponent can't take a Prize card."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-88",
+   "localId": "88",
+   "name": "Aaron's Collection",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/88",
+   "trainerType": "Supporter",
+   "effect": "You can play only one Supporter card each turn. When you play this card, put it next to your Active Pokémon. When your turn ends, discard this card. Search your discard pile for up to 2 in any combination of Pokémon SP and basic Energy cards, show them to your opponent, and put them into your hand.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "tsubasa-nakamura"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "yuta-komatsuda"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pl2-89",
+   "localId": "89",
+   "name": "Bebe's Search",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/89",
+   "trainerType": "Supporter",
+   "effect": "You can play only one Supporter card each turn. When you play this card, put it next to your Active Pokémon. When your turn ends, discard this card. Choose a card from your hand and put it on top of your deck. Search your deck for a Pokémon, show it to your opponent, and put it into your hand. Shuffle your deck afterward. (If this is the only card in your hand, you can't play this card.)",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "pl2-90",
+   "localId": "90",
+   "name": "Bertha's Warmth",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/90",
+   "trainerType": "Supporter",
+   "effect": "You can play only one Supporter card each turn. When you play this card, put it next to your Active Pokémon. When your turn ends, discard this card. Remove 5 damage counters from 1 of your Pokémon SP.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "pl2-91",
+   "localId": "91",
+   "name": "Flint's Willpower",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/91",
+   "trainerType": "Supporter",
+   "effect": "You can play only one Supporter card each turn. When you play this card, put it next to your Active Pokémon. When your turn ends, discard this card. Attach a basic Energy card from your hand to 1 of your Pokémon SP.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "pl2-92",
+   "localId": "92",
+   "name": "Lucian's Assignment",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/92",
+   "trainerType": "Supporter",
+   "effect": "You can play only one Supporter card each turn. When you play this card, put it next to your Active Pokémon. When your turn ends, discard this card. Move as many Energy cards attached to 1 of your Pokémon as you like to another of your Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "league"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "michael-pramawat"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pl2-93",
+   "localId": "93",
+   "name": "Pokémon Contest Hall",
+   "rarity": "Uncommon",
+   "illustrator": "Makoto Imai",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/93",
+   "trainerType": "Stadium",
+   "effect": "This card stays in play when you play it. Discard this card if another Stadium card comes into play. If another card with the same name is in play, you can't play this card. Once during each player's turn, if that player's Bench isn't full, the player may flip a coin. If heads, that player searches his or her deck for a Basic Pokémon and puts it onto his or her Bench. If the player does, he or she may search his or her deck for a Pokémon Tool card and attach it to that Pokémon. If that player searched his or her deck, the player shuffles his or her deck afterward.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "pl2-94",
+   "localId": "94",
+   "name": "Sunyshore City Gym",
+   "rarity": "Uncommon",
+   "illustrator": "Yusuke Ishikawa",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/94",
+   "trainerType": "Stadium",
+   "effect": "This card stays in play when you play it. Discard this card if another Stadium card comes into play. If another card with the same name is in play, you can't play this card. Any damage done by attacks from Lightning Pokémon (both yours and your opponent's) to the Defending Pokémon isn't affected by Resistance. Each Lightning Pokémon in play (both yours and your opponent's) has no Weakness.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "pl2-95",
+   "localId": "95",
+   "name": "Team Galactic's Invention G-107 Technical Machine G",
+   "rarity": "Uncommon",
+   "illustrator": "Makoto Imai",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/95",
+   "suffix": "SP",
+   "trainerType": "Technical Machine",
+   "effect": "Attach this card to 1 of your Pokémon SP in play. That Pokémon may use this card's attack instead of its own. When the Pokémon this card is attached to is no longer Pokémon SP, discard this card.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Damage Porter",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon. This attack does 10 damage times the number of damage counters on the Pokémon this card is attached to to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ]
+  },
+  {
+   "id": "pl2-96",
+   "localId": "96",
+   "name": "Team Galactic's Invention G-109 SP Radar",
+   "rarity": "Uncommon",
+   "illustrator": "Kent Kanetsuna",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/96",
+   "trainerType": "Item",
+   "effect": "Choose a card from your hand and put it on top of your deck. Search your deck for a Pokémon SP, show it to your opponent, and put it into your hand. Shuffle your deck afterward. (If this is the only card in your hand, you can't play this card.)",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "league"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "tsubasa-nakamura"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "stephen-silvestro"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "yuta-komatsuda"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pl2-97",
+   "localId": "97",
+   "name": "Underground Expedition",
+   "rarity": "Uncommon",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/97",
+   "trainerType": "Supporter",
+   "effect": "You can play only one Supporter card each turn. When you play this card, put it next to your Active Pokémon. When your turn ends, discard this card. Look at the 4 cards from the bottom of your deck. Choose any 2 cards there and put them into your hand. Put the remaining cards back on the bottom of your deck in any order.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "league"
+    }
+   ]
+  },
+  {
+   "id": "pl2-98",
+   "localId": "98",
+   "name": "Volkner's Philosophy",
+   "rarity": "Uncommon",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/98",
+   "trainerType": "Supporter",
+   "effect": "You can play only one Supporter card each turn. When you play this card, put it next to your Active Pokémon. When your turn ends, discard this card. You may discard a card from your hand. Then, draw cards until you have 6 cards in your hand. (If you can't draw any cards, you can't play this card.)",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "league"
+    }
+   ]
+  },
+  {
+   "id": "pl2-99",
+   "localId": "99",
+   "name": "Darkness Energy",
+   "rarity": "Uncommon",
+   "illustrator": "Takumi Akabane",
+   "category": "Energy",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/99",
+   "types": [
+    "Darkness"
+   ],
+   "energyType": "Special",
+   "effect": "If the Pokémon Darkness Energy is attached to attacks, the attack does 10 more damage to the Active Pokémon (before applying Weakness and Resistance). Ignore this effect if the Pokémon that Darkness Energy is attached to isn't Darkness. Darkness Energy provides Darkness Energy. (Doesn't count as a basic Energy card.)",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "pl2-100",
+   "localId": "100",
+   "name": "Metal Energy",
+   "rarity": "Uncommon",
+   "illustrator": "Takumi Akabane",
+   "category": "Energy",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/100",
+   "types": [
+    "Metal"
+   ],
+   "energyType": "Special",
+   "effect": "Damage done by attacks to the Pokémon that Metal Energy is attached to is reduced by 10 (after applying Weakness and Resistance). Ignore this effect if the Pokémon that Metal Energy is attached to isn't Metal. Metal Energy provides Metal Energy. (Doesn't count as a basic Energy card.)",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "pl2-101",
+   "localId": "101",
+   "name": "SP Energy",
+   "rarity": "Uncommon",
+   "illustrator": "Kent Kanetsuna",
+   "category": "Energy",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/101",
+   "energyType": "Special",
+   "effect": "SP Energy provides Colorless Energy. If the Pokémon SP Energy is attached to is a Pokémon SP, SP Energy provides every type of Energy buy provides only 1 Energy at a time. (Doesn't count as a basic Energy card.)",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "tsubasa-nakamura"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pl2-102",
+   "localId": "102",
+   "name": "Upper Energy",
+   "rarity": "Uncommon",
+   "illustrator": "Ryo Ueda",
+   "category": "Energy",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/102",
+   "energyType": "Special",
+   "effect": "Upper Energy provides Colorless Energy. If you have more Prize cards left than your opponent and this card is attached to a Pokémon (excluding Pokémon LV.X), Upper Energy provides ColorlessColorless.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard",
+     "foil": "league"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "david-cohen"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pl2-103",
+   "localId": "103",
+   "name": "Alakazam E4 LV.X",
+   "rarity": "Rare Holo LV.X",
+   "illustrator": "Ryo Ueda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/103",
+   "hp": 100,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "LEVEL-UP",
+   "retreat": 2,
+   "dexId": [
+    65
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Mind Shock",
+     "cost": [
+      "Psychic",
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "This attack's damage isn't affected by Weakness or Resistance."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Damage Switch",
+     "effect": "As often as you like during your turn (before your attack), you may move 1 damage counter from 1 of your Pokémon SP to another of your Pokémon SP. This power can't be used if Alakazam E4 is affected by a Special Condition."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-104",
+   "localId": "104",
+   "name": "Floatzel GL LV.X",
+   "rarity": "Rare Holo LV.X",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/104",
+   "hp": 100,
+   "types": [
+    "Water"
+   ],
+   "stage": "LEVEL-UP",
+   "retreat": 0,
+   "dexId": [
+    419
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Energy Cyclone",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "damage": "20x",
+     "effect": "Choose as many Energy cards from your hand as you like and show them to your opponent. This attack does 20 damage times the number of Energy cards you chose. Put those Energy cards on top of your deck. Shuffle your deck afterward."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Water Rescue",
+     "effect": "Whenever any of your Water Pokémon (excluding any Floatzel GL) is Knocked Out by damage from your opponent's attack, you may put that Pokémon and all cards that were attached to it from your discard pile into your hand."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-105",
+   "localId": "105",
+   "name": "Flygon LV.X",
+   "rarity": "Rare Holo LV.X",
+   "illustrator": "Shizurow",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/105",
+   "hp": 140,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "LEVEL-UP",
+   "retreat": 0,
+   "dexId": [
+    330
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "david-cohen"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Extreme Attack",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon LV.X. This attack does 150 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon)."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-BODY",
+     "name": "Wind Erosion",
+     "effect": "As long as Flygon is your Active Pokémon, discard the top card from your opponent's deck between turns."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Colorless",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-106",
+   "localId": "106",
+   "name": "Gallade E4 LV.X",
+   "rarity": "Rare Holo LV.X",
+   "illustrator": "Ryo Ueda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/106",
+   "hp": 100,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "LEVEL-UP",
+   "retreat": 1,
+   "dexId": [
+    475
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Aimed Cut",
+     "cost": [
+      "Psychic",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40+",
+     "effect": "Does 40 damage plus 10 more damage for each damage counter on the Defending Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Blade Storm",
+     "effect": "Once during your turn (before your attack), when you put Gallade E4 LV.X from your hand onto your Active Gallade E4, you may put 1 damage counter on each of your opponent's Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-107",
+   "localId": "107",
+   "name": "Hippowdon LV.X",
+   "rarity": "Rare Holo LV.X",
+   "illustrator": "Shizurow",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/107",
+   "hp": 130,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "LEVEL-UP",
+   "retreat": 4,
+   "dexId": [
+    450
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Double Shoot",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Discard 2 Fighting Energy attached to Hippowdon and choose 2 of your opponent's Benched Pokémon. This attack does 40 damage to each of them. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Sand Reset",
+     "effect": "Once during a game on your turn (before your attack), each player shuffles all cards in play (excluding Pokémon and Supporter cards) into his or her deck. You can't use more than 1 Sand Reset Poké-Power each game."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-108",
+   "localId": "108",
+   "name": "Infernape E4 LV.X",
+   "rarity": "Rare Holo LV.X",
+   "illustrator": "Ryo Ueda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/108",
+   "hp": 110,
+   "types": [
+    "Fire"
+   ],
+   "stage": "LEVEL-UP",
+   "retreat": 0,
+   "dexId": [
+    392
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fire Spin",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "100",
+     "effect": "Discard 2 Energy attached to Infernape E4."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Intimidating Roar",
+     "effect": "Once during your turn (before your attack), you may have your opponent switch his or her Active Pokémon with 1 of his or her Benched Pokémon. This power can't be used if Infernape E4 is affected by a Special Condition."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-109",
+   "localId": "109",
+   "name": "Luxray GL LV.X",
+   "rarity": "Rare Holo LV.X",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/109",
+   "hp": 110,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "LEVEL-UP",
+   "retreat": 0,
+   "dexId": [
+    405
+   ],
+   "variants": {
+    "normal": true,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "tsubasa-nakamura"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "david-cohen"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "stephen-silvestro"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "mychael-bryan"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "yuta-komatsuda"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flash Impact",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Does 30 damage to 1 of your Pokémon, and don't apply Weakness and Resistance to this damage."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Bright Look",
+     "effect": "Once during your turn (before your attack), when you put Luxray GL LV.X from your hand onto your Active Luxray GL, you may switch the Defending Pokémon with 1 of your opponent's Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-110",
+   "localId": "110",
+   "name": "Mismagius GL LV.X",
+   "rarity": "Rare Holo LV.X",
+   "illustrator": "Kent Kanetsuna",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/110",
+   "hp": 100,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "LEVEL-UP",
+   "retreat": 1,
+   "dexId": [
+    429
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Darkness Magic",
+     "cost": [
+      "Psychic",
+      "Psychic",
+      "Colorless"
+     ],
+     "effect": "Count the number of cards in your hand. Put that many damage counters on the Defending Pokémon. You can't put more than 8 damage counters in this way."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Magical Return",
+     "effect": "As often as you like during your turn (before your attack), you may return a Pokémon Tool or Technical Machine card attached to your Pokémon to your hand. This power can't be used if Mismagius GL is affected by a Special Condition."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "x2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Colorless",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "pl2-111",
+   "localId": "111",
+   "name": "Snorlax LV.X",
+   "rarity": "Rare Holo LV.X",
+   "illustrator": "Shizurow",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/111",
+   "hp": 130,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "LEVEL-UP",
+   "retreat": 4,
+   "dexId": [
+    143
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Exercise",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "80",
+     "effect": "You may discard as many Energy cards as you like from your hand. If you do, remove that many damage counters from Snorlax."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Poke-POWER",
+     "name": "Big Appetite",
+     "effect": "Once during your turn (before your attack), if Snorlax is your Active Pokémon, you may draw cards until you have 6 cards in your hand. If you do, Snorlax is now Asleep. This power can't be used if Snorlax is affected by a Special Condition."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-112",
+   "localId": "112",
+   "name": "Pikachu",
+   "rarity": "Rare",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/112",
+   "hp": 40,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "It has small electric sacs on both its cheeks. If threatened, it looses electric charges from the sacs.",
+   "retreat": 1,
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Gnaw",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Thunder Jolt",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin. If tails, Pikachu does 10 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ]
+  },
+  {
+   "id": "pl2-113",
+   "localId": "113",
+   "name": "Flying Pikachu",
+   "rarity": "Rare",
+   "illustrator": "Toshinao Aoki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/113",
+   "hp": 40,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "By learning how to fly, Pikachu overcame its weakness to Fighting Pokémon.",
+   "retreat": 1,
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Thundershock",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    },
+    {
+     "name": "Fly",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin. If tails, this attack does nothing. If heads, prevent all effects of an attack, including damage, done to Flying Pikachu during your opponent's next turn."
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "pl2-114",
+   "localId": "114",
+   "name": "Surfing Pikachu",
+   "rarity": "Rare",
+   "illustrator": "Toshinao Aoki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/pl/pl2/114",
+   "hp": 50,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "One summer, a group of Pikachu was found riding the waves at the local beach.",
+   "retreat": 1,
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Surf",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "damage": "30"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "x2"
+    }
+   ]
+  }
+ ]
+}

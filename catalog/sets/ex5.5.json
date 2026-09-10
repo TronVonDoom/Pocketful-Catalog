@@ -1,0 +1,305 @@
+{
+ "id": "ex5.5",
+ "name": "Poké Card Creator Pack",
+ "serie": {
+  "id": "ex",
+  "name": "EX"
+ },
+ "releaseDate": "2004-07-01",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 0,
+  "normal": 5,
+  "official": 5,
+  "reverse": 0,
+  "total": 5
+ },
+ "logo": null,
+ "symbol": null,
+ "abbreviation": null,
+ "legal": {
+  "expanded": false,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "ex5.5-1",
+   "localId": "1",
+   "name": "Treecko",
+   "rarity": "None",
+   "illustrator": "Mark Kraus",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    252
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tackle",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Poison Claws",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "The Defending Pokémon is now Poisoned. "
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Water",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "ex5.5-2",
+   "localId": "2",
+   "name": "Wurmple",
+   "rarity": "None",
+   "illustrator": "Katie Gross",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    265
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Gooey Thread",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "The Defending Pokémon can't retreat until the end of your opponent's next turn."
+    },
+    {
+     "name": "Poison Claws",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire"
+    }
+   ]
+  },
+  {
+   "id": "ex5.5-3",
+   "localId": "3",
+   "name": "Torchic",
+   "rarity": "None",
+   "illustrator": "May Do",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    255
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Super Singe",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "10",
+     "effect": "The Defending Pokémon is now Burned."
+    },
+    {
+     "name": "Flamethrower",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Discard a Fire Energy card attached to Torchic."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water"
+    }
+   ]
+  },
+  {
+   "id": "ex5.5-4",
+   "localId": "4",
+   "name": "Mudkip",
+   "rarity": "None",
+   "illustrator": "Rowan Laidlaw",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    258
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tail Rap",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10×",
+     "effect": "Flip 2 coins. This attack does 10 damage times the number of heads."
+    },
+    {
+     "name": "Hypno Splash",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "The Defending Pokémon is now Asleep."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning"
+    }
+   ]
+  },
+  {
+   "id": "ex5.5-5",
+   "localId": "5",
+   "name": "Pikachu",
+   "rarity": "None",
+   "illustrator": "Sylvia Forrest",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Thundershock",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    },
+    {
+     "name": "Hypno Splash",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "60",
+     "effect": "Discard all Lightning Energy cards attached to Pikachu or this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting"
+    }
+   ]
+  }
+ ]
+}

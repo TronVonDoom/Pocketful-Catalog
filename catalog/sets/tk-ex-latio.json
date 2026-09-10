@@ -1,0 +1,470 @@
+{
+ "id": "tk-ex-latio",
+ "name": "EX trainer Kit (Latios)",
+ "serie": {
+  "id": "tk",
+  "name": "Trainer kits"
+ },
+ "releaseDate": "2004-07-01",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 1,
+  "normal": 9,
+  "official": 10,
+  "reverse": 0,
+  "total": 10
+ },
+ "logo": null,
+ "symbol": "https://assets.tcgdex.net/univ/tk/tk-ex-latio/symbol",
+ "abbreviation": {
+  "official": "TK1O"
+ },
+ "legal": {
+  "expanded": false,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "tk-ex-latio-1",
+   "localId": "1",
+   "name": "Electrike",
+   "rarity": "None",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    309
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Headbutt",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-latio-2",
+   "localId": "2",
+   "name": "Latios",
+   "rarity": "None",
+   "illustrator": "Kyoko Koizumi",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    381
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Gather Energy",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, search your deck for a basic Energy card and attach it to 1 of your Pokémon. Shuffle your deck afterward."
+    },
+    {
+     "name": "Dragon Claw",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "40"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-latio-3",
+   "localId": "3",
+   "name": "Linoone",
+   "rarity": "None",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Zigzagoon",
+   "retreat": 1,
+   "dexId": [
+    264
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Seek Out",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for up to 2 cards and put them into your hand. Shuffle your deck afterward."
+    },
+    {
+     "name": "Continuous Headbutt",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40×",
+     "effect": "Flip a coin until you get tails. This attack does 40 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-latio-4",
+   "localId": "4",
+   "name": "Magnemite",
+   "rarity": "None",
+   "illustrator": "Tomokazu Komiya",
+   "category": "Pokemon",
+   "hp": 40,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    81
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rollout",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Hook",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-latio-5",
+   "localId": "5",
+   "name": "Magneton",
+   "rarity": "None",
+   "illustrator": "Kyoko Umemoto",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Magnemite",
+   "retreat": 1,
+   "dexId": [
+    82
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ram",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Triple Smash",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Flip 3 coins. This attack does 20 damage plus 20 more damage for each heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-latio-6",
+   "localId": "6",
+   "name": "Pikachu",
+   "rarity": "None",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Scratch",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Pika Bolt",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-latio-7",
+   "localId": "7",
+   "name": "Zigzagoon",
+   "rarity": "None",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "hp": 40,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    263
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fury Swipes",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10×",
+     "effect": "Flip 3 coins. This attack does 10 damage times the number of heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-latio-8",
+   "localId": "8",
+   "name": "Potion",
+   "rarity": "None",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "effect": "Remove 2 damage counters from 1 of your Pokémon (remove 1 damage counter if that Pokémon has only 1).",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-latio-9",
+   "localId": "9",
+   "name": "Energy Search",
+   "rarity": "None",
+   "illustrator": "Kai Ishikawa",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "effect": "Search your deck for a basic Energy card, show it to your opponent, and put it into your hand. Shuffle your deck afterward",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-latio-10",
+   "localId": "10",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "stage": "Basic",
+   "retreat": 0,
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1603 @@
+{
+ "id": "mfb",
+ "name": "My First Battle",
+ "serie": {
+  "id": "sv",
+  "name": "Scarlet & Violet"
+ },
+ "releaseDate": "2023-09-29",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 0,
+  "normal": 48,
+  "official": 48,
+  "reverse": 0,
+  "total": 48
+ },
+ "logo": null,
+ "symbol": null,
+ "abbreviation": {
+  "official": "MFB"
+ },
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "mfb-1",
+   "localId": "1",
+   "name": "Bulbasaur",
+   "rarity": "None",
+   "illustrator": "Saya Tsuruta",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    1
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "bulbasaur"
+     ]
+    },
+    {
+     "type": "normal",
+     "subtype": "blue-border",
+     "size": "standard",
+     "stamp": [
+      "bulbasaur",
+      "pokeball"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tackle",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Vine Whip",
+     "cost": [
+      "Grass",
+      "Grass"
+     ],
+     "damage": "30"
+    }
+   ]
+  },
+  {
+   "id": "mfb-2",
+   "localId": "2",
+   "name": "Ivysaur",
+   "rarity": "None",
+   "illustrator": "Narumi Sato",
+   "category": "Pokemon",
+   "hp": 100,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "dexId": [
+    2
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "bulbasaur"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Vine Whip",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Razor Leaf",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Grass"
+     ],
+     "damage": "60"
+    }
+   ]
+  },
+  {
+   "id": "mfb-3",
+   "localId": "3",
+   "name": "Oddish",
+   "rarity": "None",
+   "illustrator": "Gemi",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    43
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "bulbasaur"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Absorb",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10",
+     "effect": "Heal 10 damage from this Pokémon."
+    }
+   ]
+  },
+  {
+   "id": "mfb-4",
+   "localId": "4",
+   "name": "Gloom",
+   "rarity": "None",
+   "illustrator": "Natsumi Yashida",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "dexId": [
+    44
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "bulbasaur"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Mega Drain",
+     "cost": [
+      "Grass",
+      "Grass"
+     ],
+     "damage": "60",
+     "effect": "Heal 20 damage from this Pokémon."
+    }
+   ]
+  },
+  {
+   "id": "mfb-5",
+   "localId": "5",
+   "name": "Exeggcute",
+   "rarity": "None",
+   "illustrator": "Jerky",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    102
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "bulbasaur"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rollout",
+     "cost": [
+      "Grass",
+      "Grass"
+     ],
+     "damage": "40"
+    }
+   ]
+  },
+  {
+   "id": "mfb-6",
+   "localId": "6",
+   "name": "Exeggutor",
+   "rarity": "None",
+   "illustrator": "nagimiso",
+   "category": "Pokemon",
+   "hp": 120,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Exeggcute",
+   "dexId": [
+    103
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "bulbasaur"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Seed Bomb",
+     "cost": [
+      "Grass",
+      "Grass"
+     ],
+     "damage": "40"
+    },
+    {
+     "name": "Barrage Impact",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Grass"
+     ],
+     "damage": "80"
+    }
+   ]
+  },
+  {
+   "id": "mfb-7",
+   "localId": "7",
+   "name": "Scyther",
+   "rarity": "None",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    123
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "bulbasaur"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "X-Scissor",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "20+",
+     "effect": "Flip a coin. If heads, this attack does 40 more damage."
+    }
+   ]
+  },
+  {
+   "id": "mfb-8",
+   "localId": "8",
+   "name": "Grass Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "bulbasaur"
+     ]
+    },
+    {
+     "type": "normal",
+     "subtype": "blue-border",
+     "size": "standard",
+     "stamp": [
+      "bulbasaur",
+      "pokeball"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mfb-9",
+   "localId": "9",
+   "name": "Charmander",
+   "rarity": "None",
+   "illustrator": "Kurata So",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    4
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "charmander"
+     ]
+    },
+    {
+     "type": "normal",
+     "subtype": "blue-border",
+     "size": "standard",
+     "stamp": [
+      "charmander",
+      "pokeball"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Scratch",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Ember",
+     "cost": [
+      "Fire",
+      "Fire"
+     ],
+     "damage": "30"
+    }
+   ]
+  },
+  {
+   "id": "mfb-10",
+   "localId": "10",
+   "name": "Charmeleon",
+   "rarity": "None",
+   "illustrator": "kirisAki",
+   "category": "Pokemon",
+   "hp": 100,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Charmander",
+   "dexId": [
+    5
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "charmander"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ember",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Flamethrower",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Fire"
+     ],
+     "damage": "60"
+    }
+   ]
+  },
+  {
+   "id": "mfb-11",
+   "localId": "11",
+   "name": "Vulpix",
+   "rarity": "None",
+   "illustrator": "Mina Nakai",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    37
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "charmander"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Will-O-Wisp",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "20"
+    }
+   ]
+  },
+  {
+   "id": "mfb-12",
+   "localId": "12",
+   "name": "Ninetales",
+   "rarity": "None",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "hp": 100,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Vulpix",
+   "dexId": [
+    38
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "charmander"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flame Tail",
+     "cost": [
+      "Fire",
+      "Fire"
+     ],
+     "damage": "70"
+    }
+   ]
+  },
+  {
+   "id": "mfb-13",
+   "localId": "13",
+   "name": "Growlithe",
+   "rarity": "None",
+   "illustrator": "Mina Nakai",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    58
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "charmander"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Gnaw",
+     "cost": [
+      "Fire",
+      "Fire"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Take Down",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Fire"
+     ],
+     "damage": "50"
+    }
+   ]
+  },
+  {
+   "id": "mfb-14",
+   "localId": "14",
+   "name": "Arcanine",
+   "rarity": "None",
+   "illustrator": "nisimana",
+   "category": "Pokemon",
+   "hp": 140,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Growlithe",
+   "dexId": [
+    59
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "charmander"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flare Blitz",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Fire"
+     ],
+     "damage": "90+",
+     "effect": "Flip a coin. If heads, this attack does 30 more damage"
+    }
+   ]
+  },
+  {
+   "id": "mfb-15",
+   "localId": "15",
+   "name": "Magmar",
+   "rarity": "None",
+   "illustrator": "Ryuta Fuse",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    126
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "charmander"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flare",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Magma Punch",
+     "cost": [
+      "Fire",
+      "Fire"
+     ],
+     "damage": "50"
+    }
+   ]
+  },
+  {
+   "id": "mfb-16",
+   "localId": "16",
+   "name": "Fire Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "charmander"
+     ]
+    },
+    {
+     "type": "normal",
+     "subtype": "blue-border",
+     "size": "standard",
+     "stamp": [
+      "charmander",
+      "pokeball"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mfb-17",
+   "localId": "17",
+   "name": "Pikachu",
+   "rarity": "None",
+   "illustrator": "Saino Misaki",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "pikachu"
+     ]
+    },
+    {
+     "type": "normal",
+     "subtype": "blue-border",
+     "size": "standard",
+     "stamp": [
+      "pikachu",
+      "pokeball"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Quick Attack",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Electro Ball",
+     "cost": [
+      "Lightning",
+      "Lightning"
+     ],
+     "damage": "30"
+    }
+   ]
+  },
+  {
+   "id": "mfb-18",
+   "localId": "18",
+   "name": "Raichu",
+   "rarity": "None",
+   "illustrator": "Kariya",
+   "category": "Pokemon",
+   "hp": 100,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Pikachu",
+   "dexId": [
+    26
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "pikachu"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Electro Ball",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Thunder",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Lightning"
+     ],
+     "damage": "60"
+    }
+   ]
+  },
+  {
+   "id": "mfb-19",
+   "localId": "19",
+   "name": "Magnemite",
+   "rarity": "None",
+   "illustrator": "Shibuzoh.",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    81
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "pikachu"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Thunder Shock",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "20"
+    }
+   ]
+  },
+  {
+   "id": "mfb-20",
+   "localId": "20",
+   "name": "Magneton",
+   "rarity": "None",
+   "illustrator": "GOSSAN",
+   "category": "Pokemon",
+   "hp": 110,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Magnemite",
+   "dexId": [
+    82
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "pikachu"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Thunder Shock",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Magnetic Circle",
+     "cost": [
+      "Lightning",
+      "Lightning"
+     ],
+     "damage": "20+",
+     "effect": "This attack does 20 more damage for each of your Benched lightning Pokémon"
+    }
+   ]
+  },
+  {
+   "id": "mfb-21",
+   "localId": "21",
+   "name": "Voltorb",
+   "rarity": "None",
+   "illustrator": "OKACHEKE",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    100
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "pikachu"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rollout",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Spark",
+     "cost": [
+      "Lightning",
+      "Lightning"
+     ],
+     "damage": "30"
+    }
+   ]
+  },
+  {
+   "id": "mfb-22",
+   "localId": "22",
+   "name": "Electrode",
+   "rarity": "None",
+   "illustrator": "miki kudo",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Voltorb",
+   "dexId": [
+    130
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "pikachu"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Speed Attack",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "40"
+    },
+    {
+     "name": "Single Shot Blast",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Lightning"
+     ],
+     "damage": "120",
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    }
+   ]
+  },
+  {
+   "id": "mfb-23",
+   "localId": "23",
+   "name": "Electabuzz",
+   "rarity": "None",
+   "illustrator": "hncl",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    125
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "pikachu"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Low Kick",
+     "cost": [
+      "Lightning"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Electro Punch",
+     "cost": [
+      "Lightning",
+      "Lightning"
+     ],
+     "damage": "50"
+    }
+   ]
+  },
+  {
+   "id": "mfb-24",
+   "localId": "24",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "pikachu"
+     ]
+    },
+    {
+     "type": "normal",
+     "subtype": "blue-border",
+     "size": "standard",
+     "stamp": [
+      "pikachu",
+      "pokeball"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mfb-25",
+   "localId": "25",
+   "name": "Squirtle",
+   "rarity": "None",
+   "illustrator": "ryoma uratsuka",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    7
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "squirtle"
+     ]
+    },
+    {
+     "type": "normal",
+     "subtype": "blue-border",
+     "size": "standard",
+     "stamp": [
+      "squirtle",
+      "pokeball"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tackle",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Water Gun",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "damage": "30"
+    }
+   ]
+  },
+  {
+   "id": "mfb-26",
+   "localId": "26",
+   "name": "Wartortle",
+   "rarity": "None",
+   "illustrator": "Hitoshi Ariga",
+   "category": "Pokemon",
+   "hp": 100,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "dexId": [
+    8
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "squirtle"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Water Gun",
+     "cost": [
+      "Water"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Skull Bash",
+     "cost": [
+      "Water",
+      "Water",
+      "Water"
+     ],
+     "damage": "60"
+    }
+   ]
+  },
+  {
+   "id": "mfb-27",
+   "localId": "27",
+   "name": "Poliwag",
+   "rarity": "None",
+   "illustrator": "0313",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    60
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "squirtle"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Pound",
+     "cost": [
+      "Water"
+     ],
+     "damage": "20"
+    }
+   ]
+  },
+  {
+   "id": "mfb-28",
+   "localId": "28",
+   "name": "Poliwhirl",
+   "rarity": "None",
+   "illustrator": "Mizue",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Poliwag",
+   "dexId": [
+    61
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "squirtle"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Wave Splash",
+     "cost": [
+      "Water"
+     ],
+     "damage": "50"
+    }
+   ]
+  },
+  {
+   "id": "mfb-29",
+   "localId": "29",
+   "name": "Magikarp",
+   "rarity": "None",
+   "illustrator": "Amelicart",
+   "category": "Pokemon",
+   "hp": 30,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    129
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "squirtle"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Splash",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10"
+    }
+   ]
+  },
+  {
+   "id": "mfb-30",
+   "localId": "30",
+   "name": "Gyarados",
+   "rarity": "None",
+   "illustrator": "NC Empire",
+   "category": "Pokemon",
+   "hp": 160,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Magikarp",
+   "dexId": [
+    130
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "squirtle"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tail Smash",
+     "cost": [
+      "Water",
+      "Water",
+      "Water"
+     ],
+     "damage": "90",
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    },
+    {
+     "name": "Hyper Beam",
+     "cost": [
+      "Water",
+      "Water",
+      "Water",
+      "Water"
+     ],
+     "damage": "120"
+    }
+   ]
+  },
+  {
+   "id": "mfb-31",
+   "localId": "31",
+   "name": "Lapras",
+   "rarity": "None",
+   "illustrator": "Akira Komayama",
+   "category": "Pokemon",
+   "hp": 110,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "dexId": [
+    129
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "squirtle"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Surf",
+     "cost": [
+      "Water",
+      "Water"
+     ],
+     "damage": "50"
+    }
+   ]
+  },
+  {
+   "id": "mfb-32",
+   "localId": "32",
+   "name": "Water Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "squirtle"
+     ]
+    },
+    {
+     "type": "normal",
+     "subtype": "blue-border",
+     "size": "standard",
+     "stamp": [
+      "squirtle",
+      "pokeball"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mfb-33",
+   "localId": "33",
+   "name": "Potion",
+   "rarity": "None",
+   "illustrator": "Ayaka Yoshida",
+   "category": "Trainer",
+   "regulationMark": "None",
+   "trainerType": "Item",
+   "effect": "Heal 30 damage from 1 of your Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "pikachu"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "squirtle"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "bulbasaur"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "charmander"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mfb-34",
+   "localId": "34",
+   "name": "Switch",
+   "rarity": "None",
+   "illustrator": "Studio Bora Inc.",
+   "category": "Trainer",
+   "regulationMark": "None",
+   "trainerType": "Item",
+   "effect": "Switch your Active Pokémon with 1 of your Benched Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "pikachu"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "squirtle"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "bulbasaur"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "charmander"
+     ]
+    }
+   ]
+  }
+ ]
+}

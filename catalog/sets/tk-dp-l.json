@@ -1,0 +1,512 @@
+{
+ "id": "tk-dp-l",
+ "name": "DP trainer Kit (Lucario)",
+ "serie": {
+  "id": "tk",
+  "name": "Trainer kits"
+ },
+ "releaseDate": "2007-09-01",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 1,
+  "normal": 10,
+  "official": 11,
+  "reverse": 0,
+  "total": 11
+ },
+ "logo": null,
+ "symbol": "https://assets.tcgdex.net/univ/tk/tk-dp-l/symbol",
+ "abbreviation": {
+  "official": "TK3L"
+ },
+ "legal": {
+  "expanded": false,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "tk-dp-l-1",
+   "localId": "1",
+   "name": "Geodude",
+   "rarity": "None",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "description": "Many live on mountain trails and remain half buried while keeping an eye on climbers",
+   "retreat": 2,
+   "dexId": [
+    74
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Stone Throw",
+     "cost": [
+      "Fighting"
+     ],
+     "effect": "Choose 2 of your opponent's Benched Pokémon. This attack does 10 damage to each of them. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "+10"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-l-2",
+   "localId": "2",
+   "name": "Graveler",
+   "rarity": "None",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Geodude",
+   "description": "GRAVELER make their homes on sheer cliff faces by gouging out numerous horizontal holes.",
+   "retreat": 3,
+   "dexId": [
+    75
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rock Cannon",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "30×",
+     "effect": "Flip a coin until you get tails. This attack does 30 damage times the number of heads."
+    },
+    {
+     "name": "Rock Slide",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Does 10 damage to 2 of your opponent's Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "+20"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Lightning",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-l-3",
+   "localId": "3",
+   "name": "Lucario",
+   "rarity": "None",
+   "illustrator": "Kent Kanetsuna",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Riolu",
+   "description": "It has the ability to sense the auras of all things. It understands human speech.",
+   "retreat": 1,
+   "dexId": [
+    448
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Feint",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "30",
+     "effect": "This attack’s damage isn’t affected by Resistance."
+    },
+    {
+     "name": "Aura Sphere",
+     "cost": [
+      "Fighting",
+      "Fighting"
+     ],
+     "damage": "40",
+     "effect": "Does 20 damage to 1 of your opponent’s Benched Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-l-4",
+   "localId": "4",
+   "name": "Machoke",
+   "rarity": "None",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Machop",
+   "description": "MACHOKE's boundless power is very dangerous, so it wears a belt that suppresses its energy.",
+   "retreat": 2,
+   "dexId": [
+    67
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Karate Chop",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "40-",
+     "effect": "Does 40 damage minus 10 damage for each damage counter on Machoke."
+    },
+    {
+     "name": "Seismic Toss",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "60"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "+20"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-l-5",
+   "localId": "5",
+   "name": "Machop",
+   "rarity": "None",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "description": "It hefts a GRAVELER repeatedly to strengthen its entire body. It uses every type of martial arts.",
+   "retreat": 2,
+   "dexId": [
+    66
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Low Kick",
+     "cost": [
+      "Fighting"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-l-6",
+   "localId": "6",
+   "name": "Riolu",
+   "rarity": "None",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "description": "The aura that emanates from its body intensifies to alert others if it is afraid or sad.",
+   "retreat": 1,
+   "dexId": [
+    447
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Wild Kick",
+     "cost": [
+      "Fighting"
+     ],
+     "damage": "30",
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "+10"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-l-7",
+   "localId": "7",
+   "name": "Starly",
+   "rarity": "None",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "They flock in great numbers. Though small, they flap their wings with great power.",
+   "retreat": 1,
+   "dexId": [
+    396
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Gust",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Quick Attack",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 20 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "+10"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-l-8",
+   "localId": "8",
+   "name": "Energy Search",
+   "rarity": "None",
+   "illustrator": "Kai Ishikawa",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "effect": "Search your deck for a basic Energy card, show it to your opponent, and put it into your hand. Shuffle your deck afterward.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-l-9",
+   "localId": "9",
+   "name": "Potion",
+   "rarity": "None",
+   "illustrator": "Shin-ichi Yoshikawa",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "effect": "Remove 2 damage counters from 1 of your Pokémon (remove 1 damage counter if that Pokémon has only 1).",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-l-10",
+   "localId": "10",
+   "name": "Quick Ball",
+   "rarity": "None",
+   "illustrator": "Ryo Ueda",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "effect": "Reveal cards from your deck until you reveal a Pokémon. Show that Pokémon to your opponent and put it into your hand. Shuffle the other revealed cards back into your deck. (If you don't reveal a Pokémon, shuffle all the revealed cards back into your deck.)",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-dp-l-11",
+   "localId": "11",
+   "name": "Fighting Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  }
+ ]
+}

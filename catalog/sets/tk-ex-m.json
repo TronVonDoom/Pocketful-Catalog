@@ -1,0 +1,531 @@
+{
+ "id": "tk-ex-m",
+ "name": "EX trainer Kit 2 (Minun)",
+ "serie": {
+  "id": "tk",
+  "name": "Trainer kits"
+ },
+ "releaseDate": "2006-03-01",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 1,
+  "normal": 11,
+  "official": 12,
+  "reverse": 0,
+  "total": 12
+ },
+ "logo": null,
+ "symbol": null,
+ "abbreviation": {
+  "official": "TK2M"
+ },
+ "legal": {
+  "expanded": false,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "tk-ex-m-1",
+   "localId": "1",
+   "name": "Arcanine",
+   "rarity": "None",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Growlithe",
+   "retreat": 2,
+   "dexId": [
+    59
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flare",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Heat Tackle",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70",
+     "effect": "Arcanine does 10 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-m-2",
+   "localId": "2",
+   "name": "Charmander",
+   "rarity": "None",
+   "illustrator": "Midori Harada",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    4
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Headbutt",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Slash",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-m-3",
+   "localId": "3",
+   "name": "Charmeleon",
+   "rarity": "None",
+   "illustrator": "Kouki Saitou",
+   "category": "Pokemon",
+   "hp": 70,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Charmander",
+   "retreat": 1,
+   "dexId": [
+    5
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flare",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Damage Burn",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40+",
+     "effect": "If the Defending Pokémon already has any damage counters on it, this attack does 40 damage plus 20 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-m-4",
+   "localId": "4",
+   "name": "Growlithe",
+   "rarity": "None",
+   "illustrator": "Ken Sugimori",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "dexId": [
+    58
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bite",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Flame Tail",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-m-5",
+   "localId": "5",
+   "name": "Mareep",
+   "rarity": "None",
+   "illustrator": "Naoyo Kimura",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    179
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Minor Errand-Running",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for a basic Energy card, show it to your opponent, and put it into your hand. Shuffle your deck afterward."
+    },
+    {
+     "name": "Quick Attack",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 damage plus 10 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-m-6",
+   "localId": "6",
+   "name": "Minun",
+   "rarity": "None",
+   "illustrator": "Katsura Tabata",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    312
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Drawup Power",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for an Energy card, show it to your opponent, and put into your hand. Shuffle your deck afterward."
+    },
+    {
+     "name": "Front Spark",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Does 10 damage to 1 of your opponent’s Benched Pokémon. (Don’t apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-m-7",
+   "localId": "7",
+   "name": "Vulpix",
+   "rarity": "None",
+   "illustrator": "Midori Harada",
+   "category": "Pokemon",
+   "hp": 50,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    37
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bite",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Firebreathing",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Flip a coin. If heads, this attack does 20 damage plus 10 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-m-8",
+   "localId": "8",
+   "name": "Celio's Network",
+   "rarity": "None",
+   "illustrator": "Ken Sugimori",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Supporter",
+   "effect": "You can play only one supporter card each turn. When you play this card, put it next to your Active Pokemon. When your turn ends, discard this card. Search your deck for a Basic Pokemon or Evolution card (excluding Pokemon-ex), show it to your opponent, and put it into your hand. Shuffle your deck afterward.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-m-9",
+   "localId": "9",
+   "name": "Energy Search",
+   "rarity": "None",
+   "illustrator": "Kai Ishikawa",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "effect": "You can play only one Supporter card each turn. When you play this card, put it next to your Active Pokémon. When your turn ends, discard this card. Search your deck for a Basic Pokémon or Evolution card (excluding Pokémon-ex), show it to your opponent, and put it into your hand. Shuffle your deck afterward.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-m-10",
+   "localId": "10",
+   "name": "Potion",
+   "rarity": "None",
+   "illustrator": "Keiji Kinebuchi",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "effect": "Remove 2 damage counters from 1 of your Pokémon (remove 1 damage counter if that Pokémon has only 1).",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-m-11",
+   "localId": "11",
+   "name": "Fire Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "retreat": 0,
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-ex-m-12",
+   "localId": "12",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "stage": "Basic",
+   "retreat": 0,
+   "energyType": "Normal",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  }
+ ]
+}

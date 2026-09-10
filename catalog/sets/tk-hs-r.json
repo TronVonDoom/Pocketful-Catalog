@@ -1,0 +1,1057 @@
+{
+ "id": "tk-hs-r",
+ "name": "HS trainer Kit (Raichu)",
+ "serie": {
+  "id": "tk",
+  "name": "Trainer kits"
+ },
+ "releaseDate": "2010-05-01",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 1,
+  "normal": 29,
+  "official": 30,
+  "reverse": 0,
+  "total": 30
+ },
+ "logo": null,
+ "symbol": "https://assets.tcgdex.net/univ/tk/tk-hs-r/symbol",
+ "abbreviation": {
+  "official": "TK4R"
+ },
+ "legal": {
+  "expanded": false,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "tk-hs-r-1",
+   "localId": "1",
+   "name": "Moomoo Milk",
+   "rarity": "None",
+   "illustrator": "Noriko Hotta",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-2",
+   "localId": "2",
+   "name": "Pikachu",
+   "rarity": "None",
+   "illustrator": "match",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tail Slap",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Quick Attack",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Flip a coin. If heads, this attack does 20 damage plus 10 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-3",
+   "localId": "3",
+   "name": "Flaaffy",
+   "rarity": "None",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Mareep",
+   "retreat": 1,
+   "dexId": [
+    180
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Thunder Spear",
+     "cost": [
+      "Lightning"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon. This attack does 20 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Thundershock",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-4",
+   "localId": "4",
+   "name": "Meowth",
+   "rarity": "None",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    52
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Pay Day",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Draw a card."
+    },
+    {
+     "name": "Dig Claws",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-5",
+   "localId": "5",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-6",
+   "localId": "6",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-7",
+   "localId": "7",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-8",
+   "localId": "8",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-9",
+   "localId": "9",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-10",
+   "localId": "10",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-11",
+   "localId": "11",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-12",
+   "localId": "12",
+   "name": "Meowth",
+   "rarity": "None",
+   "illustrator": "Kagemaru Himeno",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    52
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Pay Day",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10",
+     "effect": "Draw a card."
+    },
+    {
+     "name": "Dig Claws",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-13",
+   "localId": "13",
+   "name": "Mareep",
+   "rarity": "None",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "hp": 40,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    179
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Static Electricity",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for a number of Lightning Energy cards up to the number of Mareep in play (both yours and your opponent's) and attach them to Mareep. Shuffle your deck afterward."
+    },
+    {
+     "name": "Ram",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-14",
+   "localId": "14",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-15",
+   "localId": "15",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-16",
+   "localId": "16",
+   "name": "Pikachu",
+   "rarity": "None",
+   "illustrator": "match",
+   "category": "Pokemon",
+   "hp": 60,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tail Slap",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Quick Attack",
+     "cost": [
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Flip a coin. If heads, this attack does 20 damage plus 10 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-17",
+   "localId": "17",
+   "name": "Flaaffy",
+   "rarity": "None",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "hp": 80,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Mareep",
+   "retreat": 1,
+   "dexId": [
+    180
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Thunder Spear",
+     "cost": [
+      "Lightning"
+     ],
+     "effect": "Choose 1 of your opponent's Pokémon. This attack does 20 damage to that Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Thundershock",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "40",
+     "effect": "Flip a coin. If heads, the Defending Pokémon is now Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-18",
+   "localId": "18",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-19",
+   "localId": "19",
+   "name": "Raichu",
+   "rarity": "None",
+   "illustrator": "match",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Pikachu",
+   "retreat": 0,
+   "dexId": [
+    26
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Iron Tail",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "30×",
+     "effect": "Flip a coin until you get tails. This attack does 30 damage times the number of heads."
+    },
+    {
+     "name": "Thunderbolt",
+     "cost": [
+      "Lightning",
+      "Lightning"
+     ],
+     "damage": "100",
+     "effect": "Discard all Energy attached to Raichu."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-20",
+   "localId": "20",
+   "name": "Mareep",
+   "rarity": "None",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "hp": 40,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "retreat": 1,
+   "dexId": [
+    179
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Static Electricity",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for a number of Lightning Energy cards up to the number of Mareep in play (both yours and your opponent's) and attach them to Mareep. Shuffle your deck afterward."
+    },
+    {
+     "name": "Ram",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-21",
+   "localId": "21",
+   "name": "Copycat",
+   "rarity": "None",
+   "illustrator": "Kanako Eo",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Supporter",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-22",
+   "localId": "22",
+   "name": "Pokémon Collector",
+   "rarity": "None",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Supporter",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-23",
+   "localId": "23",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-24",
+   "localId": "24",
+   "name": "Switch",
+   "rarity": "None",
+   "illustrator": "Hideaki Hakozaki",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-25",
+   "localId": "25",
+   "name": "Poké Ball",
+   "rarity": "None",
+   "illustrator": "Hideaki Hakozaki",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-26",
+   "localId": "26",
+   "name": "Moomoo Milk",
+   "rarity": "None",
+   "illustrator": "Noriko Hotta",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Item",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-27",
+   "localId": "27",
+   "name": "Pokémon Collector",
+   "rarity": "None",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Trainer",
+   "retreat": 0,
+   "trainerType": "Supporter",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-28",
+   "localId": "28",
+   "name": "Lightning Energy",
+   "rarity": "None",
+   "category": "Energy",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-29",
+   "localId": "29",
+   "name": "Energy Switch",
+   "rarity": "None",
+   "illustrator": "Wataru Kawahara",
+   "category": "Trainer",
+   "retreat": 0,
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "tk-hs-r-30",
+   "localId": "30",
+   "name": "Raichu",
+   "rarity": "None",
+   "illustrator": "match",
+   "category": "Pokemon",
+   "hp": 90,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Pikachu",
+   "retreat": 0,
+   "dexId": [
+    26
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Iron Tail",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "30×",
+     "effect": "Flip a coin until you get tails. This attack does 30 damage times the number of heads."
+    },
+    {
+     "name": "Thunderbolt",
+     "cost": [
+      "Lightning",
+      "Lightning"
+     ],
+     "damage": "100",
+     "effect": "Discard all Energy attached to Raichu."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Metal",
+     "value": "-20"
+    }
+   ]
+  }
+ ]
+}

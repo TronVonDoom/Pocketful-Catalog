@@ -1,0 +1,4976 @@
+{
+ "id": "swsh10.5",
+ "name": "Pokémon GO",
+ "serie": {
+  "id": "swsh",
+  "name": "Sword & Shield"
+ },
+ "releaseDate": "2022-07-01",
+ "cardCount": {
+  "firstEd": 0,
+  "holo": 49,
+  "normal": 46,
+  "official": 78,
+  "reverse": 60,
+  "total": 88
+ },
+ "logo": "https://assets.tcgdex.net/en/swsh/swsh10.5/logo",
+ "symbol": "https://assets.tcgdex.net/univ/swsh/swsh10.5/symbol",
+ "abbreviation": {
+  "official": "PGO"
+ },
+ "legal": {
+  "expanded": true,
+  "standard": false
+ },
+ "cards": [
+  {
+   "id": "swsh10.5-001",
+   "localId": "001",
+   "name": "Bulbasaur",
+   "rarity": "Common",
+   "illustrator": "sowsow",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/001",
+   "hp": 70,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "description": "There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    1
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Vine Whip",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10"
+    },
+    {
+     "name": "Razor Leaf",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-002",
+   "localId": "002",
+   "name": "Ivysaur",
+   "rarity": "Uncommon",
+   "illustrator": "zig",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/002",
+   "hp": 100,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Bulbasaur",
+   "description": "When the bulb on its back grows large, it appears to lose the ability to stand on its hind legs.",
+   "retreat": 3,
+   "regulationMark": "F",
+   "dexId": [
+    2
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Summoning Aroma",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "Search your deck for up to 2 Pokémon, reveal them, and put them into your hand. Then, shuffle your deck."
+    },
+    {
+     "name": "Razor Leaf",
+     "cost": [
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-003",
+   "localId": "003",
+   "name": "Venusaur",
+   "rarity": "Holo Rare",
+   "illustrator": "KEIICHIRO ITO",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/003",
+   "hp": 180,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Ivysaur",
+   "description": "Its plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight.",
+   "retreat": 4,
+   "regulationMark": "F",
+   "dexId": [
+    3
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Solar Beam",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "130"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Loopy Lasso",
+     "effect": "Once during your turn, you may flip a coin. If heads, switch 1 of your opponent's Benched Pokémon with their Active Pokémon, and the new Active Pokémon is now Asleep and Poisoned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-004",
+   "localId": "004",
+   "name": "Radiant Venusaur",
+   "rarity": "Radiant Rare",
+   "illustrator": "Misa Tsutsui",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/004",
+   "hp": 150,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "description": "Its plant blooms when it is absorbing solar energy. It stays on the move to seek sunlight.",
+   "retreat": 3,
+   "regulationMark": "F",
+   "dexId": [
+    3
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Pollen Hazard",
+     "cost": [
+      "Grass",
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "90",
+     "effect": "Your opponent's Active Pokémon is now Burned, Confused, and Poisoned."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Sunny Bloom",
+     "effect": "Once at the end of your turn (after your attack), you may use this Ability. Draw cards until you have 4 cards in your hand."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-005",
+   "localId": "005",
+   "name": "Alolan Exeggutor V",
+   "rarity": "Holo Rare V",
+   "illustrator": "MUGENUP",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/005",
+   "hp": 240,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    103
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Growing Tall",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "Flip a coin. If heads, search your deck for up to 5 Grass Energy cards and attach them to your Pokémon in any way you like. Then, shuffle your deck."
+    },
+    {
+     "name": "Head Swing",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "This attack does 30 damage to 1 of your opponent's Pokémon for each Grass Energy attached to this Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-006",
+   "localId": "006",
+   "name": "Spinarak",
+   "rarity": "Common",
+   "illustrator": "Yuka Morii",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/006",
+   "hp": 60,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "description": "Although the poison from its fangs isn't that strong, it's potent enough to weaken prey that gets caught in its web.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    167
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "subtype": "peelable-ditto",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Poison Sting",
+     "cost": [
+      "Grass"
+     ],
+     "damage": "10",
+     "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Poisoned."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-007",
+   "localId": "007",
+   "name": "Ariados",
+   "rarity": "Uncommon",
+   "illustrator": "Misa Tsutsui",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/007",
+   "hp": 110,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Spinarak",
+   "description": "It spews threads from its mouth to catch its prey. When night falls, it leaves its web to go hunt aggressively.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    168
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Poison String-Up",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed and Poisoned."
+    },
+    {
+     "name": "Absorb",
+     "cost": [
+      "Grass",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Heal 50 damage from this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-008",
+   "localId": "008",
+   "name": "Charmander",
+   "rarity": "Common",
+   "illustrator": "saino misaki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/008",
+   "hp": 60,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "It has a preference for hot things. When it rains, steam is said to spout from the tip of its tail.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    4
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tail on Fire",
+     "cost": [
+      "Fire"
+     ],
+     "damage": "10",
+     "effect": "Search your deck for a Fire Energy card and attach it to this Pokémon. Then, shuffle your deck."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-009",
+   "localId": "009",
+   "name": "Charmeleon",
+   "rarity": "Uncommon",
+   "illustrator": "Shiburingaru",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/009",
+   "hp": 90,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Charmander",
+   "description": "It has a barbaric nature. In battle, it whips its fiery tail around and slashes away with sharp claws.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    5
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Scratch",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Flamethrower",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "100",
+     "effect": "Discard a Fire Energy from this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-010",
+   "localId": "010",
+   "name": "Charizard",
+   "rarity": "Holo Rare",
+   "illustrator": "N-DESIGN Inc.",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/010",
+   "hp": 170,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Charmeleon",
+   "description": "It spits fire that is hot enough to melt boulders. It may cause forest fires by blowing flames.",
+   "retreat": 3,
+   "regulationMark": "F",
+   "dexId": [
+    6
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Flare Blitz",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "170",
+     "effect": "Discard all Fire Energy from this Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Burn Brightly",
+     "effect": "Each basic Fire Energy attached to your Pokémon provides FireFire Energy. You can't apply more than 1 Burn Brightly Ability at a time."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-011",
+   "localId": "011",
+   "name": "Radiant Charizard",
+   "rarity": "Radiant Rare",
+   "illustrator": "Shigenori Negishi",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/011",
+   "hp": 160,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "It spits fire that is hot enough to melt boulders. It may cause forest fires by blowing flames.",
+   "retreat": 3,
+   "regulationMark": "F",
+   "dexId": [
+    6
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Combustion Blast",
+     "cost": [
+      "Fire",
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "250",
+     "effect": "During your next turn, this Pokémon can't use Combustion Blast."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Excited Heart",
+     "effect": "This Pokémon's attacks cost Colorless less for each Prize card your opponent has taken."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-012",
+   "localId": "012",
+   "name": "Moltres",
+   "rarity": "Holo Rare",
+   "illustrator": "Pani Kobayashi",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/012",
+   "hp": 120,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "It's one of the legendary bird Pokémon. When Moltres flaps its flaming wings, they glimmer with a dazzling red glow.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    146
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Fire Wing",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "110"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Flare Symbol",
+     "effect": "Your Basic Fire Pokémon's attacks, except any Moltres, do 10 more damage to your opponent's Active Pokémon (before applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-013",
+   "localId": "013",
+   "name": "Numel",
+   "rarity": "Common",
+   "illustrator": "Shibuzoh.",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/013",
+   "hp": 80,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Basic",
+   "description": "The magma in its body reaches 2,200 degrees Fahrenheit. Its hump gets smaller when it uses Fire-type moves.",
+   "retreat": 3,
+   "regulationMark": "F",
+   "dexId": [
+    322
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "subtype": "peelable-ditto",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tackle",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "20"
+    },
+    {
+     "name": "Stomp",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "50+",
+     "effect": "Flip a coin. If heads, this attack does 50 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-014",
+   "localId": "014",
+   "name": "Camerupt",
+   "rarity": "Uncommon",
+   "illustrator": "yuu",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/014",
+   "hp": 140,
+   "types": [
+    "Fire"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Numel",
+   "description": "If angered, the humps on its back erupt in a shower of molten lava. It lives in the craters of volcanoes.",
+   "retreat": 4,
+   "regulationMark": "F",
+   "dexId": [
+    323
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Split Bomb",
+     "cost": [
+      "Fire",
+      "Colorless"
+     ],
+     "effect": "This attack does 50 damage to 2 of your opponent's Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Heat Blast",
+     "cost": [
+      "Fire",
+      "Fire",
+      "Colorless"
+     ],
+     "damage": "120"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Water",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-015",
+   "localId": "015",
+   "name": "Squirtle",
+   "rarity": "Common",
+   "illustrator": "sowsow",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/015",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "When it retracts its long neck into its shell, it squirts out water with vigorous force.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    7
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Water Gun",
+     "cost": [
+      "Water"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-016",
+   "localId": "016",
+   "name": "Wartortle",
+   "rarity": "Uncommon",
+   "illustrator": "kurumitsu",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/016",
+   "hp": 90,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Squirtle",
+   "description": "It is recognized as a symbol of longevity. If its shell has algae on it, that Wartortle is very old.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    8
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Water Gun",
+     "cost": [
+      "Water"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Hydro Pump",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50+",
+     "effect": "This attack does 10 more damage for each Water Energy attached to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-017",
+   "localId": "017",
+   "name": "Blastoise",
+   "rarity": "Holo Rare",
+   "illustrator": "NC Empire",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/017",
+   "hp": 170,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Wartortle",
+   "description": "It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell.",
+   "retreat": 3,
+   "regulationMark": "F",
+   "dexId": [
+    9
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hydro Pump",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "90+",
+     "effect": "This attack does 30 more damage for each Water Energy attached to this Pokémon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Vitality Spring",
+     "effect": "Once during your turn, you may search your deck for up to 6 Energy cards and attach them to your Pokémon in any way you like. Then, shuffle your deck. If you use this Ability, your turn ends."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-018",
+   "localId": "018",
+   "name": "Radiant Blastoise",
+   "rarity": "Radiant Rare",
+   "illustrator": "Masakazu Fukuda",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/018",
+   "hp": 150,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    9
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Torrential Cannon",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "170",
+     "effect": "During your next turn, this Pokémon can't use Torrential Cannon."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Pump Shot",
+     "effect": "You must discard a Water Energy card from your hand in order to use this Ability. Once during your turn, you may put 2 damage counters on 1 of your opponent's Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-019",
+   "localId": "019",
+   "name": "Slowpoke",
+   "rarity": "Common",
+   "illustrator": "N-DESIGN Inc.",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/019",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "Slow-witted and oblivious, this Pokémon won't feel any pain if its tail gets eaten. It won't notice when its tail grows back, either.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    79
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hold Still",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Heal 30 damage from this Pokémon."
+    },
+    {
+     "name": "Ideal Fishing Day",
+     "cost": [
+      "Water"
+     ],
+     "effect": "Put an Item card from your discard pile into your hand."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-020",
+   "localId": "020",
+   "name": "Slowbro",
+   "rarity": "Uncommon",
+   "illustrator": "Mina Nakai",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/020",
+   "hp": 120,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Slowpoke",
+   "description": "Slowpoke became Slowbro when a Shellder bit on to its tail. Sweet flavors seeping from the tail make the Shellder feel as if its life is a dream.",
+   "retreat": 3,
+   "regulationMark": "F",
+   "dexId": [
+    80
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Tumbling Tackle",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Both Active Pokémon are now Asleep."
+    },
+    {
+     "name": "Twilight Inspiration",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "You can use this attack only if your opponent has exactly 1 Prize card remaining. Take 2 Prize cards."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-021",
+   "localId": "021",
+   "name": "Magikarp",
+   "rarity": "Common",
+   "illustrator": "N-DESIGN Inc.",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/021",
+   "hp": 30,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It is virtually worthless in terms of both power and speed. It is the most weak and pathetic Pokémon in the world.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    129
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Lively Grouping",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Search your deck for any number of Magikarp, reveal them, and put them into your hand. Then, shuffle your deck."
+    },
+    {
+     "name": "Raging Fin",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "This attack does 30 more damage for each Magikarp and Gyarados in your discard pile."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-022",
+   "localId": "022",
+   "name": "Gyarados",
+   "rarity": "Holo Rare",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/022",
+   "hp": 170,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Magikarp",
+   "description": "It has an extremely aggressive nature. The Hyper Beam it shoots from its mouth totally incinerates all targets.",
+   "retreat": 3,
+   "regulationMark": "F",
+   "dexId": [
+    130
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Wreak Havoc",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin until you get tails. For each heads, discard the top 2 cards of your opponent's deck."
+    },
+    {
+     "name": "Wild Splash",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "230",
+     "effect": "Discard the top 5 cards of your deck."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-023",
+   "localId": "023",
+   "name": "Lapras",
+   "rarity": "Holo Rare",
+   "illustrator": "N-DESIGN Inc.",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/023",
+   "hp": 120,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "A smart and kindhearted Pokémon, it glides across the surface of the sea while its beautiful song echoes around it.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    131
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Ice Beam",
+     "cost": [
+      "Water"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed."
+    },
+    {
+     "name": "Surf",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "110"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-024",
+   "localId": "024",
+   "name": "Articuno",
+   "rarity": "Holo Rare",
+   "illustrator": "Jiro Sasumo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/024",
+   "hp": 120,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It's said that this Pokémon's beautiful blue wings are made of ice. Articuno flies over snowy mountains, its long tail fluttering along behind it.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    144
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Freezing Wind",
+     "cost": [
+      "Water",
+      "Water",
+      "Colorless"
+     ],
+     "damage": "110"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Ice Symbol",
+     "effect": "Your Basic Water Pokémon's attacks, except any Articuno, do 10 more damage to your opponent's Active Pokémon (before applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-025",
+   "localId": "025",
+   "name": "Wimpod",
+   "rarity": "Common",
+   "illustrator": "Miki Tanaka",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/025",
+   "hp": 70,
+   "types": [
+    "Water"
+   ],
+   "stage": "Basic",
+   "description": "It's nature's cleaner—it eats anything and everything, including garbage and rotten things. The ground near its nest is always clean.",
+   "retreat": 3,
+   "regulationMark": "F",
+   "dexId": [
+    767
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Gnaw",
+     "cost": [
+      "Water"
+     ],
+     "damage": "10"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Punk Out",
+     "effect": "If your opponent has any Pokémon V in play, this Pokémon has no Retreat Cost."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-026",
+   "localId": "026",
+   "name": "Golisopod",
+   "rarity": "Holo Rare",
+   "illustrator": "otumami",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/026",
+   "hp": 130,
+   "types": [
+    "Water"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Wimpod",
+   "description": "It will do anything to win, taking advantage of every opening and finishing opponents off with the small claws on its front legs.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    768
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "First Impression",
+     "cost": [
+      "Water"
+     ],
+     "damage": "20+",
+     "effect": "If this Pokémon moved from your Bench to the Active Spot this turn, this attack does 90 more damage."
+    },
+    {
+     "name": "Slash",
+     "cost": [
+      "Water",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "100"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-027",
+   "localId": "027",
+   "name": "Pikachu",
+   "rarity": "Common",
+   "illustrator": "N-DESIGN Inc.",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/027",
+   "hp": 60,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "Pikachu that can generate powerful electricity have cheek sacs that are extra soft and super stretchy.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": true,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "cosmos"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Buddy Bolt",
+     "cost": [
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "If you played a Supporter card from your hand during this turn, this attack does 30 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-028",
+   "localId": "028",
+   "name": "Pikachu",
+   "rarity": "Holo Rare",
+   "illustrator": "Narumi Sato",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/028",
+   "hp": 70,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "Pikachu that can generate powerful electricity have cheek sacs that are extra soft and super stretchy.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    25
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Wild Charge",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "90",
+     "effect": "This Pokémon also does 30 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-029",
+   "localId": "029",
+   "name": "Zapdos",
+   "rarity": "Holo Rare",
+   "illustrator": "Yuya Oka",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/029",
+   "hp": 120,
+   "types": [
+    "Lightning"
+   ],
+   "stage": "Basic",
+   "description": "This Pokémon has complete control over electricity. There are tales of Zapdos nesting in the dark depths of pitch-black thunderclouds.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    145
+   ],
+   "variants": {
+    "normal": true,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "jesse-parker"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Electric Ball",
+     "cost": [
+      "Lightning",
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "110"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Lightning Symbol",
+     "effect": "Your Basic Lightning Pokémon's attacks, except any Zapdos, do 10 more damage to your opponent's Active Pokémon (before applying Weakness and Resistance)."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-030",
+   "localId": "030",
+   "name": "Mewtwo V",
+   "rarity": "Holo Rare V",
+   "illustrator": "Nurikabe",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/030",
+   "hp": 220,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    150
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "stamp": [
+      "player-rewards-program"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Super Psy Bolt",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "50"
+    },
+    {
+     "name": "Transfer Break",
+     "cost": [
+      "Psychic",
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "160",
+     "effect": "Move an Energy from this Pokémon to 1 of your Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-031",
+   "localId": "031",
+   "name": "Mewtwo VSTAR",
+   "rarity": "Holo Rare VMAX",
+   "illustrator": "PLANETA Mochizuki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/031",
+   "hp": 280,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "VSTAR",
+   "evolveFrom": "Mewtwo V",
+   "retreat": 2,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    150
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Psy Purge",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "90×",
+     "effect": "Discard up to 3 Psychic Energy from your Pokémon. This attack does 90 damage for each card you discarded in this way."
+    },
+    {
+     "name": "Star Raid",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "effect": "This attack does 120 damage to each of your opponent's Pokémon V. This damage isn't affected by Weakness or Resistance. (You can't use more than 1 VSTAR Power in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-032",
+   "localId": "032",
+   "name": "Natu",
+   "rarity": "Common",
+   "illustrator": "HYOGONOSUKE",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/032",
+   "hp": 50,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "description": "It is extremely good at climbing tree trunks and likes to eat the new sprouts on the trees.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    177
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Nap",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Heal 20 damage from this Pokémon."
+    },
+    {
+     "name": "Peck",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-033",
+   "localId": "033",
+   "name": "Xatu",
+   "rarity": "Uncommon",
+   "illustrator": "Hataya",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/033",
+   "hp": 110,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Natu",
+   "description": "They say that it stays still and quiet because it is seeing both the past and future at the same time.",
+   "retreat": 0,
+   "regulationMark": "F",
+   "dexId": [
+    178
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Pinpoint Wave",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "This attack does 90 damage to 1 of your opponent's Pokémon V. This damage isn't affected by Weakness or Resistance."
+    },
+    {
+     "name": "Mind Bend",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Your opponent's Active Pokémon is now Confused."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-034",
+   "localId": "034",
+   "name": "Lunatone",
+   "rarity": "Uncommon",
+   "illustrator": "miki kudo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/034",
+   "hp": 90,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "description": "The phase of the moon apparently has some effect on its power. It's active on the night of a full moon.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    337
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Cycle Draw",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Discard a card from your hand. If you do, draw 3 cards."
+    },
+    {
+     "name": "Moon Kinesis",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "This attack does 30 more damage for each Psychic Energy attached to this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-035",
+   "localId": "035",
+   "name": "Sylveon",
+   "rarity": "Holo Rare",
+   "illustrator": "Atsushi Furusawa",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/035",
+   "hp": 120,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Eevee",
+   "description": "By releasing enmity-erasing waves from its ribbonlike feelers, Sylveon stops any conflict.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    700
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Souvenir",
+     "cost": [
+      "Psychic"
+     ],
+     "effect": "Search your deck for up to 2 cards and put them into your hand. Then, shuffle your deck."
+    },
+    {
+     "name": "Wonder Flash",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "90+",
+     "effect": "If your opponent's Active Pokémon is a Dragon Pokémon, this attack does 90 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Metal",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-036",
+   "localId": "036",
+   "name": "Onix",
+   "rarity": "Common",
+   "illustrator": "Mitsuhiro Arita",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/036",
+   "hp": 120,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "description": "As it digs through the ground, it absorbs many hard objects. This is what makes its body so solid.",
+   "retreat": 4,
+   "regulationMark": "F",
+   "dexId": [
+    95
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rock Tomb",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "During your opponent's next turn, the Defending Pokémon can't retreat."
+    },
+    {
+     "name": "Raging Swing",
+     "cost": [
+      "Fighting",
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50×",
+     "effect": "This attack does 50 damage for each damage counter on this Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-037",
+   "localId": "037",
+   "name": "Larvitar",
+   "rarity": "Common",
+   "illustrator": "sui",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/037",
+   "hp": 60,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "description": "Born deep underground, it comes aboveground and becomes a pupa once it has finished eating the surrounding soil.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    246
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Rock Smash",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "10+",
+     "effect": "Flip a coin. If heads, this attack does 10 more damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-038",
+   "localId": "038",
+   "name": "Pupitar",
+   "rarity": "Uncommon",
+   "illustrator": "Sumiyoshi Kizuki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/038",
+   "hp": 90,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Larvitar",
+   "description": "Even sealed in its shell, it can move freely. Hard and fast, it has outstanding destructive power.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    247
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Crashing Bullet",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "This attack also does 20 damage to each Benched Pokémon (both yours and your opponent's). (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    },
+    {
+     "name": "Tackle",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-039",
+   "localId": "039",
+   "name": "Solrock",
+   "rarity": "Uncommon",
+   "illustrator": "Sekio",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/039",
+   "hp": 90,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "description": "When it rotates itself, it gives off light similar to the sun, thus blinding its foes.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    338
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Spinning Attack",
+     "cost": [
+      "Fighting",
+      "Colorless"
+     ],
+     "damage": "50"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Sun Energy",
+     "effect": "Once during your turn, you may attach a Psychic Energy card from your discard pile to 1 of your Lunatone."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-040",
+   "localId": "040",
+   "name": "Conkeldurr V",
+   "rarity": "Holo Rare V",
+   "illustrator": "Ayaka Yoshida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/040",
+   "hp": 230,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    534
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Counter",
+     "cost": [
+      "Fighting"
+     ],
+     "damage": "20+",
+     "effect": "If this Pokémon was damaged by an attack during your opponent's last turn, this attack does that much more damage."
+    },
+    {
+     "name": "Dynamic Punch",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "90+",
+     "effect": "Flip a coin. If heads, this attack does 90 more damage, and your opponent's Active Pokémon is now Confused."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-041",
+   "localId": "041",
+   "name": "Alolan Rattata",
+   "rarity": "Common",
+   "illustrator": "KIYOTAKA OSHIYAMA",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/041",
+   "hp": 40,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Basic",
+   "description": "Night after night, they sneak into people's homes seeking food. A massive outbreak of them has become an issue of public concern.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    19
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hyper Fang",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "Flip a coin. If tails, this attack does nothing."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-042",
+   "localId": "042",
+   "name": "Alolan Raticate",
+   "rarity": "Common",
+   "illustrator": "Atsuko Nishida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/042",
+   "hp": 120,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Alolan Rattata",
+   "description": "It commands a nest of Rattata. Different nests don't get along, whipping up severe fights over feeding grounds.",
+   "retreat": 3,
+   "regulationMark": "F",
+   "dexId": [
+    20
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Chase Up",
+     "cost": [
+      "Darkness"
+     ],
+     "effect": "Search your deck for a card and put it into your hand. Then, shuffle your deck."
+    },
+    {
+     "name": "Super Fang",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "Put damage counters on your opponent's Active Pokémon until its remaining HP is 10."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-043",
+   "localId": "043",
+   "name": "Tyranitar",
+   "rarity": "Holo Rare",
+   "illustrator": "Nisota Niso",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/043",
+   "hp": 180,
+   "types": [
+    "Darkness"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Pupitar",
+   "description": "Its body can't be harmed by any sort of attack, so it is very eager to make challenges against enemies.",
+   "retreat": 3,
+   "regulationMark": "F",
+   "dexId": [
+    248
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Raging Crash",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "10×",
+     "effect": "This attack does 10 damage for each damage counter on all of your Benched Pokémon."
+    },
+    {
+     "name": "Earthquake",
+     "cost": [
+      "Darkness",
+      "Darkness",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "180",
+     "effect": "This attack also does 20 damage to each of your Benched Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Grass",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-044",
+   "localId": "044",
+   "name": "Steelix",
+   "rarity": "Uncommon",
+   "illustrator": "GOSSAN",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/044",
+   "hp": 180,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Onix",
+   "description": "It is said that if an Onix lives for over 100 years, its composition changes to become diamond-like.",
+   "retreat": 4,
+   "regulationMark": "F",
+   "dexId": [
+    208
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Body Slam",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70",
+     "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed."
+    },
+    {
+     "name": "Iron Buster",
+     "cost": [
+      "Metal",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "170",
+     "effect": "During your next turn, this Pokémon can't attack."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Grass",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-045",
+   "localId": "045",
+   "name": "Meltan",
+   "rarity": "Common",
+   "illustrator": "Sumiyoshi Kizuki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/045",
+   "hp": 70,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Basic",
+   "description": "It melts particles of iron and other metals found in the subsoil, so it can absorb them into its body of molten steel.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    808
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Thunder Shock",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20",
+     "effect": "Flip a coin. If heads, your opponent's Active Pokémon is now Paralyzed."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Grass",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-046",
+   "localId": "046",
+   "name": "Melmetal",
+   "rarity": "Holo Rare",
+   "illustrator": "Shigenori Negishi",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/046",
+   "hp": 160,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Meltan",
+   "description": "Revered long ago for its capacity to create iron from nothing, for some reason it has come back to life after 3,000 years.",
+   "retreat": 4,
+   "regulationMark": "F",
+   "dexId": [
+    809
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Headbutt",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "60"
+    },
+    {
+     "name": "Swinging Smash",
+     "cost": [
+      "Metal",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30+",
+     "effect": "Flip 2 coins. This attack does 90 more damage for each heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Grass",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-047",
+   "localId": "047",
+   "name": "Melmetal V",
+   "rarity": "Holo Rare V",
+   "illustrator": "sadaji",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/047",
+   "hp": 220,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    809
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Arm Charge",
+     "cost": [
+      "Metal",
+      "Metal"
+     ],
+     "damage": "50",
+     "effect": "You may attach a Metal Energy card from your hand to this Pokémon."
+    },
+    {
+     "name": "Mega Punch",
+     "cost": [
+      "Metal",
+      "Metal",
+      "Metal"
+     ],
+     "damage": "140"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Grass",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-048",
+   "localId": "048",
+   "name": "Melmetal VMAX",
+   "rarity": "Holo Rare VMAX",
+   "illustrator": "PLANETA Tsuji",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/048",
+   "hp": 330,
+   "types": [
+    "Metal"
+   ],
+   "stage": "VMAX",
+   "evolveFrom": "Melmetal V",
+   "retreat": 4,
+   "regulationMark": "F",
+   "dexId": [
+    809
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "G-Max Juggernaut",
+     "cost": [
+      "Metal",
+      "Metal",
+      "Metal"
+     ],
+     "damage": "160+",
+     "effect": "This attack does 60 more damage for each extra Metal Energy attached to this Pokémon (in addition to this attack's cost). You can't add more than 120 damage in this way."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Grass",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-049",
+   "localId": "049",
+   "name": "Dragonite V",
+   "rarity": "Holo Rare V",
+   "illustrator": "kawayoo",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/049",
+   "hp": 230,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    149
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hyper Beam",
+     "cost": [
+      "Water",
+      "Lightning"
+     ],
+     "damage": "60",
+     "effect": "Discard an Energy from your opponent's Active Pokémon."
+    },
+    {
+     "name": "Buster Tail",
+     "cost": [
+      "Water",
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "160"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-050",
+   "localId": "050",
+   "name": "Dragonite VSTAR",
+   "rarity": "Holo Rare VSTAR",
+   "illustrator": "PLANETA Tsuji",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/050",
+   "hp": 280,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "VSTAR",
+   "evolveFrom": "Dragonite V",
+   "retreat": 2,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    149
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Giga Impact",
+     "cost": [
+      "Water",
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "250",
+     "effect": "During your next turn, this Pokémon can't attack."
+    },
+    {
+     "name": "Draconic Star",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Look at the top 12 cards of your deck and attach any number of Water or Lightning Energy cards you find there to your Pokémon in any way you like. Shuffle the other cards back into your deck. (You can't use more than 1 VSTAR Power in a game.)"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-051",
+   "localId": "051",
+   "name": "Chansey",
+   "rarity": "Uncommon",
+   "illustrator": "ryoma uratsuka",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/051",
+   "hp": 130,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "The egg Chansey carries is not only delicious but also packed with nutrition. It's used as a high-class cooking ingredient.",
+   "retreat": 3,
+   "regulationMark": "F",
+   "dexId": [
+    113
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Delicious Egg",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Heal 30 damage from 1 of your Benched Pokémon."
+    },
+    {
+     "name": "Gentle Slap",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-052",
+   "localId": "052",
+   "name": "Blissey",
+   "rarity": "Holo Rare",
+   "illustrator": "Teeziro",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/052",
+   "hp": 200,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Chansey",
+   "description": "Whenever a Blissey finds a weakened Pokémon, it will share its egg and offer its care until the other Pokémon is all better.",
+   "retreat": 4,
+   "regulationMark": "F",
+   "dexId": [
+    242
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "cosmos"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Enriching Egg",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Heal all damage from 1 of your Benched Pokémon."
+    },
+    {
+     "name": "Zen Headbutt",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "100"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-053",
+   "localId": "053",
+   "name": "Ditto",
+   "rarity": "Holo Rare",
+   "illustrator": "Misa Tsutsui",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/053",
+   "hp": 70,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "It can reconstitute its entire cellular structure to change into what it sees, but it returns to normal when it relaxes.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    132
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Sudden Transformation",
+     "effect": "This Pokémon can use the attacks of any Basic Pokémon in your discard pile, except for Pokémon with a Rule Box (Pokémon V, Pokémon-GX, etc. have Rule Boxes). (You still need the necessary Energy to use each attack.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-054",
+   "localId": "054",
+   "name": "Eevee",
+   "rarity": "Common",
+   "illustrator": "N-DESIGN Inc.",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/054",
+   "hp": 60,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "It has the ability to alter the composition of its body to suit its surrounding environment.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    133
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Whiny Voice",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Choose a random card from your opponent's hand. Your opponent reveals that card and shuffles it into their deck."
+    },
+    {
+     "name": "Tackle",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-055",
+   "localId": "055",
+   "name": "Snorlax",
+   "rarity": "Holo Rare",
+   "illustrator": "N-DESIGN Inc.",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/055",
+   "hp": 150,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "It is not satisfied unless it eats over 880 pounds of food every day. When it is done eating, it goes promptly to sleep.",
+   "retreat": 4,
+   "regulationMark": "F",
+   "dexId": [
+    143
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Collapse",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "150",
+     "effect": "This Pokémon is now Asleep."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Block",
+     "effect": "As long as this Pokémon is in the Active Spot, your opponent's Active Pokémon can't retreat."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-056",
+   "localId": "056",
+   "name": "Aipom",
+   "rarity": "Common",
+   "illustrator": "Sanosuke Sakuma",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/056",
+   "hp": 60,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "It searches for prey from the tops of trees. When it spots its favorite food, Bounsweet, Aipom gets excited and pounces.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    190
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Bustle",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Flip a coin. If heads, during your opponent's next turn, prevent all damage from and effects of attacks done to this Pokémon."
+    },
+    {
+     "name": "Slap",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-057",
+   "localId": "057",
+   "name": "Ambipom",
+   "rarity": "Common",
+   "illustrator": "Scav",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/057",
+   "hp": 90,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Aipom",
+   "description": "It uses its tails for everything. If it wraps both of its tails around you and gives you a squeeze, that's proof it really likes you.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    424
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Full Tilt Fling",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "60×",
+     "effect": "Flip a coin for each Energy attached to this Pokémon. This attack does 60 damage for each heads."
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Primate Dexterity",
+     "effect": "If any damage is done to this Pokémon by attacks, flip a coin. If heads, prevent that damage."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-058",
+   "localId": "058",
+   "name": "Slaking V",
+   "rarity": "Holo Rare V",
+   "illustrator": "Saki Hayashiro",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/058",
+   "hp": 230,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    289
+   ],
+   "variants": {
+    "normal": true,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "gabriel-fernandez"
+     ]
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Heavy Impact",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "260"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Kinda Lazy",
+     "effect": "If you have exactly 2, 4, or 6 Prize cards remaining, this Pokémon can't attack."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-059",
+   "localId": "059",
+   "name": "Bidoof",
+   "rarity": "Common",
+   "illustrator": "Tomokazu Komiya",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/059",
+   "hp": 70,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "It constantly gnaws on logs and rocks to whittle down its front teeth. It nests alongside water.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    399
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "subtype": "peelable-ditto",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Take Down",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "50",
+     "effect": "This Pokémon also does 10 damage to itself."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-060",
+   "localId": "060",
+   "name": "Bibarel",
+   "rarity": "Common",
+   "illustrator": "KIYOTAKA OSHIYAMA",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/060",
+   "hp": 110,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Bidoof",
+   "description": "It makes its nest by damming streams with bark and mud. It is known as an industrious worker.",
+   "retreat": 2,
+   "regulationMark": "F",
+   "dexId": [
+    400
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hammer In",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "80"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Reassuring Dam",
+     "effect": "As long as this Pokémon is on your Bench, cards in your deck can't be discarded by effects of your opponent's attacks, Abilities, Item cards, or Supporter cards."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-061",
+   "localId": "061",
+   "name": "Pidove",
+   "rarity": "Common",
+   "illustrator": "N-DESIGN Inc.",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/061",
+   "hp": 60,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "description": "Where people go, these Pokémon follow. If you're scattering food for them, be careful— several hundred of them can gather at once.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    519
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Growl",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "During your opponent's next turn, the Defending Pokémon's attacks do 20 less damage (before applying Weakness and Resistance)."
+    },
+    {
+     "name": "Flap",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "20"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-062",
+   "localId": "062",
+   "name": "Tranquill",
+   "rarity": "Common",
+   "illustrator": "0313",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/062",
+   "hp": 80,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage1",
+   "evolveFrom": "Pidove",
+   "description": "It can fly moderately quickly. No matter how far it travels, it can always find its way back to its master and its nest.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    520
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Aerial Ace",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "20+",
+     "effect": "Flip a coin. If heads, this attack does 20 more damage."
+    },
+    {
+     "name": "Flap",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "30"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-063",
+   "localId": "063",
+   "name": "Unfezant",
+   "rarity": "Uncommon",
+   "illustrator": "GIDORA",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/063",
+   "hp": 140,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Stage2",
+   "evolveFrom": "Tranquill",
+   "description": "Unfezant are exceptional fliers. The females are known for their stamina, while the males outclass them in terms of speed.",
+   "retreat": 1,
+   "regulationMark": "F",
+   "dexId": [
+    521
+   ],
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Gust",
+     "cost": [
+      "Colorless"
+     ],
+     "damage": "30"
+    },
+    {
+     "name": "Hurricane Wing",
+     "cost": [
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "70×",
+     "effect": "Flip 4 coins. This attack does 70 damage for each heads."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Lightning",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-064",
+   "localId": "064",
+   "name": "Blanche",
+   "rarity": "Uncommon",
+   "illustrator": "Anesaki Dynamic",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/064",
+   "regulationMark": "F",
+   "trainerType": "Supporter",
+   "effect": "Draw 2 cards. If you drew any cards in this way, flip a coin. If heads, attach a Water Energy card from your discard pile to 1 of your Benched Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-065",
+   "localId": "065",
+   "name": "Candela",
+   "rarity": "Uncommon",
+   "illustrator": "Ryuta Fuse",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/065",
+   "regulationMark": "F",
+   "trainerType": "Supporter",
+   "effect": "Draw 2 cards. If you drew any cards in this way, flip a coin. If heads, attach a Fire Energy card from your discard pile to 1 of your Benched Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-066",
+   "localId": "066",
+   "name": "Egg Incubator",
+   "rarity": "Uncommon",
+   "illustrator": "sadaji",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/066",
+   "regulationMark": "F",
+   "trainerType": "Item",
+   "effect": "Flip a coin. If heads, search your deck for a Basic Pokémon, put it onto your Bench, and shuffle your deck. If tails, put this Egg Incubator on the bottom of your deck instead of in the discard pile.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-067",
+   "localId": "067",
+   "name": "Lure Module",
+   "rarity": "Uncommon",
+   "illustrator": "ORBITALLINK Inc.",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/067",
+   "regulationMark": "F",
+   "trainerType": "Item",
+   "effect": "Each player reveals the top 3 cards of their deck and puts all Pokémon they find there into their hand. Then, each player shuffles the other cards back into their deck.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-068",
+   "localId": "068",
+   "name": "PokéStop",
+   "rarity": "Uncommon",
+   "illustrator": "Studio Bora Inc.",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/068",
+   "regulationMark": "F",
+   "trainerType": "Stadium",
+   "effect": "Once during each player's turn, that player may discard 3 cards from the top of their deck. If a player discarded any Item cards in this way, they put those Item cards into their hand.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "shao-tong-yen"
+     ]
+    },
+    {
+     "type": "normal",
+     "size": "standard",
+     "stamp": [
+      "sakuya-ota"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-069",
+   "localId": "069",
+   "name": "Rare Candy",
+   "rarity": "Uncommon",
+   "illustrator": "Ayaka Yoshida",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/069",
+   "trainerType": "Item",
+   "effect": "Choose 1 of your Basic Pokémon in play. If you have a Stage 2 card in your hand that evolves from that Pokémon, put that card onto the Basic Pokémon to evolve it, skipping the Stage 1. You can't use this card during your first turn or on a Basic Pokémon that was put into play this turn.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-070",
+   "localId": "070",
+   "name": "Spark",
+   "rarity": "Uncommon",
+   "illustrator": "Naoki Saito",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/070",
+   "regulationMark": "F",
+   "trainerType": "Supporter",
+   "effect": "Draw 2 cards. If you drew any cards in this way, flip a coin. If heads, attach a Lightning Energy card from your discard pile to 1 of your Benched Pokémon.",
+   "variants": {
+    "normal": true,
+    "holo": false,
+    "reverse": true,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "normal",
+     "size": "standard"
+    },
+    {
+     "type": "reverse",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-071",
+   "localId": "071",
+   "name": "Alolan Exeggutor V",
+   "rarity": "Ultra Rare",
+   "illustrator": "MUGENUP",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/071",
+   "hp": 240,
+   "types": [
+    "Grass"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    103
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Growing Tall",
+     "cost": [
+      "Grass"
+     ],
+     "effect": "Flip a coin. If heads, search your deck for up to 5 Grass Energy cards and attach them to your Pokémon in any way you like. Then, shuffle your deck."
+    },
+    {
+     "name": "Head Swing",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "effect": "This attack does 30 damage to 1 of your opponent's Pokémon for each Grass Energy attached to this Pokémon. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-072",
+   "localId": "072",
+   "name": "Mewtwo V",
+   "rarity": "Ultra Rare",
+   "illustrator": "N-DESIGN Inc.",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/072",
+   "hp": 220,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    150
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Super Psy Bolt",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "50"
+    },
+    {
+     "name": "Transfer Break",
+     "cost": [
+      "Psychic",
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "160",
+     "effect": "Move an Energy from this Pokémon to 1 of your Benched Pokémon."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-073",
+   "localId": "073",
+   "name": "Conkeldurr V",
+   "rarity": "Ultra Rare",
+   "illustrator": "Ayaka Yoshida",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/073",
+   "hp": 230,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    534
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Counter",
+     "cost": [
+      "Fighting"
+     ],
+     "damage": "20+",
+     "effect": "If this Pokémon was damaged by an attack during your opponent's last turn, this attack does that much more damage."
+    },
+    {
+     "name": "Dynamic Punch",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "90+",
+     "effect": "Flip a coin. If heads, this attack does 90 more damage, and your opponent's Active Pokémon is now Confused."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-074",
+   "localId": "074",
+   "name": "Conkeldurr V",
+   "rarity": "Ultra Rare",
+   "illustrator": "N-DESIGN Inc.",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/074",
+   "hp": 230,
+   "types": [
+    "Fighting"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    534
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Counter",
+     "cost": [
+      "Fighting"
+     ],
+     "damage": "20+",
+     "effect": "If this Pokémon was damaged by an attack during your opponent's last turn, this attack does that much more damage."
+    },
+    {
+     "name": "Dynamic Punch",
+     "cost": [
+      "Fighting",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "90+",
+     "effect": "Flip a coin. If heads, this attack does 90 more damage, and your opponent's Active Pokémon is now Confused."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Psychic",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-075",
+   "localId": "075",
+   "name": "Melmetal V",
+   "rarity": "Ultra Rare",
+   "illustrator": "sadaji",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/075",
+   "hp": 220,
+   "types": [
+    "Metal"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    809
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Arm Charge",
+     "cost": [
+      "Metal",
+      "Metal"
+     ],
+     "damage": "50",
+     "effect": "You may attach a Metal Energy card from your hand to this Pokémon."
+    },
+    {
+     "name": "Mega Punch",
+     "cost": [
+      "Metal",
+      "Metal",
+      "Metal"
+     ],
+     "damage": "140"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Grass",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-076",
+   "localId": "076",
+   "name": "Dragonite V",
+   "rarity": "Ultra Rare",
+   "illustrator": "5ban Graphics",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/076",
+   "hp": 230,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "Basic",
+   "retreat": 2,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    149
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Hyper Beam",
+     "cost": [
+      "Water",
+      "Lightning"
+     ],
+     "damage": "60",
+     "effect": "Discard an Energy from your opponent's Active Pokémon."
+    },
+    {
+     "name": "Buster Tail",
+     "cost": [
+      "Water",
+      "Lightning",
+      "Colorless"
+     ],
+     "damage": "160"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-077",
+   "localId": "077",
+   "name": "Slaking V",
+   "rarity": "Ultra Rare",
+   "illustrator": "Saki Hayashiro",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/077",
+   "hp": 230,
+   "types": [
+    "Colorless"
+   ],
+   "stage": "Basic",
+   "retreat": 3,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    289
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Heavy Impact",
+     "cost": [
+      "Colorless",
+      "Colorless",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "260"
+    }
+   ],
+   "abilities": [
+    {
+     "type": "Ability",
+     "name": "Kinda Lazy",
+     "effect": "If you have exactly 2, 4, or 6 Prize cards remaining, this Pokémon can't attack."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fighting",
+     "value": "×2"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-078",
+   "localId": "078",
+   "name": "Professor's Research",
+   "rarity": "Ultra Rare",
+   "illustrator": "Yusuke Kozaki",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/078",
+   "regulationMark": "D",
+   "trainerType": "Supporter",
+   "effect": "Discard your hand and draw 7 cards.",
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-079",
+   "localId": "079",
+   "name": "Mewtwo VSTAR",
+   "rarity": "Secret Rare",
+   "illustrator": "PLANETA Mochizuki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/079",
+   "hp": 280,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "VSTAR",
+   "evolveFrom": "Mewtwo V",
+   "retreat": 2,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    150
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "rainbow"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Psy Purge",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "90×",
+     "effect": "Discard up to 3 Psychic Energy from your Pokémon. This attack does 90 damage for each card you discarded in this way."
+    },
+    {
+     "name": "Star Raid",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "effect": "This attack does 120 damage to each of your opponent's Pokémon V. This damage isn't affected by Weakness or Resistance. (You can't use more than 1 VSTAR Power in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-080",
+   "localId": "080",
+   "name": "Melmetal VMAX",
+   "rarity": "Secret Rare",
+   "illustrator": "PLANETA Tsuji",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/080",
+   "hp": 330,
+   "types": [
+    "Metal"
+   ],
+   "stage": "VMAX",
+   "evolveFrom": "Melmetal V",
+   "retreat": 4,
+   "regulationMark": "F",
+   "dexId": [
+    809
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "rainbow"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "G-Max Juggernaut",
+     "cost": [
+      "Metal",
+      "Metal",
+      "Metal"
+     ],
+     "damage": "160+",
+     "effect": "This attack does 60 more damage for each extra Metal Energy attached to this Pokémon (in addition to this attack's cost). You can't add more than 120 damage in this way."
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Fire",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Grass",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-081",
+   "localId": "081",
+   "name": "Dragonite VSTAR",
+   "rarity": "Secret Rare",
+   "illustrator": "PLANETA Tsuji",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/081",
+   "hp": 280,
+   "types": [
+    "Dragon"
+   ],
+   "stage": "VSTAR",
+   "evolveFrom": "Dragonite V",
+   "retreat": 2,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    149
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "rainbow"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Giga Impact",
+     "cost": [
+      "Water",
+      "Lightning",
+      "Colorless",
+      "Colorless"
+     ],
+     "damage": "250",
+     "effect": "During your next turn, this Pokémon can't attack."
+    },
+    {
+     "name": "Draconic Star",
+     "cost": [
+      "Colorless"
+     ],
+     "effect": "Look at the top 12 cards of your deck and attach any number of Water or Lightning Energy cards you find there to your Pokémon in any way you like. Shuffle the other cards back into your deck. (You can't use more than 1 VSTAR Power in a game.)"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-082",
+   "localId": "082",
+   "name": "Blanche",
+   "rarity": "Secret Rare",
+   "illustrator": "Anesaki Dynamic",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/082",
+   "regulationMark": "F",
+   "trainerType": "Supporter",
+   "effect": "Draw 2 cards. If you drew any cards in this way, flip a coin. If heads, attach a Water Energy card from your discard pile to 1 of your Benched Pokémon.",
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "rainbow"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-083",
+   "localId": "083",
+   "name": "Candela",
+   "rarity": "Secret Rare",
+   "illustrator": "Ryuta Fuse",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/083",
+   "regulationMark": "F",
+   "trainerType": "Supporter",
+   "effect": "Draw 2 cards. If you drew any cards in this way, flip a coin. If heads, attach a Fire Energy card from your discard pile to 1 of your Benched Pokémon.",
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "rainbow"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-084",
+   "localId": "084",
+   "name": "Professor's Research",
+   "rarity": "Secret Rare",
+   "illustrator": "Yusuke Kozaki",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/084",
+   "regulationMark": "D",
+   "trainerType": "Supporter",
+   "effect": "Discard your hand and draw 7 cards.",
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "rainbow"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-085",
+   "localId": "085",
+   "name": "Spark",
+   "rarity": "Secret Rare",
+   "illustrator": "Naoki Saito",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/085",
+   "regulationMark": "F",
+   "trainerType": "Supporter",
+   "effect": "Draw 2 cards. If you drew any cards in this way, flip a coin. If heads, attach a Lightning Energy card from your discard pile to 1 of your Benched Pokémon.",
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "rainbow"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-086",
+   "localId": "086",
+   "name": "Mewtwo VSTAR",
+   "rarity": "Secret Rare",
+   "illustrator": "PLANETA Mochizuki",
+   "category": "Pokemon",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/086",
+   "hp": 280,
+   "types": [
+    "Psychic"
+   ],
+   "stage": "VSTAR",
+   "evolveFrom": "Mewtwo V",
+   "retreat": 2,
+   "suffix": "V",
+   "regulationMark": "F",
+   "dexId": [
+    150
+   ],
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "gold"
+    }
+   ],
+   "attacks": [
+    {
+     "name": "Psy Purge",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "damage": "90×",
+     "effect": "Discard up to 3 Psychic Energy from your Pokémon. This attack does 90 damage for each card you discarded in this way."
+    },
+    {
+     "name": "Star Raid",
+     "cost": [
+      "Psychic",
+      "Colorless"
+     ],
+     "effect": "This attack does 120 damage to each of your opponent's Pokémon V. This damage isn't affected by Weakness or Resistance. (You can't use more than 1 VSTAR Power in a game.)"
+    }
+   ],
+   "weaknesses": [
+    {
+     "type": "Darkness",
+     "value": "×2"
+    }
+   ],
+   "resistances": [
+    {
+     "type": "Fighting",
+     "value": "-30"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-087",
+   "localId": "087",
+   "name": "Egg Incubator",
+   "rarity": "Secret Rare",
+   "illustrator": "sadaji",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/087",
+   "regulationMark": "F",
+   "trainerType": "Item",
+   "effect": "Flip a coin. If heads, search your deck for a Basic Pokémon, put it onto your Bench, and shuffle your deck. If tails, put this Egg Incubator on the bottom of your deck instead of in the discard pile.",
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "gold"
+    }
+   ]
+  },
+  {
+   "id": "swsh10.5-088",
+   "localId": "088",
+   "name": "Lure Module",
+   "rarity": "Secret Rare",
+   "illustrator": "ORBITALLINK Inc.",
+   "category": "Trainer",
+   "image": "https://assets.tcgdex.net/en/swsh/swsh10.5/088",
+   "regulationMark": "F",
+   "trainerType": "Item",
+   "effect": "Each player reveals the top 3 cards of their deck and puts all Pokémon they find there into their hand. Then, each player shuffles the other cards back into their deck.",
+   "variants": {
+    "normal": false,
+    "holo": true,
+    "reverse": false,
+    "firstEdition": false,
+    "wPromo": false
+   },
+   "variants_detailed": [
+    {
+     "type": "holo",
+     "size": "standard",
+     "foil": "gold"
+    }
+   ]
+  }
+ ]
+}

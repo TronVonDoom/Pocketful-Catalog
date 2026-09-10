@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Prices are the volatile half. They change every day, they are republished as a release
+# asset rather than read out of the tree, and committing them would mean a diff of
+# twenty-three thousand numbers every night for data nobody reviews. The static half is
+# committed on purpose -- that one is worth seeing change.
+catalog/prices/
+
+# Built release assets. Reproducible from catalog/ by pack.py.
+dist/
