@@ -19,31 +19,40 @@ re-fetching Base Set is paying a round trip for an answer that was already true 
 
 So it gets built here, once, and published as a release asset the app downloads and
 keeps. This repository is deliberately not the app: the catalog moves when a set is
-released and when prices move, the app moves when someone writes a feature, and putting
-two clocks in one repository means a nightly price refresh dirties the app's history
-every single day. It also keeps ~20 MB of churning JSON out of every clone of the app,
-and stops catalog releases from colliding with the APK releases Pocketful's in-app
-updater reads.
+released, the app moves when someone writes a feature, and two clocks in one repository
+means every catalog refresh dirties the app's history. It also keeps ~20 MB of JSON out
+of every clone of the app, and stops catalog releases from colliding with the APK
+releases Pocketful's in-app updater reads.
 
-## The two halves
+## What belongs here, and what does not
 
-The split runs through everything here, because the halves have opposite properties.
+This repository catalogs what a card **is**. Everything it carries was fixed the day the
+card was printed: name, number, rarity, illustrator, artwork, HP, types, flavour text,
+and which press runs it exists in.
 
-| | `catalog/sets/` | `catalog/prices/` |
+It does not carry what a card is **worth**. That is a different fact with a different
+lifetime — it changes daily, it comes from whoever is quoting it, and it is nobody's idea
+of a printed property of the card. The app reads prices live from the source, and only
+for the cards in your collection.
+
+Keeping the line there is what lets the rest of this work. A document with no expiry can
+be downloaded once and simply had; the app treats a catalog it already has as correct
+forever and asks again only to learn whether a *new set* exists. Put a price in it and the
+whole file inherits the shortest lifetime in it — the immutable half would start expiring
+at the speed of the volatile half, and "downloaded once and kept" becomes "re-downloaded
+on a TTL".
+
+| | `catalog/sets/` | prices |
 |---|---|---|
+| what it answers | what is this card | what is it worth today |
 | changes | when a set is printed | constantly |
-| fetched by | GraphQL, 40 cards per request | REST, one request per card |
-| whole catalog costs | ~810 requests | ~23,500 requests |
-| shipped as | bundled with the app | downloaded, on a TTL |
+| lives | here, shipped to the app | nowhere here; fetched live by the app |
+| whole catalog costs | ~810 GraphQL requests | one REST request per card |
 
-That asymmetry is not a choice. TCGdex's GraphQL schema exposes `image`, `rarity` and
-`variants`, but carries no `pricing` field and no `thirdParty` ids — both are REST-only.
-So the half that almost never changes is cheap to refresh, and the half that changes
-daily is expensive, which is exactly backwards and is why they run on separate
-schedules.
-
-Mixing them into one document is the mistake this layout exists to avoid: it would make
-the immutable half expire at the speed of the volatile half.
+That cost asymmetry is worth knowing about: TCGdex's GraphQL schema exposes `image`,
+`rarity` and `variants` but carries no `pricing` field and no `thirdParty` ids — both are
+REST-only. So the data this repository wants is the cheap kind, and `fill_gaps.py` is the
+only thing here that pays the REST cost, for the ~1,700 cards missing artwork.
 
 ## Holes
 
@@ -75,12 +84,27 @@ which stems were invented here.
 ## The tools
 
 ```bash
-python tools/pull_catalog.py --static --all    # the immutable half, GraphQL-batched
-python tools/pull_catalog.py --prices --all    # the volatile half, REST
+python tools/pull_catalog.py --static --all    # every card, GraphQL-batched
 python tools/fill_gaps.py                      # resolve missing artwork
 python tools/audit.py                          # check it, exit 1 on a new hole
 python tools/audit.py --accept                 # record today's holes as the baseline
+python tools/pack.py --static                  # build what the app downloads
+python editor/server.py                        # fix a card by hand
 ```
+
+## Correcting a card
+
+`catalog/sets/` is output. The weekly refresh re-pulls every set over the top of it, so
+an edit made there survives until the next Monday and no longer.
+
+Corrections therefore live in `catalog/overrides.json`, which `pack.py` lays over the
+pulled data on its way into the shipped file — the pull stays an honest copy of upstream,
+the override stays an explicit disagreement with it, and neither eats the other. Each
+entry also records what upstream said at the time, so the editor can tell you when TCGdex
+has since changed a field you were working around.
+
+`python editor/server.py` opens a local editor over all of it: browse or search, edit the
+fields the app actually draws, and repack. See [editor/README.md](editor/README.md).
 
 `series_report.py` walks the catalog era by era, oldest first, and answers the two
 questions `audit.py` deliberately does not: **is every card's picture as good as every

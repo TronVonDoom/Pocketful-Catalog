@@ -113,7 +113,7 @@ jobs:
       - name: Publish
         env:
           GH_TOKEN: ${{ github.token }}
-        # Same fixed-tag arrangement as the prices job, and for the same reason: the app
+        # A fixed tag, updated in place, rather than a dated release per refresh: the app
         # needs one URL that always means "the current catalog". The schema version is in
         # the *filename*, so an app built against v1 keeps asking for v1 and publishing a
         # v2 alongside it cannot reach back and break installs that predate it.

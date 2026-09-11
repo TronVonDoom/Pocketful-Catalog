@@ -7,38 +7,27 @@ changed since the day it was printed, so re-fetching Base Set is paying a round 
 for an answer that was already true in 1999. This pulls each set once and writes it
 to disk in the shape the app reads.
 
-Two files come out per set, and the split is the whole point:
+One file comes out per set:
 
-  sets/<id>.json    Static. Name, number, rarity, art stem, variants, attacks.
-                    Immutable once a set is released, so it ships with the app and
-                    never expires.
-  prices/<id>.json  Volatile. Market prices, stamped with the hour they were taken.
-                    Never bundled -- it would be stale before the APK finished
-                    uploading. Refreshed on a schedule and published separately.
+  sets/<id>.json    Name, number, rarity, art stem, variants, attacks. Immutable once
+                    a set is released, so it ships with the app and never expires.
 
-Mixing the two into one document is the mistake this layout is built to avoid: it
-would make the immutable half expire at the speed of the volatile half.
+Prices are deliberately not pulled here. This repository answers "what is this card",
+a question settled the day the card was printed; "what is it worth today" is a
+different question with a different lifetime, and the app asks the source directly
+for it. Mixing them would give the immutable half an expiry date it has no reason to
+have -- which is the mistake this whole layout is built to avoid.
 
-The two halves also cost wildly different amounts to fetch, which is why they are
-separate commands rather than one pass:
-
-  --static   GraphQL, 40 cards per POST. The whole catalog is ~590 requests.
-  --prices   REST, one request per card. The whole catalog is ~23,500 requests.
-
-That asymmetry is not a choice. TCGdex's GraphQL schema exposes `image`, `rarity`
-and `variants`, but carries no `pricing` field and no `thirdParty` ids -- both are
-REST-only. So static data is cheap to refresh and prices are not, which is exactly
-backwards from how often each one changes, and is the reason prices get their own
-schedule instead of riding along with a static pull.
-
-Running --prices daily and serving the result to users is strictly kinder to TCGdex
-than the app asking them directly: one client with a User-Agent and a backoff, once
-a day, instead of one request per card per user per sync.
+Cost, for scale: --static is GraphQL at 40 cards per POST, so the entire catalog is
+about 590 requests. The REST card document is one request per card and would be
+~23,500, which is why nothing here is built on it. TCGdex's GraphQL schema exposes
+`image`, `rarity` and `variants` but carries neither `pricing` nor `thirdParty` ids;
+fill_gaps.py pays the REST cost for the handful of holed cards that need a product
+id, and nothing else does.
 
 Usage:
-    python pull_catalog.py --static --all           # every set, static half
+    python pull_catalog.py --static --all           # every set
     python pull_catalog.py --static --sets base1    # named sets
-    python pull_catalog.py --prices --all           # every set, prices half
     python pull_catalog.py --static --first 3       # first N by release date
 """
 
@@ -337,65 +326,6 @@ def pull_static(s: requests.Session, set_id: str):
     }
 
 
-def card_prices(card: dict) -> dict | None:
-    """
-    One card's TCGplayer quotes, in cents.
-
-    Only TCGplayer is read. The same document carries Cardmarket figures, but those are
-    in euros, and the app renders one currency symbol -- quietly filing a EUR number
-    under a "$" would be worse than showing no price at all.
-    """
-    pricing = card.get("pricing") or {}
-    tcg = pricing.get("tcgplayer") or {}
-    prices = {}
-    for finish, quote in tcg.items():
-        # 'unit' and 'updated' sit alongside the finishes rather than inside them.
-        if not isinstance(quote, dict):
-            continue
-        market = quote.get("marketPrice")
-        if market:
-            prices[finish] = round(market * 100)  # cents, matching domain.Money
-
-    # The TCGplayer product id behind each variant. Not a price, but it only ever
-    # arrives on this REST document, and it is the one handle on a card whose artwork
-    # TCGdex does not have -- so it is captured here rather than paid for again later.
-    products = sorted({
-        v["thirdParty"]["tcgplayer"]
-        for v in (card.get("variants_detailed") or [])
-        if isinstance(v, dict) and (v.get("thirdParty") or {}).get("tcgplayer")
-    })
-
-    if not prices and not products:
-        return None
-    out = {"id": card["id"]}
-    if prices:
-        out["usd_cents"] = prices
-    if products:
-        out["tcgplayer"] = products
-    return out
-
-
-def pull_prices(s: requests.Session, set_id: str):
-    """One set's volatile half. REST, one request per card -- there is no batched path."""
-    detail = get_json(s, f"{BASE}/{LANG}/sets/{set_id}")
-    if not detail:
-        print(f"  !! {set_id}: set document unavailable", file=sys.stderr)
-        return None
-
-    briefs = detail.get("cards") or []
-    with ThreadPoolExecutor(max_workers=WORKERS) as pool:
-        full = list(pool.map(lambda b: get_json(s, f"{BASE}/{LANG}/cards/{b['id']}"), briefs))
-
-    prices = [p for card in full if card for p in [card_prices(card)] if p]
-
-    return {
-        "setId": detail["id"],
-        "source": "tcgplayer",
-        "fetchedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "cards": prices,
-    }
-
-
 def refresh_counts(s: requests.Session, set_id: str) -> tuple[int, int] | None:
     """
     Stamps `cardsListed` onto a set already on disk, without re-fetching its cards.
@@ -429,8 +359,7 @@ def refresh_counts(s: requests.Session, set_id: str) -> tuple[int, int] | None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     half = ap.add_mutually_exclusive_group(required=True)
-    half.add_argument("--static", action="store_true", help="the immutable half (GraphQL)")
-    half.add_argument("--prices", action="store_true", help="the volatile half (REST)")
+    half.add_argument("--static", action="store_true", help="every card in the set (GraphQL)")
     half.add_argument("--counts", action="store_true",
                       help="refresh cardsListed only, one request per set")
 
@@ -455,7 +384,6 @@ def main() -> None:
         wanted = [x["id"] for x in dated]
 
     (OUT / "sets").mkdir(parents=True, exist_ok=True)
-    (OUT / "prices").mkdir(parents=True, exist_ok=True)
 
     # The index itself is worth writing: it is what the browse screen opens on, and
     # it is the one document that legitimately changes when a new set is announced.
@@ -476,7 +404,7 @@ def main() -> None:
             have, listed = result
             drift = "" if have == listed else f"  <-- SHORT {listed - have}"
             print(f"{have} on disk, {listed} offered upstream{drift}")
-        elif args.static:
+        else:
             doc = pull_static(s, set_id)
             if not doc:
                 continue
@@ -484,13 +412,6 @@ def main() -> None:
                 json.dumps(doc, indent=1, ensure_ascii=False), encoding="utf-8")
             art = sum(1 for c in doc["cards"] if c.get("image"))
             print(f"{len(doc['cards'])} cards, {art} with art")
-        else:
-            doc = pull_prices(s, set_id)
-            if not doc:
-                continue
-            (OUT / "prices" / f"{set_id}.json").write_text(
-                json.dumps(doc, indent=1, ensure_ascii=False), encoding="utf-8")
-            print(f"{len(doc['cards'])} priced")
 
     print(f"\nDone in {time.time() - started:.0f}s. Now run audit.py.")
 

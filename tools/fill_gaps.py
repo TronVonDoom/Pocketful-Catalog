@@ -18,8 +18,8 @@ Three tiers, best first, because no single source covers them all:
                         variants_detailed[].thirdParty.tcgplayer. Lower fidelity than a
                         scan but real, and it reaches the oddities the card databases
                         never filed -- Ancient Mew has no pokemontcg.io entry at all.
-                        The ids are REST-only, so they are fetched per holed card
-                        unless a price pull already captured them into prices/.
+                        The ids are REST-only, so they are fetched per holed card --
+                        only for the cards that actually need one.
   3. Nothing            Recorded as a hole with a reason, and drawn as a real "no art"
                         placeholder rather than an empty pocket. Mostly Trainer Kits,
                         which are not sold as singles so no product photo exists.
@@ -156,25 +156,17 @@ def number_keys(local_id: str) -> list[str]:
     return list(dict.fromkeys(k for k in keys if k))
 
 
-def tcgplayer_ids(s: requests.Session, set_id: str, card_ids: list[str]) -> dict[str, list[int]]:
+def tcgplayer_ids(s: requests.Session, card_ids: list[str]) -> dict[str, list[int]]:
     """
     TCGplayer product ids for the cards named, keyed by card id.
 
-    Read from `prices/<set>.json` when a price pull has already captured them, and
-    fetched per card otherwise. The fallback matters more than it looks: the ids live
-    only on the REST card document -- GraphQL exposes neither `pricing` nor
-    `thirdParty` -- so without it, filling one set's holes would mean pulling prices
-    for the entire catalog, twenty-three thousand requests to answer a question about
-    seventeen hundred cards.
+    Fetched per card, and only for cards that actually have a hole. The ids live only
+    on the REST card document -- GraphQL exposes neither `pricing` nor `thirdParty` --
+    so this is the one place in the repository that pays the REST cost, and it pays it
+    for seventeen hundred cards rather than twenty-three thousand.
 
-    Only holed cards are fetched. A set with two missing images costs two requests.
+    A set with two missing images costs two requests.
     """
-    path = CATALOG / "prices" / f"{set_id}.json"
-    if path.exists():
-        doc = json.loads(path.read_text(encoding="utf-8"))
-        known = {c["id"]: c["tcgplayer"] for c in doc.get("cards", []) if c.get("tcgplayer")}
-        if known:
-            return known
 
     def one(card_id: str) -> tuple[str, list[int]]:
         card = get_json(s, f"{TCGDEX}/en/cards/{card_id}", tries=3)
@@ -204,7 +196,7 @@ def fill_set(s: requests.Session, path: Path, skip_tier1: bool) -> tuple[int, in
     if not skip_tier1:
         scans = ptcgio_set(s, SET_ALIASES.get(set_id, set_id))
 
-    products = tcgplayer_ids(s, set_id, [c["id"] for c in holes if not c.get("imageAlt")])
+    products = tcgplayer_ids(s, [c["id"] for c in holes if not c.get("imageAlt")])
 
     for card in holes:
         for key in number_keys(card.get("localId", "")):

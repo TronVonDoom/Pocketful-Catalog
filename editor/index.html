@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Card Editor</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #0f1115; --panel: #161922; --panel2: #1c2029; --line: #272c38;
+    --ink: #e6e9ef; --ink2: #9aa3b2; --ink3: #6b7482;
+    --accent: #6ea8fe; --ok: #4ade80; --warn: #fbbf24; --bad: #f87171; --alt: #c084fc;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 13px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    height: 100vh; display: grid; grid-template-rows: auto 1fr; overflow: hidden;
+  }
+
+  header {
+    display: flex; align-items: center; gap: 14px; padding: 10px 16px;
+    background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap;
+  }
+  header h1 { font-size: 14px; margin: 0; font-weight: 600; letter-spacing: .2px; }
+  header .spacer { flex: 1; }
+  .stats { color: var(--ink2); font-variant-numeric: tabular-nums; }
+  .stats b { color: var(--ink); font-weight: 600; }
+  .stats .warn { color: var(--warn); }
+
+  input[type=search], input[type=text], input[type=number], select, textarea {
+    background: var(--panel2); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 8px; padding: 6px 10px; font: inherit; width: 100%;
+  }
+  input:focus, textarea:focus { outline: 1px solid var(--accent); border-color: var(--accent); }
+  header input[type=search] { min-width: 260px; width: auto; }
+  textarea { resize: vertical; min-height: 68px; line-height: 1.5; }
+
+  button {
+    background: var(--panel2); color: var(--ink); border: 1px solid var(--line);
+    border-radius: 8px; padding: 6px 12px; font: inherit; cursor: pointer;
+  }
+  button:hover:not(:disabled) { border-color: var(--accent); color: #fff; }
+  button:disabled { opacity: .45; cursor: default; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #08121f; font-weight: 600; }
+  button.danger:hover:not(:disabled) { border-color: var(--bad); color: var(--bad); }
+
+  main { display: grid; grid-template-columns: 290px 1fr 380px; min-height: 0; }
+
+  aside { border-right: 1px solid var(--line); overflow-y: auto; background: var(--panel); }
+  aside .group { padding: 8px 12px 4px; color: var(--ink3); font-size: 11px;
+                 text-transform: uppercase; letter-spacing: .6px; }
+  aside button.row {
+    width: 100%; text-align: left; background: none; border: 0; border-radius: 0;
+    color: var(--ink2); padding: 6px 12px; display: flex; gap: 8px; align-items: baseline;
+  }
+  aside button.row:hover { background: var(--panel2); color: var(--ink); }
+  aside button.row.active { background: var(--accent); color: #08121f; font-weight: 600; }
+  aside .count { margin-left: auto; font-size: 11px; opacity: .65; font-variant-numeric: tabular-nums; }
+  aside .dot { color: var(--alt); font-size: 15px; line-height: 1; }
+  aside button.row.active .dot { color: #08121f; }
+
+  section { overflow-y: auto; min-width: 0; padding: 12px 16px; }
+  .cards { display: grid; gap: 6px; }
+  .cardrow {
+    display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center;
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 6px 10px; cursor: pointer; text-align: left; color: inherit; font: inherit;
+  }
+  .cardrow:hover { border-color: var(--accent); }
+  .cardrow.active { border-color: var(--accent); background: var(--panel2); }
+  .cardrow img { width: 34px; height: 47px; object-fit: contain; border-radius: 3px; background: var(--panel2); }
+  .cardrow .no { width: 34px; height: 47px; display: grid; place-items: center;
+                 border-radius: 3px; background: var(--panel2); color: var(--ink3); font-size: 9px; }
+  .cardrow .nm { font-weight: 600; }
+  .cardrow .sub { color: var(--ink3); font-size: 11px; }
+  .tag { font-size: 10px; padding: 1px 6px; border-radius: 999px; border: 1px solid; }
+  .tag.edit { color: var(--alt); border-color: var(--alt); }
+  .tag.stale { color: var(--warn); border-color: var(--warn); }
+  .tag.orphan { color: var(--bad); border-color: var(--bad); }
+
+  .panel { border-left: 1px solid var(--line); background: var(--panel);
+           overflow-y: auto; padding: 14px; }
+  .panel h2 { margin: 0 0 2px; font-size: 15px; }
+  .panel .id { color: var(--ink3); font-size: 11px; font-variant-numeric: tabular-nums; }
+  .art { display: block; margin: 12px auto; max-width: 190px; border-radius: 8px; }
+  .field { margin-bottom: 10px; }
+  .field label { display: flex; gap: 8px; align-items: baseline; color: var(--ink2);
+                 font-size: 11px; margin-bottom: 3px; }
+  .field .was { margin-left: auto; color: var(--ink3); font-size: 10px; cursor: pointer;
+                text-decoration: underline dotted; }
+  .field.changed label { color: var(--alt); }
+  .field.changed input, .field.changed textarea { border-color: var(--alt); }
+  .flags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .flags label { display: inline-flex; gap: 5px; align-items: center; color: var(--ink2);
+                 font-size: 12px; cursor: pointer; }
+  .actions { display: flex; gap: 8px; margin-top: 14px; position: sticky; bottom: 0;
+             background: var(--panel); padding-top: 10px; }
+  .actions button { flex: 1; }
+  .note { color: var(--ink3); font-size: 11px; margin-top: 10px; line-height: 1.5; }
+  .banner { border-radius: 8px; padding: 8px 10px; font-size: 12px; margin-bottom: 10px; }
+  .banner.stale { background: #2a220c; color: var(--warn); border: 1px solid var(--warn); }
+  .empty { color: var(--ink3); padding: 40px 12px; text-align: center; }
+  .toast {
+    position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+    background: var(--panel2); border: 1px solid var(--line); border-radius: 8px;
+    padding: 8px 14px; font-size: 12px; opacity: 0; transition: opacity .18s;
+    pointer-events: none; max-width: 70vw;
+  }
+  .toast.show { opacity: 1; }
+  .toast.bad { border-color: var(--bad); color: var(--bad); }
+  pre.out { background: var(--panel2); border: 1px solid var(--line); border-radius: 8px;
+            padding: 8px; font-size: 11px; white-space: pre-wrap; color: var(--ink2); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Card Editor</h1>
+  <input type="search" id="q" placeholder="Search name, number or id (2+ characters)" autocomplete="off">
+  <span class="spacer"></span>
+  <span class="stats" id="stats"></span>
+  <button id="packBtn" title="Rebuild dist/catalog-v1.json.gz with these overrides applied">Repack</button>
+</header>
+
+<main>
+  <aside id="side"></aside>
+  <section id="list"><div class="empty">Pick a set, or search for a card.</div></section>
+  <div class="panel" id="panel"><div class="empty">No card selected.</div></div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// The editable fields and how each one is drawn. Kept in step with FIELDS in server.py,
+// which is the side that actually enforces it -- this list only decides what the form
+// shows, and a mismatch would mean a box whose value the server refuses.
+const FIELDS = [
+  { key: "name",           label: "Name",          kind: "text" },
+  { key: "localId",        label: "Number",        kind: "text" },
+  { key: "rarity",         label: "Rarity",        kind: "text" },
+  { key: "illustrator",    label: "Illustrator",   kind: "text" },
+  { key: "category",       label: "Category",      kind: "text" },
+  { key: "hp",             label: "HP",            kind: "number" },
+  { key: "types",          label: "Types",         kind: "list", hint: "comma separated" },
+  { key: "description",    label: "Flavour text",  kind: "area" },
+  { key: "image",          label: "Art stem",      kind: "text", hint: "no size or extension" },
+  { key: "imageAlt",       label: "Fallback art",  kind: "text", hint: "a finished URL" },
+  { key: "imageAltSource", label: "Fallback from", kind: "text" },
+];
+const VARIANTS = ["normal", "holo", "reverse", "firstEdition", "wPromo"];
+
+let state = { sets: [], setId: null, rows: [], selected: null, mode: "set" };
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+function toast(message, bad = false) {
+  const el = $("toast");
+  el.textContent = message;
+  el.className = "toast show" + (bad ? " bad" : "");
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => (el.className = "toast"), 2600);
+}
+
+async function api(path, options) {
+  const res = await fetch(path, options);
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error || res.statusText);
+  return body;
+}
+
+// Art is addressed off a stem plus a quality and an extension, exactly as the app does
+// it; a fallback URL is already finished and takes neither.
+const thumb = (card) => card.image ? card.image + "/low.webp" : (card.imageAlt || null);
+
+// ---------------------------------------------------------------- sets sidebar
+
+async function loadIndex() {
+  const data = await api("/api/index");
+  state.sets = data.sets;
+
+  const bits = [`<b>${data.sets.reduce((n, s) => n + s.cards, 0)}</b> cards`,
+                `<b>${data.overrides}</b> overridden`];
+  if (data.stale) bits.push(`<span class="warn">${data.stale} stale</span>`);
+  if (data.orphans.length) bits.push(`<span class="warn">${data.orphans.length} orphaned</span>`);
+  $("stats").innerHTML = bits.join(" &middot; ");
+
+  const groups = new Map();
+  for (const s of data.sets) {
+    const key = s.serie || "—";
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(s);
+  }
+
+  let html = "";
+  if (data.overrides) {
+    html += `<div class="group">Edits</div>`;
+    html += `<button class="row" data-all="1"><span class="dot">●</span>`
+         +  `<span>All overrides</span><span class="count">${data.overrides}</span></button>`;
+  }
+  for (const [serie, sets] of groups) {
+    html += `<div class="group">${esc(serie)}</div>`;
+    for (const s of sets) {
+      html += `<button class="row" data-set="${esc(s.id)}">`
+           +  (s.edited ? `<span class="dot">●</span>` : "")
+           +  `<span>${esc(s.name)}</span><span class="count">${s.cards}</span></button>`;
+    }
+  }
+  $("side").innerHTML = html;
+
+  for (const b of $("side").querySelectorAll("button.row")) {
+    b.onclick = () => b.dataset.all ? showOverrides() : openSet(b.dataset.set);
+  }
+}
+
+function markSide(key) {
+  for (const b of $("side").querySelectorAll("button.row")) {
+    const mine = key === "__all__" ? b.dataset.all : b.dataset.set === key;
+    b.classList.toggle("active", !!mine);
+  }
+}
+
+// ---------------------------------------------------------------- card list
+
+function rowHtml(row, index) {
+  const c = row.card;
+  const art = thumb(c);
+  const tags = [];
+  if (row.override) tags.push('<span class="tag edit">edited</span>');
+  if (row.stale) tags.push('<span class="tag stale">upstream moved</span>');
+  if (row.orphan) tags.push('<span class="tag orphan">not in catalog</span>');
+  return `<button class="cardrow" data-i="${index}">`
+    + (art ? `<img loading="lazy" src="${esc(art)}" alt="">` : `<span class="no">no art</span>`)
+    + `<span><span class="nm">${esc(c.name || row.id || "?")}</span>`
+    + `<br><span class="sub">${esc(c.localId || "")} &middot; ${esc(row.setName || c.id || "")}</span></span>`
+    + `<span>${tags.join(" ")}</span></button>`;
+}
+
+function paint(rows) {
+  state.rows = rows;
+  $("list").innerHTML = rows.length
+    ? `<div class="cards">${rows.map(rowHtml).join("")}</div>`
+    : `<div class="empty">Nothing here.</div>`;
+  for (const b of $("list").querySelectorAll(".cardrow")) {
+    b.onclick = () => select(Number(b.dataset.i));
+  }
+}
+
+async function openSet(setId) {
+  state.setId = setId; state.mode = "set";
+  markSide(setId);
+  const data = await api("/api/set/" + encodeURIComponent(setId));
+  paint(data.cards.map((c) => ({ ...c, setName: data.name })));
+}
+
+async function showOverrides() {
+  state.mode = "overrides";
+  markSide("__all__");
+  const data = await api("/api/overrides");
+  // Reshaped into the same row the set list uses, so one renderer covers both. An
+  // orphan has no upstream card left, so its own fields are all it can show.
+  paint(data.rows.map((r) => ({
+    card: { id: r.id, ...(r.upstream || {}), ...r.fields },
+    upstream: r.upstream || {},
+    override: { fields: r.fields, upstream: r.upstream, editedAt: r.editedAt },
+    stale: r.stale, orphan: r.orphan, setName: r.setName, id: r.id,
+  })));
+}
+
+async function search(text) {
+  state.mode = "search";
+  markSide(null);
+  const data = await api("/api/search?q=" + encodeURIComponent(text));
+  paint(data.cards);
+}
+
+// ---------------------------------------------------------------- the form
+
+function select(index) {
+  state.selected = index;
+  for (const b of $("list").querySelectorAll(".cardrow")) {
+    b.classList.toggle("active", Number(b.dataset.i) === index);
+  }
+  drawPanel(state.rows[index]);
+}
+
+function drawPanel(row) {
+  if (!row) { $("panel").innerHTML = `<div class="empty">No card selected.</div>`; return; }
+  const card = row.card, up = row.upstream || {};
+  const art = thumb(card);
+
+  let html = `<h2>${esc(card.name || card.id)}</h2>`
+    + `<div class="id">${esc(card.id)}${row.setName ? " &middot; " + esc(row.setName) : ""}</div>`;
+
+  if (row.stale) {
+    html += `<div class="banner stale">Upstream has changed since this was overridden. `
+         +  `Check whether the correction is still needed.</div>`;
+  }
+  if (row.orphan) {
+    html += `<div class="banner stale">No card with this id is in the catalog any more. `
+         +  `The override does nothing until one comes back.</div>`;
+  }
+  if (art) html += `<img class="art" src="${esc(art)}" alt="">`;
+
+  for (const f of FIELDS) {
+    const value = card[f.key];
+    const changed = JSON.stringify(value ?? null) !== JSON.stringify(up[f.key] ?? null);
+    const shown = f.kind === "list" ? (value || []).join(", ") : (value ?? "");
+    html += `<div class="field${changed ? " changed" : ""}" data-field="${f.key}">`
+      + `<label>${f.label}${f.hint ? ` <span style="opacity:.6">(${f.hint})</span>` : ""}`
+      + (changed ? `<span class="was" data-revert="${f.key}" title="Restore what upstream says">was: ${esc(
+            f.kind === "list" ? (up[f.key] || []).join(", ") : (up[f.key] ?? "—"))}</span>` : "")
+      + `</label>`
+      + (f.kind === "area"
+          ? `<textarea data-in="${f.key}">${esc(shown)}</textarea>`
+          : `<input type="${f.kind === "number" ? "number" : "text"}" data-in="${f.key}" value="${esc(shown)}">`)
+      + `</div>`;
+  }
+
+  const flags = card.variants || {};
+  html += `<div class="field"><label>Press runs</label><div class="flags">`
+    + VARIANTS.map((k) => `<label><input type="checkbox" data-flag="${k}"`
+        + (flags[k] ? " checked" : "") + `> ${k}</label>`).join("")
+    + `</div></div>`;
+
+  html += `<div class="actions">`
+    + `<button class="primary" id="save">Save override</button>`
+    + `<button class="danger" id="revert"${row.override ? "" : " disabled"}>Revert</button>`
+    + `</div>`;
+
+  if (row.override?.editedAt) {
+    html += `<div class="note">Overridden ${esc(row.override.editedAt)}. `
+         +  `Stored in catalog/overrides.json and applied by pack.py; `
+         +  `catalog/sets/ still holds exactly what upstream said.</div>`;
+  } else {
+    html += `<div class="note">Edits are written to catalog/overrides.json, not to `
+         +  `catalog/sets/ — those files are overwritten by the next upstream pull.</div>`;
+  }
+
+  $("panel").innerHTML = html;
+  $("panel").scrollTop = 0;
+  $("save").onclick = () => save(row);
+  $("revert").onclick = () => revert(row);
+  for (const el of $("panel").querySelectorAll("[data-revert]")) {
+    el.onclick = () => {
+      const f = FIELDS.find((x) => x.key === el.dataset.revert);
+      const was = up[f.key];
+      const box = $("panel").querySelector(`[data-in="${f.key}"]`);
+      box.value = f.kind === "list" ? (was || []).join(", ") : (was ?? "");
+      box.dispatchEvent(new Event("input", { bubbles: true }));
+    };
+  }
+}
+
+function collect() {
+  const out = {};
+  for (const f of FIELDS) {
+    const box = $("panel").querySelector(`[data-in="${f.key}"]`);
+    if (box) out[f.key] = box.value;
+  }
+  const flags = {};
+  for (const k of VARIANTS) {
+    flags[k] = $("panel").querySelector(`[data-flag="${k}"]`).checked;
+  }
+  out.variants = flags;
+  return out;
+}
+
+async function save(row) {
+  try {
+    const res = await api("/api/override/" + encodeURIComponent(row.card.id), {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fields: collect() }),
+    });
+    toast(res.removed ? "Matches upstream — override removed" : "Saved");
+    await refresh();
+  } catch (e) { toast(e.message, true); }
+}
+
+async function revert(row) {
+  try {
+    await api("/api/override/" + encodeURIComponent(row.card.id), { method: "DELETE" });
+    toast("Reverted to upstream");
+    await refresh();
+  } catch (e) { toast(e.message, true); }
+}
+
+// Re-reads whatever is on screen, keeping the selection, so the panel and the badges
+// agree with the file that was just written rather than with what was there before it.
+async function refresh() {
+  const keep = state.selected;
+  await loadIndex();
+  if (state.mode === "set" && state.setId) await openSet(state.setId);
+  else if (state.mode === "overrides") await showOverrides();
+  else if ($("q").value.trim().length >= 2) await search($("q").value.trim());
+  if (keep != null && state.rows[keep]) select(keep);
+}
+
+// ---------------------------------------------------------------- wiring
+
+let timer;
+$("q").oninput = (e) => {
+  clearTimeout(timer);
+  const text = e.target.value.trim();
+  if (text.length < 2) return;
+  timer = setTimeout(() => search(text), 180);
+};
+
+$("packBtn").onclick = async () => {
+  const b = $("packBtn");
+  b.disabled = true; b.textContent = "Packing…";
+  try {
+    const res = await api("/api/pack", { method: "POST" });
+    toast(res.ok ? "Repacked" : "Pack failed", !res.ok);
+    $("panel").insertAdjacentHTML("afterbegin", `<pre class="out">${esc(res.output)}</pre>`);
+  } catch (e) { toast(e.message, true); }
+  b.disabled = false; b.textContent = "Repack";
+};
+
+loadIndex().catch((e) => toast(e.message, true));
+</script>
+</body>
+</html>
