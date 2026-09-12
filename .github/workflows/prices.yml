@@ -1,0 +1,84 @@
+# Rebuilds the price file from TCGplayer, daily, and republishes it in place.
+#
+# One client asks so that every installed copy of the app does not have to. That is not
+# only politeness -- TCGCSV's terms are explicit about it: a pull a day, ten thousand
+# requests, and "design your integration to ingest the data into your own database or
+# cache rather than" querying it live. This job is exactly the arrangement it asks for,
+# and at ~370 requests it sits comfortably inside the budget.
+#
+# Prices are never committed. They change every night, nobody reviews a diff of twenty
+# thousand numbers, and the tree is not how the app reads them anyway.
+name: Prices
+
+on:
+  schedule:
+    # 21:00 UTC. TCGCSV rebuilds around 20:00, so this runs after today's numbers exist
+    # rather than republishing yesterday's an hour early.
+    - cron: '0 21 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'tools/pull_prices.py'
+      - 'catalog/tcgplayer-groups.json'
+      - '.github/workflows/prices.yml'
+
+permissions:
+  contents: write
+
+# A second run starting while the first is still fetching would double the load on the
+# service this job exists to be gentle with.
+concurrency:
+  group: prices
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      # Only fills gaps: a set already mapped is left alone, so the ordinary run makes no
+      # TCGdex requests at all. A newly released set is the case this is here for.
+      - name: Map any new sets to TCGplayer
+        run: python tools/map_groups.py
+
+      - name: Pull prices
+        run: python tools/pull_prices.py
+
+      # Committed only when it actually changed, which is when a set was newly mapped.
+      # The prices themselves are not in the tree and never will be.
+      - name: Record any new set mappings
+        run: |
+          if ! git diff --quiet -- catalog/tcgplayer-groups.json; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add catalog/tcgplayer-groups.json
+            git commit -m "Map newly released sets to TCGplayer groups"
+            git push
+          fi
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        # A fixed tag, replaced in place, so the app has one URL that always means "the
+        # current prices" and never has to search a release list. Separate from the
+        # catalog tag on purpose: these two documents have completely different
+        # lifetimes, and sharing a release would tie the one that never expires to the
+        # one that expires nightly.
+        run: |
+          gh release view prices --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
+            || gh release create prices \
+                 --repo "$GITHUB_REPOSITORY" \
+                 --title "Market prices" \
+                 --notes "TCGplayer market prices, from tcgcsv.com, refreshed daily and replaced in place. Card data lives on the \`catalog\` tag and does not expire; this does."
+          gh release upload prices dist/prices-v1.json.gz \
+            --repo "$GITHUB_REPOSITORY" --clobber

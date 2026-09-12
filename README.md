@@ -24,35 +24,67 @@ means every catalog refresh dirties the app's history. It also keeps ~20 MB of J
 of every clone of the app, and stops catalog releases from colliding with the APK
 releases Pocketful's in-app updater reads.
 
-## What belongs here, and what does not
+## Two documents, two lifetimes
 
-This repository catalogs what a card **is**. Everything it carries was fixed the day the
-card was printed: name, number, rarity, illustrator, artwork, HP, types, flavour text,
-and which press runs it exists in.
+This repository builds two files, and keeping them apart is the single most important
+thing about it.
 
-It does not carry what a card is **worth**. That is a different fact with a different
-lifetime — it changes daily, it comes from whoever is quoting it, and it is nobody's idea
-of a printed property of the card. The app reads prices live from the source, and only
-for the cards in your collection.
+**The catalog** is what a card **is**: name, number, rarity, illustrator, artwork, HP,
+types, flavour text, press runs. Every bit of it was fixed the day the card was printed, so
+the file has no expiry date — which is exactly what lets the app download it once and
+simply keep it, asking again only to learn whether a *new set* exists.
 
-Keeping the line there is what lets the rest of this work. A document with no expiry can
-be downloaded once and simply had; the app treats a catalog it already has as correct
-forever and asks again only to learn whether a *new set* exists. Put a price in it and the
-whole file inherits the shortest lifetime in it — the immutable half would start expiring
-at the speed of the volatile half, and "downloaded once and kept" becomes "re-downloaded
-on a TTL".
+**The prices** are what a card is **worth**, which is true for about a day.
+
+They never share a file, a release tag or a TTL. Put a price inside the catalog and the
+whole thing inherits the shortest lifetime in it: "downloaded once and kept" becomes
+"re-downloaded nightly", and the 1.1MB of card data starts expiring at the speed of a
+number that moves.
 
 | | `catalog/sets/` | prices |
 |---|---|---|
 | what it answers | what is this card | what is it worth today |
-| changes | when a set is printed | constantly |
-| lives | here, shipped to the app | nowhere here; fetched live by the app |
-| whole catalog costs | ~810 GraphQL requests | one REST request per card |
+| changes | when a set is printed | nightly |
+| release tag | `catalog` | `prices` |
+| app refreshes it | every six days | every twenty hours |
+| built from | TCGdex | TCGplayer, via [tcgcsv.com](https://tcgcsv.com) |
+| size | ~1.1 MB gzipped | ~0.12 MB gzipped |
 
-That cost asymmetry is worth knowing about: TCGdex's GraphQL schema exposes `image`,
-`rarity` and `variants` but carries no `pricing` field and no `thirdParty` ids — both are
-REST-only. So the data this repository wants is the cheap kind, and `fill_gaps.py` is the
-only thing here that pays the REST cost, for the ~1,700 cards missing artwork.
+### Why prices are built here rather than fetched by the app
+
+An earlier version of this repository had no price file at all, on the reasoning that a
+price is not a printed property of a card and should be read live from the source. The
+reasoning was right and the arrangement did not survive contact with the data.
+
+TCGdex carries a `pricing.tcgplayer` field that is simply **empty** for a large part of the
+catalog — every promo not sold as an English single, most Japanese printings, the Trainer
+Kits. For those cards the app had a choice between showing nothing and converting the
+European price from euros, and the converted figure turned out to be badly wrong: MEP
+Ceruledge converts to about $24 and actually trades at **$14**. Scarcity in Europe says
+nothing about scarcity here.
+
+TCGplayer's own catalog has all of them, and [tcgcsv.com](https://tcgcsv.com) publishes it.
+What that service does not permit is being asked per user — its terms are one pull a day,
+ten thousand requests, and an explicit *"design your integration to ingest the data into
+your own database or cache rather than"* querying it live. One nightly job here is exactly
+the arrangement it asks for, and it is the same bargain the catalog already strikes: one
+client asks, everybody downloads the answer.
+
+The result covers **20,064 of 23,548 cards**. The remainder is Pokémon TCG Pocket, which is
+a phone game whose cards do not exist as objects, and Trainer Kits, which were never sold
+as singles. Neither has a market price to miss.
+
+### How a card finds its price
+
+By set, then by printed number. `catalog/tcgplayer-groups.json` records which TCGplayer
+group each set is; `map_groups.py` works that out once and leaves the answer in the tree
+where a person can read it. It asks three ways, cheapest first — the normalised name, the
+abbreviation either side carries, and failing both, one card's TCGplayer product id from
+TCGdex, since every product id belongs to exactly one group and one card therefore settles
+the whole set.
+
+187 of 218 sets map. Of the 31 that do not, 15 are Pocket and most of the rest are Trainer
+Kits — sets TCGplayer has no group for because it does not sell them.
 
 ## Holes
 
@@ -89,6 +121,8 @@ python tools/fill_gaps.py                      # resolve missing artwork
 python tools/audit.py                          # check it, exit 1 on a new hole
 python tools/audit.py --accept                 # record today's holes as the baseline
 python tools/pack.py --static                  # build what the app downloads
+python tools/map_groups.py                     # match sets to TCGplayer groups
+python tools/pull_prices.py                    # build the nightly price file
 python editor/server.py                        # fix a card by hand
 ```
 

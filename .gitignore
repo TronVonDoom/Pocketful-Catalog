@@ -7,5 +7,9 @@ venv/
 # crash mid-save leaves the old overrides intact. The temporary is never worth committing.
 catalog/overrides.json.tmp
 
+# TCGCSV responses, kept so a re-run of map_groups.py costs nothing. Rebuildable, large,
+# and not something to review.
+catalog/.tcgcsv/
+
 # Built release assets. Reproducible from catalog/ by pack.py.
 dist/
