@@ -23,6 +23,11 @@ complete census of what is mapped and what is not. Most of those are Pokemon TCG
 which TCGplayer does not sell at all: a set with no group is the correct answer there, not
 a gap to close.
 
+A person can overrule any of it. An entry with `"via": "manual"` was linked by hand in the
+editor -- including a deliberate null, "TCGplayer does not sell this set" -- and is kept as
+written by every run, `--recheck` included. Re-deriving it would put back exactly the
+answer somebody already looked at and rejected.
+
 The output is committed. It changes when a set is released, and a diff of it is a thing a
 person can actually check.
 
@@ -35,14 +40,14 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import sys
 import time
-import unicodedata
 from difflib import get_close_matches
 from pathlib import Path
 
 import requests
+
+from tcgplayer import normalise
 
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog"
@@ -109,28 +114,6 @@ def products(s: requests.Session, group_id: int) -> list[dict]:
     return result
 
 
-def normalise(name: str) -> str:
-    """
-    A set name with everything a catalog adds to it taken back off.
-
-    Both sides decorate: TCGplayer prefixes a release code ("SV08: "), TCGdex sometimes
-    appends "Base Set", and one of them writes Pokemon with an accent. What is left is the
-    name a person would say out loud, which is the only part the two reliably agree on.
-    """
-    text = unicodedata.normalize("NFKD", name or "")
-    text = "".join(c for c in text if not unicodedata.combining(c)).lower()
-    # The release code comes off whether it is punctuated with a colon ("SV08: Surging
-    # Sparks") or a dash ("SM - Ultra Prism"). Both forms are in use, and which one a set
-    # got seems to be a matter of what year it was filed.
-    text = re.sub(r"^[a-z]{1,7}[0-9]*(\.[0-9]+)?[a-z]?\s*[:-]\s*", "", text)
-    # "&" and "and" are the same word. TCGdex writes "Black & White", TCGplayer writes
-    # "Black and White", and that one character was hiding a 115-card set.
-    text = text.replace("&", " and ")
-    text = re.sub(r"\b(pokemon|tcg|the|base set|collection)\b", " ", text)
-    text = re.sub(r"[^a-z0-9 ]", " ", text)
-    return re.sub(r"\s+", " ", text).strip()
-
-
 def tcgplayer_id_for_set(s: requests.Session, doc: dict, limit: int = 6) -> int | None:
     """
     A TCGplayer product id for any one card in this set.
@@ -175,8 +158,10 @@ def main() -> None:
     names = list(by_name)
 
     existing = {}
-    if OUT.exists() and not args.recheck:
+    if OUT.exists():
         existing = json.loads(OUT.read_text(encoding="utf-8")).get("sets") or {}
+        if args.recheck:
+            existing = {k: v for k, v in existing.items() if v.get("via") == "manual"}
 
     # Built lazily: the product index is only needed for sets that reach step 3, and
     # loading it costs a request per group the first time.
@@ -191,13 +176,17 @@ def main() -> None:
         return index.get(product_id)
 
     mapped: dict[str, dict] = {}
-    counts = {"kept": 0, "name": 0, "abbreviation": 0, "card": 0, "none": 0}
+    counts = {"kept": 0, "manual": 0, "name": 0, "abbreviation": 0, "card": 0, "none": 0}
 
     for path in sorted(SETS.glob("*.json")):
         doc = json.loads(path.read_text(encoding="utf-8"))
         set_id = doc["id"]
 
         prior = existing.get(set_id)
+        if prior and prior.get("via") == "manual":
+            mapped[set_id] = prior
+            counts["manual"] += 1
+            continue
         if prior and prior.get("groupId"):
             mapped[set_id] = prior
             counts["kept"] += 1
@@ -262,7 +251,7 @@ def main() -> None:
     resolved = sum(1 for v in mapped.values() if v.get("groupId"))
     print(
         f"\n{resolved}/{total} sets mapped "
-        f"(kept {counts['kept']}, by name {counts['name']}, "
+        f"(kept {counts['kept']}, by hand {counts['manual']}, by name {counts['name']}, "
         f"by abbreviation {counts['abbreviation']}, by card {counts['card']}, "
         f"none {counts['none']})"
     )

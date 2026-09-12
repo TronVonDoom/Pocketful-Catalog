@@ -4,8 +4,12 @@ __pycache__/
 venv/
 
 # The editor writes through a temporary file and renames it over the real one, so a
-# crash mid-save leaves the old overrides intact. The temporary is never worth committing.
-catalog/overrides.json.tmp
+# crash mid-save leaves the old file intact. The temporary is never worth committing.
+catalog/*.json.tmp
+catalog/art/**/*.tmp
+
+# Where the editor logs when it runs as a window with no console.
+editor/editor.log
 
 # TCGCSV responses, kept so a re-run of map_groups.py costs nothing. Rebuildable, large,
 # and not something to review.

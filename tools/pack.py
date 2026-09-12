@@ -66,6 +66,11 @@ SET_FIELDS = (
     "id", "name", "logo", "symbol", "releaseDate", "cardCount", "serie", "abbreviation",
 )
 
+# The part of a set a person can correct in the editor. Keep in step with SET_EDITABLE in
+# editor/server.py. `cardCount`, `serie` and `abbreviation` are structure the pull derives
+# and the app joins on, not wording, so they are not open to a hand edit.
+SET_OVERRIDABLE = ("name", "logo", "symbol", "releaseDate")
+
 
 def write_gz(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -78,9 +83,9 @@ def write_gz(path: Path, payload: dict) -> None:
           f"  ->{path.stat().st_size / 1048576:6.2f} MiB gzipped")
 
 
-def load_overrides() -> dict[str, dict]:
+def load_overrides() -> tuple[dict[str, dict], dict[str, dict]]:
     """
-    Hand corrections, keyed by card id.
+    Hand corrections: (cards by card id, sets by set id).
 
     These exist because `catalog/sets/` is output, not source: the weekly refresh re-pulls
     every set from upstream, so anything typed into those files is overwritten without a
@@ -88,16 +93,23 @@ def load_overrides() -> dict[str, dict]:
     here, on the way into the shipped file -- which keeps the pull an honest copy of
     upstream and the override an explicit statement that upstream is wrong.
 
+    A field overridden to null is a correction too -- "this card's TCGdex art is the wrong
+    picture" -- and is removed from the shipped record rather than written as null.
+
     Written by editor/server.py. Nothing stops it being edited by hand.
     """
     if not OVERRIDES.exists():
-        return {}
+        return {}, {}
     doc = json.loads(OVERRIDES.read_text(encoding="utf-8"))
-    return {
-        card_id: entry.get("fields") or {}
-        for card_id, entry in (doc.get("cards") or {}).items()
-        if entry.get("fields")
-    }
+
+    def fields(section: str) -> dict[str, dict]:
+        return {
+            key: entry.get("fields") or {}
+            for key, entry in (doc.get(section) or {}).items()
+            if entry.get("fields")
+        }
+
+    return fields("cards"), fields("sets")
 
 
 def pack_static() -> None:
@@ -105,8 +117,9 @@ def pack_static() -> None:
     if not index_path.exists():
         raise SystemExit("No catalog/index.json. Run pull_catalog.py --static first.")
 
-    overrides = load_overrides()
+    overrides, set_overrides = load_overrides()
     applied = 0
+    sets_applied = 0
 
     series: dict[str, dict] = {}
     sets = []
@@ -128,6 +141,7 @@ def pack_static() -> None:
                 kept = {k: v for k, v in patch.items() if k in CARD_FIELDS}
                 if kept:
                     trimmed.update(kept)
+                    trimmed = {k: v for k, v in trimmed.items() if v is not None}
                     applied += 1
 
             # Counted after the override, because filling a hole by hand is one of the
@@ -141,6 +155,12 @@ def pack_static() -> None:
             cards.append(trimmed)
 
         entry = {k: doc[k] for k in SET_FIELDS if doc.get(k) is not None}
+        set_patch = {k: v for k, v in (set_overrides.get(doc.get("id")) or {}).items()
+                     if k in SET_OVERRIDABLE}
+        if set_patch:
+            entry.update(set_patch)
+            entry = {k: v for k, v in entry.items() if v is not None}
+            sets_applied += 1
         entry["cards"] = cards
         sets.append(entry)
 
@@ -161,6 +181,10 @@ def pack_static() -> None:
         stale = len(overrides) - applied
         note = f", {stale} matching no card in the catalog" if stale else ""
         print(f"{applied} hand overrides applied{note}")
+    if set_overrides:
+        stale = len(set_overrides) - sets_applied
+        note = f", {stale} matching no set in the catalog" if stale else ""
+        print(f"{sets_applied} set overrides applied{note}")
     write_gz(DIST / f"catalog-v{SCHEMA}.json.gz", payload)
 
 

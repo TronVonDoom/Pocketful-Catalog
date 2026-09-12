@@ -19,7 +19,9 @@ on:
   push:
     paths:
       - 'tools/pull_prices.py'
+      - 'tools/tcgplayer.py'
       - 'catalog/tcgplayer-groups.json'
+      - 'catalog/tcgplayer-cards.json'
       - '.github/workflows/prices.yml'
 
 permissions:

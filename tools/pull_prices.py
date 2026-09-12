@@ -23,7 +23,8 @@ inside the first would give the whole thing the shorter of the two lifetimes.
 
 The join is by set, then by printed number. `catalog/tcgplayer-groups.json` says which
 TCGplayer group each set is -- see map_groups.py, which works that out once -- and within a
-group a card is found by the number printed on it.
+group a card is found by the number printed on it. The matching rules themselves live in
+tcgplayer.py, shared with the editor, along with the two ways a person can overrule them.
 
 Usage:
     python tools/pull_prices.py            # every mapped set
@@ -33,24 +34,23 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import glob
 import gzip
 import json
-import re
 import sys
 import time
 from pathlib import Path
 
 import requests
 
+from tcgplayer import (
+    GROUPS, POKEMON, TCGCSV, finish_key, load_card_links, load_groups, normalise_local,
+    pick_by_number,
+)
+
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog"
 SETS = CATALOG / "sets"
-GROUPS = CATALOG / "tcgplayer-groups.json"
 DIST = ROOT / "dist"
-
-TCGCSV = "https://tcgcsv.com/tcgplayer"
-POKEMON = 3
 USER_AGENT = "Pocketful-catalog-builder/0.3 (+https://github.com/TronVonDoom/Pocketful)"
 
 # Bumped when the shape changes in a way an older app cannot read. Tracked separately from
@@ -84,49 +84,6 @@ def get_json(s: requests.Session, url: str, tries: int = 3):
     return None
 
 
-def finish_key(sub_type: str | None) -> str | None:
-    """
-    TCGplayer's printing name, in the spelling the app already looks prices up by.
-
-    The app's key vocabulary came from TCGdex, which uses TCGplayer's own keys in camel
-    case -- "reverseHolofoil", "1stEditionHolofoil". TCGCSV spells the same values out
-    with spaces, so this is a spelling change rather than a mapping, and the app needs no
-    new vocabulary to read this file.
-    """
-    if not sub_type:
-        return None
-    text = sub_type.strip()
-    if not text:
-        return None
-    parts = re.split(r"\s+", text)
-    head = parts[0].lower()
-    rest = "".join(p[:1].upper() + p[1:] for p in parts[1:])
-    return head + rest
-
-
-def card_number(product: dict) -> str | None:
-    """
-    The number printed on a card, as the catalog writes it.
-
-    TCGplayer stores it as "014/089" where the catalog stores "014", and pads
-    inconsistently across eras -- so the comparison is made on the part before the slash
-    with leading zeros stripped, which is the only form both agree on.
-    """
-    for entry in product.get("extendedData") or []:
-        if entry.get("name") == "Number":
-            value = (entry.get("value") or "").strip()
-            if not value:
-                return None
-            return value.split("/")[0].strip().lstrip("0") or "0"
-    return None
-
-
-def normalise_local(local_id: str | None) -> str | None:
-    if not local_id:
-        return None
-    return str(local_id).strip().lstrip("0") or "0"
-
-
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--sets", nargs="+", help="only these catalog set ids")
@@ -134,70 +91,81 @@ def main() -> None:
 
     if not GROUPS.exists():
         raise SystemExit("No catalog/tcgplayer-groups.json. Run map_groups.py first.")
-    mapping = json.loads(GROUPS.read_text(encoding="utf-8")).get("sets") or {}
+    mapping = load_groups()
+    links = load_card_links()
 
     s = session()
+
+    # One fetch per group per run. A card linked by hand to a product in some other group
+    # costs that group's two requests once, however many cards point into it.
+    fetched: dict[int, tuple[list[dict], dict[int, dict[str, int]]]] = {}
+
+    def group(group_id: int) -> tuple[list[dict], dict[int, dict[str, int]]]:
+        if group_id not in fetched:
+            products = (get_json(s, f"{TCGCSV}/{POKEMON}/{group_id}/products") or {}).get("results") or []
+            time.sleep(PAUSE)
+            prices = (get_json(s, f"{TCGCSV}/{POKEMON}/{group_id}/prices") or {}).get("results") or []
+            time.sleep(PAUSE)
+            by_product: dict[int, dict[str, int]] = {}
+            for row in prices:
+                market = row.get("marketPrice")
+                key = finish_key(row.get("subTypeName"))
+                if not market or market <= 0 or not key:
+                    continue
+                by_product.setdefault(row["productId"], {})[key] = round(market * 100)
+            fetched[group_id] = (products, by_product)
+        return fetched[group_id]
+
     cards: dict[str, dict[str, int]] = {}
     matched_sets = 0
     skipped_sets = 0
     unmatched_cards = 0
+    total_cards = 0
+    by_hand = 0
 
-    paths = sorted(SETS.glob("*.json"))
-    for path in paths:
+    for path in sorted(SETS.glob("*.json")):
         doc = json.loads(path.read_text(encoding="utf-8"))
+        set_cards = doc.get("cards") or []
+        total_cards += len(set_cards)
         set_id = doc["id"]
         if args.sets and set_id not in args.sets:
             continue
 
         group_id = (mapping.get(set_id) or {}).get("groupId")
-        if not group_id:
+        linked = sum(1 for c in set_cards if c.get("id") in links)
+        # A set with no group can still hold cards someone linked one at a time -- a
+        # Trainer Kit card TCGplayer happens to sell under a different product line.
+        if not group_id and not linked:
             skipped_sets += 1
             continue
 
-        products = (get_json(s, f"{TCGCSV}/{POKEMON}/{group_id}/products") or {}).get("results") or []
-        time.sleep(PAUSE)
-        prices = (get_json(s, f"{TCGCSV}/{POKEMON}/{group_id}/prices") or {}).get("results") or []
-        time.sleep(PAUSE)
-        if not products:
-            print(f"  {set_id:12} no products for group {group_id}", file=sys.stderr)
-            continue
-
+        by_number: dict[str, dict] = {}
         by_product: dict[int, dict[str, int]] = {}
-        for row in prices:
-            market = row.get("marketPrice")
-            key = finish_key(row.get("subTypeName"))
-            if not market or market <= 0 or not key:
-                continue
-            by_product.setdefault(row["productId"], {})[key] = round(market * 100)
-
-        # A printed number can carry several products: the card, its staff stamp, its
-        # prerelease stamp. Those are genuinely different objects that trade at genuinely
-        # different prices, and the catalog only knows about the plain one -- so the plain
-        # one is what gets the number, and a decorated name never displaces it.
-        by_number: dict[str, dict[str, int]] = {}
-        decorated: dict[str, dict[str, int]] = {}
-        for product in products:
-            number = card_number(product)
-            quotes = by_product.get(product.get("productId"))
-            if not number or not quotes:
-                continue
-            if re.search(r"\[[^\]]+\]", product.get("name") or ""):
-                decorated.setdefault(number, quotes)
-            else:
-                by_number.setdefault(number, quotes)
+        if group_id:
+            products, by_product = group(group_id)
+            if not products:
+                print(f"  {set_id:12} no products for group {group_id}", file=sys.stderr)
+            by_number = pick_by_number(products, lambda p: p.get("productId") in by_product)
 
         found = 0
-        for card in doc.get("cards") or []:
-            number = normalise_local(card.get("localId"))
-            if not number:
-                continue
-            quotes = by_number.get(number) or decorated.get(number)
+        for card in set_cards:
+            link = links.get(card.get("id"))
+            if link is not None:
+                # Beats the number match outright, and a null product is an answer too:
+                # "this card is not sold", which must not fall back to guessing by number.
+                quotes = None
+                if link.get("productId") and link.get("groupId"):
+                    quotes = group(link["groupId"])[1].get(link["productId"])
+            else:
+                product = by_number.get(normalise_local(card.get("localId")) or "")
+                quotes = by_product.get(product["productId"]) if product else None
             if quotes:
                 cards[card["id"]] = quotes
                 found += 1
-        unmatched_cards += len(doc.get("cards") or []) - found
+                by_hand += link is not None
+        unmatched_cards += len(set_cards) - found
         matched_sets += 1
-        print(f"  {set_id:12} {found}/{len(doc.get('cards') or [])} priced")
+        print(f"  {set_id:12} {found}/{len(set_cards)} priced" + (f" ({linked} linked by hand)" if linked else ""))
 
     payload = {
         "schema": SCHEMA,
@@ -214,11 +182,10 @@ def main() -> None:
     with gzip.open(out, "wb", compresslevel=9) as fh:
         fh.write(raw)
 
-    total_cards = sum(len(json.loads(Path(p).read_text(encoding="utf-8")).get("cards") or [])
-                      for p in glob.glob(str(SETS / "*.json")))
     print(
         f"\n{len(cards)} of {total_cards} cards priced across {matched_sets} sets "
-        f"({skipped_sets} sets have no TCGplayer group, {unmatched_cards} cards unmatched)"
+        f"({skipped_sets} sets have no TCGplayer group, {unmatched_cards} cards unmatched, "
+        f"{by_hand} priced from a link made by hand)"
     )
     print(f"  {out.name:28} {len(raw) / 1048576:6.2f} MiB raw"
           f"  ->{out.stat().st_size / 1048576:6.2f} MiB gzipped")

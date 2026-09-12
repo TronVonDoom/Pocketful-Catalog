@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Card Editor</title>
+<title>Pocketful Editor</title>
+<link rel="icon" href="icon.png">
 <style>
   :root {
-    color-scheme: light dark;
-    --bg: #0f1115; --panel: #161922; --panel2: #1c2029; --line: #272c38;
+    color-scheme: dark;
+    --bg: #0f1115; --panel: #161922; --panel2: #1c2029; --panel3: #232834; --line: #272c38;
     --ink: #e6e9ef; --ink2: #9aa3b2; --ink3: #6b7482;
     --accent: #6ea8fe; --ok: #4ade80; --warn: #fbbf24; --bad: #f87171; --alt: #c084fc;
     --radius: 10px;
@@ -18,6 +19,8 @@
     font: 13px/1.5 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
     height: 100vh; display: grid; grid-template-rows: auto 1fr; overflow: hidden;
   }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
   header {
     display: flex; align-items: center; gap: 14px; padding: 10px 16px;
@@ -29,130 +32,248 @@
   .stats b { color: var(--ink); font-weight: 600; }
   .stats .warn { color: var(--warn); }
 
-  input[type=search], input[type=text], input[type=number], select, textarea {
+  input[type=search], input[type=text], input[type=number], input[type=url], select, textarea {
     background: var(--panel2); color: var(--ink); border: 1px solid var(--line);
     border-radius: 8px; padding: 6px 10px; font: inherit; width: 100%;
   }
-  input:focus, textarea:focus { outline: 1px solid var(--accent); border-color: var(--accent); }
-  header input[type=search] { min-width: 260px; width: auto; }
+  input:focus, textarea:focus, select:focus { outline: 1px solid var(--accent); border-color: var(--accent); }
+  header input[type=search] { min-width: 300px; width: auto; }
   textarea { resize: vertical; min-height: 68px; line-height: 1.5; }
 
-  button {
+  button, .btn {
     background: var(--panel2); color: var(--ink); border: 1px solid var(--line);
-    border-radius: 8px; padding: 6px 12px; font: inherit; cursor: pointer;
+    border-radius: 8px; padding: 6px 12px; font: inherit; cursor: pointer; white-space: nowrap;
   }
-  button:hover:not(:disabled) { border-color: var(--accent); color: #fff; }
+  button:hover:not(:disabled), .btn:hover { border-color: var(--accent); color: #fff; text-decoration: none; }
   button:disabled { opacity: .45; cursor: default; }
   button.primary { background: var(--accent); border-color: var(--accent); color: #08121f; font-weight: 600; }
+  button.primary:hover:not(:disabled) { color: #08121f; filter: brightness(1.08); }
   button.danger:hover:not(:disabled) { border-color: var(--bad); color: var(--bad); }
+  button.small, .btn.small { padding: 3px 9px; font-size: 12px; }
+  .badge { display: inline-block; min-width: 18px; padding: 0 6px; margin-left: 6px; border-radius: 999px;
+           background: var(--alt); color: #1a0b2a; font-size: 11px; font-weight: 700; text-align: center; }
 
-  main { display: grid; grid-template-columns: 290px 1fr 380px; min-height: 0; }
+  main { display: grid; grid-template-columns: 290px 1fr 430px; min-height: 0; }
 
+  /* ------------------------------------------------------------- sidebar */
   aside { border-right: 1px solid var(--line); overflow-y: auto; background: var(--panel); }
-  aside .group { padding: 8px 12px 4px; color: var(--ink3); font-size: 11px;
+  aside .filter { position: sticky; top: 0; background: var(--panel); padding: 10px 12px 6px; z-index: 1; }
+  aside .group { padding: 10px 12px 4px; color: var(--ink3); font-size: 11px;
                  text-transform: uppercase; letter-spacing: .6px; }
-  aside button.row {
+  aside button.row, aside button.serie {
     width: 100%; text-align: left; background: none; border: 0; border-radius: 0;
-    color: var(--ink2); padding: 6px 12px; display: flex; gap: 8px; align-items: baseline;
+    color: var(--ink2); padding: 5px 12px; display: flex; gap: 8px; align-items: baseline;
   }
-  aside button.row:hover { background: var(--panel2); color: var(--ink); }
-  aside button.row.active { background: var(--accent); color: #08121f; font-weight: 600; }
-  aside .count { margin-left: auto; font-size: 11px; opacity: .65; font-variant-numeric: tabular-nums; }
-  aside .dot { color: var(--alt); font-size: 15px; line-height: 1; }
+  aside button.serie { color: var(--ink3); font-size: 11px; text-transform: uppercase; letter-spacing: .6px;
+                       padding-top: 12px; }
+  aside button.row:hover, aside button.serie:hover { background: var(--panel2); color: var(--ink); }
+  aside button.row.active, aside button.serie.active { background: var(--accent); color: #08121f; font-weight: 600; }
+  aside .count { margin-left: auto; font-size: 11px; opacity: .7; font-variant-numeric: tabular-nums; }
+  aside .dot { font-size: 14px; line-height: 1; }
+  aside .dot.edit { color: var(--alt); }
+  aside .dot.warn { color: var(--warn); }
   aside button.row.active .dot { color: #08121f; }
 
-  section { overflow-y: auto; min-width: 0; padding: 12px 16px; }
+  /* ------------------------------------------------------------- list */
+  section { overflow-y: auto; min-width: 0; padding: 12px 16px 40px; }
   .cards { display: grid; gap: 6px; }
   .cardrow {
-    display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center;
+    display: grid; grid-template-columns: 40px 1fr auto; gap: 10px; align-items: center;
     background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 6px 10px; cursor: pointer; text-align: left; color: inherit; font: inherit;
+    padding: 6px 10px; cursor: pointer; text-align: left; color: inherit; font: inherit; width: 100%;
   }
   .cardrow:hover { border-color: var(--accent); }
   .cardrow.active { border-color: var(--accent); background: var(--panel2); }
-  .cardrow img { width: 34px; height: 47px; object-fit: contain; border-radius: 3px; background: var(--panel2); }
-  .cardrow .no { width: 34px; height: 47px; display: grid; place-items: center;
-                 border-radius: 3px; background: var(--panel2); color: var(--ink3); font-size: 9px; }
-  .cardrow .nm { font-weight: 600; }
-  .cardrow .sub { color: var(--ink3); font-size: 11px; }
-  .tag { font-size: 10px; padding: 1px 6px; border-radius: 999px; border: 1px solid; }
+  .cardrow img, .cardrow .no { width: 40px; height: 56px; border-radius: 3px; background: var(--panel2); }
+  .cardrow img { object-fit: contain; }
+  .cardrow .no { display: grid; place-items: center; color: var(--ink3); font-size: 9px; text-align: center; }
+  .nm { font-weight: 600; }
+  .sub { color: var(--ink3); font-size: 11px; }
+  .tags { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+  .tag { font-size: 10px; padding: 1px 6px; border-radius: 999px; border: 1px solid; white-space: nowrap; }
   .tag.edit { color: var(--alt); border-color: var(--alt); }
   .tag.stale { color: var(--warn); border-color: var(--warn); }
-  .tag.orphan { color: var(--bad); border-color: var(--bad); }
+  .tag.orphan, .tag.bad { color: var(--bad); border-color: var(--bad); }
+  .tag.link { color: var(--accent); border-color: var(--accent); }
+  .tag.ok { color: var(--ok); border-color: var(--ok); }
+  .tag.dim { color: var(--ink3); border-color: var(--line); }
 
-  .panel { border-left: 1px solid var(--line); background: var(--panel);
-           overflow-y: auto; padding: 14px; }
+  .sethead { display: flex; gap: 14px; align-items: center; background: var(--panel);
+             border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; margin-bottom: 10px; }
+  .sethead img { max-width: 120px; max-height: 48px; object-fit: contain; }
+  .sethead h2 { margin: 0; font-size: 16px; }
+  .sethead .spacer { flex: 1; }
+  .tcgline { margin-top: 4px; color: var(--ink2); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .chips { display: flex; gap: 6px; margin: 0 0 10px; flex-wrap: wrap; }
+  .chips button { border-radius: 999px; padding: 3px 12px; font-size: 12px; }
+  .chips button.on { background: var(--panel3); border-color: var(--accent); color: #fff; }
+  .viewtitle { margin: 2px 0 10px; font-size: 15px; }
+  .viewtitle .sub { font-weight: normal; margin-left: 6px; }
+
+  table.sets { width: 100%; border-collapse: collapse; }
+  table.sets th { text-align: left; color: var(--ink3); font-weight: 500; font-size: 11px; padding: 6px 8px;
+                  border-bottom: 1px solid var(--line); position: sticky; top: -12px; background: var(--bg); }
+  table.sets td { padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  table.sets tr:hover td { background: var(--panel); }
+  table.sets img { max-width: 70px; max-height: 26px; object-fit: contain; display: block; }
+  table.sets .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink2); }
+  .linkish { background: none; border: 0; padding: 0; color: var(--ink); font-weight: 600; cursor: pointer; }
+  .linkish:hover { color: var(--accent); }
+
+  /* ------------------------------------------------------------- panel */
+  .panel { border-left: 1px solid var(--line); background: var(--panel); overflow-y: auto; padding: 14px 14px 0; }
   .panel h2 { margin: 0 0 2px; font-size: 15px; }
   .panel .id { color: var(--ink3); font-size: 11px; font-variant-numeric: tabular-nums; }
-  .art { display: block; margin: 12px auto; max-width: 190px; border-radius: 8px; }
-  .field { margin-bottom: 10px; }
-  .field label { display: flex; gap: 8px; align-items: baseline; color: var(--ink2);
-                 font-size: 11px; margin-bottom: 3px; }
+  .box { background: var(--panel2); border: 1px solid var(--line); border-radius: var(--radius);
+         padding: 10px; margin: 12px 0; }
+  .box > .title { display: flex; align-items: baseline; gap: 8px; margin-bottom: 8px;
+                  color: var(--ink2); font-size: 11px; text-transform: uppercase; letter-spacing: .6px; }
+  .box > .title .spacer { flex: 1; }
+
+  .art { display: grid; grid-template-columns: 150px 1fr; gap: 12px; }
+  .drop { position: relative; width: 150px; height: 209px; border-radius: 8px; background: var(--panel3);
+          display: grid; place-items: center; overflow: hidden; border: 1px dashed transparent; }
+  .drop img { width: 100%; height: 100%; object-fit: contain; }
+  .drop .none { color: var(--ink3); font-size: 11px; text-align: center; padding: 10px; }
+  .drop.hover { border-color: var(--accent); background: #1d2a3f; }
+  .artside { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+  .artside .source { font-size: 12px; }
+  .artside .row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .artside .row.url { flex-wrap: nowrap; }
+  .artside .row input { min-width: 0; }
+  .hint { color: var(--ink3); font-size: 11px; line-height: 1.45; }
+  .warnline { color: var(--warn); font-size: 11px; line-height: 1.45; }
+  .find { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: 12px; }
+
+  .field { margin-bottom: 9px; }
+  .field label { display: flex; gap: 8px; align-items: baseline; color: var(--ink2); font-size: 11px; margin-bottom: 3px; }
   .field .was { margin-left: auto; color: var(--ink3); font-size: 10px; cursor: pointer;
-                text-decoration: underline dotted; }
+                text-decoration: underline dotted; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .field.changed label { color: var(--alt); }
   .field.changed input, .field.changed textarea { border-color: var(--alt); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; }
   .flags { display: flex; flex-wrap: wrap; gap: 10px; }
-  .flags label { display: inline-flex; gap: 5px; align-items: center; color: var(--ink2);
-                 font-size: 12px; cursor: pointer; }
-  .actions { display: flex; gap: 8px; margin-top: 14px; position: sticky; bottom: 0;
-             background: var(--panel); padding-top: 10px; }
+  .flags label { display: inline-flex; gap: 5px; align-items: center; color: var(--ink2); font-size: 12px; cursor: pointer; }
+  details summary { cursor: pointer; color: var(--ink2); font-size: 12px; margin: 4px 0 8px; }
+
+  .product { display: grid; grid-template-columns: 52px 1fr; gap: 10px; align-items: start; }
+  .product img { width: 52px; height: 72px; object-fit: contain; border-radius: 4px; background: var(--panel3); }
+  .prices { display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 12px; color: var(--ink2); margin-top: 2px; }
+  .prices b { color: var(--ok); font-weight: 600; }
+  .btnrow { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+
+  .actions { display: flex; gap: 8px; position: sticky; bottom: 0; background: var(--panel);
+             padding: 10px 0 14px; border-top: 1px solid var(--line); margin-top: 6px; }
   .actions button { flex: 1; }
-  .note { color: var(--ink3); font-size: 11px; margin-top: 10px; line-height: 1.5; }
-  .banner { border-radius: 8px; padding: 8px 10px; font-size: 12px; margin-bottom: 10px; }
+  .note { color: var(--ink3); font-size: 11px; margin: 4px 0 12px; line-height: 1.5; }
+  .banner { border-radius: 8px; padding: 8px 10px; font-size: 12px; margin: 10px 0; }
   .banner.stale { background: #2a220c; color: var(--warn); border: 1px solid var(--warn); }
-  .empty { color: var(--ink3); padding: 40px 12px; text-align: center; }
+  .banner.info { background: #122033; color: #bcd6ff; border: 1px solid #2c4a73; }
+  .empty { color: var(--ink3); padding: 40px 12px; text-align: center; line-height: 1.7; }
+  .loading { color: var(--ink3); font-size: 12px; }
+
+  /* ------------------------------------------------------------- modal */
+  .scrim { position: fixed; inset: 0; background: rgba(4, 6, 10, .66); display: grid; place-items: center; z-index: 20; }
+  .modal { width: min(900px, 94vw); max-height: 88vh; background: var(--panel); border: 1px solid var(--line);
+           border-radius: 14px; display: flex; flex-direction: column; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+  .modal header { border-radius: 14px 14px 0 0; }
+  .modal .body { overflow-y: auto; padding: 12px 16px; flex: 1; min-height: 120px; }
+  .modal footer { display: flex; gap: 8px; padding: 10px 16px; border-top: 1px solid var(--line); align-items: center; }
+  .modal footer .spacer { flex: 1; }
+  .tabs { display: flex; gap: 6px; }
+  .tabs button.on { border-color: var(--accent); background: var(--panel3); color: #fff; }
+  .pick { display: grid; grid-template-columns: 44px 1fr auto; gap: 10px; align-items: center;
+          padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  .pick:hover { background: var(--panel2); }
+  .pick.current { background: #1b2436; }
+  .pick img { width: 44px; height: 61px; object-fit: contain; border-radius: 3px; background: var(--panel3); }
+  .pick .noimg { width: 44px; }
+  pre.out { background: var(--panel2); border: 1px solid var(--line); border-radius: 8px; padding: 8px;
+            font-size: 11px; white-space: pre-wrap; color: var(--ink2); max-height: 280px; overflow: auto; }
+
   .toast {
     position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
-    background: var(--panel2); border: 1px solid var(--line); border-radius: 8px;
+    background: var(--panel3); border: 1px solid var(--line); border-radius: 8px;
     padding: 8px 14px; font-size: 12px; opacity: 0; transition: opacity .18s;
-    pointer-events: none; max-width: 70vw;
+    pointer-events: none; max-width: 70vw; z-index: 30;
   }
   .toast.show { opacity: 1; }
   .toast.bad { border-color: var(--bad); color: var(--bad); }
-  pre.out { background: var(--panel2); border: 1px solid var(--line); border-radius: 8px;
-            padding: 8px; font-size: 11px; white-space: pre-wrap; color: var(--ink2); }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Card Editor</h1>
-  <input type="search" id="q" placeholder="Search name, number or id (2+ characters)" autocomplete="off">
+  <h1>Pocketful Editor</h1>
+  <input type="search" id="q" placeholder="Search cards by name, number or id" autocomplete="off">
   <span class="spacer"></span>
   <span class="stats" id="stats"></span>
-  <button id="packBtn" title="Rebuild dist/catalog-v1.json.gz with these overrides applied">Repack</button>
+  <button id="packBtn" title="Rebuild dist/catalog-v1.json.gz locally with every edit applied, to check it">Repack</button>
+  <button id="publishBtn" class="primary" title="Commit your edits and push them to GitHub">Publish</button>
 </header>
 
 <main>
   <aside id="side"></aside>
-  <section id="list"><div class="empty">Pick a set, or search for a card.</div></section>
-  <div class="panel" id="panel"><div class="empty">No card selected.</div></div>
+  <section id="list"><div class="empty">Pick a set on the left, search for a card,<br>or start with <b>Cards without art</b>.</div></section>
+  <div class="panel" id="panel"><div class="empty">Nothing selected.</div></div>
 </main>
 
 <div class="toast" id="toast"></div>
+<input type="file" id="filePick" accept="image/*" hidden>
 
 <script>
 // The editable fields and how each one is drawn. Kept in step with FIELDS in server.py,
 // which is the side that actually enforces it -- this list only decides what the form
 // shows, and a mismatch would mean a box whose value the server refuses.
 const FIELDS = [
-  { key: "name",           label: "Name",          kind: "text" },
-  { key: "localId",        label: "Number",        kind: "text" },
-  { key: "rarity",         label: "Rarity",        kind: "text" },
-  { key: "illustrator",    label: "Illustrator",   kind: "text" },
-  { key: "category",       label: "Category",      kind: "text" },
-  { key: "hp",             label: "HP",            kind: "number" },
-  { key: "types",          label: "Types",         kind: "list", hint: "comma separated" },
-  { key: "description",    label: "Flavour text",  kind: "area" },
-  { key: "image",          label: "Art stem",      kind: "text", hint: "no size or extension" },
-  { key: "imageAlt",       label: "Fallback art",  kind: "text", hint: "a finished URL" },
-  { key: "imageAltSource", label: "Fallback from", kind: "text" },
+  { key: "name",        label: "Name",         kind: "text" },
+  { key: "localId",     label: "Number",       kind: "text", half: true },
+  { key: "hp",          label: "HP",           kind: "number", half: true },
+  { key: "rarity",      label: "Rarity",       kind: "text", half: true },
+  { key: "category",    label: "Category",     kind: "text", half: true },
+  { key: "illustrator", label: "Illustrator",  kind: "text" },
+  { key: "types",       label: "Types",        kind: "list", hint: "comma separated" },
+  { key: "description", label: "Flavour text", kind: "area" },
 ];
+// The artwork fields, drawn under "Advanced". Normally driven by the picture tools above
+// them rather than typed into.
+const ART_FIELDS = [
+  { key: "image",          label: "TCGdex art stem", kind: "text", hint: "no size or extension" },
+  { key: "imageAlt",       label: "Fallback art",    kind: "text", hint: "a finished URL" },
+  { key: "imageAltSource", label: "Fallback from",   kind: "text" },
+];
+const ART_KEYS = ART_FIELDS.map((f) => f.key);
 const VARIANTS = ["normal", "holo", "reverse", "firstEdition", "wPromo"];
+const SET_FIELDS = [
+  { key: "name",        label: "Name",         kind: "text" },
+  { key: "releaseDate", label: "Release date", kind: "text", hint: "YYYY-MM-DD" },
+  { key: "symbol",      label: "Symbol stem",  kind: "text", hint: "advanced" },
+  { key: "logo",        label: "Logo stem",    kind: "text", hint: "no extension; the app adds .png" },
+];
 
-let state = { sets: [], setId: null, rows: [], selected: null, mode: "set" };
+// Pictures are resized in the page, not the server, so the server can stay stdlib. The
+// card box is pokemontcg.io's hi-res scan size -- the best rendition already in the catalog
+// -- and anything under TCGdex's own 600x825 gets a warning rather than a refusal.
+const CARD_BOX = [734, 1024];
+const LOGO_BOX = [1200, 600];
+const CARD_RATIO = 63 / 88;
 
+const state = {
+  index: null,
+  view: null,          // { kind, key }
+  rows: [],
+  setData: null,
+  chip: "all",
+  selected: null,      // { type: "card", id } | { type: "set", id }
+  row: null,
+  dirty: false,
+  staged: null,        // { blob, url, width, height, type }
+  cleared: new Set(),  // art fields overridden to nothing
+  tcg: null,
+  logoStaged: null,
+};
+
+const CLIENT = (crypto.randomUUID && crypto.randomUUID()) || String(Math.random()).slice(2);
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -162,264 +283,1064 @@ function toast(message, bad = false) {
   el.textContent = message;
   el.className = "toast show" + (bad ? " bad" : "");
   clearTimeout(toast.t);
-  toast.t = setTimeout(() => (el.className = "toast"), 2600);
+  toast.t = setTimeout(() => (el.className = "toast"), bad ? 5200 : 2600);
 }
 
-async function api(path, options) {
+async function api(path, options = {}) {
+  if (options.json !== undefined) {
+    options = { ...options, body: JSON.stringify(options.json),
+                headers: { "Content-Type": "application/json", ...(options.headers || {}) } };
+  }
   const res = await fetch(path, options);
   const body = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(body.error || res.statusText);
   return body;
 }
 
+// ---------------------------------------------------------------- art addressing
+
+// Committed art is addressed by the URL it will have once pushed. Until then it only
+// exists on this disk, so the editor shows it from here.
+function local(url) {
+  const base = state.index?.artBase;
+  return base && url && url.startsWith(base) ? "/art/" + url.slice(base.length) : url;
+}
 // Art is addressed off a stem plus a quality and an extension, exactly as the app does
 // it; a fallback URL is already finished and takes neither.
-const thumb = (card) => card.image ? card.image + "/low.webp" : (card.imageAlt || null);
+const thumb = (c) => c.image ? c.image + "/low.webp" : (c.imageAlt ? local(c.imageAlt) : null);
+const logoUrl = (stem) => stem ? local(stem + ".png") : null;
+const money = (cents) => "$" + (cents / 100).toFixed(2);
+const finishName = (key) => key.replace(/([a-z])([A-Z0-9])/g, "$1 $2").replace(/^./, (c) => c.toUpperCase())
+  .replace("Holofoil", "Holo");
+const pricesHtml = (p) => p && Object.keys(p).length
+  ? `<div class="prices">${Object.entries(p).map(([k, v]) => `<span>${esc(finishName(k))} <b>${money(v)}</b></span>`).join("")}</div>`
+  : `<div class="prices">no market price</div>`;
 
-// ---------------------------------------------------------------- sets sidebar
+// ---------------------------------------------------------------- sidebar
 
 async function loadIndex() {
   const data = await api("/api/index");
-  state.sets = data.sets;
-
-  const bits = [`<b>${data.sets.reduce((n, s) => n + s.cards, 0)}</b> cards`,
-                `<b>${data.overrides}</b> overridden`];
+  state.index = data;
+  const cards = data.sets.reduce((n, s) => n + s.cards, 0);
+  const bits = [`<b>${cards.toLocaleString()}</b> cards`];
   if (data.stale) bits.push(`<span class="warn">${data.stale} stale</span>`);
   if (data.orphans.length) bits.push(`<span class="warn">${data.orphans.length} orphaned</span>`);
   $("stats").innerHTML = bits.join(" &middot; ");
+  drawSide();
+  refreshPending();
+}
 
-  const groups = new Map();
+function drawSide() {
+  const data = state.index;
+  if (!data) return;
+  const filter = ($("setFilter")?.value || "").trim().toLowerCase();
+  const edits = data.sets.filter((s) => s.setEdited || s.tcgplayer?.via === "manual").length;
+
+  // Newest series first, newest set first within each: the sets that most need a hand
+  // are the ones printed this month, not in 1999.
+  const series = new Map();
   for (const s of data.sets) {
-    const key = s.serie || "—";
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(s);
+    const key = s.serie?.id || "—";
+    if (!series.has(key)) series.set(key, { id: key, name: s.serie?.name || key, sets: [] });
+    series.get(key).sets.push(s);
   }
+  const newest = (g) => g.sets.reduce((d, s) => (s.releaseDate || "") > d ? s.releaseDate : d, "");
+  const ordered = [...series.values()].sort((a, b) => newest(b).localeCompare(newest(a)));
 
-  let html = "";
-  if (data.overrides) {
-    html += `<div class="group">Edits</div>`;
-    html += `<button class="row" data-all="1"><span class="dot">●</span>`
-         +  `<span>All overrides</span><span class="count">${data.overrides}</span></button>`;
+  let html = `<div class="filter"><input type="search" id="setFilter" placeholder="Filter sets" value="${esc(filter)}"></div>`;
+  if (!filter) {
+    html += `<div class="group">To do</div>`
+      + sideRow("noart", "Cards without art", data.noArt)
+      + sideRow("unlinked", "Sets not on TCGplayer", data.unlinkedSets)
+      + `<div class="group">Your edits</div>`
+      + sideRow("overrides", "Corrected cards", data.overrides)
+      + sideRow("linked", "Cards linked by hand", data.cardLinks)
+      + sideRow("setedits", "Sets you changed", edits);
   }
-  for (const [serie, sets] of groups) {
-    html += `<div class="group">${esc(serie)}</div>`;
+  for (const g of ordered) {
+    const sets = g.sets.filter((s) => !filter || (s.name || "").toLowerCase().includes(filter)
+      || s.id.toLowerCase().includes(filter) || g.name.toLowerCase().includes(filter))
+      .sort((a, b) => (b.releaseDate || "").localeCompare(a.releaseDate || ""));
+    if (!sets.length) continue;
+    html += `<button class="serie" data-serie="${esc(g.id)}" title="Every set in this series, with its TCGplayer link">`
+         +  `<span>${esc(g.name)}</span><span class="count">${sets.length} sets</span></button>`;
     for (const s of sets) {
+      const unlinked = !s.tcgplayer?.groupId && !["not-sold", "manual"].includes(s.tcgplayer?.via);
       html += `<button class="row" data-set="${esc(s.id)}">`
-           +  (s.edited ? `<span class="dot">●</span>` : "")
+           +  (s.edited || s.setEdited ? `<span class="dot edit" title="edited">●</span>` : "")
+           +  (unlinked ? `<span class="dot warn" title="not linked to TCGplayer">●</span>` : "")
            +  `<span>${esc(s.name)}</span><span class="count">${s.cards}</span></button>`;
     }
   }
-  $("side").innerHTML = html;
+  const side = $("side");
+  const scroll = side.scrollTop;
+  const hadFocus = document.activeElement?.id === "setFilter";
+  side.innerHTML = html;
+  side.scrollTop = scroll;
+  const box = $("setFilter");
+  box.oninput = () => drawSide();
+  if (hadFocus) { box.focus(); box.setSelectionRange(box.value.length, box.value.length); }
+  for (const b of side.querySelectorAll("button[data-view]")) b.onclick = () => go({ kind: b.dataset.view });
+  for (const b of side.querySelectorAll("button[data-serie]")) b.onclick = () => go({ kind: "series", key: b.dataset.serie });
+  for (const b of side.querySelectorAll("button[data-set]")) b.onclick = () => go({ kind: "set", key: b.dataset.set });
+  markSide();
+}
 
-  for (const b of $("side").querySelectorAll("button.row")) {
-    b.onclick = () => b.dataset.all ? showOverrides() : openSet(b.dataset.set);
+const sideRow = (view, label, count) =>
+  `<button class="row" data-view="${view}"><span>${label}</span><span class="count">${count}</span></button>`;
+
+function markSide() {
+  const v = state.view || {};
+  for (const b of $("side").querySelectorAll("button")) {
+    const on = (b.dataset.view && b.dataset.view === v.kind)
+      || (b.dataset.set && v.kind === "set" && b.dataset.set === v.key)
+      || (b.dataset.serie && v.kind === "series" && b.dataset.serie === v.key);
+    b.classList.toggle("active", !!on);
   }
 }
 
-function markSide(key) {
-  for (const b of $("side").querySelectorAll("button.row")) {
-    const mine = key === "__all__" ? b.dataset.all : b.dataset.set === key;
-    b.classList.toggle("active", !!mine);
-  }
+// ---------------------------------------------------------------- navigation
+
+function leaveOk() {
+  return !state.dirty || confirm("You have unsaved changes. Discard them?");
 }
 
-// ---------------------------------------------------------------- card list
+async function go(view, { keepPanel = false } = {}) {
+  if (!keepPanel && !leaveOk()) return;
+  state.view = view;
+  if (!keepPanel) state.chip = "all";
+  markSide();
+  try {
+    if (view.kind === "set") await showSet(view.key);
+    else if (view.kind === "series") showSets(state.index.sets.filter((s) => s.serie?.id === view.key),
+      (state.index.sets.find((s) => s.serie?.id === view.key)?.serie?.name || view.key), "Every set in this series.");
+    else if (view.kind === "unlinked") showSets(state.index.sets.filter((s) => !s.tcgplayer?.groupId
+      && !["not-sold", "manual"].includes(s.tcgplayer?.via)), "Sets not on TCGplayer",
+      "No TCGplayer group was found for these automatically, so none of their cards get a price. Link each to the right group, or mark it as not sold.");
+    else if (view.kind === "setedits") showSets(state.index.sets.filter((s) => s.setEdited || s.tcgplayer?.via === "manual"),
+      "Sets you changed", "Sets with a corrected name, date or logo, or a TCGplayer link made by hand.");
+    else if (view.kind === "noart") await showCards("/api/no-art", "Cards without art",
+      "No picture from TCGdex, pokemontcg.io or TCGplayer. Pick one, then drop, paste or choose a picture for it.");
+    else if (view.kind === "overrides") await showOverrides();
+    else if (view.kind === "linked") await showCards("/api/linked", "Cards linked by hand",
+      "Cards priced from a TCGplayer product you chose, rather than the automatic match by number.");
+    else if (view.kind === "search") await showCards("/api/search?q=" + encodeURIComponent(view.key),
+      `Search: “${view.key}”`, "");
+  } catch (e) { toast(e.message, true); }
+  if (!keepPanel) { state.dirty = false; }
+}
+
+// ---------------------------------------------------------------- lists
+
+function cardTags(row) {
+  const tags = [];
+  const c = row.card || {};
+  if (row.override) tags.push('<span class="tag edit">edited</span>');
+  if (c.imageAltSource === "manual") tags.push('<span class="tag ok">your art</span>');
+  if (!c.image && !c.imageAlt) tags.push('<span class="tag bad">no art</span>');
+  if (row.link) tags.push(row.link.productId ? '<span class="tag link">linked</span>' : '<span class="tag dim">not sold</span>');
+  if (row.stale) tags.push('<span class="tag stale">upstream moved</span>');
+  if (row.orphan) tags.push('<span class="tag orphan">not in catalog</span>');
+  return tags.join("");
+}
 
 function rowHtml(row, index) {
   const c = row.card;
   const art = thumb(c);
-  const tags = [];
-  if (row.override) tags.push('<span class="tag edit">edited</span>');
-  if (row.stale) tags.push('<span class="tag stale">upstream moved</span>');
-  if (row.orphan) tags.push('<span class="tag orphan">not in catalog</span>');
-  return `<button class="cardrow" data-i="${index}">`
+  const active = state.selected?.type === "card" && state.selected.id === c.id ? " active" : "";
+  return `<button class="cardrow${active}" data-i="${index}">`
     + (art ? `<img loading="lazy" src="${esc(art)}" alt="">` : `<span class="no">no art</span>`)
     + `<span><span class="nm">${esc(c.name || row.id || "?")}</span>`
-    + `<br><span class="sub">${esc(c.localId || "")} &middot; ${esc(row.setName || c.id || "")}</span></span>`
-    + `<span>${tags.join(" ")}</span></button>`;
+    + `<br><span class="sub">#${esc(c.localId || "?")} &middot; ${esc(row.setName || state.setData?.set?.set?.name || c.id || "")}</span></span>`
+    + `<span class="tags">${cardTags(row)}</span></button>`;
 }
 
-function paint(rows) {
-  state.rows = rows;
-  $("list").innerHTML = rows.length
-    ? `<div class="cards">${rows.map(rowHtml).join("")}</div>`
+function paintCards(rows, target) {
+  target.innerHTML = rows.length
+    ? `<div class="cards">${rows.map((r) => rowHtml(r, state.rows.indexOf(r))).join("")}</div>`
     : `<div class="empty">Nothing here.</div>`;
-  for (const b of $("list").querySelectorAll(".cardrow")) {
-    b.onclick = () => select(Number(b.dataset.i));
-  }
+  for (const b of target.querySelectorAll(".cardrow")) b.onclick = () => selectCard(state.rows[Number(b.dataset.i)]);
 }
 
-async function openSet(setId) {
-  state.setId = setId; state.mode = "set";
-  markSide(setId);
-  const data = await api("/api/set/" + encodeURIComponent(setId));
-  paint(data.cards.map((c) => ({ ...c, setName: data.name })));
+async function showCards(path, title, note) {
+  const data = await api(path);
+  state.rows = data.cards;
+  state.setData = null;
+  $("list").innerHTML = `<h2 class="viewtitle">${esc(title)}<span class="sub">${data.cards.length}${data.cards.length >= 200 && path.includes("search") ? "+" : ""}</span></h2>`
+    + (note ? `<div class="note">${esc(note)}</div>` : "") + `<div id="cardlist"></div>`;
+  paintCards(state.rows, $("cardlist"));
 }
 
 async function showOverrides() {
-  state.mode = "overrides";
-  markSide("__all__");
   const data = await api("/api/overrides");
   // Reshaped into the same row the set list uses, so one renderer covers both. An
   // orphan has no upstream card left, so its own fields are all it can show.
-  paint(data.rows.map((r) => ({
-    card: { id: r.id, ...(r.upstream || {}), ...r.fields },
-    upstream: r.upstream || {},
-    override: { fields: r.fields, upstream: r.upstream, editedAt: r.editedAt },
-    stale: r.stale, orphan: r.orphan, setName: r.setName, id: r.id,
-  })));
+  const rows = data.rows.map((r) => {
+    let card = r.card;
+    if (!card) {
+      card = { id: r.id, ...(r.upstream || {}) };
+      for (const [k, v] of Object.entries(r.fields)) { if (v === null) delete card[k]; else card[k] = v; }
+    }
+    return { card, upstream: r.fullUpstream || r.upstream || {}, override: { fields: r.fields, upstream: r.upstream, editedAt: r.editedAt },
+             stale: r.stale, orphan: r.orphan, setName: r.setName, setId: r.setId, id: r.id, link: r.link, partial: r.orphan };
+  });
+  state.rows = rows;
+  state.setData = null;
+  $("list").innerHTML = `<h2 class="viewtitle">Corrected cards<span class="sub">${rows.length}</span></h2>`
+    + `<div class="note">Every card whose shipped data differs from what upstream says.</div><div id="cardlist"></div>`;
+  paintCards(rows, $("cardlist"));
 }
 
-async function search(text) {
-  state.mode = "search";
-  markSide(null);
-  const data = await api("/api/search?q=" + encodeURIComponent(text));
-  paint(data.cards);
+function tcgStatus(t) {
+  if (!t) return `<span class="tag bad">not linked</span>`;
+  if (t.via === "manual") return t.groupId
+    ? `<b>${esc(t.tcgplayerName)}</b> <span class="tag link">linked by hand</span>`
+    : `<span class="tag dim">not sold (by hand)</span>`;
+  if (t.via === "not-sold") return `<span class="tag dim">not sold</span>`;
+  if (!t.groupId) return `<span class="tag bad">not linked</span>`;
+  return `<b>${esc(t.tcgplayerName)}</b> <span class="tag dim">automatic</span>`;
 }
 
-// ---------------------------------------------------------------- the form
-
-function select(index) {
-  state.selected = index;
-  for (const b of $("list").querySelectorAll(".cardrow")) {
-    b.classList.toggle("active", Number(b.dataset.i) === index);
+function showSets(sets, title, note) {
+  state.rows = [];
+  state.setData = null;
+  sets = [...sets].sort((a, b) => (b.releaseDate || "").localeCompare(a.releaseDate || ""));
+  let html = `<h2 class="viewtitle">${esc(title)}<span class="sub">${sets.length} sets</span></h2>`
+    + (note ? `<div class="note">${esc(note)}</div>` : "");
+  if (!sets.length) {
+    $("list").innerHTML = html + `<div class="empty">Nothing here.</div>`;
+    return;
   }
-  drawPanel(state.rows[index]);
+  html += `<table class="sets"><thead><tr><th></th><th>Set</th><th>Released</th><th class="num">Cards</th>`
+    + `<th class="num">No art</th><th>TCGplayer</th><th></th></tr></thead><tbody>`;
+  for (const s of sets) {
+    html += `<tr><td>${s.logo ? `<img loading="lazy" src="${esc(logoUrl(s.logo))}" alt="">` : ""}</td>`
+      + `<td><button class="linkish" data-open="${esc(s.id)}">${esc(s.name)}</button><div class="sub">${esc(s.id)}</div></td>`
+      + `<td class="sub">${esc(s.releaseDate || "")}</td><td class="num">${s.cards}</td>`
+      + `<td class="num">${s.noArt || ""}</td><td>${tcgStatus(s.tcgplayer)}</td>`
+      + `<td><button class="small" data-link="${esc(s.id)}">Link…</button></td></tr>`;
+  }
+  $("list").innerHTML = html + `</tbody></table>`;
+  for (const b of $("list").querySelectorAll("[data-open]")) b.onclick = () => go({ kind: "set", key: b.dataset.open });
+  for (const b of $("list").querySelectorAll("[data-link]")) b.onclick = () => openGroupPicker(b.dataset.link);
 }
 
-function drawPanel(row) {
-  if (!row) { $("panel").innerHTML = `<div class="empty">No card selected.</div>`; return; }
+async function showSet(setId) {
+  const data = await api("/api/set/" + encodeURIComponent(setId));
+  const info = data.set;
+  state.setData = data;
+  state.rows = data.cards.map((c) => ({ ...c, setId, setName: info.set.name }));
+  const s = info.set;
+  const counts = {
+    all: state.rows.length,
+    noart: state.rows.filter((r) => !r.card.image && !r.card.imageAlt).length,
+    edited: state.rows.filter((r) => r.override).length,
+    linked: state.rows.filter((r) => r.link).length,
+  };
+  const chip = (key, label) => `<button data-chip="${key}" class="${state.chip === key ? "on" : ""}"${counts[key] || key === "all" ? "" : " disabled"}>${label} ${counts[key]}</button>`;
+  $("list").innerHTML = `<div class="sethead">`
+    + (s.logo ? `<img src="${esc(logoUrl(s.logo))}" alt="">` : "")
+    + `<div><h2>${esc(s.name)}</h2>`
+    + `<div class="sub">${esc(s.id)} &middot; ${esc(s.serie?.name || "")} &middot; ${esc(s.releaseDate || "no date")} &middot; ${info.cardCount} cards`
+    + (data.override ? ` &middot; <span style="color:var(--alt)">set edited</span>` : "") + `</div>`
+    + `<div class="tcgline">TCGplayer: ${tcgStatus(info.tcgplayer)} <button class="small" id="setLink">Change…</button></div></div>`
+    + `<span class="spacer"></span><button id="editSet">Edit set</button></div>`
+    + `<div class="chips">${chip("all", "All")}${chip("noart", "Without art")}${chip("edited", "Corrected")}${chip("linked", "Linked")}</div>`
+    + `<div id="cardlist"></div>`;
+  $("setLink").onclick = () => openGroupPicker(setId);
+  $("editSet").onclick = () => selectSet(setId);
+  for (const b of $("list").querySelectorAll("[data-chip]")) {
+    b.onclick = () => { state.chip = b.dataset.chip; showSet(setId); };
+  }
+  const filters = {
+    all: () => true,
+    noart: (r) => !r.card.image && !r.card.imageAlt,
+    edited: (r) => r.override,
+    linked: (r) => r.link,
+  };
+  paintCards(state.rows.filter(filters[state.chip] || filters.all), $("cardlist"));
+}
+
+// ---------------------------------------------------------------- card panel
+
+async function selectCard(row) {
+  if (!row) return;
+  if (!(state.selected?.type === "card" && state.selected.id === row.card.id) && !leaveOk()) return;
+  if (row.partial && !row.orphan && row.setId) {
+    // The corrections list only carries the fields that were corrected. The form needs
+    // the whole card, or every other box would open empty.
+    const data = await api("/api/set/" + encodeURIComponent(row.setId));
+    const full = data.cards.find((c) => c.card.id === row.card.id);
+    if (full) row = { ...full, setId: row.setId, setName: row.setName };
+  }
+  state.selected = { type: "card", id: row.card.id };
+  state.row = row;
+  state.staged = null;
+  state.cleared = new Set(Object.entries(row.override?.fields || {}).filter(([, v]) => v === null).map(([k]) => k));
+  state.tcg = null;
+  state.dirty = false;
+  for (const b of $("list").querySelectorAll(".cardrow")) {
+    b.classList.toggle("active", state.rows[Number(b.dataset.i)]?.card.id === row.card.id);
+  }
+  drawCardPanel();
+}
+
+function fieldHtml(f, value, upstreamValue) {
+  const changed = JSON.stringify(value ?? null) !== JSON.stringify(upstreamValue ?? null);
+  const shown = f.kind === "list" ? (value || []).join(", ") : (value ?? "");
+  const was = f.kind === "list" ? (upstreamValue || []).join(", ") : (upstreamValue ?? "—");
+  return `<div class="field${changed ? " changed" : ""}" data-field="${f.key}">`
+    + `<label>${f.label}${f.hint ? ` <span style="opacity:.6">(${f.hint})</span>` : ""}`
+    + (changed ? `<span class="was" data-revert="${f.key}" title="Put back what upstream says: ${esc(was)}">was: ${esc(was)}</span>` : "")
+    + `</label>`
+    + (f.kind === "area"
+        ? `<textarea data-in="${f.key}">${esc(shown)}</textarea>`
+        : `<input type="${f.kind === "number" ? "number" : "text"}" data-in="${f.key}" value="${esc(shown)}">`)
+    + `</div>`;
+}
+
+function drawCardPanel() {
+  const row = state.row;
   const card = row.card, up = row.upstream || {};
-  const art = thumb(card);
+  const setName = row.setName || state.setData?.set?.set?.name || "";
 
   let html = `<h2>${esc(card.name || card.id)}</h2>`
-    + `<div class="id">${esc(card.id)}${row.setName ? " &middot; " + esc(row.setName) : ""}</div>`;
+    + `<div class="id">${esc(card.id)} &middot; #${esc(card.localId || "?")}${setName ? " &middot; " + esc(setName) : ""}</div>`;
+  if (row.stale) html += `<div class="banner stale">Upstream has changed since this was overridden. Check whether the correction is still needed.</div>`;
+  if (row.orphan) html += `<div class="banner stale">No card with this id is in the catalog any more. The override does nothing until one comes back.</div>`;
 
-  if (row.stale) {
-    html += `<div class="banner stale">Upstream has changed since this was overridden. `
-         +  `Check whether the correction is still needed.</div>`;
-  }
-  if (row.orphan) {
-    html += `<div class="banner stale">No card with this id is in the catalog any more. `
-         +  `The override does nothing until one comes back.</div>`;
-  }
-  if (art) html += `<img class="art" src="${esc(art)}" alt="">`;
+  // -- artwork
+  const q = encodeURIComponent(`${card.name || ""} ${setName} ${card.localId || ""}`.trim());
+  html += `<div class="box" id="artbox"><div class="title">Picture<span class="spacer"></span></div>`
+    + `<div class="art"><div class="drop" id="drop"></div><div class="artside">`
+    + `<div class="source" id="artSource"></div>`
+    + `<div class="hint">Drop a picture on the left, paste one with <b>Ctrl+V</b> (a copied image or a snip from <b>Win+Shift+S</b>), or:</div>`
+    + `<div class="row"><button class="small" id="chooseFile">Choose file…</button><button class="small" id="tcgPhoto" disabled title="Use the product photo of the TCGplayer product this card is priced from">TCGplayer photo</button></div>`
+    + `<div class="row url"><input type="url" id="artUrl" placeholder="…or paste a picture's web address"><button class="small" id="getUrl">Get</button></div>`
+    + `<div id="artWarn"></div>`
+    + `<div class="row" id="artUndo"></div>`
+    + `<div class="find"><span class="sub">Find one:</span>`
+    + `<a target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&q=${q}%20pokemon%20card">Google Images</a>`
+    + `<a target="_blank" rel="noopener" href="https://www.tcgplayer.com/search/pokemon/product?q=${encodeURIComponent(card.name || "")}">TCGplayer</a>`
+    + `<a target="_blank" rel="noopener" href="https://bulbapedia.bulbagarden.net/w/index.php?search=${q}">Bulbapedia</a>`
+    + `<a target="_blank" rel="noopener" href="https://pkmncards.com/?s=${encodeURIComponent(`${card.name || ""} ${setName}`)}">PkmnCards</a>`
+    + `</div></div></div></div>`;
 
-  for (const f of FIELDS) {
-    const value = card[f.key];
-    const changed = JSON.stringify(value ?? null) !== JSON.stringify(up[f.key] ?? null);
-    const shown = f.kind === "list" ? (value || []).join(", ") : (value ?? "");
-    html += `<div class="field${changed ? " changed" : ""}" data-field="${f.key}">`
-      + `<label>${f.label}${f.hint ? ` <span style="opacity:.6">(${f.hint})</span>` : ""}`
-      + (changed ? `<span class="was" data-revert="${f.key}" title="Restore what upstream says">was: ${esc(
-            f.kind === "list" ? (up[f.key] || []).join(", ") : (up[f.key] ?? "—"))}</span>` : "")
-      + `</label>`
-      + (f.kind === "area"
-          ? `<textarea data-in="${f.key}">${esc(shown)}</textarea>`
-          : `<input type="${f.kind === "number" ? "number" : "text"}" data-in="${f.key}" value="${esc(shown)}">`)
-      + `</div>`;
-  }
-
+  // -- details
+  html += `<div class="box"><div class="title">Details</div>`;
+  const half = FIELDS.filter((f) => f.half);
+  for (const f of FIELDS.filter((f) => !f.half && f.key === "name")) html += fieldHtml(f, card[f.key], up[f.key]);
+  html += `<div class="grid2">${half.map((f) => fieldHtml(f, card[f.key], up[f.key])).join("")}</div>`;
+  for (const f of FIELDS.filter((f) => !f.half && f.key !== "name")) html += fieldHtml(f, card[f.key], up[f.key]);
   const flags = card.variants || {};
   html += `<div class="field"><label>Press runs</label><div class="flags">`
-    + VARIANTS.map((k) => `<label><input type="checkbox" data-flag="${k}"`
-        + (flags[k] ? " checked" : "") + `> ${k}</label>`).join("")
+    + VARIANTS.map((k) => `<label><input type="checkbox" data-flag="${k}"${flags[k] ? " checked" : ""}> ${k}</label>`).join("")
     + `</div></div>`;
+  // Opened only for art someone typed in by hand; a picture supplied through the tools
+  // above sets these fields too, and needs no second look here.
+  const typedArt = ART_KEYS.some((k) => {
+    const v = row.override?.fields?.[k];
+    return v != null && v !== "manual" && !String(v).startsWith(state.index.artBase);
+  });
+  html += `<details${typedArt ? " open" : ""}>`
+    + `<summary>Advanced: artwork fields</summary>`
+    + ART_FIELDS.map((f) => fieldHtml(f, card[f.key], up[f.key])).join("") + `</details></div>`;
 
-  html += `<div class="actions">`
-    + `<button class="primary" id="save">Save override</button>`
-    + `<button class="danger" id="revert"${row.override ? "" : " disabled"}>Revert</button>`
-    + `</div>`;
+  // -- TCGplayer
+  html += `<div class="box" id="tcgbox"><div class="title">TCGplayer price</div><div class="loading">Looking up TCGplayer…</div></div>`;
 
-  if (row.override?.editedAt) {
-    html += `<div class="note">Overridden ${esc(row.override.editedAt)}. `
-         +  `Stored in catalog/overrides.json and applied by pack.py; `
-         +  `catalog/sets/ still holds exactly what upstream said.</div>`;
-  } else {
-    html += `<div class="note">Edits are written to catalog/overrides.json, not to `
-         +  `catalog/sets/ — those files are overwritten by the next upstream pull.</div>`;
+  html += `<div class="actions"><button class="primary" id="save" title="Ctrl+S">Save</button>`
+    + `<button class="danger" id="revert"${row.override ? "" : " disabled"}>Revert to upstream</button></div>`;
+  html += row.override?.editedAt
+    ? `<div class="note">Corrected ${esc(row.override.editedAt)}. Stored in catalog/overrides.json; catalog/sets/ still holds exactly what upstream said.</div>`
+    : `<div class="note">Edits are written to catalog/overrides.json, not to catalog/sets/, which the next upstream pull overwrites.</div>`;
+
+  const panel = $("panel");
+  panel.innerHTML = html;
+  panel.scrollTop = 0;
+
+  $("save").onclick = saveCard;
+  $("revert").onclick = revertCard;
+  $("chooseFile").onclick = () => $("filePick").click();
+  $("getUrl").onclick = () => stageFromUrl($("artUrl").value);
+  $("artUrl").onkeydown = (e) => { if (e.key === "Enter") stageFromUrl($("artUrl").value); };
+  wireDrop($("drop"), (blob) => stageImage(blob));
+  wireForm(panel, up);
+  drawArt();
+  if (!row.partial || !row.orphan) loadTcg(card.id);
+}
+
+function wireForm(panel, up) {
+  for (const el of panel.querySelectorAll("[data-in], [data-flag]")) {
+    el.addEventListener("input", () => {
+      state.dirty = true;
+      const field = el.closest(".field");
+      const key = el.dataset.in;
+      if (field && key) {
+        const f = [...FIELDS, ...ART_FIELDS, ...SET_FIELDS].find((x) => x.key === key);
+        if (f) {
+          const value = f.kind === "list" ? el.value.split(",").map((s) => s.trim()).filter(Boolean).join(", ")
+            : f.kind === "number" ? (el.value === "" ? "" : String(Number(el.value))) : el.value.trim();
+          const was = f.kind === "list" ? (up[key] || []).join(", ") : String(up[key] ?? "");
+          field.classList.toggle("changed", value !== was);
+        }
+      }
+      if (ART_KEYS.includes(key)) drawArt();
+    });
   }
-
-  $("panel").innerHTML = html;
-  $("panel").scrollTop = 0;
-  $("save").onclick = () => save(row);
-  $("revert").onclick = () => revert(row);
-  for (const el of $("panel").querySelectorAll("[data-revert]")) {
+  for (const el of panel.querySelectorAll("[data-revert]")) {
     el.onclick = () => {
-      const f = FIELDS.find((x) => x.key === el.dataset.revert);
-      const was = up[f.key];
-      const box = $("panel").querySelector(`[data-in="${f.key}"]`);
-      box.value = f.kind === "list" ? (was || []).join(", ") : (was ?? "");
+      const key = el.dataset.revert;
+      const f = [...FIELDS, ...ART_FIELDS, ...SET_FIELDS].find((x) => x.key === key);
+      const box = panel.querySelector(`[data-in="${key}"]`);
+      box.value = f.kind === "list" ? (up[key] || []).join(", ") : (up[key] ?? "");
+      if (ART_KEYS.includes(key)) state.cleared.delete(key);
       box.dispatchEvent(new Event("input", { bubbles: true }));
     };
   }
 }
 
-function collect() {
-  const out = {};
-  for (const f of FIELDS) {
-    const box = $("panel").querySelector(`[data-in="${f.key}"]`);
-    if (box) out[f.key] = box.value;
+const inputVal = (key) => $("panel").querySelector(`[data-in="${key}"]`)?.value.trim() || "";
+
+function drawArt() {
+  const row = state.row;
+  if (!row || !$("drop")) return;
+  const up = row.upstream || {};
+  let src = null, label = "";
+  const stem = state.cleared.has("image") ? "" : inputVal("image");
+  const alt = state.cleared.has("imageAlt") ? "" : inputVal("imageAlt");
+  const from = state.cleared.has("imageAltSource") ? "" : inputVal("imageAltSource");
+  if (state.staged) {
+    src = state.staged.url;
+    label = `<b style="color:var(--ok)">New picture</b> &middot; ${state.staged.width}×${state.staged.height} &middot; ${Math.round(state.staged.blob.size / 1024)} KB &middot; not saved yet`;
+  } else if (stem) {
+    src = stem + "/high.webp"; label = "From <b>TCGdex</b>";
+  } else if (alt) {
+    src = local(alt);
+    label = from === "manual" ? "<b style=\"color:var(--ok)\">Your picture</b>" : `From <b>${esc(from || "a fallback source")}</b>`;
+  } else {
+    label = state.cleared.size && (up.image || up.imageAlt)
+      ? "<b style=\"color:var(--warn)\">Hidden</b> &middot; the upstream picture will not ship"
+      : "<b style=\"color:var(--bad)\">No picture</b>";
   }
-  const flags = {};
-  for (const k of VARIANTS) {
-    flags[k] = $("panel").querySelector(`[data-flag="${k}"]`).checked;
+  $("drop").innerHTML = src ? `<img src="${esc(src)}" alt="">` : `<div class="none">Drop a picture here</div>`;
+  $("artSource").innerHTML = label;
+
+  let warn = "";
+  if (state.staged) {
+    const { width, height } = state.staged;
+    if (width < 600 || height < 825) warn += `<div class="warnline">Smaller than the rest of the catalog (600×825). It will look soft when opened full size.</div>`;
+    if (Math.abs(width / height - CARD_RATIO) > 0.04) warn += `<div class="warnline">Not card-shaped (${width}×${height}). If it has a background around the card, crop it first — Win+Shift+S snips just the card.</div>`;
+    if (up.image) warn += `<div class="hint">This card has TCGdex art; saving replaces it with this picture.</div>`;
   }
-  out.variants = flags;
-  return out;
+  $("artWarn").innerHTML = warn;
+
+  const changed = state.staged || state.cleared.size
+    || ART_KEYS.some((k) => (inputVal(k) || "") !== String(up[k] ?? ""));
+  const buttons = [];
+  if (state.staged) buttons.push(`<button class="small" data-art="discard">Discard new picture</button>`);
+  else if (changed) buttons.push(`<button class="small" data-art="upstream">Back to upstream picture</button>`);
+  if (!state.staged && (stem || alt)) buttons.push(`<button class="small danger" data-art="hide" title="For a picture that is of the wrong card, when there is nothing better to put in its place">Hide wrong picture</button>`);
+  $("artUndo").innerHTML = buttons.join("");
+  for (const b of $("artUndo").querySelectorAll("[data-art]")) {
+    b.onclick = () => {
+      if (b.dataset.art === "discard") { URL.revokeObjectURL(state.staged.url); state.staged = null; }
+      if (b.dataset.art === "upstream") {
+        state.cleared.clear();
+        for (const f of ART_FIELDS) {
+          const box = $("panel").querySelector(`[data-in="${f.key}"]`);
+          box.value = up[f.key] ?? "";
+          box.closest(".field").classList.remove("changed");
+        }
+      }
+      if (b.dataset.art === "hide") {
+        for (const k of ART_KEYS) state.cleared.add(k);
+        for (const f of ART_FIELDS) $("panel").querySelector(`[data-in="${f.key}"]`).value = "";
+      }
+      state.dirty = true;
+      drawArt();
+    };
+  }
+  $("tcgPhoto").disabled = !effectiveProduct();
 }
 
-async function save(row) {
+// ---------------------------------------------------------------- picture intake
+
+function wireDrop(zone, onBlob) {
+  zone.ondragover = (e) => { e.preventDefault(); zone.classList.add("hover"); };
+  zone.ondragleave = () => zone.classList.remove("hover");
+  zone.ondrop = async (e) => {
+    e.preventDefault();
+    zone.classList.remove("hover");
+    const file = [...(e.dataTransfer.files || [])].find((f) => f.type.startsWith("image/"));
+    if (file) return onBlob(file);
+    // Dragged out of another browser window: there is no file, only where it lives.
+    const html = e.dataTransfer.getData("text/html");
+    const src = html && new DOMParser().parseFromString(html, "text/html").querySelector("img")?.getAttribute("src");
+    const url = src || e.dataTransfer.getData("text/uri-list").split("\n").find((l) => l && !l.startsWith("#"))
+      || e.dataTransfer.getData("text/plain");
+    if (url) onBlob(await downloadImage(url.trim()));
+  };
+}
+
+async function downloadImage(url) {
+  if (!url) throw new Error("No address given");
+  if (url.startsWith("data:image/")) return (await fetch(url)).blob();
+  const res = await fetch("/api/fetch-image", {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url }),
+  });
+  if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || "Could not download that picture");
+  return res.blob();
+}
+
+// Scaled into a box, never up, and re-encoded. WebP where the browser can write it, which
+// Edge and Chrome both can; the server accepts JPEG or PNG from anything that cannot.
+async function prepare(blob, box, type, quality) {
+  let bitmap;
+  try { bitmap = await createImageBitmap(blob); }
+  catch { throw new Error("That file is not a picture this browser can read"); }
+  const scale = Math.min(1, box[0] / bitmap.width, box[1] / bitmap.height);
+  const width = Math.round(bitmap.width * scale), height = Math.round(bitmap.height * scale);
+  const canvas = document.createElement("canvas");
+  canvas.width = width; canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  ctx.imageSmoothingQuality = "high";
+  ctx.drawImage(bitmap, 0, 0, width, height);
+  bitmap.close?.();
+  let out = await new Promise((r) => canvas.toBlob(r, type, quality));
+  if (!out || (type === "image/webp" && out.type !== "image/webp")) {
+    out = await new Promise((r) => canvas.toBlob(r, "image/jpeg", 0.92));
+  }
+  return { blob: out, url: URL.createObjectURL(out), width, height, type: out.type };
+}
+
+async function stageImage(blobOrPromise) {
   try {
-    const res = await api("/api/override/" + encodeURIComponent(row.card.id), {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fields: collect() }),
-    });
-    toast(res.removed ? "Matches upstream — override removed" : "Saved");
-    await refresh();
+    const blob = await blobOrPromise;
+    if (state.selected?.type === "set") return stageLogo(blob);
+    if (state.selected?.type !== "card") return toast("Pick a card first", true);
+    const prepared = await prepare(blob, CARD_BOX, "image/webp", 0.9);
+    if (state.staged) URL.revokeObjectURL(state.staged.url);
+    state.staged = prepared;
+    state.dirty = true;
+    drawArt();
+    toast("Picture ready. Save to keep it.");
   } catch (e) { toast(e.message, true); }
 }
 
-async function revert(row) {
+async function stageFromUrl(url) {
+  if (!url.trim()) return;
+  const button = $("getUrl");
+  if (button) { button.disabled = true; button.textContent = "…"; }
+  try { await stageImage(downloadImage(url.trim())); if ($("artUrl")) $("artUrl").value = ""; }
+  catch (e) { toast(e.message, true); }
+  if (button) { button.disabled = false; button.textContent = "Get"; }
+}
+
+const toBase64 = (blob) => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.onload = () => resolve(String(reader.result).split(",")[1]);
+  reader.onerror = reject;
+  reader.readAsDataURL(blob);
+});
+
+$("filePick").onchange = (e) => {
+  const file = e.target.files[0];
+  e.target.value = "";
+  if (file) stageImage(file);
+};
+
+document.addEventListener("paste", (e) => {
+  if (!state.selected) return;
+  const item = [...(e.clipboardData?.items || [])].find((i) => i.kind === "file" && i.type.startsWith("image/"));
+  if (item) { e.preventDefault(); return stageImage(item.getAsFile()); }
+  // A pasted address counts too, but only when it is not being typed into a box.
+  const typing = e.target.closest?.("input, textarea");
+  const text = e.clipboardData?.getData("text/plain")?.trim();
+  if (!typing && text && /^(https?:|data:image\/)/.test(text)) { e.preventDefault(); stageImage(downloadImage(text)); }
+});
+
+// ---------------------------------------------------------------- save / revert (card)
+
+function collectCard() {
+  const out = {};
+  for (const f of [...FIELDS, ...ART_FIELDS]) {
+    const box = $("panel").querySelector(`[data-in="${f.key}"]`);
+    if (box) out[f.key] = box.value;
+  }
+  out.variants = Object.fromEntries(VARIANTS.map((k) => [k, $("panel").querySelector(`[data-flag="${k}"]`).checked]));
+  return out;
+}
+
+async function saveCard() {
+  const row = state.row;
+  const button = $("save");
+  button.disabled = true;
+  try {
+    const body = { fields: collectCard() };
+    const clear = [...state.cleared];
+    if (clear.length) body.clear = clear;
+    if (state.staged) body.art = { data: await toBase64(state.staged.blob) };
+    const res = await api("/api/override/" + encodeURIComponent(row.card.id), { method: "PUT", json: body });
+    state.dirty = false;
+    toast(res.removed ? "Matches upstream, so nothing is stored" : "Saved");
+    await refreshAfterWrite(row.card.id);
+  } catch (e) { toast(e.message, true); }
+  if ($("save")) $("save").disabled = false;
+}
+
+async function revertCard() {
+  const row = state.row;
+  if (!confirm(`Put ${row.card.name || row.card.id} back to exactly what upstream says?`)) return;
   try {
     await api("/api/override/" + encodeURIComponent(row.card.id), { method: "DELETE" });
+    state.dirty = false;
     toast("Reverted to upstream");
-    await refresh();
+    await refreshAfterWrite(row.card.id);
   } catch (e) { toast(e.message, true); }
 }
 
 // Re-reads whatever is on screen, keeping the selection, so the panel and the badges
 // agree with the file that was just written rather than with what was there before it.
-async function refresh() {
-  const keep = state.selected;
+async function refreshAfterWrite(cardId) {
+  const selected = state.selected;
   await loadIndex();
-  if (state.mode === "set" && state.setId) await openSet(state.setId);
-  else if (state.mode === "overrides") await showOverrides();
-  else if ($("q").value.trim().length >= 2) await search($("q").value.trim());
-  if (keep != null && state.rows[keep]) select(keep);
+  if (state.view) await go(state.view, { keepPanel: true });
+  if (selected?.type === "card") {
+    let row = state.rows.find((r) => r.card.id === (cardId || selected.id));
+    if (row?.partial || !row) {
+      // Not on screen any more (a card that has art now leaves "Cards without art"), so
+      // fetch it on its own to keep the panel showing the card just saved.
+      const hits = await api("/api/search?q=" + encodeURIComponent(cardId || selected.id));
+      row = hits.cards.find((r) => r.card.id === (cardId || selected.id)) || row;
+    }
+    if (row) { state.selected = null; state.dirty = false; selectCard(row); }
+  } else if (selected?.type === "set") {
+    state.selected = null; state.dirty = false; selectSet(selected.id);
+  }
+}
+
+// ---------------------------------------------------------------- TCGplayer (card)
+
+function effectiveProduct() {
+  const t = state.tcg;
+  if (!t) return null;
+  if (t.link) return t.link.productId ? t.linked : null;
+  return t.auto;
+}
+
+async function loadTcg(cardId) {
+  try {
+    const info = await api("/api/tcgplayer/card/" + encodeURIComponent(cardId));
+    if (state.selected?.type !== "card" || state.selected.id !== cardId) return;
+    state.tcg = info;
+    drawTcg();
+    drawArt();
+  } catch (e) {
+    if ($("tcgbox")) $("tcgbox").querySelector(".loading").textContent = "TCGplayer lookup failed: " + e.message;
+  }
+}
+
+function productHtml(p) {
+  if (!p) return "";
+  return `<div class="product">${p.thumb ? `<img src="${esc(p.thumb)}" alt="">` : `<span></span>`}<div>`
+    + `<div class="nm">${esc(p.name || "?")}${p.missing ? ' <span class="tag bad">no longer listed</span>' : ""}</div>`
+    + `<div class="sub">#${esc(p.number || "—")}${p.rarity ? " &middot; " + esc(p.rarity) : ""} &middot; ${esc(p.groupName || "group " + p.groupId)}</div>`
+    + (p.missing ? "" : pricesHtml(p.prices))
+    + (p.url ? `<div class="sub"><a target="_blank" rel="noopener" href="${esc(p.url)}">Open on TCGplayer ↗</a></div>` : "")
+    + `</div></div>`;
+}
+
+function drawTcg() {
+  const t = state.tcg, box = $("tcgbox");
+  if (!t || !box) return;
+  let status, product = null;
+  if (t.link && t.link.productId) { status = `<span class="tag link">linked by hand</span>`; product = t.linked; }
+  else if (t.link) status = `<span class="tag dim">marked not sold on TCGplayer</span> &middot; this card carries no price`;
+  else if (t.auto) { status = `<span class="tag dim">automatic match</span> by set and number`; product = t.auto; }
+  else if (t.setGroup?.groupId) status = `<span class="tag bad">no match</span> &middot; ${esc(t.setGroup.tcgplayerName || "its TCGplayer group")} has no product numbered like this card`;
+  else status = `<span class="tag bad">no match</span> &middot; this card's set is not linked to TCGplayer`;
+
+  box.innerHTML = `<div class="title">TCGplayer price</div>`
+    + `<div style="margin-bottom:8px">${status}</div>` + productHtml(product)
+    + (!t.exact && t.auto && !t.link ? `<div class="hint" style="margin-top:6px">Prices for this group could not be loaded, so this is the match by number alone; the nightly job may pick a stamped printing instead.</div>` : "")
+    + `<div class="btnrow"><button class="small" id="tcgChange">${product ? "Change product…" : "Find product…"}</button>`
+    + (t.link?.productId !== null || !t.link ? `<button class="small" id="tcgNotSold" title="This card is not sold on TCGplayer as a single, so it should carry no price">Not sold</button>` : "")
+    + (t.link ? `<button class="small" id="tcgAuto">Use automatic match</button>` : "")
+    + `</div>`;
+  $("tcgChange").onclick = () => openProductPicker();
+  if ($("tcgNotSold")) $("tcgNotSold").onclick = () => linkCard({ productId: null });
+  if ($("tcgAuto")) $("tcgAuto").onclick = unlinkCard;
+}
+
+async function linkCard(body) {
+  const id = state.selected.id;
+  try {
+    const res = await api("/api/link/card/" + encodeURIComponent(id), { method: "PUT", json: body });
+    toast(res.removed ? "That is already the automatic match, so no link is needed"
+      : body.productId === null ? "Marked as not sold on TCGplayer" : "Linked");
+    closeModal();
+    await refreshLinks(id);
+  } catch (e) { toast(e.message, true); }
+}
+
+async function unlinkCard() {
+  const id = state.selected.id;
+  try {
+    await api("/api/link/card/" + encodeURIComponent(id), { method: "DELETE" });
+    toast("Back to the automatic match");
+    await refreshLinks(id);
+  } catch (e) { toast(e.message, true); }
+}
+
+// A link touches its own file, not the form, so unsaved edits in the panel survive it.
+async function refreshLinks(cardId) {
+  await loadIndex();
+  const row = state.rows.find((r) => r.card.id === cardId);
+  if (state.view && ["set", "linked"].includes(state.view.kind)) {
+    const selected = state.selected, dirty = state.dirty;
+    await go(state.view, { keepPanel: true });
+    state.selected = selected; state.dirty = dirty;
+    const fresh = state.rows.find((r) => r.card.id === cardId);
+    if (fresh && state.row) state.row.link = fresh.link;
+  } else if (row) {
+    const hits = await api("/api/search?q=" + encodeURIComponent(cardId));
+    row.link = hits.cards.find((r) => r.card.id === cardId)?.link || null;
+    const target = $("cardlist");
+    if (target) paintCards(state.rows, target);
+  }
+  loadTcg(cardId);
+}
+
+$("panel").addEventListener("click", async (e) => {
+  if (e.target.id !== "tcgPhoto") return;
+  const p = effectiveProduct();
+  if (!p) return;
+  e.target.disabled = true;
+  await stageImage(downloadImage(p.photo));
+  e.target.disabled = false;
+});
+
+// ---------------------------------------------------------------- modals
+
+function openModal(html) {
+  closeModal();
+  const scrim = document.createElement("div");
+  scrim.className = "scrim";
+  scrim.id = "scrim";
+  scrim.innerHTML = `<div class="modal">${html}</div>`;
+  scrim.onclick = (e) => { if (e.target === scrim) closeModal(); };
+  document.body.appendChild(scrim);
+  return scrim;
+}
+const closeModal = () => $("scrim")?.remove();
+
+function openProductPicker() {
+  const row = state.row, t = state.tcg || {};
+  const card = row.card;
+  const current = effectiveProduct();
+  const groupId = t.setGroup?.groupId;
+  const scrim = openModal(`<header><h1>Link ${esc(card.name)} <span class="sub">#${esc(card.localId || "?")} &middot; ${esc(row.setName || "")}</span></h1><span class="spacer"></span>`
+    + `<div class="tabs">${groupId ? `<button data-tab="group">In ${esc(t.setGroup.tcgplayerName || "its group")}</button>` : ""}<button data-tab="search">Search all of TCGplayer</button></div></header>`
+    + `<div style="padding:10px 16px 0"><input type="search" id="pickQ" autocomplete="off"></div>`
+    + `<div class="body" id="pickBody"><div class="loading">Loading…</div></div>`
+    + `<footer><span class="hint">Linking a card overrules the match by number. Publishing it reruns the price job, so the price follows shortly after.</span><span class="spacer"></span><button id="pickClose">Cancel</button></footer>`);
+  $("pickClose").onclick = closeModal;
+  let tab = groupId ? "group" : "search";
+  let groupProducts = null;
+  let timer;
+
+  const pickRow = (p) => `<div class="pick${current && current.productId === p.productId ? " current" : ""}">`
+    + (p.thumb ? `<img loading="lazy" src="${esc(p.thumb)}" alt="">` : `<span class="noimg"></span>`)
+    + `<div><div class="nm">${esc(p.name)}${current && current.productId === p.productId ? ' <span class="tag link">current</span>' : ""}</div>`
+    + `<div class="sub">#${esc(p.number || "—")}${p.rarity ? " &middot; " + esc(p.rarity) : ""} &middot; ${esc(p.groupName || "")}`
+    + (p.url ? ` &middot; <a target="_blank" rel="noopener" href="${esc(p.url)}">view ↗</a>` : "") + `</div>`
+    + (p.prices !== undefined ? pricesHtml(p.prices) : "") + `</div>`
+    + `<button class="small primary" data-pid="${p.productId}" data-gid="${p.groupId}">Link</button></div>`;
+
+  const paint = (products, emptyText) => {
+    $("pickBody").innerHTML = products.length ? products.map(pickRow).join("") : `<div class="empty">${emptyText}</div>`;
+    for (const b of $("pickBody").querySelectorAll("[data-pid]")) {
+      b.onclick = () => linkCard({ productId: Number(b.dataset.pid), groupId: Number(b.dataset.gid) });
+    }
+  };
+
+  const bare = (n) => String(n || "").split("/")[0].replace(/^0+(?=.)/, "").toLowerCase();
+  const run = async () => {
+    for (const b of scrim.querySelectorAll("[data-tab]")) b.classList.toggle("on", b.dataset.tab === tab);
+    const text = $("pickQ").value.trim().toLowerCase();
+    if (tab === "group") {
+      try {
+        groupProducts = groupProducts || (await api("/api/tcgplayer/group/" + groupId)).products;
+      } catch (e) { return ($("pickBody").innerHTML = `<div class="empty">${esc(e.message)}</div>`); }
+      const want = bare(card.localId);
+      let list = groupProducts.filter((p) => !text || (p.name || "").toLowerCase().includes(text) || bare(p.number) === bare(text));
+      // Same printed number first: when the match is wrong, the right product is usually
+      // the stamped or differently-numbered sibling sitting right beside it.
+      list = [...list.filter((p) => bare(p.number) === want), ...list.filter((p) => bare(p.number) !== want)];
+      paint(list, "No product in this group matches.");
+    } else {
+      if (text.length < 2) return paint([], "Type at least two characters. A number narrows it: <b>charizard 4</b>.");
+      const data = await api("/api/tcgplayer/search?q=" + encodeURIComponent(text));
+      paint(data.products, "Nothing on TCGplayer matches that.");
+    }
+  };
+  for (const b of scrim.querySelectorAll("[data-tab]")) {
+    b.onclick = () => {
+      tab = b.dataset.tab;
+      $("pickQ").value = tab === "search" ? `${card.name || ""}` : "";
+      $("pickQ").placeholder = tab === "group" ? "Filter by name or number" : "Card name, and a number if you know it";
+      run();
+    };
+  }
+  $("pickQ").value = tab === "search" ? `${card.name || ""}` : "";
+  $("pickQ").placeholder = tab === "group" ? "Filter by name or number" : "Card name, and a number if you know it";
+  $("pickQ").oninput = () => { clearTimeout(timer); timer = setTimeout(run, tab === "group" ? 60 : 220); };
+  $("pickQ").focus();
+  run();
+}
+
+async function openGroupPicker(setId) {
+  const set = state.index.sets.find((s) => s.id === setId);
+  const t = set?.tcgplayer;
+  const scrim = openModal(`<header><h1>Link ${esc(set?.name || setId)} <span class="sub">${esc(setId)} &middot; ${set?.cards || "?"} cards</span></h1></header>`
+    + `<div style="padding:10px 16px 0"><div class="hint" style="margin-bottom:6px">Currently: ${tcgStatus(t)}. `
+    + `Best guesses first: groups that sell the most of this set's cards under the same number and name.</div>`
+    + `<input type="search" id="groupQ" placeholder="Filter TCGplayer groups" autocomplete="off"></div>`
+    + `<div class="body" id="groupBody"><div class="loading">Comparing this set with every TCGplayer group…</div></div>`
+    + `<footer><button id="groupNotSold" title="TCGplayer has no group for this set, so its cards carry no price">Not sold on TCGplayer</button>`
+    + (t?.via === "manual" ? `<button id="groupAuto">Use automatic match</button>` : "")
+    + `<span class="spacer"></span><button id="groupClose">Cancel</button></footer>`);
+  $("groupClose").onclick = closeModal;
+  $("groupNotSold").onclick = () => linkSet(setId, null);
+  if ($("groupAuto")) $("groupAuto").onclick = () => unlinkSet(setId);
+
+  let groups;
+  try { groups = (await api("/api/tcgplayer/groups?for=" + encodeURIComponent(setId))).groups; }
+  catch (e) { $("groupBody").innerHTML = `<div class="empty">${esc(e.message)}</div>`; return; }
+
+  const paint = () => {
+    const text = $("groupQ").value.trim().toLowerCase();
+    const list = groups.filter((g) => !text || (g.name || "").toLowerCase().includes(text)
+      || (g.abbreviation || "").toLowerCase() === text);
+    $("groupBody").innerHTML = list.slice(0, 250).map((g) => {
+      const mine = t?.groupId === g.groupId;
+      const others = g.usedBy.filter((s) => s !== setId);
+      return `<div class="pick${mine ? " current" : ""}" style="grid-template-columns:1fr auto">`
+        + `<div><div class="nm">${esc(g.name)}${g.abbreviation ? ` <span class="sub">${esc(g.abbreviation)}</span>` : ""}`
+        + (mine ? ' <span class="tag link">current</span>' : "") + `</div>`
+        + `<div class="sub">${esc((g.publishedOn || "").slice(0, 10))}`
+        + (g.cardsMatched ? ` &middot; <span style="color:var(--ok)">sells ${Math.round(g.cardsMatched * 100)}% of this set's cards</span>` : "")
+        + (others.length ? ` &middot; <span style="color:var(--warn)">already linked to ${esc(others.join(", "))}</span>` : "")
+        + `</div></div><button class="small primary" data-gid="${g.groupId}">Link</button></div>`;
+    }).join("") || `<div class="empty">No group matches.</div>`;
+    for (const b of $("groupBody").querySelectorAll("[data-gid]")) b.onclick = () => linkSet(setId, Number(b.dataset.gid));
+  };
+  $("groupQ").oninput = paint;
+  $("groupQ").focus();
+  paint();
+}
+
+async function linkSet(setId, groupId) {
+  try {
+    const res = await api("/api/link/set/" + encodeURIComponent(setId), { method: "PUT", json: { groupId } });
+    toast(res.removed ? "That is what the automatic match already says" : groupId === null ? "Marked as not sold on TCGplayer" : "Set linked");
+    closeModal();
+    await afterSetLink();
+  } catch (e) { toast(e.message, true); }
+}
+
+async function unlinkSet(setId) {
+  try {
+    await api("/api/link/set/" + encodeURIComponent(setId), { method: "DELETE" });
+    toast("Back to the automatic match");
+    closeModal();
+    await afterSetLink();
+  } catch (e) { toast(e.message, true); }
+}
+
+async function afterSetLink() {
+  const selected = state.selected, dirty = state.dirty;
+  await loadIndex();
+  if (state.view) await go(state.view, { keepPanel: true });
+  state.selected = selected; state.dirty = dirty;
+  if (selected?.type === "card") loadTcg(selected.id);
+  if (selected?.type === "set" && !dirty) { state.selected = null; selectSet(selected.id); }
+}
+
+// ---------------------------------------------------------------- set panel
+
+async function selectSet(setId) {
+  if (!(state.selected?.type === "set" && state.selected.id === setId) && !leaveOk()) return;
+  const data = state.setData?.set?.set?.id === setId ? state.setData : await api("/api/set/" + encodeURIComponent(setId));
+  state.selected = { type: "set", id: setId };
+  state.row = null;
+  state.logoStaged = null;
+  state.dirty = false;
+  for (const b of $("list").querySelectorAll(".cardrow.active")) b.classList.remove("active");
+  const info = data.set, s = info.set, up = info.upstream;
+
+  let html = `<h2>${esc(s.name)}</h2><div class="id">${esc(s.id)} &middot; ${esc(s.serie?.name || "")} &middot; set</div>`;
+  if (info.stale) html += `<div class="banner stale">Upstream has changed since this set was corrected. Check the correction is still needed.</div>`;
+  html += `<div class="box"><div class="title">Logo</div><div class="art" style="grid-template-columns:1fr">`
+    + `<div class="drop" id="logoDrop" style="width:100%;height:120px"></div>`
+    + `<div class="artside"><div class="hint">Drop, paste or choose a logo. Kept as PNG so a transparent background stays transparent.</div>`
+    + `<div class="row"><button class="small" id="logoFile">Choose file…</button><input type="url" id="logoUrl" placeholder="…or a web address"><button class="small" id="logoGet">Get</button></div>`
+    + `<div class="row" id="logoUndo"></div></div></div></div>`;
+  html += `<div class="box"><div class="title">Details</div>` + SET_FIELDS.map((f) => fieldHtml(f, s[f.key], up[f.key])).join("") + `</div>`;
+  html += `<div class="box"><div class="title">TCGplayer group</div><div>${tcgStatus(info.tcgplayer)}</div>`
+    + `<div class="btnrow"><button class="small" id="setPick">Change…</button></div>`
+    + `<div class="hint" style="margin-top:6px">Every card in the set is priced from this group by its printed number, unless the card is linked by hand.</div></div>`;
+  html += `<div class="actions"><button class="primary" id="saveSet">Save</button><button class="danger" id="revertSet"${data.override ? "" : " disabled"}>Revert to upstream</button></div>`
+    + `<div class="note">Set corrections are stored under "sets" in catalog/overrides.json. The card count, series and abbreviation come from the pull and are not editable.</div>`;
+  const panel = $("panel");
+  panel.innerHTML = html;
+  panel.scrollTop = 0;
+  wireForm(panel, up);
+  for (const el of panel.querySelectorAll("[data-in]")) el.addEventListener("input", drawLogo);
+  wireDrop($("logoDrop"), (blob) => stageLogo(blob));
+  $("logoFile").onclick = () => $("filePick").click();
+  $("logoGet").onclick = async () => { try { await stageLogo(await downloadImage($("logoUrl").value.trim())); } catch (e) { toast(e.message, true); } };
+  $("setPick").onclick = () => openGroupPicker(setId);
+  $("saveSet").onclick = () => saveSet(setId);
+  $("revertSet").onclick = () => revertSet(setId);
+  drawLogo();
+}
+
+function drawLogo() {
+  if (!$("logoDrop")) return;
+  const stem = inputVal("logo");
+  const src = state.logoStaged ? state.logoStaged.url : logoUrl(stem);
+  $("logoDrop").innerHTML = src ? `<img src="${esc(src)}" alt="" style="object-fit:contain">` : `<div class="none">No logo</div>`;
+  $("logoUndo").innerHTML = state.logoStaged
+    ? `<span class="hint" style="color:var(--ok)">New logo, ${state.logoStaged.width}×${state.logoStaged.height}, not saved yet</span><button class="small" id="logoDiscard">Discard</button>` : "";
+  if ($("logoDiscard")) $("logoDiscard").onclick = () => { state.logoStaged = null; drawLogo(); };
+}
+
+async function stageLogo(blob) {
+  try {
+    state.logoStaged = await prepare(blob, LOGO_BOX, "image/png");
+    state.dirty = true;
+    drawLogo();
+  } catch (e) { toast(e.message, true); }
+}
+
+async function saveSet(setId) {
+  try {
+    const fields = Object.fromEntries(SET_FIELDS.map((f) => [f.key, inputVal(f.key)]));
+    const body = { fields };
+    if (state.logoStaged) body.logo = { data: await toBase64(state.logoStaged.blob) };
+    const res = await api("/api/set-override/" + encodeURIComponent(setId), { method: "PUT", json: body });
+    state.dirty = false;
+    toast(res.removed ? "Matches upstream, so nothing is stored" : "Set saved");
+    state.setData = null;
+    await refreshAfterWrite();
+  } catch (e) { toast(e.message, true); }
+}
+
+async function revertSet(setId) {
+  if (!confirm("Put this set back to exactly what upstream says?")) return;
+  try {
+    await api("/api/set-override/" + encodeURIComponent(setId), { method: "DELETE" });
+    state.dirty = false;
+    state.setData = null;
+    toast("Set reverted");
+    await refreshAfterWrite();
+  } catch (e) { toast(e.message, true); }
+}
+
+// ---------------------------------------------------------------- publish
+
+async function refreshPending() {
+  try {
+    const data = await api("/api/changes");
+    const n = Object.values(data.counts || {}).reduce((a, b) => a + b, 0) || (data.files || []).length;
+    $("publishBtn").innerHTML = "Publish" + (n ? `<span class="badge">${n}</span>` : "");
+  } catch { /* git missing: the button still opens and says why */ }
+}
+
+async function openPublish() {
+  const scrim = openModal(`<header><h1>Publish to GitHub</h1></header><div class="body" id="pubBody"><div class="loading">Checking what changed…</div></div>`
+    + `<footer><span class="spacer"></span><button id="pubClose">Close</button><button class="primary" id="pubGo" disabled>Publish</button></footer>`);
+  $("pubClose").onclick = closeModal;
+  let data;
+  try { data = await api("/api/changes"); }
+  catch (e) { $("pubBody").innerHTML = `<div class="empty">${esc(e.message)}</div>`; return; }
+  if (data.error) { $("pubBody").innerHTML = `<div class="empty">${esc(data.error)}</div>`; return; }
+  if (!data.files.length) {
+    $("pubBody").innerHTML = `<div class="empty">Nothing to publish. Everything you have saved is already on GitHub.</div>`;
+    return;
+  }
+  const c = data.counts;
+  const line = (n, one, many) => n ? `<li>${n} ${n === 1 ? one : many}</li>` : "";
+  $("pubBody").innerHTML = `<ul style="margin:0 0 10px;padding-left:18px">`
+    + line(c.cards, "card corrected", "cards corrected") + line(c.sets, "set corrected", "sets corrected")
+    + line(c.images, "picture added", "pictures added") + line(c.cardLinks, "card link changed", "card links changed")
+    + line(c.setLinks, "set link changed", "set links changed") + `</ul>`
+    + (data.branch !== "main" ? `<div class="banner stale">You are on branch <b>${esc(data.branch)}</b>, not main. The catalog is only republished from main.</div>` : "")
+    + `<div class="field"><label>Commit message</label><input type="text" id="pubMsg" value="${esc(data.message)}"></div>`
+    + `<details><summary>${data.files.length} files</summary><pre class="out">${esc(data.files.join("\n"))}</pre></details>`
+    + `<div class="banner info">Commits only these files and pushes them. GitHub then rebuilds the catalog the app downloads; `
+    + `phones pick it up the next time they refresh it (at most six days). A change to a TCGplayer link also reruns the price job.</div>`
+    + `<div id="pubOut"></div>`;
+  const go = $("pubGo");
+  go.disabled = false;
+  go.onclick = async () => {
+    go.disabled = true; go.textContent = "Publishing…";
+    try {
+      const res = await api("/api/publish", { method: "POST", json: { message: $("pubMsg").value } });
+      $("pubOut").innerHTML = `<pre class="out">${esc(res.output)}</pre>`;
+      toast(res.ok ? "Published to GitHub" : (res.committed ? "Committed, but not pushed" : "Publish failed"), !res.ok);
+      go.textContent = res.ok ? "Done" : "Try again";
+      go.disabled = !!res.ok;
+      refreshPending();
+    } catch (e) { toast(e.message, true); go.disabled = false; go.textContent = "Publish"; }
+  };
 }
 
 // ---------------------------------------------------------------- wiring
 
-let timer;
+let searchTimer;
 $("q").oninput = (e) => {
-  clearTimeout(timer);
+  clearTimeout(searchTimer);
   const text = e.target.value.trim();
   if (text.length < 2) return;
-  timer = setTimeout(() => search(text), 180);
+  searchTimer = setTimeout(() => go({ kind: "search", key: text }), 220);
 };
 
 $("packBtn").onclick = async () => {
   const b = $("packBtn");
   b.disabled = true; b.textContent = "Packing…";
   try {
-    const res = await api("/api/pack", { method: "POST" });
+    const res = await api("/api/pack", { method: "POST", json: {} });
     toast(res.ok ? "Repacked" : "Pack failed", !res.ok);
-    $("panel").insertAdjacentHTML("afterbegin", `<pre class="out">${esc(res.output)}</pre>`);
+    openModal(`<header><h1>Repack</h1></header><div class="body"><pre class="out">${esc(res.output)}</pre></div>`
+      + `<footer><span class="spacer"></span><button onclick="document.getElementById('scrim').remove()">Close</button></footer>`);
   } catch (e) { toast(e.message, true); }
   b.disabled = false; b.textContent = "Repack";
 };
+
+$("publishBtn").onclick = openPublish;
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && $("scrim")) closeModal();
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
+    e.preventDefault();
+    if (state.selected?.type === "card" && $("save")) saveCard();
+    if (state.selected?.type === "set" && $("saveSet")) saveSet(state.selected.id);
+  }
+});
+
+window.addEventListener("beforeunload", (e) => {
+  if (state.dirty) { e.preventDefault(); e.returnValue = ""; }
+});
+
+// Tells the server a window is open, so that when it was launched as an app it can exit
+// once the last one closes. Harmless when it was started from a terminal.
+const hello = () => fetch("/api/hello?c=" + CLIENT).catch(() => {});
+hello();
+setInterval(hello, 30000);
+window.addEventListener("pagehide", () => navigator.sendBeacon("/api/bye?c=" + CLIENT));
 
 loadIndex().catch((e) => toast(e.message, true));
 </script>

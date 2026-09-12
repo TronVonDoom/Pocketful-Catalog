@@ -86,6 +86,13 @@ the whole set.
 187 of 218 sets map. Of the 31 that do not, 15 are Pocket and most of the rest are Trainer
 Kits — sets TCGplayer has no group for because it does not sell them.
 
+Where the automatic answer is wrong, or missing, a person can overrule it at either level
+from the editor. A set linked by hand is recorded in `tcgplayer-groups.json` as
+`"via": "manual"`, which `map_groups.py` never re-derives. A card linked by hand to one
+product goes in `catalog/tcgplayer-cards.json` and beats the number match outright, even
+into another group. The matching rules live in `tools/tcgplayer.py`, shared by the price
+pull and the editor, so the two cannot disagree about which product a card is.
+
 ## Holes
 
 About 7% of the catalog — roughly 1,700 cards across 67 sets — has no artwork upstream.
@@ -123,7 +130,7 @@ python tools/audit.py --accept                 # record today's holes as the bas
 python tools/pack.py --static                  # build what the app downloads
 python tools/map_groups.py                     # match sets to TCGplayer groups
 python tools/pull_prices.py                    # build the nightly price file
-python editor/server.py                        # fix a card by hand
+python editor/server.py                        # the editor: fix cards, add art, link TCGplayer
 ```
 
 ## Correcting a card
@@ -137,8 +144,21 @@ the override stays an explicit disagreement with it, and neither eats the other.
 entry also records what upstream said at the time, so the editor can tell you when TCGdex
 has since changed a field you were working around.
 
-`python editor/server.py` opens a local editor over all of it: browse or search, edit the
-fields the app actually draws, and repack. See [editor/README.md](editor/README.md).
+The editor is where all of it happens by hand. On Windows,
+`editor\install-shortcut.ps1` adds **Pocketful Editor** to the Start menu and the desktop,
+and it opens in a window of its own. From a terminal, `python editor/server.py` does the same
+in a browser tab. In it you can:
+
+- correct the fields the app draws, on a card or on a set;
+- give a card with no picture one, by dropping, pasting or choosing a file, or taking the
+  TCGplayer product photo. It is committed under `catalog/art/` and pointed at by the
+  override;
+- link a set to its TCGplayer group, or a card to its exact product, where the automatic
+  match is wrong;
+- **Publish**, which commits exactly those files and pushes them, so GitHub rebuilds what the
+  app downloads.
+
+See [editor/README.md](editor/README.md).
 
 `series_report.py` walks the catalog era by era, oldest first, and answers the two
 questions `audit.py` deliberately does not: **is every card's picture as good as every
