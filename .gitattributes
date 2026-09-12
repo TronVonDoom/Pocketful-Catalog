@@ -1,0 +1,17 @@
+# Line endings are normalised to LF in the repository whichever git makes the commit.
+#
+# Without this, the conversion lived only in Git for Windows' own configuration
+# (core.autocrlf), so any other git on the machine -- a toolchain's bundled MSYS2 git, say --
+# committed files exactly as Windows wrote them. One such commit turned every line of
+# catalog/tcgplayer-groups.json into a changed line, which then conflicted with the nightly
+# price job's one-line edit to the same file.
+* text=auto
+
+# Batch files misbehave with bare LF endings.
+*.cmd text eol=crlf
+
+*.png binary
+*.webp binary
+*.jpg binary
+*.ico binary
+*.gz binary

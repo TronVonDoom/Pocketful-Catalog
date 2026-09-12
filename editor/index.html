@@ -323,6 +323,7 @@ async function loadIndex() {
   state.index = data;
   const cards = data.sets.reduce((n, s) => n + s.cards, 0);
   const bits = [`<b>${cards.toLocaleString()}</b> cards`];
+  if (data.gitUnfinished) bits.push(`<span class="warn" title="Finish or abort it in VS Code or a terminal before publishing">git: ${esc(data.gitUnfinished)} unfinished</span>`);
   if (data.stale) bits.push(`<span class="warn">${data.stale} stale</span>`);
   if (data.orphans.length) bits.push(`<span class="warn">${data.orphans.length} orphaned</span>`);
   $("stats").innerHTML = bits.join(" &middot; ");
@@ -1342,7 +1343,15 @@ hello();
 setInterval(hello, 30000);
 window.addEventListener("pagehide", () => navigator.sendBeacon("/api/bye?c=" + CLIENT));
 
-loadIndex().catch((e) => toast(e.message, true));
+function start() {
+  loadIndex().catch((e) => {
+    $("list").innerHTML = `<div class="empty"><b style="color:var(--bad)">The editor could not load the catalog.</b>`
+      + `<br>${esc(e.message === "Failed to fetch" ? "The editor's server is not running. Close this window and open Pocketful Editor again." : e.message)}`
+      + `<br><br><button id="retry">Try again</button></div>`;
+    $("retry").onclick = start;
+  });
+}
+start();
 </script>
 </body>
 </html>

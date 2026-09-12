@@ -173,8 +173,19 @@ suggests a commit message. It then:
 
 The push starts the Catalog workflow, which audits and republishes `catalog-v1.json.gz`.
 Phones pick that up at their next catalog refresh (at most six days). A change to a
-TCGplayer link also starts the Prices workflow. If the pull or the push fails, the commit
-is kept locally, and the output says what went wrong.
+TCGplayer link also starts the Prices workflow.
+
+If GitHub has changed the same lines you did, the rebase is aborted rather than left
+half-done. A half-done rebase leaves conflict markers inside the very JSON files the editor
+reads, which would break the editor. Your commit stays on this computer, nothing is pushed,
+and the output says so. If git is already in the middle of a rebase or merge, Publish refuses
+to start, and the header says what is unfinished.
+
+Publish runs Git for Windows (`Program Files\Git\cmd\git.exe`) when it is installed, not
+the first `git` on PATH. A shortcut gets the machine's PATH, where a toolchain's bundled
+MSYS2 git can come first, and that git has neither line-ending conversion nor your GitHub
+credentials. The repository's `.gitattributes` keeps line endings right under any git
+regardless.
 
 **Repack** runs `tools/pack.py --static` locally, the same script the workflow runs, so you
 can check what would ship without publishing.

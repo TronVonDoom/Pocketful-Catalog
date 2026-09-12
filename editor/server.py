@@ -83,6 +83,7 @@ import subprocess
 import sys
 import threading
 import time
+import traceback
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -179,12 +180,39 @@ MAX_IMAGE = 12 * 1024 * 1024
 NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0)
 
 
+def find_git() -> str:
+    """
+    Git for Windows where it is installed, and whatever `git` is on PATH otherwise.
+
+    Not simply the first `git` on PATH, because a shortcut launched from the Start menu
+    gets the machine's PATH, not a terminal's, and on a machine with a toolchain that
+    bundles its own MSYS2 (devkitPro does) that can be a git with none of Git for Windows'
+    configuration: no line-ending conversion and no credential manager. Committing with it
+    once rewrote every line of a 2,500-line JSON file as CRLF, which then collided with the
+    price job's one-line change to the same file. The repository's .gitattributes makes line
+    endings safe under any git; this keeps the push using the credentials you actually have.
+    """
+    if os.name == "nt":
+        roots = [os.environ.get("ProgramFiles"), os.environ.get("ProgramW6432"),
+                 os.path.join(os.environ.get("LocalAppData", ""), "Programs")]
+        for root in filter(None, roots):
+            candidate = Path(root) / "Git" / "cmd" / "git.exe"
+            if candidate.is_file():
+                return str(candidate)
+    return shutil.which("git") or "git"
+
+
+GIT = find_git()
+
+
 def now() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
 def run(args: list[str], timeout: int = 180) -> subprocess.CompletedProcess:
     env = dict(os.environ, GIT_TERMINAL_PROMPT="0")
+    if args and args[0] == "git":
+        args = [GIT, *args[1:]]
     return subprocess.run(
         args, capture_output=True, text=True, encoding="utf-8", errors="replace",
         cwd=str(ROOT), timeout=timeout, creationflags=NO_WINDOW, env=env,
@@ -732,6 +760,50 @@ def pending_changes() -> dict:
     return {"files": files, "counts": counts, "message": message, "branch": branch}
 
 
+def git_unfinished() -> str | None:
+    """What git is in the middle of in this repository, if anything, in words."""
+    git_dir = ROOT / ".git"
+    if (git_dir / "rebase-merge").exists() or (git_dir / "rebase-apply").exists():
+        return "a rebase"
+    if (git_dir / "MERGE_HEAD").exists():
+        return "a merge"
+    return None
+
+
+def unreadable_file() -> tuple[Path, str] | None:
+    """The first file this editor writes that no longer parses, and why."""
+    for path in (OVERRIDES, tcgplayer.GROUPS, tcgplayer.CARD_LINKS):
+        if not path.exists():
+            continue
+        try:
+            json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError) as exc:
+            return path, str(exc)
+    return None
+
+
+def explain(exc: BaseException) -> str:
+    """
+    An error in words a person can act on.
+
+    Any exception in a handler used to drop the connection, which the browser reports as
+    "Failed to fetch" -- true, and no help at all when the real problem is a file left full
+    of conflict markers by an unfinished rebase.
+    """
+    broken = unreadable_file()
+    if broken:
+        path, why = broken
+        text = f"{path.relative_to(ROOT).as_posix()} cannot be read ({why})."
+        busy = git_unfinished()
+        if busy:
+            verb = busy.split()[-1]
+            text += (f" Git is in the middle of {busy}, which leaves conflict markers in files. "
+                     f"Finish or abort it in VS Code or a terminal (git {verb} --abort puts "
+                     "everything back as it was), then reload.")
+        return text
+    return f"{type(exc).__name__}: {exc}"
+
+
 def publish(message: str) -> dict:
     log: list[str] = []
 
@@ -743,6 +815,10 @@ def publish(message: str) -> dict:
             log.append(text)
         return proc.returncode == 0
 
+    busy = git_unfinished()
+    if busy:
+        return {"ok": False, "output": f"Git is in the middle of {busy} in this repository. "
+                                       "Finish or abort it in VS Code or a terminal first."}
     if not pending_changes().get("files"):
         return {"ok": False, "output": "Nothing to publish."}
 
@@ -755,9 +831,16 @@ def publish(message: str) -> dict:
     # The nightly price job commits newly mapped sets to main, so the branch here may be
     # behind. Rebasing first turns that from a rejected push into a non-event.
     if not step(["git", "pull", "--rebase", "--autostash"]):
+        # Never left half-done. A stopped rebase leaves conflict markers inside the very
+        # JSON files this editor reads, so the editor itself stops working -- and the person
+        # looking at it is the one least likely to want to finish a rebase by hand.
+        if git_unfinished() == "a rebase":
+            step(["git", "rebase", "--abort"])
         return {"ok": False, "committed": True, "output": "\n".join(log)
-                + "\n\nCommitted locally, but could not bring in the latest from GitHub. "
-                  "Resolve it in VS Code or a terminal, then push."}
+                + "\n\nYour edits are committed on this computer, but GitHub has changes to the "
+                  "same lines, so the two could not be combined automatically. Nothing was "
+                  "pushed and nothing is lost. Resolve it in VS Code or a terminal "
+                  "(git pull --rebase), then push."}
     if not step(["git", "push"]):
         return {"ok": False, "committed": True, "output": "\n".join(log)
                 + "\n\nCommitted locally, but the push failed. Nothing is lost; push again "
@@ -917,6 +1000,19 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         origin = self.headers.get("Origin")
         return origin is None or origin in {f"http://{h}" for h in own}
 
+    def _safely(self, handler) -> None:
+        """Any failure becomes an answer with a reason, never a dropped connection."""
+        try:
+            handler()
+        except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
+            pass
+        except (Exception, SystemExit) as exc:  # noqa: BLE001  (read_overrides exits on bad JSON)
+            traceback.print_exc()
+            try:
+                self._fail(500, explain(exc))
+            except OSError:
+                pass
+
     @staticmethod
     def _tail(path: str, prefix: str) -> str:
         return urllib.parse.unquote(path[len(prefix):])
@@ -924,6 +1020,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     # -- GET
 
     def do_GET(self) -> None:  # noqa: N802
+        self._safely(self._route_get)
+
+    def _route_get(self) -> None:
         url = urllib.parse.urlparse(self.path)
         path, query = url.path, urllib.parse.parse_qs(url.query)
 
@@ -1120,6 +1219,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     # -- PUT
 
     def do_PUT(self) -> None:  # noqa: N802
+        self._safely(self._route_put)
+
+    def _route_put(self) -> None:
         if not self._trusted():
             return self._fail(403, "not from this editor")
         path = urllib.parse.urlparse(self.path).path
@@ -1308,6 +1410,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     # -- DELETE
 
     def do_DELETE(self) -> None:  # noqa: N802
+        self._safely(self._route_delete)
+
+    def _route_delete(self) -> None:
         if not self._trusted():
             return self._fail(403, "not from this editor")
         path = urllib.parse.urlparse(self.path).path
@@ -1353,6 +1458,9 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     # -- POST
 
     def do_POST(self) -> None:  # noqa: N802
+        self._safely(self._route_post)
+
+    def _route_post(self) -> None:
         if not self._trusted():
             return self._fail(403, "not from this editor")
         url = urllib.parse.urlparse(self.path)
@@ -1451,6 +1559,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             "unlinkedSets": unlinked,
             "artBase": ART_BASE,
             "app": self.server.app_mode,
+            "gitUnfinished": git_unfinished(),
         }
 
     def _set_payload(self, doc: dict, over: dict) -> dict:
