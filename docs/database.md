@@ -316,9 +316,9 @@ A candidate can be just a `source_url`; a chosen picture has to be in storage.
 
 ### `sources` and `source_records`
 
-A source is anywhere a suggestion comes from: `tcgdex`, `pokemontcg-io`, `tcgplayer`,
-`upload`, and `pocketful-2026`, which is today's catalog including your 18 corrections and
-the pictures you added.
+A source is a place data can come from: `tcgdex`, `pokemontcg-io`, `tcgplayer`,
+`upload`, and `pocketful-2026`, the TCGdex-built catalog as it stood before this database.
+**Nothing arrives from any source unless you import it** (see [Imports](#imports)).
 
 | Field | Example | Meaning |
 |---|---|---|
@@ -333,7 +333,7 @@ the pictures you added.
 | `source_records.fetched_at` | | |
 | `source_records.matched` | `ptcg-en-me05-062` | which of your records it describes, once decided |
 | `source_records.matched_hash` | | the data as it was when you reviewed the match |
-| `source_records.changed` | false | worked out by the database: the source has said something new since |
+| `source_records.changed` | false | worked out by the database: a later import of the set brought different data from what you reviewed |
 
 This is what lets the editor say "TCGdex now says 170 HP; you say 160", and what lets it
 point at fields where two sources disagree. For Japanese and Chinese cards you cannot
@@ -357,13 +357,25 @@ and moving to a database must not lose that.
 
 ## Reviewing and publishing
 
+### Imports
+
+Nothing enters the database by itself. There is no bulk import, no scheduled pull and no
+background refresh. An import is always **one set, from one named source, started by you**
+in the editor ("get Base Set from TCGdex"). It fills `source_records` for that set only
+and shows you what arrived.
+
+What an import brings is still only a suggestion: a series, set, card or picture exists
+only once you create or accept it. Nothing imported before this database carries over.
+Your old corrections, pictures and TCGplayer links are the `pocketful-2026` source, and
+they come in the same way, one set at a time, if and when you choose.
+
 ### A set's life
 
 1. **Create** the series, if it is new, and the set: code, name, dates, logo, symbol.
-   The form is pre-filled from whichever source has that set, and you accept or change
-   each field.
-2. **Pick the cards.** The editor lists every card the sources have for the set as
-   candidates. You take the ones that belong, and can add a card no source has.
+   If you have imported the set, the form is pre-filled from that import, and you accept
+   or change each field.
+2. **Pick the cards.** The editor lists the cards your import brought as candidates. You
+   take the ones that belong, and can add a card no import has.
 3. **Review each card:** picture beside fields, fields that sources disagree on
    highlighted. Accept, fix, or flag, then move to the next with the keyboard.
 4. **Review its printings:** which ones exist, a picture for any that looks different,
@@ -530,9 +542,9 @@ installed on this PC.
 
 | Today | Becomes |
 |---|---|
-| `pull_catalog.py`, `fill_gaps.py` | importers that fill `source_records` and candidate pictures |
-| `catalog/sets/`, `overrides.json`, `catalog/art/` | imported once as the `pocketful-2026` source, so your past corrections and pictures are suggestions too |
-| `tcgplayer-groups.json`, `tcgplayer-cards.json` | imported as suggested TCGplayer links |
+| `pull_catalog.py`, `fill_gaps.py` | reworked into the per-set import, run only when you start it |
+| `catalog/sets/`, `overrides.json`, `catalog/art/` | the `pocketful-2026` source, imported one set at a time only if you choose |
+| `tcgplayer-groups.json`, `tcgplayer-cards.json` | part of the same source, on the same terms |
 | The editor | reworked to read and write the database; still a Windows app, still no dependencies |
 | The `catalog` release and weekly workflow | retired once the app reads the new catalog |
 | The `prices` workflow | keyed by printing ID and fed from the database |
@@ -542,8 +554,8 @@ installed on this PC.
 
 1. **Schema.** *Done.* Tested locally and applied to the Supabase project on 2026-09-13
    with `python tools/migrate.py --apply`.
-2. **Importers:** TCGdex English and today's catalog into `source_records`. Nothing is
-   created as a series, set or card; that is your job in the editor.
+2. **Per-set import:** one set from one named source into `source_records`, run only when
+   you start it. Nothing is created as a series, set or card; that is your job in the editor.
 3. **Editor:** create series and sets, pick cards, review, printings, pictures, TCGplayer
    links, the Published-without-a-picture list.
 4. **Publish** to storage.
@@ -560,6 +572,10 @@ Made on 2026-09-13:
 3. **Pictures** are WebP at most 734×1024, never enlarged.
 4. **A set can publish with cards that have no picture**, marked `no_image`. The app shows
    the card back, and the editor lists them for correcting later.
+5. **Nothing is imported without your authorization.** Imports are per set, from a named
+   source, started by you, and nothing imported before this database carries over.
+6. **The starting vocabulary is kept**: 139 variant words, 71 terms and 5 sources,
+   re-approved after that rule was set.
 
 To decide when they come up:
 
