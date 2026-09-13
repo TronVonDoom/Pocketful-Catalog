@@ -1,7 +1,8 @@
 # The Pocketful catalog database
 
-**Status: draft for approval, 2026-09-13.** Nothing in here exists yet. Once this is
-agreed, it is what gets built, and changes to it get made here first.
+**Status: approved 2026-09-13.** The schema is in [`supabase/migrations/`](../supabase/migrations)
+and is tested by `python tools/test_database.py`. Changes to the design are made here
+first, then in a new migration.
 
 ---
 
@@ -59,10 +60,11 @@ another language, but it is never the same record.
 
 ## IDs
 
-An ID is built from the thing's parts, never typed by hand. It can change freely until the
-set it belongs to is published, and after that it never changes and is never deleted.
-Something published by mistake is **withdrawn** (hidden from the app), because someone's
-collection may already hold it.
+An ID is built from the thing's parts by the database, never typed by hand. It can change
+freely until the set it belongs to is published, and changing a draft set's code renames
+every card, printing and picture under it. After publishing, an ID never changes and is
+never deleted. Something published by mistake is **withdrawn** (hidden from the app),
+because someone's collection may already hold it.
 
 | What | ID | Built from |
 |---|---|---|
@@ -78,10 +80,18 @@ The series is **not** in the set or card ID. A series is a grouping you might re
 ### Set codes
 
 A set code follows its series: the series code plus the set's place in that series,
-two digits, in release order. Examples: `me05`, `sv08`, `swsh12`. A half set takes `.5`,
-as in `me02.5`. A series' promo set is the series code plus `p`, as in `mep`. The editor
-suggests the code and you can change it until the set is published. Codes are lowercase
-`a–z`, `0–9` and `.`, and unique within a catalog.
+two digits, in release order. Pitch Black is the fifth Mega Evolution set, so it is
+`me05`. A half set takes `.5`, as in `me02.5`. A series' promo set is the series code
+plus `p`, as in `mep`. Codes are lowercase `a–z`, `0–9` and `.`, and unique within a
+catalog. The code printed on recent cards (PBL) is kept as the set's `abbreviation`, but
+never used in an ID, because older cards print none.
+
+### Subsets
+
+Trainer Gallery, Galarian Gallery, Shiny Vault, Radiant Collection and the like stay
+**inside their parent set**, as printed. Their numbers are already distinct (`tg01`,
+`gg01`, `sv001`), and each card carries the subset's name in `section` so the app can
+show it as a heading within the set.
 
 ### Card numbers
 
@@ -122,7 +132,7 @@ order:
 | pattern | the foil has a pattern | `cosmos`, `cracked-ice`, `pokeball`, `masterball` |
 | finish | always | `normal`, `holo`, `reverse` |
 | stamps | stamped, in word-list order | `staff`, `pre-release`, `pokemon-center` |
-| error | a known misprint | `no-damage-error` |
+| error | a known misprint | `no-holo-error` |
 
 | Printing | ID |
 |---|---|
@@ -136,14 +146,15 @@ order:
 Because the unlimited edition is left out rather than written, adding a new variation to a
 card later never renames one that already exists. A word that is not in the list cannot be
 used until you add it in the editor, so two printings of the same kind can never end up
-with two different spellings.
+with two different spellings. A word in use can have its label changed but cannot be
+renamed or removed.
 
 ---
 
 ## Tables
 
-Field names are what the database will call them. Every table also has `created_at`,
-`updated_at` and a free-text `notes`.
+Field names are what the database calls them. Every table except the logs also has
+`created_at`, `updated_at` and a free-text `notes`.
 
 ### `games` and `catalogs`
 
@@ -152,46 +163,50 @@ Field names are what the database will call them. Every table also has `created_
 | `games.id` | `ptcg` | |
 | `games.name` | Pokémon TCG | |
 | `catalogs.id` | `ptcg-en` | |
-| `catalogs.game` | `ptcg` | |
+| `catalogs.game_id` | `ptcg` | |
 | `catalogs.language` | `en` | |
-| `catalogs.name` | English | |
+| `catalogs.name`, `native_name` | English | |
 | `catalogs.sort` | 1 | order the app lists catalogs in |
+
+A catalog's **card back** is a picture (role `back`) in `images`.
 
 ### `series`
 
 | Field | Example | Meaning |
 |---|---|---|
 | `id` | `ptcg-en-me` | |
-| `catalog` | `ptcg-en` | |
+| `catalog_id` | `ptcg-en` | |
 | `code` | `me` | |
 | `name` | Mega Evolution | as printed in that language |
 | `name_en` | | English name, for series in other languages, so they can be searched in English |
-| `logo` | image | |
 | `sort` | 23 | order within the catalog |
 | `status` | `draft` / `published` | published once any of its sets is |
+
+Its logo, and a card back of its own where its cards' back differs from the catalog's
+(vintage Japanese cards, for one), are pictures in `images`.
 
 ### `sets`
 
 | Field | Example | Meaning |
 |---|---|---|
 | `id` | `ptcg-en-me05` | |
-| `series` | `ptcg-en-me` | |
+| `series_id` | `ptcg-en-me` | |
 | `code` | `me05` | |
 | `name` | Pitch Black | as printed |
 | `name_en` | | English name, for sets in other languages |
-| `kind` | `expansion` | `expansion`, `special`, `promo`, `subset`, `deck`, `kit`, `other` |
-| `parent` | | the set a split-out subset belongs to |
+| `kind` | `expansion` | `expansion`, `special`, `promo`, `deck`, `kit`, `other` |
 | `release_date` | 2026-07-17 | |
-| `printed_total` | 84 | the number after the slash |
-| `abbreviation` | PBL | the printed set code, where one exists; information only, never part of an ID |
-| `logo`, `symbol` | images | |
+| `printed_total` | 84 | the number after the slash on the main set's cards |
+| `abbreviation` | PBL | the printed set code, where one exists; never part of an ID |
 | `sort` | 5 | order within the series |
-| `tcgplayer_group` | | TCGplayer group ID, plus `tcgplayer_via`: `auto` or `manual` |
-| `status` | `draft` | `draft`, `published`, `published-with-changes` |
+| `no_logo`, `no_symbol` | false | confirmed that the set has no logo or symbol to show |
+| `tcgplayer_group`, `tcgplayer_via` | | TCGplayer group ID, and whether it was matched `auto` or `manual` |
+| `status` | `draft` | `draft`, `published`, `published_changed` (published, with edits not yet published) |
 | `version` | 3 | bumped by every publish |
 | `published_at` | | |
 
-How many cards and printings a set has is counted from the cards, not stored.
+Its logo and symbol are pictures in `images`. How many cards and printings a set has is
+counted from the cards, not stored.
 
 ### `cards`
 
@@ -200,46 +215,52 @@ What every printing of a card shares.
 | Field | Example | Meaning |
 |---|---|---|
 | `id` | `ptcg-en-me05-062` | |
-| `set` | `ptcg-en-me05` | |
+| `set_id` | `ptcg-en-me05` | |
 | `number` | `062` | the ID form |
 | `printed_number` | 062/084 | exactly as printed, for display |
 | `number_assigned` | false | true when the card has no printed number |
+| `section` | | the subset it belongs to inside the set (Trainer Gallery), or empty |
 | `sort` | 62 | order within the set, so `tg01` sorts after the main set |
 | `name` | Bastiodon | as printed |
 | `name_en` | | English name, for cards in other languages |
 | `category` | `pokemon` | `pokemon`, `trainer`, `energy` |
-| `subtypes` | Stage 2 | stage, trainer kind (Item, Supporter…), mechanic (ex, V, Mega…) |
+| `subtypes` | `stage-2` | stage, trainer kind, mechanic (ex, V, Mega…), each a term |
 | `hp` | 160 | |
-| `types` | Metal | energy types |
+| `types` | `metal` | energy types, each a term |
 | `evolves_from` | Shieldon | |
-| `abilities` | | list of name, kind (Ability, Poké-Power, Poké-Body…), text |
-| `attacks` | | list of name, cost, damage, text |
-| `weaknesses`, `resistances` | Fire ×2 / Grass −30 | list of type and value |
+| `abilities` | | list of name, kind (a term: Ability, Poké-Power…), text |
+| `attacks` | | list of name, cost (types), damage, text |
+| `weaknesses`, `resistances` | fire ×2 / grass −30 | list of type and value |
 | `retreat` | 4 | |
 | `rules` | | rule-box text |
 | `flavor_text` | | |
 | `illustrator` | Kinu Nishimura | |
-| `rarity` | `rare` | a word from the `terms` table |
+| `rarity` | `rare` | a term |
 | `regulation_mark` | J | |
 | `dex_numbers` | 411 | |
-| `image` | image | the card's picture, used by every printing without its own |
-| `same_as` | | link group for the same card in other languages |
+| `no_image` | false | confirmed that no picture exists anywhere yet; the app shows the card back |
+| `same_as` | | cards sharing this value are the same card in different languages |
 | `review` | `unreviewed` | `unreviewed`, `reviewed`, `flagged` |
 | `review_note`, `reviewed_at` | | why it is flagged; when it was reviewed |
+| `withdrawn` | false | hidden from the app; published cards are never deleted |
+
+Its picture is in `images`.
 
 ### `printings`
 
 | Field | Example | Meaning |
 |---|---|---|
 | `id` | `ptcg-en-me05-062_reverse` | |
-| `card` | `ptcg-en-me05-062` | |
+| `card_id` | `ptcg-en-me05-062` | |
 | `variant` | `reverse` | the assembled name |
 | `edition`, `pattern`, `finish`, `stamps`, `error` | `reverse` | its parts, each a word from `variant_words` |
-| `image` | image | its own picture, when it looks different from the card's |
-| `tcgplayer_product` | | TCGplayer product ID, plus `tcgplayer_printing` (e.g. Reverse Holofoil) and `tcgplayer_via` |
+| `tcgplayer_product`, `tcgplayer_printing`, `tcgplayer_via` | | TCGplayer product ID, its printing (Reverse Holofoil), and how it was matched |
 | `identify` | | how to tell this printing apart, shown in the app |
 | `review`, `review_note`, `reviewed_at` | | as on cards |
-| `withdrawn` | false | hidden from the app; published printings are never deleted |
+| `withdrawn` | false | as on cards |
+
+A printing that looks different from its card has a picture of its own in `images`; the
+rest use the card's.
 
 ### `variant_words`
 
@@ -251,22 +272,28 @@ What every printing of a card shares.
 | `description` | | how to recognise it |
 | `sort` | | its position among words of its kind, which decides stamp order |
 
-Seeded from the roughly forty words today's catalog already uses.
+Seeded with 139 words from what today's catalog already uses. Two words TCGdex uses for
+both a stamp and a foil were given one meaning each: `pokeball` is the pattern and
+`pokeball-stamp` the stamp; `professor-program` is the stamp and `professor-program-foil`
+the foil. World Championships player signatures were left out until those decks are
+decided on (see the end of this document).
 
 ### `terms`
 
 One spelling for everything that is a fixed choice: rarities, energy types, subtypes and
-ability kinds. TCGdex today writes both "Holo Rare" and "Rare Holo", and both
-"Illustration rare" and "Illustration Rare"; with a terms table, a card picks one entry
-instead of typing text.
+ability kinds. TCGdex writes both "Holo Rare" and "Rare Holo", and both "Illustration
+rare" and "Illustration Rare"; a card picks a term instead of typing text, and a term in
+use cannot be renamed or removed.
 
 | Field | Example | Meaning |
 |---|---|---|
-| `kind` | `rarity` | |
+| `kind` | `rarity` | `rarity`, `type`, `subtype`, `ability_kind` |
 | `code` | `special-illustration-rare` | |
-| `labels` | English, Japanese, Chinese | how it is written in each catalog |
-| `symbol` | image | the printed rarity symbol, where there is one |
+| `labels` | `{"en": "Special Illustration Rare"}` | how it is written in each catalog |
 | `sort` | | |
+
+Seeded with 71 terms, English labels only. Japanese and Chinese labels are added from a
+real source when those catalogs start, not guessed.
 
 ### `images`
 
@@ -275,16 +302,17 @@ Every picture, chosen or not, with where it came from.
 | Field | Example | Meaning |
 |---|---|---|
 | `id` | | |
-| `subject` | a card | exactly one series, set, card or printing |
-| `role` | `front` | `front`, `logo`, `symbol` |
-| `chosen` | true | the one in use; the rest are candidates you decided against |
-| `path` | `images/cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.webp` | where it is in storage |
-| `thumb_path` | | the small version |
+| `catalog_id`, `series_id`, `set_id`, `card_id`, `printing_id` | a card | what it is a picture of; exactly one is filled |
+| `role` | `front` | `front` (card, printing), `back` (catalog, series), `logo` (series, set), `symbol` (set) |
+| `chosen` | true | the one in use, one per subject and role; the rest are candidates |
+| `path`, `thumb_path` | `cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.webp` | where it is in the `images` bucket |
 | `width`, `height`, `bytes`, `sha256` | | |
 | `below_standard` | false | smaller than the standard size |
-| `source` | `tcgdex` | a row in `sources` |
+| `source_id` | `tcgdex` | a row in `sources` |
 | `source_url` | | where it was taken from |
-| `original_path` | | the untouched original, kept only when it cannot be downloaded again (an upload, a paste, a scan) |
+| `original_path` | | the untouched original in the `originals` bucket, kept only when it cannot be downloaded again |
+
+A candidate can be just a `source_url`; a chosen picture has to be in storage.
 
 ### `sources` and `source_records`
 
@@ -297,13 +325,15 @@ the pictures you added.
 | `sources.id` | `tcgdex` | |
 | `sources.name`, `url` | | |
 | `sources.terms` | | what its license or terms allow, in your words |
-| `source_records.source` | `tcgdex` | |
+| `source_records.source_id` | `tcgdex` | |
+| `source_records.language` | `en` | |
 | `source_records.kind` | `card` | `series`, `set`, `card` |
 | `source_records.key` | `me05-062` | the source's own ID |
 | `source_records.data` | | everything the source said, untouched |
 | `source_records.fetched_at` | | |
 | `source_records.matched` | `ptcg-en-me05-062` | which of your records it describes, once decided |
-| `source_records.changed` | false | the source has said something new since you reviewed the match |
+| `source_records.matched_hash` | | the data as it was when you reviewed the match |
+| `source_records.changed` | false | worked out by the database: the source has said something new since |
 
 This is what lets the editor say "TCGdex now says 170 HP; you say 160", and what lets it
 point at fields where two sources disagree. For Japanese and Chinese cards you cannot
@@ -313,15 +343,15 @@ proofread, agreement between sources is what the text is trusted on.
 
 | Field | Meaning |
 |---|---|
-| `set`, `version`, `published_at` | |
+| `set_id`, `version`, `published_at` | |
 | `cards`, `printings` | how many went out |
 | `file`, `sha256` | the set file that was written |
 
 ### `change_log`
 
-Every edit to every table, recorded by the database itself: table, ID, field, value
-before, value after, when. Git gave the catalog a full history, and moving to a database
-must not lose that.
+Every edit to every table except the source records, recorded by the database itself:
+table, ID, field, value before, value after, when. Git gave the catalog a full history,
+and moving to a database must not lose that.
 
 ---
 
@@ -342,36 +372,48 @@ must not lose that.
 
 ### What Publish requires
 
-The editor refuses to publish a set until:
+The database refuses to publish a set (`publish_problems` lists why) until:
 
+- it has at least one card;
 - every card and printing is reviewed, and none is flagged;
-- every card has a chosen picture, or is explicitly marked as having none anywhere;
-- the set has its logo and symbol, or they are marked as not existing;
-- every ID is valid and unique.
+- every card has at least one printing;
+- every card has a chosen picture, **or** is marked `no_image`;
+- the set has a logo and a symbol, or is marked as having none;
+- if any card is marked `no_image`, the catalog or the series has a card back.
+
+A card published without a picture is drawn as its card back in the app. The editor keeps
+those cards in a **Published without a picture** list, so each one can be given a picture
+later. Adding one is an ordinary edit: the set becomes `published_changed`, and the next
+publish sends the picture out.
 
 ### What Publish does
 
-1. Writes `catalog/sets/ptcg-en-me05.v3.json.gz` to storage.
-2. Updates `catalog/index.json`, the list of every published series and set with its
-   version.
-3. Bumps the set's `version`, sets its status to `published`, and records the publish.
+1. Writes `sets/ptcg-en-me05.v3.json.gz` to the `catalog` bucket.
+2. Rewrites `index.json` in the same bucket from the database: every published catalog,
+   series and set, with names, logos, card backs and versions.
+3. Calls `record_publish`, which checks the set again, bumps its version, marks it and its
+   series published, locks every card and printing that went out, and records the publish.
 
-A correction after publishing sets the status to `published-with-changes`. Publishing
-again writes a new version, and the app downloads only that set again.
+Only `record_publish` can lock a record, mark it published or change a set's version.
+Any edit afterwards to something the app shows sets the status to `published_changed`;
+notes and TCGplayer links do not, because neither is in the set file. Publishing again
+writes a new version, and the app downloads only that set again.
 
 ---
 
 ## What the app downloads
 
-```
-catalog/index.json                                   every published catalog, series, set, version
-catalog/sets/ptcg-en-me05.v3.json.gz                 one published set
-images/cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.webp        a card picture
-images/cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.thumb.webp  its thumbnail
-images/sets/ptcg-en/me05/logo.81bd40.webp            a set logo
-prices/prices.json.gz                                today's prices, by printing ID
-prices/history/ptcg-en-me05.json.gz                  one set's price history
-```
+| Bucket | Path | What |
+|---|---|---|
+| `catalog` | `index.json` | every published catalog, series and set, with names, logos, card backs and versions |
+| `catalog` | `sets/ptcg-en-me05.v3.json.gz` | one published set |
+| `images` | `cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.webp` | a card picture |
+| `images` | `cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.thumb.webp` | its thumbnail |
+| `images` | `sets/ptcg-en/me05/logo.81bd40.webp` | a set logo |
+| `images` | `backs/ptcg-en.5e0a11.webp` | a card back |
+| `prices` | `prices.json.gz` | today's prices, by printing ID |
+| `prices` | `history/ptcg-en-me05.json.gz` | one set's price history |
+| `originals` | | untouched originals; private, never downloaded by the app |
 
 A set file, trimmed:
 
@@ -380,12 +422,12 @@ A set file, trimmed:
   "schema": 2,
   "id": "ptcg-en-me05",
   "version": 3,
-  "series": { "id": "ptcg-en-me", "name": "Mega Evolution" },
+  "series": "ptcg-en-me",
   "code": "me05",
   "name": "Pitch Black",
   "releaseDate": "2026-07-17",
   "printedTotal": 84,
-  "logo": "images/sets/ptcg-en/me05/logo.81bd40.webp",
+  "logo": "sets/ptcg-en/me05/logo.81bd40.webp",
   "cards": [
     {
       "id": "ptcg-en-me05-062",
@@ -397,7 +439,7 @@ A set file, trimmed:
       "types": ["metal"],
       "rarity": "rare",
       "illustrator": "Kinu Nishimura",
-      "image": "images/cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.webp",
+      "image": "cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.webp",
       "printings": [
         { "id": "ptcg-en-me05-062_holo", "finish": "holo" },
         { "id": "ptcg-en-me05-062_reverse", "finish": "reverse" }
@@ -407,10 +449,11 @@ A set file, trimmed:
 }
 ```
 
-It carries what the app shows today plus printings, English names and labels. Attack and
-ability text stays in the database until the app has a screen for it, at which point it
-joins the file under a new `schema` number. The schema number is in the format so that an
-older build never misreads a newer file.
+A card with no picture simply has no `image`, and the app draws the card back the index
+gives for its series or catalog. The file carries what the app shows today plus printings,
+sections, English names and labels. Attack and ability text stays in the database until
+the app has a screen for it, at which point it joins the file under a new `schema` number.
+The schema number is in the format so that an older build never misreads a newer file.
 
 A picture's file name ends in a short hash of its contents, so a replaced picture has a new
 address and nothing can go on showing the old one from a cache.
@@ -441,12 +484,14 @@ mostly have none, and will show none rather than a converted guess.
 
 ## Security
 
-- **Row-level security is on for every table, with no public access rules**, so the
-  database cannot be read or written without the admin key.
+- **Row-level security is on for every table, with no access rules**, and the public
+  roles have had every grant on tables and functions taken away, so the database cannot
+  be read, written or called without the admin key. `tools/test_database.py` checks this.
 - **The admin key lives at `C:\Users\TronVonDoom\keystores\pocketful-supabase.json`**,
   beside the release signing key, and as a GitHub secret for the nightly price job. It is
   never in either repository and never in the app.
-- **Storage is public to read and admin-only to write.**
+- **Storage** has three public buckets (`catalog`, `images`, `prices`) that anyone can
+  read and only the admin key can write, and one private bucket (`originals`).
 
 ## Supabase plan
 
@@ -455,6 +500,18 @@ At the time of writing, the free plan includes a 500 MB database, 1 GB of file s
 pilot fits easily. English pictures and thumbnails will come to roughly 2–3 GB, so the Pro
 plan (about $25 a month) will be needed partway through English. Check
 [supabase.com/pricing](https://supabase.com/pricing) before relying on these numbers.
+
+## Testing the schema
+
+```bash
+python tools/test_database.py
+```
+
+It builds a throwaway PostgreSQL in a temporary folder, stands in for the parts of
+Supabase the migrations rely on (its roles, default grants and storage schema), applies
+every migration, runs `supabase/tests/`, and deletes it all again. Nothing touches
+Supabase or any other database. It needs PostgreSQL's command-line programs, which are
+installed on this PC.
 
 ---
 
@@ -468,29 +525,34 @@ plan (about $25 a month) will be needed partway through English. Check
 | The editor | reworked to read and write the database; still a Windows app, still no dependencies |
 | The `catalog` release and weekly workflow | retired once the app reads the new catalog |
 | The `prices` workflow | keyed by printing ID and fed from the database |
-| The app's catalog download | reads `catalog/index.json` and set files from storage; collections store printing IDs; existing local data is cleared on the upgrade |
+| The app's catalog download | reads `index.json` and set files from storage; collections store printing IDs; existing local data is cleared on the upgrade |
 
 ## Build order
 
-1. **You create the Supabase project.** I write the schema as SQL migrations in
-   `supabase/migrations/` and seed the game, catalogs, variant words and terms.
+1. **Schema.** *Written and tested.* Waiting on the Supabase project to apply it to.
 2. **Importers:** TCGdex English and today's catalog into `source_records`. Nothing is
    created as a series, set or card; that is your job in the editor.
 3. **Editor:** create series and sets, pick cards, review, printings, pictures, TCGplayer
-   links.
+   links, the Published-without-a-picture list.
 4. **Publish** to storage.
-5. **App:** read the new catalog, store printing IDs, start fresh.
+5. **App:** read the new catalog, store printing IDs, draw card backs, start fresh.
 6. **Prices** by printing ID.
 7. **Base Set pilot**, start to finish, timed.
 
-## Decisions still open
+## Decisions
 
-1. **Set code pattern.** Series code plus two digits in release order (`base01`, `me05`,
-   `swsh12`), or something else?
-2. **Subsets** like Trainer Gallery, Galarian Gallery and Shiny Vault. Their numbers are
-   already distinct (`tg01`, `gg01`, `sv001`), so the recommendation is to keep them
-   inside their parent set, as printed. Splitting them out into sets of their own is the
-   alternative.
-3. **Picture standard.** 734×1024 WebP, never enlarged?
-4. **Publish gate.** Must every card have a picture, or may a set publish with cards
-   marked "no picture exists anywhere"?
+Made on 2026-09-13:
+
+1. **Set codes** follow the series: series code plus two digits in release order (`me05`).
+2. **Subsets** stay inside their parent set, with a `section`.
+3. **Pictures** are WebP at most 734×1024, never enlarged.
+4. **A set can publish with cards that have no picture**, marked `no_image`. The app shows
+   the card back, and the editor lists them for correcting later.
+
+To decide when they come up:
+
+- **World Championships deck cards.** TCGdex files them as signature-stamped printings of
+  the original cards. They are sold as their own decks with a different back and cannot be
+  played in tournaments, so they may be better as sets of their own.
+- **Jumbo cards.** TCGdex files them as a size of an existing printing. The app has no
+  pocket for one yet, so whether they are printings or cards of their own is open.
