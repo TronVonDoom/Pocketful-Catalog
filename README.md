@@ -97,6 +97,23 @@ WotC-era groups quote "Unlimited Holofoil" and "1st Edition Holofoil" and no pla
 keeps the 1st Edition one for the card's 1st Edition printing. Before that, an Unlimited
 Jungle Clefable was quoted at its 1st Edition price, three times what it trades for.
 
+## Price history
+
+`pull_prices.py --history` records each night's figures into one small file per set
+(`tools/price_history.py`), published on the `price-history` release tag as
+`history-<set id>.json.gz`: every day for the last five weeks and one day per week before
+that, back to February 2024. Every series is aligned with a `dates` list and holds exactly
+what the price file carried that day, so a chart can never disagree with the price above
+it. The app downloads the sets it needs -- one for a card's page, the collection's sets for
+the portfolio chart -- and keeps them for most of a day.
+
+The price file itself gains `previous`, every figure from the last recorded day before
+this one, which is how a price tag shows its daily move without any history downloaded.
+
+The past was filled in once from TCGCSV's daily archives (`price_history.py --backfill`,
+run from the Prices workflow's manual trigger with *backfill* ticked), priced through the
+current product match. Re-running it rebuilds the whole history; it is not needed nightly.
+
 ## Special printings
 
 MEP Tyrunt is a holo promo, and it is also the same holo promo with a Pokémon Center stamp
