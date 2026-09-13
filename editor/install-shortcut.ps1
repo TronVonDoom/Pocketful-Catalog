@@ -67,7 +67,7 @@ foreach ($dir in $places) {
     $link.Arguments = "`"$server`" --app"
     $link.WorkingDirectory = Split-Path $editor
     $link.IconLocation = "$icon,0"
-    $link.Description = 'Correct cards, supply artwork and link TCGplayer products for the Pocketful catalog'
+    $link.Description = 'Build, review and publish the Pocketful catalog'
     $link.Save()
     Write-Host "Created $path"
 }

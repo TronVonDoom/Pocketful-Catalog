@@ -1,0 +1,77 @@
+{
+ "id": "base1-1",
+ "localId": "1",
+ "name": "Alakazam",
+ "rarity": "Rare",
+ "illustrator": "Ken Sugimori",
+ "category": "Pokemon",
+ "image": "https://assets.tcgdex.net/en/base/base1/1",
+ "hp": 80,
+ "types": [
+  "Psychic"
+ ],
+ "stage": "Stage2",
+ "evolveFrom": "Kadabra",
+ "description": "Its brain can outperform a supercomputer. Its intelligence quotient is said to be 5000.",
+ "retreat": 3,
+ "dexId": [
+  65
+ ],
+ "variants": {
+  "normal": false,
+  "holo": true,
+  "reverse": false,
+  "firstEdition": true,
+  "wPromo": false
+ },
+ "variants_detailed": [
+  {
+   "type": "holo",
+   "subtype": "unlimited",
+   "size": "standard"
+  },
+  {
+   "type": "holo",
+   "subtype": "shadowless",
+   "size": "standard",
+   "stamp": [
+    "1st-edition"
+   ]
+  },
+  {
+   "type": "holo",
+   "subtype": "shadowless",
+   "size": "standard"
+  },
+  {
+   "type": "holo",
+   "subtype": "1999-2000-copyright",
+   "size": "standard"
+  }
+ ],
+ "attacks": [
+  {
+   "name": "Confuse Ray",
+   "cost": [
+    "Psychic",
+    "Psychic",
+    "Psychic"
+   ],
+   "damage": "30",
+   "effect": "Flip a coin. If heads, the Defending Pokémon is now Confused."
+  }
+ ],
+ "abilities": [
+  {
+   "type": "Pokemon Power",
+   "name": "Damage Swap",
+   "effect": "As often as you like during your turn (before your attack), you may move 1 damage counter from 1 of your Pokémon to another as long as you don't Knock Out that Pokémon. This power can't be used if Alakazam is Asleep, Confused, or Paralyzed."
+  }
+ ],
+ "weaknesses": [
+  {
+   "type": "Psychic",
+   "value": "×2"
+  }
+ ]
+}

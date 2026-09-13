@@ -1,78 +1,38 @@
 #!/usr/bin/env python3
 """
-The card editor: a local app for correcting what the catalog says about a card, giving a
-card artwork it does not have, and telling the price pull which TCGplayer product a card
-or a set really is.
+The Pocketful Editor: where the catalog is built, reviewed and published.
 
-Why an overrides file instead of editing the catalog
-----------------------------------------------------
-`catalog/sets/*.json` is not a source file. It is the *output* of
-`pull_catalog.py --static`, and the weekly Catalog workflow re-runs that over every set
-and opens a pull request with the result. Anything typed directly into those files is
-gone the next time upstream is pulled -- not flagged, not conflicted, just quietly
-overwritten by whatever TCGdex said that morning.
+It is a small web server on this computer and a page that talks to it, opened as a window
+of its own. The page never holds a key: it asks this server, and this server talks to the
+catalog database in Supabase and to the public files on Cloudflare R2, with the credentials
+kept in ~/keystores (see tools/supabase_config.py and tools/r2.py). docs/database.md is the
+design everything here follows.
 
-So edits live in `catalog/overrides.json`, and `pack.py` lays them over the pulled data
-on its way into the shipped file. The pull stays a faithful copy of upstream, the
-override stays a deliberate statement of "upstream is wrong about this", and the two
-never fight. Reverting an edit means deleting one entry rather than remembering what a
-field used to say.
+The database keeps its own rules -- IDs built from their parts, published records locked,
+words and terms from their lists, the publish gate -- so this server does not restate them.
+It passes the page's edits through, and when the database refuses one, the database's own
+explanation goes back to the page word for word.
 
-What an entry records
----------------------
-Each override keeps three things:
+Nothing is imported unless you start it: an import is one set, from TCGdex, from the Import
+tab of that set. See backend/tcgdex.py.
 
-    fields      what you want the catalog to say
-    upstream    what it said when you overrode it
-    editedAt    when
-
-`upstream` is the one that earns its place. Six months from now TCGdex may fix the
-typo you worked around, and without a record of what you were correcting there is no way
-to tell a still-needed override from a stale one -- both just look like a value that
-disagrees with upstream. With it, the editor can show you "upstream has changed since
-you overrode this" and let you drop the entry. See `stale` in the API below.
-
-Artwork someone supplied
-------------------------
-A card with no picture anywhere upstream can be given one by hand. The picture has to
-be somewhere a phone can download it, so it is committed under `catalog/art/` and the
-override points `imageAlt` at its raw.githubusercontent.com address -- the same field
-fill_gaps.py fills from pokemontcg.io and TCGplayer, marked `imageAltSource: manual`.
-
-Files are named by a hash of their bytes. A replaced picture is therefore a new URL, so
-no phone and no CDN can go on serving the old one from cache, and a file nothing refers
-to any more is deleted on the next save rather than left to accumulate.
-
-The browser does the resizing and encoding (a canvas is a perfectly good image codec) so
-this server can stay stdlib: it checks the bytes are an image and writes them down.
-
-TCGplayer links
----------------
-Written to `catalog/tcgplayer-groups.json` (a set) and `catalog/tcgplayer-cards.json` (a
-card). The rules for what those mean, and the automatic match they overrule, are in
-tools/tcgplayer.py -- imported here rather than restated, so the match this editor shows
-you is the match the nightly price pull makes.
-
-TCGplayer's product lists come from the same `catalog/.tcgcsv/` cache map_groups.py
-keeps, so browsing them is mostly reading files. What is not cached is fetched from
-tcgcsv.com politely and then cached too.
-
-Everything is stdlib. The catalog tooling is deliberately dependency-free so it cannot
-be broken by a network having a bad day, and an editor that needed a package manager to
-fix one Pokemon's name would be a worse tool than a text file.
+Stdlib only, like the rest of the tooling.
 
 Usage:
-    python editor/server.py                 # localhost:8766, opens a browser tab
+    python editor/server.py                 # 127.0.0.1:8767, opens a browser tab
     python editor/server.py --app           # its own window; exits when that closes
     python editor/server.py --port 9100 --no-open
+
+For tests, three environment variables point it somewhere other than the real services:
+POCKETFUL_REST_URL and POCKETFUL_REST_KEY (a database API), POCKETFUL_STORE=local:<folder>
+(a folder instead of R2), and POCKETFUL_TCGDEX_FIXTURES=<folder> (recorded TCGdex answers).
 """
 
 from __future__ import annotations
 
 import argparse
 import base64
-import difflib
-import hashlib
+import datetime
 import http.server
 import json
 import os
@@ -90,861 +50,600 @@ import urllib.request
 import webbrowser
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-CATALOG = ROOT / "catalog"
-SETS = CATALOG / "sets"
-OVERRIDES = CATALOG / "overrides.json"
-ART = CATALOG / "art"
 HERE = Path(__file__).resolve().parent
+ROOT = HERE.parent
+APP = HERE / "app"
 LOG = HERE / "editor.log"
-
+sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(ROOT / "tools"))
-import tcgplayer  # noqa: E402  (tools/ is not a package; see tools/tcgplayer.py)
-import variants  # noqa: E402
 
-# The one series in the catalog that is the Pokemon TCG Pocket phone game rather than
-# cardboard, as the app splits it (CatalogGames.kt). Its cards have no TCGplayer product,
-# no second source of art and nothing to correct against, so it is kept out of every to-do
-# list here and sorted below the printed game everywhere else. Its newest sets are also the
-# newest sets in the catalog, so without that they sat at the top of every list.
-POCKET_SERIES = "tcgp"
+from backend import media, publish, tcgdex  # noqa: E402
+from backend.db import Db, DbError, eq, in_list  # noqa: E402
+from backend.storage import LocalStore, R2Store  # noqa: E402
 
-
-def is_pocket(set_doc: dict | None) -> bool:
-    return ((set_doc or {}).get("serie") or {}).get("id") == POCKET_SERIES
-
-# Where committed artwork is served from once it is pushed. raw.githubusercontent.com
-# rather than a CDN in front of it: jsDelivr resolves a branch to a commit and caches that
-# for hours, so a picture pushed a minute ago would 404 there until it caught up, where
-# raw serves it as soon as the push lands. Hashed filenames make its short cache harmless.
-ART_BASE = "https://raw.githubusercontent.com/TronVonDoom/Pocketful-Catalog/main/catalog/art/"
-
-USER_AGENT = "Pocketful-catalog-editor/1.0 (+https://github.com/TronVonDoom/Pocketful)"
-
-# The shape of the overrides document, bumped if an older reader could not cope. Kept
-# separate from the catalog's own SCHEMA: they version different things and there is no
-# reason for a catalog field addition to invalidate everyone's edits.
-SCHEMA = 1
-
-# What may be overridden, and how each value is checked.
-#
-# A whitelist rather than "anything the card has", for two reasons. A field that pack.py
-# does not ship is a field the app will never draw, so accepting an edit to it would be
-# accepting an edit that silently does nothing. And a typed check here is the only thing
-# between a slip in a text box and a catalog that fails to parse on a phone -- the app
-# reads `hp` as an integer, so a string in that slot is a card that does not load.
-#
-# Keep in step with CARD_FIELDS in tools/pack.py.
-FIELDS: dict[str, str] = {
-    "name": "str",
-    "localId": "str",
-    "rarity": "str",
-    "illustrator": "str",
-    "category": "str",
-    "image": "str",
-    "imageAlt": "str",
-    "imageAltSource": "str",
-    "hp": "int",
-    "types": "list[str]",
-    "description": "str",
-    "variants": "variants",
-}
-
-# Fields that may be overridden to *nothing*, as opposed to left alone.
-#
-# Only the artwork. An empty text box everywhere else means "no opinion", and that has to
-# stay true or clearing a box would start asserting things about cards. But "the picture
-# upstream has for this card is the wrong picture" is a real correction with no value to
-# put in its place, and the app prefers a TCGdex stem over any fallback -- so replacing a
-# card's art means removing the stem, not just adding something beside it.
-CLEARABLE = ("image", "imageAlt", "imageAltSource")
-
-# The part of a set that can be corrected. Keep in step with SET_OVERRIDABLE in pack.py.
-SET_EDITABLE: dict[str, str] = {
-    "name": "str",
-    "releaseDate": "date",
-    "logo": "str",
-    "symbol": "str",
-}
-
-VARIANT_KEYS = ("normal", "holo", "reverse", "firstEdition", "wPromo")
-
-# A card id has to survive being put in a URL and in a GraphQL string literal, which is
-# the same rule tools/pull_catalog.py applies. Anything else is not a card id we issued.
-CARD_ID = re.compile(r"^[A-Za-z0-9._-]{1,64}$")
-# A card link, or one special printing's: `mep-070~holo~pokemon-center`. See tcgplayer.link_key.
-LINK_KEY = re.compile(r"^[A-Za-z0-9._-]{1,64}(~[a-z]{1,16}~[A-Za-z0-9.+_-]{1,120})?$")
-ART_NAME = re.compile(r"^[A-Za-z0-9._-]{1,120}$")
-
-# What Publish commits: everything this editor writes, and nothing else. A half-finished
-# change to a tool sitting in the same working tree is not the editor's to ship.
-PUBLISHABLE = (
-    "catalog/overrides.json",
-    "catalog/art",
-    "catalog/tcgplayer-groups.json",
-    "catalog/tcgplayer-cards.json",
-)
-
-# Big enough for a phone photo of a card sent as base64, small enough that a mistaken
-# drop of a video is refused rather than read into memory.
+APP_NAME = "pocketful-editor-2"
+DEFAULT_PORT = 8767
 MAX_BODY = 40 * 1024 * 1024
-MAX_IMAGE = 12 * 1024 * 1024
-
-# Run under pythonw, every git or pack call would otherwise flash a console window.
+MAX_FETCH = 15 * 1024 * 1024
 NO_WINDOW = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+USER_AGENT = "Pocketful-editor/2.0 (+https://github.com/TronVonDoom/Pocketful-Catalog)"
 
-
-def find_git() -> str:
-    """
-    Git for Windows where it is installed, and whatever `git` is on PATH otherwise.
-
-    Not simply the first `git` on PATH, because a shortcut launched from the Start menu
-    gets the machine's PATH, not a terminal's, and on a machine with a toolchain that
-    bundles its own MSYS2 (devkitPro does) that can be a git with none of Git for Windows'
-    configuration: no line-ending conversion and no credential manager. Committing with it
-    once rewrote every line of a 2,500-line JSON file as CRLF, which then collided with the
-    price job's one-line change to the same file. The repository's .gitattributes makes line
-    endings safe under any git; this keeps the push using the credentials you actually have.
-    """
-    if os.name == "nt":
-        roots = [os.environ.get("ProgramFiles"), os.environ.get("ProgramW6432"),
-                 os.path.join(os.environ.get("LocalAppData", ""), "Programs")]
-        for root in filter(None, roots):
-            candidate = Path(root) / "Git" / "cmd" / "git.exe"
-            if candidate.is_file():
-                return str(candidate)
-    return shutil.which("git") or "git"
-
-
-GIT = find_git()
+STATIC = {
+    "/": (APP / "index.html", "text/html; charset=utf-8"),
+    "/app.js": (APP / "app.js", "text/javascript; charset=utf-8"),
+    "/app.css": (APP / "app.css", "text/css; charset=utf-8"),
+    "/icon.png": (HERE / "icon.png", "image/png"),
+}
 
 
 def now() -> str:
-    return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    return datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds")
 
 
-def run(args: list[str], timeout: int = 180) -> subprocess.CompletedProcess:
-    env = dict(os.environ, GIT_TERMINAL_PROMPT="0")
-    if args and args[0] == "git":
-        args = [GIT, *args[1:]]
-    return subprocess.run(
-        args, capture_output=True, text=True, encoding="utf-8", errors="replace",
-        cwd=str(ROOT), timeout=timeout, creationflags=NO_WINDOW, env=env,
-    )
+class ApiError(Exception):
+    def __init__(self, status: int, message: str, **extra):
+        super().__init__(message)
+        self.status = status
+        self.message = message
+        self.extra = extra
 
 
-def write_json(path: Path, doc: dict) -> None:
-    """
-    Writes via a temporary file and one rename.
+# --------------------------------------------------------------------------- field rules
 
-    The rename is atomic, so a crash or a Ctrl-C mid-write leaves the old file intact
-    rather than a half-written one. The alternative is losing every correction ever made
-    to a power cut during the save of the next one.
-    """
-    tmp = path.with_suffix(".json.tmp")
-    tmp.write_text(json.dumps(doc, indent=1, ensure_ascii=False), encoding="utf-8")
-    os.replace(tmp, path)
+# What the page may write to each table, and how each value is read. Anything else in a
+# request is refused rather than ignored, so a typo in the page cannot quietly lose an edit.
+# IDs, locks, statuses and versions are never here: the database builds or guards them.
+TEXT, REQUIRED, INT, BOOL, DATE, WORDS, JSON_LIST, JSON_OBJECT, ENUM = (
+    "text", "required", "int", "bool", "date", "words", "json-list", "json-object", "enum")
 
+SERIES_FIELDS = {"catalog_id": REQUIRED, "code": REQUIRED, "name": REQUIRED, "name_en": TEXT,
+                 "sort": INT, "notes": TEXT}
+SET_FIELDS = {"series_id": REQUIRED, "code": REQUIRED, "name": REQUIRED, "name_en": TEXT, "kind": REQUIRED,
+              "release_date": DATE, "printed_total": INT, "abbreviation": TEXT, "sort": INT,
+              "no_logo": BOOL, "no_symbol": BOOL, "tcgplayer_group": INT, "tcgplayer_via": TEXT, "notes": TEXT}
+CARD_FIELDS = {"set_id": REQUIRED, "number": REQUIRED, "printed_number": TEXT, "number_assigned": BOOL,
+               "section": TEXT, "sort": INT, "name": REQUIRED, "name_en": TEXT, "category": REQUIRED,
+               "subtypes": WORDS, "hp": INT, "types": WORDS, "evolves_from": TEXT, "abilities": JSON_LIST,
+               "attacks": JSON_LIST, "weaknesses": JSON_LIST, "resistances": JSON_LIST, "retreat": INT,
+               "rules": WORDS, "flavor_text": TEXT, "illustrator": TEXT, "rarity": TEXT,
+               "regulation_mark": TEXT, "dex_numbers": JSON_LIST, "no_image": BOOL, "same_as": TEXT,
+               "review": REQUIRED, "review_note": TEXT, "withdrawn": BOOL, "notes": TEXT}
+PRINTING_FIELDS = {"card_id": REQUIRED, "edition": TEXT, "pattern": TEXT, "finish": REQUIRED, "stamps": WORDS,
+                   "error": TEXT, "tcgplayer_product": INT, "tcgplayer_printing": TEXT, "tcgplayer_via": TEXT,
+                   "identify": TEXT, "review": REQUIRED, "review_note": TEXT, "withdrawn": BOOL, "notes": TEXT}
+WORD_FIELDS = {"word": REQUIRED, "kind": REQUIRED, "label": REQUIRED, "description": TEXT, "sort": INT, "notes": TEXT}
+TERM_FIELDS = {"kind": REQUIRED, "code": REQUIRED, "labels": JSON_OBJECT, "sort": INT, "notes": TEXT}
 
-# --------------------------------------------------------------------------- catalog
-
-
-class Catalog:
-    """
-    The catalog in memory, reloaded when the files under it change.
-
-    Reloaded rather than held, because the normal way to use this editor is beside a
-    pull: fix three cards, re-run the pull, look again. A server that cached the tree at
-    startup would spend the rest of the session describing a catalog that no longer
-    exists. The check is the newest mtime in the directory, which is one stat per set --
-    cheap enough to do on every request and exact enough to never miss a rebuild.
-    """
-
-    def __init__(self) -> None:
-        self.sets: list[dict] = []
-        self.by_set: dict[str, dict] = {}
-        self.by_card: dict[str, tuple[dict, dict]] = {}
-        self._stamp: float = -1.0
-        self._lock = threading.Lock()
-
-    def _newest(self) -> float:
-        if not SETS.is_dir():
-            return 0.0
-        return max((p.stat().st_mtime for p in SETS.glob("*.json")), default=0.0)
-
-    def load(self) -> None:
-        with self._lock:
-            stamp = self._newest()
-            if stamp == self._stamp:
-                return
-            sets, by_card = [], {}
-            for path in sorted(SETS.glob("*.json")):
-                doc = json.loads(path.read_text(encoding="utf-8"))
-                sets.append(doc)
-                for card in doc.get("cards") or []:
-                    if card.get("id"):
-                        by_card[card["id"]] = (doc, card)
-            self.sets, self.by_card, self._stamp = sets, by_card, stamp
-            self.by_set = {s.get("id"): s for s in sets}
+# Fields that are part of what a row is, and set only when it is made.
+CREATE_ONLY = {"catalog_id", "set_id", "card_id", "word", "kind", "code"}
+EDITABLE_AFTER = {"series": {"code"}, "sets": {"code", "kind"}, "terms": set(), "variant_words": set()}
 
 
-CACHE = Catalog()
-
-# One writer at a time. The page can fire a save and a link in quick succession, and two
-# threads each reading, patching and renaming the same file would lose one of the edits.
-WRITE_LOCK = threading.Lock()
-
-
-def read_overrides() -> dict:
-    if not OVERRIDES.exists():
-        return {"schema": SCHEMA, "cards": {}}
-    try:
-        doc = json.loads(OVERRIDES.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as exc:
-        # Refused rather than replaced. This file is hand-editable and lives in git, so
-        # a syntax error in it is a thing to fix, not a reason to start again empty and
-        # throw away every correction in it.
-        raise SystemExit(f"{OVERRIDES} is not valid JSON ({exc}). Fix or delete it.")
-    doc.setdefault("cards", {})
-    doc.setdefault("sets", {})
-    return doc
-
-
-def write_overrides(doc: dict) -> None:
-    out = {"schema": SCHEMA, "cards": dict(sorted(doc.get("cards", {}).items()))}
-    # Only written once there is something in it, so a catalog nobody has corrected a
-    # set in keeps the file it always had.
-    if doc.get("sets"):
-        out["sets"] = dict(sorted(doc["sets"].items()))
-    write_json(OVERRIDES, out)
-
-
-def read_card_links() -> dict:
-    if not tcgplayer.CARD_LINKS.exists():
-        return {"note": tcgplayer.CARD_LINKS_NOTE, "cards": {}}
-    doc = json.loads(tcgplayer.CARD_LINKS.read_text(encoding="utf-8"))
-    doc.setdefault("cards", {})
-    return doc
-
-
-def write_card_links(doc: dict) -> None:
-    write_json(tcgplayer.CARD_LINKS, {
-        "note": tcgplayer.CARD_LINKS_NOTE,
-        "cards": dict(sorted(doc.get("cards", {}).items())),
-    })
-
-
-def read_groups_doc() -> dict:
-    if not tcgplayer.GROUPS.exists():
-        return {"sets": {}}
-    doc = json.loads(tcgplayer.GROUPS.read_text(encoding="utf-8"))
-    doc.setdefault("sets", {})
-    return doc
-
-
-def coerce(field: str, value, rules: dict[str, str] = FIELDS):
-    """
-    One field, checked and normalised, or ValueError.
-
-    Empty means "no opinion" and comes back as None, which the caller drops from the
-    patch. That is what makes clearing a box in the UI the same gesture as never having
-    touched it -- an override that says `"illustrator": ""` would be a claim that the
-    card has no illustrator, which is not the same as declining to correct one.
-    """
-    kind = rules.get(field)
-    if kind is None:
-        raise ValueError(f"{field} is not an overridable field")
-
-    if kind == "str":
-        text = str(value if value is not None else "").strip()
+def read_value(field: str, rule: str, value):
+    if rule in (TEXT, REQUIRED, ENUM, DATE):
+        if value is None:
+            text = ""
+        elif isinstance(value, (str, int, float)):
+            text = str(value).strip()
+        else:
+            raise ApiError(400, f"{field} should be text")
+        if rule == REQUIRED and not text:
+            raise ApiError(400, f"{field} cannot be empty")
+        if rule == DATE and text and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", text):
+            raise ApiError(400, f"{field} should be a date like 1999-01-09")
         return text or None
-
-    if kind == "date":
-        text = str(value if value is not None else "").strip()
-        if not text:
-            return None
-        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", text):
-            raise ValueError(f"{field} must be written YYYY-MM-DD")
-        return text
-
-    if kind == "int":
-        if value in (None, "", []):
+    if rule == INT:
+        if value in (None, ""):
             return None
         try:
             return int(str(value).strip())
         except ValueError:
-            raise ValueError(f"{field} must be a whole number")
-
-    if kind == "list[str]":
-        if isinstance(value, str):
-            value = [p.strip() for p in value.split(",")]
+            raise ApiError(400, f"{field} should be a whole number") from None
+    if rule == BOOL:
+        if not isinstance(value, bool):
+            raise ApiError(400, f"{field} should be true or false")
+        return value
+    if rule == WORDS:
+        if value in (None, ""):
+            return []
+        if not isinstance(value, list) or not all(isinstance(v, str) for v in value):
+            raise ApiError(400, f"{field} should be a list of text")
+        return [v.strip() for v in value if v.strip()]
+    if rule == JSON_LIST:
+        if value in (None, ""):
+            return []
         if not isinstance(value, list):
-            raise ValueError(f"{field} must be a list")
-        items = [str(v).strip() for v in value if str(v).strip()]
-        return items or None
-
-    if kind == "variants":
+            raise ApiError(400, f"{field} should be a list")
+        return value
+    if rule == JSON_OBJECT:
         if not isinstance(value, dict):
-            raise ValueError("variants must be an object")
-        # Written whole rather than merged. The five flags are one statement about how a
-        # card was pressed, and a partial one -- "holo is true, no idea about the rest" --
-        # is not something the app can draw a variant picker from.
-        return {k: bool(value.get(k)) for k in VARIANT_KEYS}
-
-    raise ValueError(f"no rule for {field}")
+            raise ApiError(400, f"{field} should be an object")
+        return {k: v for k, v in value.items() if isinstance(v, str) and v.strip()}
+    raise ApiError(500, f"no rule for {field}")
 
 
-def merged(record: dict, entry: dict | None) -> dict:
-    out = dict(record)
-    if entry:
-        for key, value in (entry.get("fields") or {}).items():
-            if value is None:
-                out.pop(key, None)
-            else:
-                out[key] = value
+def read_fields(body: dict, rules: dict[str, str], creating: bool, table: str) -> dict:
+    if not isinstance(body, dict):
+        raise ApiError(400, "expected an object")
+    unknown = sorted(set(body) - set(rules))
+    if unknown:
+        raise ApiError(400, f"cannot write {', '.join(unknown)}")
+    allowed_after = EDITABLE_AFTER.get(table, set())
+    out = {}
+    for field, value in body.items():
+        if not creating and field in CREATE_ONLY and field not in allowed_after:
+            raise ApiError(400, f"{field} is set when the record is made and cannot be changed here")
+        out[field] = read_value(field, rules[field], value)
+    if creating:
+        missing = [f for f, r in rules.items() if r == REQUIRED and f not in out and f not in ("review", "kind")]
+        if table in ("variant_words", "terms") and "kind" not in out:
+            missing.append("kind")
+        if missing:
+            raise ApiError(400, f"missing {', '.join(missing)}")
     return out
 
 
-def is_stale(record: dict, entry: dict) -> bool:
-    """
-    True when upstream has moved since the override was written.
-
-    Not the same as "the override is wrong" -- upstream may have changed to something
-    else wrong -- so it is surfaced and never acted on. It is the difference between a
-    correction that is still doing work and one that is quietly duplicating a fix
-    somebody else already made.
-    """
-    was = entry.get("upstream") or {}
-    fields = entry.get("fields") or {}
-    # Upstream coming round to exactly what the override says is not a reason to look: it
-    # happens every time fill_gaps.py finds the same TCGplayer photo a person already chose.
-    return any(record.get(k) != v and record.get(k) != fields.get(k) for k, v in was.items())
+def friendly(error: DbError) -> ApiError:
+    """The database's refusal, with the two cryptic constraint messages put into words."""
+    if error.code == "23503":
+        if "is still referenced" in error.message:
+            return ApiError(409, "Something still belongs to it. Delete or move what is inside it first.")
+        return ApiError(400, f"That refers to something that does not exist ({error.message}).")
+    if error.code == "23505":
+        return ApiError(409, "Something with that ID already exists. " + error.message)
+    return ApiError(400 if error.status < 500 else 502, error.explain())
 
 
-def has_art(card: dict) -> bool:
-    return bool(card.get("image") or card.get("imageAlt"))
+# --------------------------------------------------------------------------- the API
 
 
-# --------------------------------------------------------------------------- artwork
+class Api:
+    def __init__(self, db: Db, store, client: tcgdex.Client, project: str):
+        self.db = db
+        self.store = store
+        self.client = client
+        self.project = project
 
+    # -- helpers --------------------------------------------------------------------------
 
-def sniff(data: bytes) -> str | None:
-    """The extension these bytes deserve, judged by their magic number, or None."""
-    if data[:3] == b"\xff\xd8\xff":
-        return "jpg"
-    if data[:8] == b"\x89PNG\r\n\x1a\n":
-        return "png"
-    if data[:4] == b"RIFF" and data[8:12] == b"WEBP":
-        return "webp"
-    return None
+    def _row(self, table: str, row_id: str, what: str) -> dict:
+        row = self.db.one(table, {"id": eq(row_id)})
+        if not row:
+            raise ApiError(404, f"No {what} \"{row_id}\".")
+        return row
 
+    def _images(self, column: str, ids: list[str]) -> list[dict]:
+        if not ids:
+            return []
+        return self.db.get_in("images", column, ids, {"order": "created_at.desc"})
 
-def store_art(kind: str, stem: str, payload: dict, only: tuple[str, ...]) -> str:
-    """
-    Writes one picture under catalog/art/<kind>/ and returns its published URL.
+    # -- overview -------------------------------------------------------------------------
 
-    `payload` is what the page sends: base64 bytes the browser has already resized and
-    encoded. They are checked here anyway, because "the page would never send that" is
-    not a property of a file that ends up in a release.
-    """
-    try:
-        data = base64.b64decode(payload.get("data") or "", validate=True)
-    except (ValueError, TypeError):
-        raise ValueError("the picture was not readable")
-    if not data:
-        raise ValueError("the picture was empty")
-    if len(data) > MAX_IMAGE:
-        raise ValueError("that picture is too large to ship to a phone; use a smaller one")
-    ext = sniff(data)
-    if ext not in only:
-        raise ValueError(f"expected {' or '.join(only)}, got {ext or 'something that is not an image'}")
-    digest = hashlib.sha256(data).hexdigest()[:10]
-    name = f"{stem}-{digest}.{ext}"
-    folder = ART / kind
-    folder.mkdir(parents=True, exist_ok=True)
-    path = folder / name
-    if not path.exists():
-        tmp = path.with_suffix(path.suffix + ".tmp")
-        tmp.write_bytes(data)
-        os.replace(tmp, path)
-    return f"{ART_BASE}{kind}/{name}"
+    def ping(self, **_) -> dict:
+        return {"app": APP_NAME}
 
+    def bootstrap(self, **_) -> dict:
+        catalogs = self.db.get("catalogs", {"order": "sort,id"})
+        return {
+            "project": {"database": self.project, "storage": self.store.kind, "publicUrl": self.store.public_url},
+            "catalogs": catalogs,
+            "series": self.db.get("series", {"order": "sort,code"}),
+            "sets": self.db.get("sets", {"select": "id,series_id,code,name,kind,release_date,status,version,sort,locked",
+                                         "order": "sort,release_date.nullslast,code"}),
+            "summaries": self.db.get("set_summaries"),
+            "words": self.db.get("variant_words", {"order": "kind,sort,word"}),
+            "terms": self.db.get("terms", {"order": "kind,sort,code"}),
+            "sources": self.db.get("sources", {"order": "id"}),
+        }
 
-def prune_art(over: dict) -> list[str]:
-    """
-    Deletes every file under catalog/art/ that no override points at any more.
+    def catalog(self, id: str, **_) -> dict:
+        catalog = self._row("catalogs", id, "catalog")
+        return {"catalog": catalog, "images": self._images("catalog_id", [id])}
 
-    Run after each write, while the write lock is held, so it only ever sees a file and
-    the override that references it together. A picture replaced twice before publishing
-    therefore never reaches the repository at all.
-    """
-    wanted: set[str] = set()
-    for entry in (over.get("cards") or {}).values():
-        url = (entry.get("fields") or {}).get("imageAlt")
-        if isinstance(url, str) and url.startswith(ART_BASE):
-            wanted.add(url[len(ART_BASE):])
-    for entry in (over.get("sets") or {}).values():
-        stem = (entry.get("fields") or {}).get("logo")
-        # A logo is stored as a stem, because the app appends ".png" to draw one.
-        if isinstance(stem, str) and stem.startswith(ART_BASE):
-            wanted.add(stem[len(ART_BASE):] + ".png")
-    removed = []
-    if ART.is_dir():
-        for path in ART.rglob("*"):
-            if path.is_file():
-                rel = path.relative_to(ART).as_posix()
-                if rel not in wanted:
-                    path.unlink()
-                    removed.append(rel)
-    return removed
+    def list_review(self, catalog: str = "", **_) -> dict:
+        cards = self.db.get("cards", {"select": "id,set_id,number,name,review,review_note,locked",
+                                      "review": "neq.reviewed", "withdrawn": "is.false",
+                                      "set_id": f"like.{catalog}-*", "order": "set_id,sort.nullslast,number"})
+        return {"cards": cards}
 
+    def list_no_picture(self, catalog: str = "", **_) -> dict:
+        published = [s["id"] for s in self.db.get("sets", {"select": "id", "version": "gt.0",
+                                                            "id": f"like.{catalog}-*"})]
+        cards = self.db.get_in("cards", "set_id", published, {
+            "select": "id,set_id,number,name", "no_image": "is.true", "withdrawn": "is.false",
+            "order": "set_id,sort.nullslast,number"}) if published else []
+        return {"cards": cards}
 
-def fetch_url(url: str, accept: str = "*/*", limit: int = MAX_IMAGE) -> tuple[bytes, str]:
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": accept})
-    with urllib.request.urlopen(request, timeout=25) as response:
-        kind = response.headers.get("Content-Type") or ""
-        data = response.read(limit + 1)
-    if len(data) > limit:
-        raise ValueError("that file is too large")
-    return data, kind
+    # -- series ---------------------------------------------------------------------------
 
+    def series_detail(self, id: str, **_) -> dict:
+        series = self._row("series", id, "series")
+        sets = self.db.get("sets", {"series_id": eq(id), "order": "sort,release_date.nullslast,code"})
+        summaries = self.db.get_in("set_summaries", "set_id", [s["id"] for s in sets]) if sets else []
+        return {"series": series, "sets": sets, "summaries": summaries, "images": self._images("series_id", [id])}
 
-# --------------------------------------------------------------------------- TCGplayer
+    def series_create(self, body: dict, **_) -> dict:
+        return self.db.insert("series", read_fields(body, SERIES_FIELDS, True, "series"))[0]
 
+    def series_update(self, id: str, body: dict, **_) -> dict:
+        rows = self.db.update("series", {"id": eq(id)}, read_fields(body, SERIES_FIELDS, False, "series"))
+        if not rows:
+            raise ApiError(404, f"No series \"{id}\".")
+        return rows[0]
 
-class TcgData:
-    """
-    TCGplayer's catalog as far as this editor needs it, read from the tcgcsv cache.
+    def series_delete(self, id: str, **_) -> dict:
+        if self.db.get("sets", {"series_id": eq(id), "select": "id", "limit": "1"}):
+            raise ApiError(409, "This series still has sets. Delete or move them first.")
+        self.db.delete("images", {"series_id": eq(id)})
+        if not self.db.delete("series", {"id": eq(id)}):
+            raise ApiError(404, f"No series \"{id}\".")
+        return {"deleted": id}
 
-    Product lists are what map_groups.py already cached, and a set printed years ago has
-    no reason to be asked about again. Two things do move: the list of groups (a new set
-    appears) and a recent group's products (a set fills in over its first weeks), so those
-    are re-asked when they are old. Prices are cached for most of a day, which is how
-    often TCGCSV rebuilds them.
+    # -- sets -----------------------------------------------------------------------------
 
-    A failed fetch falls back to whatever is on disk, however old. Picking a product to
-    link needs the list, not today's copy of it.
-    """
+    def set_detail(self, id: str, **_) -> dict:
+        the_set = self._row("sets", id, "set")
+        series = self.db.one("series", {"id": eq(the_set["series_id"])})
+        catalog = self.db.one("catalogs", {"id": eq(series["catalog_id"])})
+        cards = self.db.get("cards", {"set_id": eq(id), "order": "sort.nullslast,number"})
+        cards.sort(key=lambda c: (c["sort"] is None, c["sort"] or 0, publish.natural(c["number"])))
+        card_ids = [c["id"] for c in cards]
+        printings = self.db.get_in("printings", "card_id", card_ids) if card_ids else []
+        images = self._images("set_id", [id]) + [
+            i for i in self._images("card_id", card_ids) if i["chosen"]]
+        record = tcgdex.set_import(self.db, the_set)
+        return {
+            "set": the_set, "series": series, "catalog": catalog, "cards": cards, "printings": printings,
+            "images": images,
+            "summary": self.db.one("set_summaries", {"set_id": eq(id)}),
+            "import": {"source": record["source_id"], "key": record["key"], "fetched_at": record["fetched_at"],
+                       "changed": record["changed"], "suggestion": tcgdex.suggest_set(record["data"])} if record else None,
+            "publishes": self.db.get("publishes", {"set_id": eq(id), "order": "version.desc",
+                                                   "select": "version,published_at,cards,printings,file"}),
+        }
 
-    GROUPS_TTL = 24 * 3600
-    RECENT_PRODUCTS_TTL = 3 * 24 * 3600
-    PRICES_TTL = 20 * 3600
-    PAUSE = 0.12
+    def set_create(self, body: dict, **_) -> dict:
+        fields = read_fields(body, SET_FIELDS, True, "sets")
+        fields.setdefault("kind", "expansion")
+        return self.db.insert("sets", fields)[0]
 
-    def __init__(self) -> None:
-        self._lock = threading.Lock()
-        self._last = 0.0
-        self._slim: list[dict] | None = None
-        self._raw: dict[str, list[dict]] | None = None
-        self._prices: dict[int, dict[int, dict[str, int]]] = {}
+    def set_update(self, id: str, body: dict, **_) -> dict:
+        rows = self.db.update("sets", {"id": eq(id)}, read_fields(body, SET_FIELDS, False, "sets"))
+        if not rows:
+            raise ApiError(404, f"No set \"{id}\".")
+        return rows[0]
 
-    # -- fetching
+    def set_delete(self, id: str, **_) -> dict:
+        the_set = self._row("sets", id, "set")
+        if the_set["locked"]:
+            raise ApiError(409, "This set has been published, so it cannot be deleted. Withdraw its cards instead.")
+        card_ids = [c["id"] for c in self.db.get("cards", {"set_id": eq(id), "select": "id"})]
+        if card_ids:
+            printing_ids = [p["id"] for p in self.db.get_in("printings", "card_id", card_ids, {"select": "id"})]
+            for i in range(0, len(printing_ids), 80):
+                self.db.delete("images", {"printing_id": in_list(printing_ids[i:i + 80])})
+            for i in range(0, len(card_ids), 80):
+                self.db.delete("images", {"card_id": in_list(card_ids[i:i + 80])})
+        self.db.delete("images", {"set_id": eq(id)})
+        self.db.update("source_records", {"matched": eq(id), "kind": eq("set")}, {"matched": None, "matched_hash": None})
+        self.db.delete("sets", {"id": eq(id)})
+        return {"deleted": id}
 
-    def _get(self, url: str):
-        with self._lock:
-            wait = self.PAUSE - (time.time() - self._last)
-            if wait > 0:
-                time.sleep(wait)
-            try:
-                data, _ = fetch_url(url, "application/json", limit=64 * 1024 * 1024)
-                return json.loads(data.decode("utf-8"))
-            except (OSError, ValueError, urllib.error.URLError):
-                return None
-            finally:
-                self._last = time.time()
+    def set_problems(self, id: str, **_) -> dict:
+        return {"problems": self.db.rpc("publish_problems", {"target": id}) or []}
 
-    def _cached(self, name: str, url: str, ttl: float | None) -> list[dict]:
-        path = tcgplayer.CACHE / name
-        fresh = path.exists() and (ttl is None or time.time() - path.stat().st_mtime < ttl)
-        if not fresh:
-            doc = self._get(url)
-            results = (doc or {}).get("results")
-            if results is not None:
-                tcgplayer.CACHE.mkdir(parents=True, exist_ok=True)
-                path.write_text(json.dumps(results), encoding="utf-8")
-                if name.startswith("products-"):
-                    self._slim = None
-                    self._raw = None
-                return results
-        if path.exists():
-            return json.loads(path.read_text(encoding="utf-8"))
-        return []
+    def set_publishes(self, id: str, **_) -> dict:
+        return {"publishes": self.db.get("publishes", {"set_id": eq(id), "order": "version.desc"})}
 
-    # -- the three documents
+    def set_publish(self, id: str, **_) -> dict:
+        try:
+            return publish.publish_set(self.db, self.store, id)
+        except publish.PublishRefused as refused:
+            raise ApiError(409, str(refused), problems=refused.problems) from None
 
-    def groups(self) -> list[dict]:
-        return self._cached("groups.json", f"{tcgplayer.TCGCSV}/{tcgplayer.POKEMON}/groups",
-                            self.GROUPS_TTL)
+    def index_publish(self, **_) -> dict:
+        return publish.publish_index(self.db, self.store)
 
-    def group(self, group_id: int) -> dict | None:
-        return next((g for g in self.groups() if g.get("groupId") == group_id), None)
+    # -- importing ------------------------------------------------------------------------
 
-    def products(self, group_id: int) -> list[dict]:
-        group = self.group(group_id) or {}
-        published = (group.get("publishedOn") or "")[:10]
-        recent = published >= time.strftime("%Y-%m-%d", time.gmtime(time.time() - 180 * 86400))
-        return self._cached(
-            f"products-{group_id}.json",
-            f"{tcgplayer.TCGCSV}/{tcgplayer.POKEMON}/{group_id}/products",
-            self.RECENT_PRODUCTS_TTL if recent else None,
-        )
+    def tcgdex_sets(self, catalog: str = "", **_) -> dict:
+        row = self._row("catalogs", catalog, "catalog")
+        if row["language"] not in tcgdex.LANGUAGES:
+            raise ApiError(400, f"TCGdex has no {row['name']} catalog.")
+        try:
+            sets = self.client.sets(row["language"])
+        except tcgdex.SourceError as e:
+            raise ApiError(502, str(e)) from None
+        return {"sets": [{"id": s.get("id"), "name": s.get("name"),
+                          "cards": (s.get("cardCount") or {}).get("total")} for s in sets]}
 
-    def prices(self, group_id: int) -> dict[int, dict[str, int]]:
-        rows = self._cached(
-            f"prices-{group_id}.json",
-            f"{tcgplayer.TCGCSV}/{tcgplayer.POKEMON}/{group_id}/prices",
-            self.PRICES_TTL,
-        )
-        out: dict[int, dict[str, int]] = {}
-        for row in rows:
-            market = row.get("marketPrice")
-            key = tcgplayer.finish_key(row.get("subTypeName"))
-            if market and market > 0 and key:
-                out.setdefault(row["productId"], {})[key] = round(market * 100)
-        return out
+    def set_candidates(self, id: str, **_) -> dict:
+        return tcgdex.candidates(self.db, self._row("sets", id, "set"))
 
-    # -- shaping
+    def set_import(self, id: str, body: dict, **_) -> dict:
+        the_set = self._row("sets", id, "set")
+        if body.get("source") != "tcgdex":
+            raise ApiError(400, "The only source that can be imported from so far is TCGdex.")
+        key = str(body.get("key") or "").strip()
+        if not key:
+            raise ApiError(400, "Which TCGdex set? Give its TCGdex ID, like base1.")
+        series = self.db.one("series", {"id": eq(the_set["series_id"])})
+        catalog = self.db.one("catalogs", {"id": eq(series["catalog_id"])})
+        try:
+            result = tcgdex.import_set(self.db, self.client, the_set, catalog, key)
+        except tcgdex.SourceError as e:
+            raise ApiError(502, str(e)) from None
+        return {"imported": result, **tcgdex.candidates(self.db, the_set)}
+
+    def set_accept(self, id: str, body: dict, **_) -> dict:
+        the_set = self._row("sets", id, "set")
+        keys = body.get("keys")
+        if not isinstance(keys, list) or not keys or not all(isinstance(k, str) for k in keys):
+            raise ApiError(400, "Choose at least one card to accept.")
+        try:
+            result = tcgdex.accept(self.db, the_set, keys)
+        except tcgdex.SourceError as e:
+            raise ApiError(400, str(e)) from None
+        return {"accepted": result, **tcgdex.candidates(self.db, the_set)}
+
+    # -- cards ----------------------------------------------------------------------------
+
+    def card_detail(self, id: str, **_) -> dict:
+        card = self._row("cards", id, "card")
+        the_set = self.db.one("sets", {"id": eq(card["set_id"])})
+        printings = self.db.get("printings", {"card_id": eq(id), "order": "created_at"})
+        images = self._images("card_id", [id]) + self._images("printing_id", [p["id"] for p in printings])
+        order = self.db.get("cards", {"set_id": eq(card["set_id"]), "select": "id,number,sort"})
+        order.sort(key=lambda c: (c["sort"] is None, c["sort"] or 0, publish.natural(c["number"])))
+        ids = [c["id"] for c in order]
+        at = ids.index(id)
+        return {
+            "card": card, "set": the_set, "printings": printings, "images": images,
+            "sources": tcgdex.card_sources(self.db, card, the_set),
+            "previous": ids[at - 1] if at > 0 else None,
+            "next": ids[at + 1] if at + 1 < len(ids) else None,
+            "position": at + 1, "count": len(ids),
+        }
+
+    def card_create(self, body: dict, **_) -> dict:
+        fields = read_fields(body, CARD_FIELDS, True, "cards")
+        return self.db.insert("cards", self._review_stamp(fields))[0]
+
+    def card_update(self, id: str, body: dict, **_) -> dict:
+        fields = self._review_stamp(read_fields(body, CARD_FIELDS, False, "cards"))
+        rows = self.db.update("cards", {"id": eq(id)}, fields)
+        if not rows:
+            raise ApiError(404, f"No card \"{id}\".")
+        if fields.get("review") == "reviewed":
+            tcgdex.mark_reviewed(self.db, rows[0]["id"])
+        return rows[0]
+
+    def card_delete(self, id: str, **_) -> dict:
+        card = self._row("cards", id, "card")
+        if card["locked"]:
+            raise ApiError(409, "This card has been published, so it cannot be deleted. Withdraw it instead.")
+        printing_ids = [p["id"] for p in self.db.get("printings", {"card_id": eq(id), "select": "id"})]
+        if printing_ids:
+            self.db.delete("images", {"printing_id": in_list(printing_ids)})
+        self.db.delete("images", {"card_id": eq(id)})
+        self.db.update("source_records", {"matched": eq(id)}, {"matched": None, "matched_hash": None})
+        self.db.delete("cards", {"id": eq(id)})
+        return {"deleted": id}
 
     @staticmethod
-    def slim(product: dict, group: dict | None = None) -> dict:
-        extended = {e.get("name"): e.get("value") for e in product.get("extendedData") or []}
-        out = {
-            "productId": product.get("productId"),
-            "groupId": product.get("groupId"),
-            "name": product.get("name"),
-            "number": extended.get("Number"),
-            "rarity": extended.get("Rarity"),
-            "thumb": product.get("imageUrl"),
-            "photo": tcgplayer.PRODUCT_IMAGE.format(product.get("productId")),
-            "url": product.get("url"),
-        }
-        if group:
-            out["groupName"] = group.get("name")
-        return out
+    def _review_stamp(fields: dict) -> dict:
+        if "review" in fields:
+            fields["reviewed_at"] = now() if fields["review"] == "reviewed" else None
+            if fields["review"] != "flagged" and "review_note" not in fields:
+                fields["review_note"] = None
+        return fields
 
-    def _all(self) -> list[dict]:
-        """Every cached product, slimmed, with the matching keys precomputed. Built once."""
-        if self._slim is None:
-            groups = {g["groupId"]: g for g in self.groups()}
-            slim = []
-            for path in tcgplayer.CACHE.glob("products-*.json"):
-                try:
-                    rows = json.loads(path.read_text(encoding="utf-8"))
-                except (OSError, json.JSONDecodeError):
-                    continue
-                for product in rows:
-                    item = self.slim(product, groups.get(product.get("groupId")))
-                    item["_name"] = tcgplayer.normalise(item["name"] or "")
-                    item["_number"] = tcgplayer.card_number(product)
-                    item["_published"] = (groups.get(product.get("groupId")) or {}).get("publishedOn") or ""
-                    slim.append(item)
-            self._slim = slim
-        return self._slim
+    # -- printings ------------------------------------------------------------------------
 
-    def by_number(self, number: str) -> list[dict]:
-        """Every cached product with this printed number, in any group. Indexed once."""
-        if self._raw is None:
-            index: dict[str, list[dict]] = {}
-            for path in tcgplayer.CACHE.glob("products-*.json"):
-                try:
-                    rows = json.loads(path.read_text(encoding="utf-8"))
-                except (OSError, json.JSONDecodeError):
-                    continue
-                for product in rows:
-                    n = tcgplayer.card_number(product)
-                    if n:
-                        index.setdefault(n, []).append(product)
-            self._raw = index
-        return self._raw.get(number) or []
+    def printing_create(self, body: dict, **_) -> dict:
+        return self.db.insert("printings", self._review_stamp(read_fields(body, PRINTING_FIELDS, True, "printings")))[0]
 
-    def context(self, mapping: dict) -> dict[int, str]:
-        return tcgplayer.unlinked_context(self.groups(), mapping)
+    def printing_update(self, id: str, body: dict, **_) -> dict:
+        rows = self.db.update("printings", {"id": eq(id)},
+                              self._review_stamp(read_fields(body, PRINTING_FIELDS, False, "printings")))
+        if not rows:
+            raise ApiError(404, f"No printing \"{id}\".")
+        return rows[0]
 
-    def overlap(self, cards: list[dict]) -> dict[int, float]:
-        """
-        For each group, the share of these cards it sells under the same number and name.
+    def printing_delete(self, id: str, **_) -> dict:
+        printing = self._row("printings", id, "printing")
+        if printing["locked"]:
+            raise ApiError(409, "This printing has been published, so it cannot be deleted. Withdraw it instead.")
+        self.db.delete("images", {"printing_id": eq(id)})
+        self.db.delete("printings", {"id": eq(id)})
+        return {"deleted": id}
 
-        This is how the set picker ranks its suggestions, and it is far better evidence
-        than the names are. TCGdex's "Sun & Moon" is TCGplayer's "SM Base Set", which no
-        amount of string similarity connects -- but 150 of its 172 cards are in there at
-        the same numbers, and that is not a coincidence two unrelated sets manage.
-        """
-        wanted = {
-            (tcgplayer.normalise_local(c.get("localId")), tcgplayer.normalise(c.get("name") or ""))
-            for c in cards if c.get("localId")
-        }
-        if not wanted:
-            return {}
-        hits: dict[int, set] = {}
-        for item in self._all():
-            key = (item["_number"], item["_name"])
-            if key in wanted:
-                hits.setdefault(item["groupId"], set()).add(key)
-        return {gid: len(keys) / len(wanted) for gid, keys in hits.items()}
+    # -- pictures -------------------------------------------------------------------------
 
-    def search(self, needle: str, limit: int = 150) -> list[dict]:
-        """
-        Every cached product whose name holds every word typed.
+    SUBJECTS = {"catalog": ("catalogs", "catalog_id"), "series": ("series", "series_id"),
+                "set": ("sets", "set_id"), "card": ("cards", "card_id"), "printing": ("printings", "printing_id")}
 
-        A number typed on its own ("4", "4/102", "#4") matches a printed number instead of
-        a name, so "charizard 4" finds Base Set Charizard rather than every Charizard.
-        """
-        words, numbers = [], []
-        for token in needle.lower().split():
-            bare = token.lstrip("#")
-            if re.fullmatch(r"[a-z]*\d+[a-z]*(/\w+)?", bare) and any(ch.isdigit() for ch in bare):
-                numbers.append(bare.split("/")[0].lstrip("0") or "0")
-            else:
-                words.append(tcgplayer.normalise(token))
-        words = [w for w in words if w]
-        if not words and not numbers:
-            return []
+    def image_create(self, body: dict, **_) -> dict:
+        kind = body.get("subject_kind")
+        subject_id = str(body.get("subject_id") or "")
+        role = body.get("role")
+        if kind not in self.SUBJECTS:
+            raise ApiError(400, "A picture belongs to a catalog, series, set, card or printing.")
+        if role not in media.MAX_SIZE:
+            raise ApiError(400, "A picture is a front, back, logo or symbol.")
+        table, column = self.SUBJECTS[kind]
+        subject = self._row(table, subject_id, kind)
 
-        hits = [
-            item for item in self._all()
-            if all(w in item["_name"] for w in words)
-            and all(n == (item["_number"] or "").lower() for n in numbers)
-        ]
-        # Newest set first, then names that start with what was typed ahead of names that
-        # merely contain it. Two stable sorts, because one key cannot run both directions.
-        first = words[0] if words else ""
-        hits.sort(key=lambda i: i["_published"], reverse=True)
-        hits.sort(key=lambda i: not i["_name"].startswith(first))
-        return [{k: v for k, v in i.items() if not k.startswith("_")} for i in hits[:limit]]
+        set_id = None
+        if kind == "card":
+            set_id = subject["set_id"]
+        elif kind == "printing":
+            set_id = self._row("cards", subject["card_id"], "card")["set_id"]
 
-
-TCG = TcgData()
-
-
-def resolve(set_doc: dict, card: dict, mapping: dict, links: dict,
-            priced: bool = True) -> tuple[dict, bool]:
-    """
-    tcgplayer.resolve() over the editor's cache: the product the nightly pull would price
-    this card and each of its special printings from, and whether the card's own group had
-    prices to decide the plain match exactly as the pull does.
-
-    `priced=False` skips prices altogether, for questions that only need the product (its
-    photo) and should not cost a fetch per group.
-    """
-    group_id = (mapping.get(set_doc.get("id")) or {}).get("groupId")
-    prices = TCG.prices(group_id) if (group_id and priced) else {}
-    own = {p.get("productId") for p in TCG.products(group_id)} if prices else set()
-
-    def usable(product: dict) -> bool:
-        if product.get("productId") in own:
-            return product.get("productId") in prices
-        # Other groups' prices are not fetched just to browse a card, so a stamped copy
-        # found elsewhere is shown whether or not it has sold.
-        return True
-
-    answer = tcgplayer.resolve(
-        card, set_doc, mapping=mapping, links=links, shared=tcgplayer.shared_groups(mapping),
-        products=TCG.products, elsewhere=TCG.by_number, context=TCG.context(mapping), usable=usable,
-    )
-    return answer, bool(prices) or not group_id
-
-
-def product_payload(product: dict | None, special: dict | None = None) -> dict | None:
-    """A resolved product as the page draws it, priced the way the price file prices it."""
-    if not product:
-        return None
-    group_id = product.get("groupId")
-    quotes = TCG.prices(group_id).get(product.get("productId"))
-    quotes = tcgplayer.special_quotes(special, quotes) if special else tcgplayer.plain_quotes(quotes or {})
-    return {**TCG.slim(product, TCG.group(group_id)), "prices": quotes or None}
-
-
-def photo_for(set_doc: dict, card: dict, mapping: dict, links: dict) -> str | None:
-    """
-    The TCGplayer photo a card without art should get, or None.
-
-    The same rule fill_gaps.py uses: a product someone linked, or the automatic match when
-    its name agrees with the card's. A wrong picture in someone's binder is worse than none.
-    """
-    if is_pocket(set_doc):
-        return None
-    answer, _ = resolve(set_doc, card, mapping, links, priced=False)
-    product = answer["product"]
-    if not product or (answer["via"] != "link" and not tcgplayer.names_agree(card, product)):
-        return None
-    # TCGplayer lists most Trainer Kit cards with no photo at all; its image address then
-    # serves a placeholder, which is not a picture of the card.
-    if not product.get("imageCount"):
-        return None
-    return tcgplayer.PRODUCT_IMAGE.format(product["productId"])
-
-
-def give_photo(doc: dict, card: dict, url: str) -> bool:
-    """
-    Points a card without art at a TCGplayer photo, in the overrides document `doc`.
-
-    Written as `imageAltSource: tcgplayer`, exactly what fill_gaps.py writes into the pull,
-    so the next refresh that finds the same photo agrees with it rather than fighting it.
-    Nothing is downloaded: the app draws TCGplayer photos straight from TCGplayer already,
-    for twelve hundred cards. Returns whether anything changed.
-    """
-    entry = doc["cards"].get(card["id"]) or {"fields": {}, "upstream": {}}
-    # A picture someone hid on purpose ("Hide wrong picture") stays hidden.
-    if has_art(merged(card, entry)) or "imageAlt" in (entry.get("fields") or {}):
-        return False
-    fields, upstream = dict(entry.get("fields") or {}), dict(entry.get("upstream") or {})
-    for key, value in (("imageAlt", url), ("imageAltSource", "tcgplayer")):
-        fields[key] = value
-        upstream.setdefault(key, card.get(key))
-    doc["cards"][card["id"]] = {"fields": fields, "upstream": upstream, "editedAt": now()}
-    return True
-
-
-# --------------------------------------------------------------------------- publishing
-
-
-def head_json(rel: str) -> dict:
-    proc = run(["git", "show", f"HEAD:{rel}"], timeout=30)
-    if proc.returncode != 0:
-        return {}
-    try:
-        return json.loads(proc.stdout)
-    except json.JSONDecodeError:
-        return {}
-
-
-def current_json(path: Path) -> dict:
-    if not path.exists():
-        return {}
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def changed_keys(before: dict, after: dict) -> int:
-    return sum(1 for k in set(before) | set(after) if before.get(k) != after.get(k))
-
-
-def pending_changes() -> dict:
-    """What Publish would commit, counted in the units a person thinks in."""
-    status = run(["git", "status", "--porcelain", "--untracked-files=all", "--", *PUBLISHABLE], timeout=30)
-    if status.returncode != 0:
-        return {"error": status.stderr.strip() or "git is not available", "files": []}
-    files = [line for line in status.stdout.splitlines() if line.strip()]
-
-    over_head, over_now = head_json("catalog/overrides.json"), current_json(OVERRIDES)
-    links_head = head_json("catalog/tcgplayer-cards.json")
-    links_now = current_json(tcgplayer.CARD_LINKS)
-    groups_head = head_json("catalog/tcgplayer-groups.json")
-    groups_now = current_json(tcgplayer.GROUPS)
-
-    art_added = sum(1 for f in files if "catalog/art/" in f and "D" not in f[:2])
-    counts = {
-        "cards": changed_keys(over_head.get("cards") or {}, over_now.get("cards") or {}),
-        "sets": changed_keys(over_head.get("sets") or {}, over_now.get("sets") or {}),
-        "cardLinks": changed_keys(links_head.get("cards") or {}, links_now.get("cards") or {}),
-        "setLinks": changed_keys(groups_head.get("sets") or {}, groups_now.get("sets") or {}),
-        "images": art_added,
-    }
-
-    def plural(n: int, word: str) -> str:
-        return f"{n} {word}{'' if n == 1 else 's'}"
-
-    parts = []
-    corrected = [plural(counts[k], w) for k, w in (("cards", "card"), ("sets", "set")) if counts[k]]
-    if corrected:
-        parts.append("Correct " + " and ".join(corrected))
-    if counts["images"]:
-        parts.append(f"add {plural(counts['images'], 'picture')}")
-    linked = [plural(counts[k], w) for k, w in (("cardLinks", "card"), ("setLinks", "set")) if counts[k]]
-    if linked:
-        parts.append("link " + " and ".join(linked) + " to TCGplayer")
-    message = ", ".join(parts) if parts else "Catalog edits"
-    message = message[:1].upper() + message[1:]
-
-    branch = run(["git", "rev-parse", "--abbrev-ref", "HEAD"], timeout=15).stdout.strip()
-    return {"files": files, "counts": counts, "message": message, "branch": branch}
-
-
-def git_unfinished() -> str | None:
-    """What git is in the middle of in this repository, if anything, in words."""
-    git_dir = ROOT / ".git"
-    if (git_dir / "rebase-merge").exists() or (git_dir / "rebase-apply").exists():
-        return "a rebase"
-    if (git_dir / "MERGE_HEAD").exists():
-        return "a merge"
-    return None
-
-
-def unreadable_file() -> tuple[Path, str] | None:
-    """The first file this editor writes that no longer parses, and why."""
-    for path in (OVERRIDES, tcgplayer.GROUPS, tcgplayer.CARD_LINKS):
-        if not path.exists():
-            continue
         try:
-            json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, ValueError) as exc:
-            return path, str(exc)
-    return None
+            data = base64.b64decode(body.get("image") or "", validate=True)
+            width, height = media.check(data, media.MAX_SIZE[role], "The picture")
+            thumb = base64.b64decode(body.get("thumb") or "", validate=True) if body.get("thumb") else None
+            if role in ("front", "back") and not thumb:
+                raise media.MediaError("a card picture needs its thumbnail")
+            if thumb:
+                media.check(thumb, media.THUMB_SIZE, "The thumbnail")
+            original = base64.b64decode(body.get("original") or "", validate=True) if body.get("original") else None
+            if original and len(original) > media.MAX_ORIGINAL_BYTES:
+                raise media.MediaError("the original is larger than 20 MB")
+        except (ValueError, media.MediaError) as e:
+            raise ApiError(400, f"That picture cannot be used: {e}") from None
+
+        digest = media.sha256(data)
+        key = media.picture_key(role, kind, subject_id, set_id, digest)
+        source_id = body.get("source_id") or "upload"
+        source_url = body.get("source_url") or None
+
+        # Files first, then the database: if an upload fails, the picture already chosen stays chosen.
+        existing = self.db.one("images", {"path": eq(key)})
+        if existing:
+            self.db.update("images", {column: eq(subject_id), "role": eq(role), "chosen": "is.true"}, {"chosen": False})
+            row = self.db.update("images", {"id": eq(existing["id"])}, {"chosen": True})[0]
+        else:
+            original_path = None
+            original_type = str(body.get("original_type") or "")
+            if original and not source_url:
+                try:
+                    original_path = media.original_key(media.sha256(original), original_type)
+                except media.MediaError as e:
+                    raise ApiError(400, str(e)) from None
+            self.store.put_public(key, data, "image/webp", publish.IMMUTABLE)
+            thumb_path = None
+            if thumb:
+                thumb_path = media.thumb_key(key)
+                self.store.put_public(thumb_path, thumb, "image/webp", publish.IMMUTABLE)
+            if original_path:
+                self.store.put_private(original_path, original, original_type)
+            self.db.update("images", {column: eq(subject_id), "role": eq(role), "chosen": "is.true"}, {"chosen": False})
+            row = self.db.insert("images", {
+                column: subject_id, "role": role, "chosen": True, "path": key, "thumb_path": thumb_path,
+                "width": width, "height": height, "bytes": len(data), "sha256": digest,
+                "below_standard": media.is_soft(role, width, height), "source_id": source_id,
+                "source_url": source_url, "original_path": original_path,
+            })[0]
+        if kind == "card" and subject.get("no_image"):
+            self.db.update("cards", {"id": eq(subject_id)}, {"no_image": False})
+        return row
+
+    def image_update(self, id: str, body: dict, **_) -> dict:
+        image = self._row("images", id, "picture")
+        if set(body) - {"chosen", "notes"}:
+            raise ApiError(400, "Only whether a picture is chosen, and its notes, can change.")
+        patch = {}
+        if "notes" in body:
+            patch["notes"] = read_value("notes", TEXT, body["notes"])
+        if "chosen" in body:
+            chosen = read_value("chosen", BOOL, body["chosen"])
+            if chosen:
+                if not image["path"]:
+                    raise ApiError(400, "That picture was never stored, so it cannot be chosen.")
+                column = next(c for _, c in self.SUBJECTS.values() if image.get(c))
+                self.db.update("images", {column: eq(image[column]), "role": eq(image["role"]),
+                                          "chosen": "is.true"}, {"chosen": False})
+            patch["chosen"] = chosen
+        return self.db.update("images", {"id": eq(id)}, patch)[0] if patch else image
+
+    def image_delete(self, id: str, **_) -> dict:
+        if not self.db.delete("images", {"id": eq(id)}):
+            raise ApiError(404, f"No picture \"{id}\".")
+        return {"deleted": id}
+
+    def fetch_image(self, body: dict, **_) -> tuple[bytes, str]:
+        url = str(body.get("url") or "").strip()
+        if not re.match(r"^https?://", url, re.I):
+            raise ApiError(400, "Give a picture's web address, starting with http:// or https://.")
+        try:
+            request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "image/*"})
+            with urllib.request.urlopen(request, timeout=30) as response:
+                kind = response.headers.get_content_type()
+                data = response.read(MAX_FETCH + 1)
+        except (urllib.error.URLError, TimeoutError, ValueError) as e:
+            raise ApiError(502, f"Could not get that picture: {getattr(e, 'reason', e)}") from None
+        if len(data) > MAX_FETCH:
+            raise ApiError(400, "That picture is larger than 15 MB.")
+        if not kind.startswith("image/"):
+            raise ApiError(400, f"That address is not a picture (it is {kind}).")
+        return data, kind
+
+    # -- vocabulary -----------------------------------------------------------------------
+
+    def word_create(self, body: dict, **_) -> dict:
+        return self.db.insert("variant_words", read_fields(body, WORD_FIELDS, True, "variant_words"))[0]
+
+    def word_update(self, id: str, body: dict, **_) -> dict:
+        rows = self.db.update("variant_words", {"word": eq(id)}, read_fields(body, WORD_FIELDS, False, "variant_words"))
+        if not rows:
+            raise ApiError(404, f"No word \"{id}\".")
+        return rows[0]
+
+    def word_delete(self, id: str, **_) -> dict:
+        if not self.db.delete("variant_words", {"word": eq(id)}):
+            raise ApiError(404, f"No word \"{id}\".")
+        return {"deleted": id}
+
+    def term_create(self, body: dict, **_) -> dict:
+        return self.db.insert("terms", read_fields(body, TERM_FIELDS, True, "terms"))[0]
+
+    def term_update(self, kind: str, code: str, body: dict, **_) -> dict:
+        rows = self.db.update("terms", {"kind": eq(kind), "code": eq(code)}, read_fields(body, TERM_FIELDS, False, "terms"))
+        if not rows:
+            raise ApiError(404, f"No {kind} \"{code}\".")
+        return rows[0]
+
+    def term_delete(self, kind: str, code: str, **_) -> dict:
+        if not self.db.delete("terms", {"kind": eq(kind), "code": eq(code)}):
+            raise ApiError(404, f"No {kind} \"{code}\".")
+        return {"deleted": f"{kind}:{code}"}
 
 
-def explain(exc: BaseException) -> str:
-    """
-    An error in words a person can act on.
-
-    Any exception in a handler used to drop the connection, which the browser reports as
-    "Failed to fetch" -- true, and no help at all when the real problem is a file left full
-    of conflict markers by an unfinished rebase.
-    """
-    broken = unreadable_file()
-    if broken:
-        path, why = broken
-        text = f"{path.relative_to(ROOT).as_posix()} cannot be read ({why})."
-        busy = git_unfinished()
-        if busy:
-            verb = busy.split()[-1]
-            text += (f" Git is in the middle of {busy}, which leaves conflict markers in files. "
-                     f"Finish or abort it in VS Code or a terminal (git {verb} --abort puts "
-                     "everything back as it was), then reload.")
-        return text
-    return f"{type(exc).__name__}: {exc}"
-
-
-def publish(message: str) -> dict:
-    log: list[str] = []
-
-    def step(args: list[str]) -> bool:
-        proc = run(args)
-        log.append("$ " + " ".join(args))
-        text = (proc.stdout + proc.stderr).strip()
-        if text:
-            log.append(text)
-        return proc.returncode == 0
-
-    busy = git_unfinished()
-    if busy:
-        return {"ok": False, "output": f"Git is in the middle of {busy} in this repository. "
-                                       "Finish or abort it in VS Code or a terminal first."}
-    if not pending_changes().get("files"):
-        return {"ok": False, "output": "Nothing to publish."}
-
-    if not step(["git", "add", "-A", "--", *PUBLISHABLE]):
-        return {"ok": False, "output": "\n".join(log)}
-    # Committed by path, so anything else that happens to be staged -- a tool someone is
-    # halfway through editing -- stays out of a commit that says it is catalog edits.
-    if not step(["git", "commit", "-m", message, "--", *PUBLISHABLE]):
-        return {"ok": False, "output": "\n".join(log)}
-    # The nightly price job commits newly mapped sets to main, so the branch here may be
-    # behind. Rebasing first turns that from a rejected push into a non-event.
-    if not step(["git", "pull", "--rebase", "--autostash"]):
-        # Never left half-done. A stopped rebase leaves conflict markers inside the very
-        # JSON files this editor reads, so the editor itself stops working -- and the person
-        # looking at it is the one least likely to want to finish a rebase by hand.
-        if git_unfinished() == "a rebase":
-            step(["git", "rebase", "--abort"])
-        return {"ok": False, "committed": True, "output": "\n".join(log)
-                + "\n\nYour edits are committed on this computer, but GitHub has changes to the "
-                  "same lines, so the two could not be combined automatically. Nothing was "
-                  "pushed and nothing is lost. Resolve it in VS Code or a terminal "
-                  "(git pull --rebase), then push."}
-    if not step(["git", "push"]):
-        return {"ok": False, "committed": True, "output": "\n".join(log)
-                + "\n\nCommitted locally, but the push failed. Nothing is lost; push again "
-                  "when the problem above is fixed."}
-    return {"ok": True, "output": "\n".join(log)}
+SEGMENT = r"(?P<{}>[^/]+)"
+ROUTES = [(method, re.compile("^" + pattern.format(id=SEGMENT.format("id"), kind=SEGMENT.format("kind"),
+                                                   code=SEGMENT.format("code")) + "$"), name)
+          for method, pattern, name in [
+    ("GET", "/api/ping", "ping"),
+    ("GET", "/api/bootstrap", "bootstrap"),
+    ("GET", "/api/catalogs/{id}", "catalog"),
+    ("GET", "/api/lists/review", "list_review"),
+    ("GET", "/api/lists/no-picture", "list_no_picture"),
+    ("GET", "/api/series/{id}", "series_detail"),
+    ("POST", "/api/series", "series_create"),
+    ("PATCH", "/api/series/{id}", "series_update"),
+    ("DELETE", "/api/series/{id}", "series_delete"),
+    ("GET", "/api/sets/{id}", "set_detail"),
+    ("POST", "/api/sets", "set_create"),
+    ("PATCH", "/api/sets/{id}", "set_update"),
+    ("DELETE", "/api/sets/{id}", "set_delete"),
+    ("GET", "/api/sets/{id}/problems", "set_problems"),
+    ("GET", "/api/sets/{id}/publishes", "set_publishes"),
+    ("POST", "/api/sets/{id}/publish", "set_publish"),
+    ("GET", "/api/sets/{id}/candidates", "set_candidates"),
+    ("POST", "/api/sets/{id}/import", "set_import"),
+    ("POST", "/api/sets/{id}/accept", "set_accept"),
+    ("POST", "/api/publish-index", "index_publish"),
+    ("GET", "/api/tcgdex/sets", "tcgdex_sets"),
+    ("GET", "/api/cards/{id}", "card_detail"),
+    ("POST", "/api/cards", "card_create"),
+    ("PATCH", "/api/cards/{id}", "card_update"),
+    ("DELETE", "/api/cards/{id}", "card_delete"),
+    ("POST", "/api/printings", "printing_create"),
+    ("PATCH", "/api/printings/{id}", "printing_update"),
+    ("DELETE", "/api/printings/{id}", "printing_delete"),
+    ("POST", "/api/images", "image_create"),
+    ("PATCH", "/api/images/{id}", "image_update"),
+    ("DELETE", "/api/images/{id}", "image_delete"),
+    ("POST", "/api/fetch-image", "fetch_image"),
+    ("POST", "/api/words", "word_create"),
+    ("PATCH", "/api/words/{id}", "word_update"),
+    ("DELETE", "/api/words/{id}", "word_delete"),
+    ("POST", "/api/terms", "term_create"),
+    ("PATCH", "/api/terms/{kind}/{code}", "term_update"),
+    ("DELETE", "/api/terms/{kind}/{code}", "term_delete"),
+]]
 
 
 # --------------------------------------------------------------------------- app window
@@ -954,15 +653,10 @@ class Presence:
     """
     Knows whether any editor window is still open, so the app can exit with its window.
 
-    Under `--app` the server runs without a console, so there is nothing to Ctrl-C and a
-    server left behind would sit invisibly on the port until the next reboot. Each page
-    says hello every half minute and goodbye as it closes. A goodbye starts a short grace
-    period rather than stopping outright, because a reload is a goodbye followed a moment
-    later by a hello, and that should not kill the app underneath it.
-
-    The half-minute heartbeat is a backstop for a window that closed without managing to
-    say goodbye. Its expiry is generous because a browser throttles timers in a minimised
-    window to about one a minute, and a minimised editor is not a closed one.
+    Under --app the server runs without a console, so there is nothing to Ctrl-C and a server
+    left behind would sit invisibly on the port until the next reboot. Each page says hello
+    every half minute and goodbye as it closes. A goodbye starts a short grace period, because
+    a reload is a goodbye followed a moment later by a hello.
     """
 
     EXPIRE = 10 * 60
@@ -1011,23 +705,16 @@ PRESENCE = Presence()
 
 
 def open_window(url: str, app: bool) -> None:
-    """
-    Opens the editor as its own window where a Chromium browser is installed.
-
-    Edge ships with Windows, and `--app` gives it a window with no tabs or address bar --
-    which is the difference between a tool and a web page someone has to find again among
-    thirty tabs. Anything else falls back to an ordinary browser tab.
-    """
+    """Edge's app mode where it exists: a window with no tabs or address bar."""
     if app:
-        candidates = [
+        for exe in [
             shutil.which("msedge"),
             os.path.expandvars(r"%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"),
             os.path.expandvars(r"%ProgramFiles%\Microsoft\Edge\Application\msedge.exe"),
             shutil.which("chrome"),
             os.path.expandvars(r"%ProgramFiles%\Google\Chrome\Application\chrome.exe"),
             os.path.expandvars(r"%LocalAppData%\Google\Chrome\Application\chrome.exe"),
-        ]
-        for exe in candidates:
+        ]:
             if exe and os.path.isfile(exe):
                 subprocess.Popen([exe, f"--app={url}", "--window-size=1500,960"],
                                  creationflags=NO_WINDOW, close_fds=True)
@@ -1035,62 +722,38 @@ def open_window(url: str, app: bool) -> None:
     webbrowser.open(url)
 
 
-# --------------------------------------------------------------------------- API
+# --------------------------------------------------------------------------- HTTP
 
 
-class Handler(http.server.SimpleHTTPRequestHandler):
-    def __init__(self, *a, **kw):
-        super().__init__(*a, directory=str(HERE), **kw)
-
-    def end_headers(self) -> None:
-        self.send_header("Cache-Control", "no-store, must-revalidate")
-        super().end_headers()
+class Handler(http.server.BaseHTTPRequestHandler):
+    server: "Server"
 
     def log_message(self, fmt, *args) -> None:
         line = fmt % args
-        if any(f" /{p}" in line for p in ("api/set/", "api/index", "api/hello", "art/",
-                                             "api/tcgplayer/", "api/changes")):
+        if "/api/hello" in line or " /api/bootstrap" in line:
             return
-        super().log_message(fmt, *args)
+        sys.stderr.write(f"{self.log_date_time_string()} {line}\n")
 
-    # -- plumbing
-
-    def _json(self, payload, status: int = 200) -> None:
-        body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+    def _send(self, status: int, body: bytes, kind: str) -> None:
         self.send_response(status)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Type", kind)
         self.send_header("Content-Length", str(len(body)))
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("X-Content-Type-Options", "nosniff")
         self.end_headers()
         self.wfile.write(body)
 
-    def _bytes(self, data: bytes, kind: str) -> None:
-        self.send_response(200)
-        self.send_header("Content-Type", kind)
-        self.send_header("Content-Length", str(len(data)))
-        self.end_headers()
-        self.wfile.write(data)
-
-    def _fail(self, status: int, message: str) -> None:
-        self._json({"error": message}, status)
-
-    def _body(self) -> dict:
-        length = int(self.headers.get("Content-Length") or 0)
-        if not length:
-            return {}
-        if length > MAX_BODY:
-            raise ValueError("request too large")
-        raw = self.rfile.read(length).decode("utf-8")
-        return json.loads(raw) if raw.strip() else {}
+    def _json(self, payload, status: int = 200) -> None:
+        self._send(status, json.dumps(payload, ensure_ascii=False).encode("utf-8"), "application/json; charset=utf-8")
 
     def _trusted(self) -> bool:
         """
         Whether a request really came from this editor's own page.
 
-        The server is bound to loopback, which keeps the network out but not the browser:
-        any web page open in the same browser can aim a request at 127.0.0.1. Checking
-        Host defeats DNS rebinding, and checking Origin stops a cross-site POST, which is
-        the one kind a browser sends without asking first -- and this server commits and
-        pushes on a POST.
+        The server is bound to loopback, which keeps the network out but not the browser: any
+        web page open in the same browser can aim a request at 127.0.0.1. Checking Host
+        defeats DNS rebinding, and checking Origin stops a cross-site request -- and this
+        server writes to the catalog database.
         """
         port = self.server.server_address[1]
         own = {f"127.0.0.1:{port}", f"localhost:{port}"}
@@ -1099,730 +762,157 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         origin = self.headers.get("Origin")
         return origin is None or origin in {f"http://{h}" for h in own}
 
-    def _safely(self, handler) -> None:
-        """Any failure becomes an answer with a reason, never a dropped connection."""
+    def do_GET(self) -> None:  # noqa: N802
+        self._handle("GET")
+
+    def do_POST(self) -> None:  # noqa: N802
+        self._handle("POST")
+
+    def do_PATCH(self) -> None:  # noqa: N802
+        self._handle("PATCH")
+
+    def do_DELETE(self) -> None:  # noqa: N802
+        self._handle("DELETE")
+
+    def _handle(self, method: str) -> None:
         try:
-            handler()
+            self._route(method)
         except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError):
             pass
-        except (Exception, SystemExit) as exc:  # noqa: BLE001  (read_overrides exits on bad JSON)
+        except ApiError as e:
+            self._json({"error": e.message, **e.extra}, e.status)
+        except DbError as e:
+            error = friendly(e)
+            self._json({"error": error.message}, error.status)
+        except Exception as e:  # noqa: BLE001
             traceback.print_exc()
             try:
-                self._fail(500, explain(exc))
+                self._json({"error": f"The editor hit a problem: {e}"}, 500)
             except OSError:
                 pass
 
-    @staticmethod
-    def _tail(path: str, prefix: str) -> str:
-        return urllib.parse.unquote(path[len(prefix):])
-
-    # -- GET
-
-    def do_GET(self) -> None:  # noqa: N802
-        self._safely(self._route_get)
-
-    def _route_get(self) -> None:
-        url = urllib.parse.urlparse(self.path)
-        path, query = url.path, urllib.parse.parse_qs(url.query)
-
-        if path.startswith("/art/"):
-            return self._art(path)
-
-        if not path.startswith("/api/"):
-            if path == "/":
-                self.path = "/index.html"
-            return super().do_GET()
+    def _route(self, method: str) -> None:
+        parsed = urllib.parse.urlsplit(self.path)
+        path = parsed.path
+        query = {k: v[-1] for k, v in urllib.parse.parse_qs(parsed.query).items()}
 
         if not self._trusted():
-            return self._fail(403, "not from this editor")
+            raise ApiError(403, "Requests must come from the editor's own page.")
 
-        if path == "/api/ping":
-            return self._json({"app": "pocketful-editor"})
-
+        if method == "GET" and path in STATIC:
+            file, kind = STATIC[path]
+            self._send(200, file.read_bytes(), kind)
+            return
+        if method == "GET" and path.startswith("/_store/") and isinstance(self.server.api.store, LocalStore):
+            key = urllib.parse.unquote(path[len("/_store/"):])
+            try:
+                self._send(200, self.server.api.store.get_public(key),
+                           "image/webp" if key.endswith(".webp") else "application/octet-stream")
+            except (OSError, ValueError):
+                self._send(404, b"", "text/plain")
+            return
         if path == "/api/hello":
-            PRESENCE.hello((query.get("c") or [""])[0])
-            return self._json({"ok": True})
+            PRESENCE.hello(query.get("c", "?"))
+            self._json({"ok": True})
+            return
+        if path == "/api/bye" and method == "POST":
+            PRESENCE.bye(query.get("c", "?"))
+            self._json({"ok": True})
+            return
 
-        try:
-            CACHE.load()
-        except (OSError, json.JSONDecodeError) as exc:
-            return self._fail(500, f"catalog unreadable: {exc}")
-
-        over = read_overrides()
-
-        if path == "/api/index":
-            return self._json(self._index(over))
-
-        if path.startswith("/api/set/"):
-            set_id = self._tail(path, "/api/set/")
-            doc = CACHE.by_set.get(set_id)
-            if doc is None:
-                return self._fail(404, f"no set {set_id}")
-            links = tcgplayer.load_card_links()
-            entry = over["sets"].get(set_id)
-            return self._json({
-                "set": self._set_payload(doc, over),
-                "cards": [self._card_payload(c, over, links=links) for c in (doc.get("cards") or [])],
-                "override": entry,
-            })
-
-        if path == "/api/search":
-            needle = (query.get("q") or [""])[0].strip().lower()
-            if len(needle) < 2:
-                return self._json({"cards": []})
-            links = tcgplayer.load_card_links()
-            found = []
-            for set_doc, card in CACHE.by_card.values():
-                shown = merged(card, over["cards"].get(card.get("id")))
-                name = (shown.get("name") or "").lower()
-                if needle in name or needle == (card.get("localId") or "").lower() \
-                        or needle in (card.get("id") or "").lower():
-                    found.append((set_doc, card, name))
-            # Ranked before the cap, not after. Sets load in file-name order and every Pocket
-            # set id is upper case, so "pikachu" used to fill all two hundred rows with the
-            # phone game before a printed card was reached. Printed cards first, then names
-            # that start with what was typed, then newest set.
-            found.sort(key=lambda f: (f[0].get("releaseDate") or ""), reverse=True)
-            found.sort(key=lambda f: (is_pocket(f[0]), not f[2].startswith(needle)))
-            hits = [self._card_payload(card, over, set_doc, links) for set_doc, card, _ in found[:200]]
-            return self._json({"cards": hits})
-
-        if path == "/api/no-art":
-            links = tcgplayer.load_card_links()
-            mapping = tcgplayer.load_groups()
-            rows = []
-            for set_doc, card in CACHE.by_card.values():
-                if is_pocket(set_doc) or has_art(merged(card, over["cards"].get(card.get("id")))):
-                    continue
-                row = self._card_payload(card, over, set_doc, links)
-                row["photo"] = photo_for(set_doc, card, mapping, links)
-                rows.append(row)
-            rows.sort(key=lambda r: (CACHE.by_set.get(r["setId"]) or {}).get("releaseDate") or "", reverse=True)
-            return self._json({"cards": rows})
-
-        if path == "/api/linked":
-            links = tcgplayer.load_card_links()
-            rows = [
-                self._card_payload(CACHE.by_card[cid][1], over, CACHE.by_card[cid][0], links)
-                for cid in sorted(links) if cid in CACHE.by_card
-            ]
-            return self._json({"cards": rows})
-
-        if path == "/api/overrides":
-            links = tcgplayer.load_card_links()
-            rows = []
-            for cid, entry in sorted(over["cards"].items()):
-                found = CACHE.by_card.get(cid)
-                rows.append({
-                    "id": cid,
-                    "card": merged(found[1], entry) if found else None,
-                    "fullUpstream": found[1] if found else None,
-                    "link": links.get(cid),
-                    "fields": entry.get("fields") or {},
-                    "upstream": entry.get("upstream") or {},
-                    "editedAt": entry.get("editedAt"),
-                    "setId": found[0].get("id") if found else None,
-                    "setName": found[0].get("name") if found else None,
-                    "orphan": found is None,
-                    "stale": bool(found) and is_stale(found[1], entry),
-                })
-            return self._json({"rows": rows})
-
-        if path.startswith("/api/tcgplayer/card/"):
-            card_id = self._tail(path, "/api/tcgplayer/card/")
-            found = CACHE.by_card.get(card_id)
-            if not found:
-                return self._fail(404, f"no card {card_id}")
-            set_doc, card = found
-            mapping = tcgplayer.load_groups()
-            links = tcgplayer.load_card_links()
-            auto, exact = resolve(set_doc, card, mapping, {})
-
-            def linked_payload(link: dict | None, special: dict | None = None) -> dict | None:
-                if not (link and link.get("productId") and link.get("groupId")):
-                    return None
-                product = next((p for p in TCG.products(link["groupId"])
-                                if p.get("productId") == link["productId"]), None)
-                if product:
-                    return product_payload(product, special)
-                return {"productId": link["productId"], "groupId": link["groupId"],
-                        "name": link.get("tcgplayerName"), "missing": True}
-
-            link = links.get(card_id)
-            special = []
-            for printing in auto["special"]:
-                key = tcgplayer.link_key(card_id, printing)
-                special.append({
-                    "type": printing["type"], "key": printing["key"], "label": printing["label"],
-                    "linkKey": key,
-                    "auto": product_payload(printing["product"], printing),
-                    "autoVia": printing["via"],
-                    "link": links.get(key),
-                    "linked": linked_payload(links.get(key), printing),
-                })
-            return self._json({
-                "setGroup": mapping.get(set_doc.get("id")),
-                "auto": product_payload(auto["product"]),
-                "exact": exact,
-                "link": link,
-                "linked": linked_payload(link),
-                "special": special,
-            })
-
-        if path == "/api/tcgplayer/groups":
-            mapping = tcgplayer.load_groups()
-            used: dict[int, list[str]] = {}
-            for sid, entry in mapping.items():
-                if entry.get("groupId"):
-                    used.setdefault(entry["groupId"], []).append(sid)
-            target = CACHE.by_set.get((query.get("for") or [""])[0])
-            key = tcgplayer.normalise((target or {}).get("name") or "")
-            overlap = TCG.overlap((target or {}).get("cards") or []) if target else {}
-            rows = []
-            for g in TCG.groups():
-                row = {k: g.get(k) for k in ("groupId", "name", "abbreviation", "publishedOn")}
-                row["usedBy"] = used.get(g.get("groupId"), [])
-                if target:
-                    row["cardsMatched"] = round(overlap.get(g.get("groupId"), 0.0), 3)
-                    row["nameSimilarity"] = round(difflib.SequenceMatcher(
-                        None, key, tcgplayer.normalise(g.get("name") or "")).ratio(), 3)
-                rows.append(row)
-            # Shared cards first, by a distance; the name only breaks ties, which in practice
-            # means it orders the groups that share nothing.
-            rows.sort(key=lambda r: (-(r.get("cardsMatched") or 0), -(r.get("nameSimilarity") or 0),
-                                     r.get("name") or ""))
-            return self._json({"groups": rows})
-
-        if path.startswith("/api/tcgplayer/group/"):
-            try:
-                group_id = int(self._tail(path, "/api/tcgplayer/group/"))
-            except ValueError:
-                return self._fail(400, "not a group id")
-            group = TCG.group(group_id)
-            if group is None:
-                return self._fail(404, f"TCGplayer has no group {group_id}")
-            prices = TCG.prices(group_id)
-            products = [{**TCG.slim(p, group), "prices": prices.get(p.get("productId"))}
-                        for p in TCG.products(group_id)]
-
-            # In printed order, so a set reads the way its binder does. Products with no
-            # number -- booster boxes, tins -- sink to the bottom.
-            def order(p):
-                number = (p["number"] or "").split("/")[0].strip()
-                digits = re.sub(r"\D", "", number)
-                return (not number, int(digits) if digits else 0, number, p["name"] or "")
-
-            products.sort(key=order)
-            return self._json({"group": group, "products": products})
-
-        if path == "/api/tcgplayer/search":
-            needle = (query.get("q") or [""])[0].strip()
-            return self._json({"products": TCG.search(needle) if len(needle) >= 2 else []})
-
-        if path == "/api/changes":
-            return self._json(pending_changes())
-
-        return self._fail(404, "no such endpoint")
-
-    def _art(self, path: str) -> None:
-        """Committed artwork, served locally so it can be seen before it is pushed."""
-        parts = path[len("/art/"):].split("/")
-        if len(parts) != 2 or parts[0] not in ("cards", "logos") or not ART_NAME.match(parts[1]):
-            return self._fail(404, "no such picture")
-        file = ART / parts[0] / parts[1]
-        if not file.is_file():
-            return self._fail(404, "no such picture")
-        kind = {"webp": "image/webp", "png": "image/png", "jpg": "image/jpeg"}.get(
-            file.suffix.lstrip("."), "application/octet-stream")
-        return self._bytes(file.read_bytes(), kind)
-
-    # -- PUT
-
-    def do_PUT(self) -> None:  # noqa: N802
-        self._safely(self._route_put)
-
-    def _route_put(self) -> None:
-        if not self._trusted():
-            return self._fail(403, "not from this editor")
-        path = urllib.parse.urlparse(self.path).path
-        try:
-            body = self._body()
-        except (ValueError, json.JSONDecodeError):
-            return self._fail(400, "body was not JSON")
-        CACHE.load()
-
-        routes = {
-            "/api/override/": self._put_card,
-            "/api/set-override/": self._put_set,
-            "/api/link/card/": self._put_card_link,
-            "/api/link/set/": self._put_set_link,
-        }
-        for prefix, handler in routes.items():
-            if path.startswith(prefix):
-                key = self._tail(path, prefix)
-                valid = LINK_KEY if prefix == "/api/link/card/" else CARD_ID
-                if not valid.match(key):
-                    return self._fail(400, "that is not an id")
+        for route_method, pattern, name in ROUTES:
+            match = pattern.match(path)
+            if not match or route_method != method:
+                continue
+            args = {k: urllib.parse.unquote(v) for k, v in match.groupdict().items()}
+            if method in ("POST", "PATCH"):
+                if not (self.headers.get("Content-Type") or "").startswith("application/json"):
+                    raise ApiError(415, "Writes must be JSON.")
+                length = int(self.headers.get("Content-Length") or 0)
+                if length > MAX_BODY:
+                    raise ApiError(413, "That request is too large.")
+                raw = self.rfile.read(length).decode("utf-8") if length else ""
                 try:
-                    with WRITE_LOCK:
-                        return handler(key, body)
-                except ValueError as exc:
-                    return self._fail(400, str(exc))
-        return self._fail(404, "no such endpoint")
-
-    def _put_card(self, card_id: str, body: dict) -> None:
-        found = CACHE.by_card.get(card_id)
-        if not found:
-            return self._fail(404, f"no card {card_id} in the catalog")
-        _, card = found
-
-        patch = body.get("fields") or {}
-        clear = body.get("clear") or []
-        fields, upstream = {}, {}
-
-        for key, raw in patch.items():
-            if key in clear:
-                continue
-            value = coerce(key, raw)
-            if value is None:
-                continue
-            # An "override" that agrees with upstream is not one. Dropping it here
-            # keeps the file to things that actually change the shipped catalog, so
-            # its length stays a true count of how far it departs from the pull.
-            if value == card.get(key):
-                continue
-            fields[key] = value
-            upstream[key] = card.get(key)
-
-        for key in clear:
-            if key not in CLEARABLE:
-                raise ValueError(f"{key} cannot be cleared")
-            fields.pop(key, None)
-            if card.get(key) is not None:
-                fields[key] = None
-                upstream[key] = card.get(key)
-
-        if body.get("art"):
-            url = store_art("cards", card_id, body["art"], ("webp", "jpg", "png"))
-            fields["imageAlt"], upstream["imageAlt"] = url, card.get("imageAlt")
-            fields["imageAltSource"], upstream["imageAltSource"] = "manual", card.get("imageAltSource")
-            # The app draws a TCGdex stem in preference to any fallback, so a picture
-            # supplied for a card that already has one is only seen if the stem goes.
-            if card.get("image"):
-                fields["image"], upstream["image"] = None, card.get("image")
+                    args["body"] = json.loads(raw) if raw.strip() else {}
+                except ValueError:
+                    raise ApiError(400, "That request is not valid JSON.") from None
+            result = getattr(self.server.api, name)(**args, **{k: v for k, v in query.items() if k not in args})
+            if isinstance(result, tuple):
+                data, kind = result
+                self._send(200, data, kind)
             else:
-                fields.pop("image", None)
-                upstream.pop("image", None)
-
-        doc = read_overrides()
-        if not fields:
-            doc["cards"].pop(card_id, None)
-            write_overrides(doc)
-            prune_art(doc)
-            return self._json({"ok": True, "removed": True})
-
-        doc["cards"][card_id] = {"fields": fields, "upstream": upstream, "editedAt": now()}
-        write_overrides(doc)
-        prune_art(doc)
-        return self._json({"ok": True, "entry": doc["cards"][card_id]})
-
-    def _put_set(self, set_id: str, body: dict) -> None:
-        set_doc = CACHE.by_set.get(set_id)
-        if not set_doc:
-            return self._fail(404, f"no set {set_id} in the catalog")
-
-        fields, upstream = {}, {}
-        for key, raw in (body.get("fields") or {}).items():
-            value = coerce(key, raw, SET_EDITABLE)
-            if value is None or value == set_doc.get(key):
-                continue
-            fields[key], upstream[key] = value, set_doc.get(key)
-
-        if body.get("logo"):
-            url = store_art("logos", set_id, body["logo"], ("png",))
-            stem = url[: -len(".png")]
-            fields["logo"], upstream["logo"] = stem, set_doc.get("logo")
-
-        doc = read_overrides()
-        if not fields:
-            doc["sets"].pop(set_id, None)
-            write_overrides(doc)
-            prune_art(doc)
-            return self._json({"ok": True, "removed": True})
-
-        doc["sets"][set_id] = {"fields": fields, "upstream": upstream, "editedAt": now()}
-        write_overrides(doc)
-        prune_art(doc)
-        return self._json({"ok": True, "entry": doc["sets"][set_id]})
-
-    def _put_card_link(self, key: str, body: dict) -> None:
-        # The key is a card id, or a card id and one of its special printings.
-        card_id, _, rest = key.partition("~")
-        found = CACHE.by_card.get(card_id)
-        if not found:
-            return self._fail(404, f"no card {card_id} in the catalog")
-        set_doc, card = found
-        printing = None
-        if rest:
-            printing = next((p for p in variants.special_printings(card)
-                             if tcgplayer.link_key(card_id, p) == key), None)
-            if printing is None:
-                return self._fail(404, f"{card_id} has no printing {rest}")
-        product_id = body.get("productId")
-        group_id = body.get("groupId")
-
-        entry: dict = {"groupId": None, "productId": None, "linkedAt": now()}
-        photo = False
-        if product_id is not None:
-            try:
-                product_id, group_id = int(product_id), int(group_id)
-            except (TypeError, ValueError):
-                raise ValueError("a link needs a product and the group it is in")
-            product = next((p for p in TCG.products(group_id) if p.get("productId") == product_id), None)
-            if product is None:
-                raise ValueError(f"TCGplayer group {group_id} has no product {product_id}")
-            mapping = tcgplayer.load_groups()
-            auto, _ = resolve(set_doc, card, mapping, {})
-            if printing is None:
-                auto_product = auto["product"]
-            else:
-                auto_product = next((p["product"] for p in auto["special"]
-                                     if tcgplayer.link_key(card_id, p) == key), None)
-            doc = read_card_links()
-            # The same rule as an override that agrees with upstream: pointing a card at
-            # the product it already matches is not a link, so none is written.
-            if auto_product and auto_product.get("productId") == product_id:
-                doc["cards"].pop(key, None)
-            else:
-                slim = TCG.slim(product, TCG.group(group_id))
-                entry.update({
-                    "groupId": group_id, "productId": product_id,
-                    "tcgplayerName": slim["name"], "number": slim["number"],
-                })
-                doc["cards"][key] = entry
-            write_card_links(doc)
-            # A card linked to its product and still without a picture gets that product's
-            # photo in the same gesture. Linking was always the hard half; having to go on
-            # and press "TCGplayer photo" and Save for every one was the tedious half.
-            if printing is None:
-                over = read_overrides()
-                if give_photo(over, card, tcgplayer.PRODUCT_IMAGE.format(product_id)):
-                    write_overrides(over)
-                    photo = True
-            if key not in doc["cards"]:
-                return self._json({"ok": True, "removed": True, "photo": photo})
-        else:
-            doc = read_card_links()
-            doc["cards"][key] = entry
-            write_card_links(doc)
-        return self._json({"ok": True, "entry": entry, "photo": photo})
-
-    def _put_set_link(self, set_id: str, body: dict) -> None:
-        set_doc = CACHE.by_set.get(set_id)
-        if not set_doc:
-            return self._fail(404, f"no set {set_id} in the catalog")
-        group_id = body.get("groupId")
-        group = None
-        if group_id is not None:
-            try:
-                group_id = int(group_id)
-            except (TypeError, ValueError):
-                raise ValueError("not a group id")
-            group = TCG.group(group_id)
-            if group is None:
-                raise ValueError(f"TCGplayer has no group {group_id}")
-
-        doc = read_groups_doc()
-        prior = doc["sets"].get(set_id) or {}
-        auto = prior.get("auto") if prior.get("via") == "manual" else (prior or None)
-
-        if auto is not None and auto.get("groupId") == group_id:
-            doc["sets"][set_id] = auto
-            write_json(tcgplayer.GROUPS, doc)
-            return self._json({"ok": True, "removed": True, "entry": auto})
-
-        entry = {
-            "groupId": group_id,
-            "via": "manual",
-            "name": set_doc.get("name"),
-            "tcgplayerName": (group or {}).get("name"),
-            "linkedAt": now(),
-            "auto": auto,
-        }
-        doc["sets"][set_id] = entry
-        write_json(tcgplayer.GROUPS, doc)
-        return self._json({"ok": True, "entry": entry})
-
-    # -- DELETE
-
-    def do_DELETE(self) -> None:  # noqa: N802
-        self._safely(self._route_delete)
-
-    def _route_delete(self) -> None:
-        if not self._trusted():
-            return self._fail(403, "not from this editor")
-        path = urllib.parse.urlparse(self.path).path
-
-        with WRITE_LOCK:
-            if path.startswith("/api/override/"):
-                doc = read_overrides()
-                existed = doc["cards"].pop(self._tail(path, "/api/override/"), None) is not None
-                write_overrides(doc)
-                prune_art(doc)
-                return self._json({"ok": True, "removed": existed})
-
-            if path.startswith("/api/set-override/"):
-                doc = read_overrides()
-                existed = doc["sets"].pop(self._tail(path, "/api/set-override/"), None) is not None
-                write_overrides(doc)
-                prune_art(doc)
-                return self._json({"ok": True, "removed": existed})
-
-            if path.startswith("/api/link/card/"):
-                doc = read_card_links()
-                existed = doc["cards"].pop(self._tail(path, "/api/link/card/"), None) is not None
-                write_card_links(doc)
-                return self._json({"ok": True, "removed": existed})
-
-            if path.startswith("/api/link/set/"):
-                set_id = self._tail(path, "/api/link/set/")
-                doc = read_groups_doc()
-                prior = doc["sets"].get(set_id)
-                if not prior or prior.get("via") != "manual":
-                    return self._json({"ok": True, "removed": False})
-                # Put back what the automatic match said. If it never said anything,
-                # the entry goes, and map_groups.py works it out on its next run.
-                if prior.get("auto"):
-                    doc["sets"][set_id] = prior["auto"]
-                else:
-                    doc["sets"].pop(set_id, None)
-                write_json(tcgplayer.GROUPS, doc)
-                return self._json({"ok": True, "removed": True})
-
-        return self._fail(404, "no such endpoint")
-
-    # -- POST
-
-    def do_POST(self) -> None:  # noqa: N802
-        self._safely(self._route_post)
-
-    def _route_post(self) -> None:
-        if not self._trusted():
-            return self._fail(403, "not from this editor")
-        url = urllib.parse.urlparse(self.path)
-        path, query = url.path, urllib.parse.parse_qs(url.query)
-
-        if path == "/api/bye":
-            PRESENCE.bye((query.get("c") or [""])[0])
-            return self._json({"ok": True})
-
-        # Everything below changes something, so it has to be a JSON request. A browser
-        # will not send one cross-site without a preflight this server never answers.
-        if "application/json" not in (self.headers.get("Content-Type") or ""):
-            return self._fail(415, "expected JSON")
-        try:
-            body = self._body()
-        except (ValueError, json.JSONDecodeError):
-            return self._fail(400, "body was not JSON")
-
-        if path == "/api/pack":
-            # Repacking from the editor because the alternative is a second terminal and a
-            # remembered command. It is the same script the publish workflow runs, so what
-            # you check here is what ships.
-            proc = run([sys.executable, str(ROOT / "tools" / "pack.py"), "--static"])
-            return self._json({
-                "ok": proc.returncode == 0,
-                "output": (proc.stdout + proc.stderr).strip(),
-            })
-
-        if path == "/api/fetch-image":
-            # The page cannot read a picture off another site itself -- the browser taints
-            # a canvas drawn from a cross-origin image -- so the bytes come through here.
-            target = str(body.get("url") or "").strip()
-            if urllib.parse.urlparse(target).scheme not in ("http", "https"):
-                return self._fail(400, "that is not a web address")
-            try:
-                data, kind = fetch_url(target, "image/*")
-            except urllib.error.HTTPError as exc:
-                return self._fail(502, f"that site answered {exc.code}. Try right-clicking the "
-                                       "picture, choosing Copy image, and pasting it here instead.")
-            except (OSError, ValueError, urllib.error.URLError) as exc:
-                return self._fail(502, f"could not download it ({exc})")
-            if not kind.startswith("image/"):
-                return self._fail(415, "that address is a web page, not a picture. Right-click the "
-                                       "picture itself and choose Copy image address.")
-            return self._bytes(data, kind.split(";")[0])
-
-        if path == "/api/fill-art":
-            # Every card without art that has a TCGplayer photo to take, in one write -- the
-            # button over "Cards without art". Same rule as linking one card: a product
-            # someone linked, or an automatic match whose name agrees.
-            wanted = set(body.get("ids") or [])
-            CACHE.load()
-            mapping, links = tcgplayer.load_groups(), tcgplayer.load_card_links()
-            with WRITE_LOCK:
-                over = read_overrides()
-                filled = 0
-                for card_id in sorted(wanted):
-                    found = CACHE.by_card.get(card_id) if CARD_ID.match(str(card_id)) else None
-                    if not found:
-                        continue
-                    url = photo_for(found[0], found[1], mapping, links)
-                    if url and give_photo(over, found[1], url):
-                        filled += 1
-                if filled:
-                    write_overrides(over)
-            return self._json({"ok": True, "filled": filled})
-
-        if path == "/api/publish":
-            message = str(body.get("message") or "").strip()
-            if not message:
-                return self._fail(400, "a commit needs a message")
-            with WRITE_LOCK:
-                return self._json(publish(message))
-
-        return self._fail(404, "no such endpoint")
-
-    # -- shaping
-
-    def _index(self, over: dict) -> dict:
-        mapping = tcgplayer.load_groups()
-        links = tcgplayer.load_card_links()
-        sets, no_art = [], 0
-        for s in CACHE.sets:
-            cards = s.get("cards") or []
-            missing = sum(1 for c in cards if not has_art(merged(c, over["cards"].get(c.get("id")))))
-            if not is_pocket(s):
-                no_art += missing
-            shown = merged(s, over["sets"].get(s.get("id")))
-            sets.append({
-                "id": s.get("id"),
-                "name": shown.get("name"),
-                "serie": s.get("serie") or {},
-                "releaseDate": shown.get("releaseDate"),
-                "logo": shown.get("logo"),
-                "cards": len(cards),
-                "edited": sum(1 for c in cards if c.get("id") in over["cards"]),
-                "setEdited": s.get("id") in over["sets"],
-                "noArt": missing,
-                "linked": sum(1 for c in cards if c.get("id") in links),
-                "tcgplayer": mapping.get(s.get("id")),
-                "pocket": is_pocket(s),
-            })
-        unlinked = sum(
-            1 for s in sets
-            if not s["pocket"] and not (s["tcgplayer"] or {}).get("groupId")
-            and (s["tcgplayer"] or {}).get("via") not in ("not-sold", "manual")
-        )
-        return {
-            "sets": sets,
-            "overrides": len(over["cards"]),
-            "setOverrides": len(over["sets"]),
-            "stale": sum(
-                1 for cid, e in over["cards"].items()
-                if cid in CACHE.by_card and is_stale(CACHE.by_card[cid][1], e)
-            ),
-            "orphans": sorted(c for c in over["cards"] if c not in CACHE.by_card),
-            "noArt": no_art,
-            "cardLinks": len(links),
-            "unlinkedSets": unlinked,
-            "artBase": ART_BASE,
-            "app": self.server.app_mode,
-            "gitUnfinished": git_unfinished(),
-        }
-
-    def _set_payload(self, doc: dict, over: dict) -> dict:
-        entry = over["sets"].get(doc.get("id"))
-        upstream = {k: doc.get(k) for k in ("id", "name", "logo", "symbol", "releaseDate", "serie", "abbreviation")}
-        return {
-            "set": merged(upstream, entry),
-            "upstream": upstream,
-            "override": entry,
-            "stale": bool(entry) and is_stale(doc, entry),
-            "tcgplayer": tcgplayer.load_groups().get(doc.get("id")),
-            "cardCount": len(doc.get("cards") or []),
-        }
-
-    def _card_payload(self, card: dict, over: dict, set_doc: dict | None = None,
-                      links: dict | None = None) -> dict:
-        entry = over["cards"].get(card.get("id"))
-        payload = {
-            "card": merged(card, entry),
-            "upstream": card,
-            "override": entry,
-            "stale": bool(entry) and is_stale(card, entry),
-            "link": (links or {}).get(card.get("id")),
-        }
-        if set_doc is not None:
-            payload["setId"] = set_doc.get("id")
-            payload["setName"] = set_doc.get("name")
-            payload["pocket"] = is_pocket(set_doc)
-        return payload
+                self._json(result, 201 if method == "POST" and name.endswith("_create") else 200)
+            return
+        if any(p.match(path) for _, p, _ in ROUTES):
+            raise ApiError(405, f"{method} is not allowed here.")
+        raise ApiError(404, "Nothing here.")
 
 
-class Server(socketserver.ThreadingTCPServer):
+class Server(socketserver.ThreadingMixIn, http.server.HTTPServer):
     daemon_threads = True
-    # Off on Windows, where SO_REUSEADDR does not mean "reuse a port in TIME_WAIT" but "let
-    # two servers bind the same port" -- a second editor would start without complaint and
-    # the two would take turns answering. already_running() handles a second launch there.
+    # Off on Windows, where SO_REUSEADDR lets two servers bind one port and take turns.
     allow_reuse_address = os.name != "nt"
-    app_mode = False
+    api: Api
 
 
 def already_running(port: int) -> bool:
     try:
         with urllib.request.urlopen(f"http://127.0.0.1:{port}/api/ping", timeout=1.5) as r:
-            return json.loads(r.read().decode("utf-8")).get("app") == "pocketful-editor"
+            return json.loads(r.read().decode("utf-8")).get("app") == APP_NAME
     except (OSError, ValueError, urllib.error.URLError):
         return False
 
 
+def make_api(port: int) -> Api:
+    rest_url = os.environ.get("POCKETFUL_REST_URL")
+    if rest_url:
+        db = Db(rest_url, os.environ.get("POCKETFUL_REST_KEY", ""))
+        project = "local"
+    else:
+        import supabase_config
+        config = supabase_config.load()
+        db = Db(config.url + "/rest/v1", config.secret_key)
+        project = config.ref
+
+    store_spec = os.environ.get("POCKETFUL_STORE", "")
+    if store_spec.startswith("local:"):
+        store = LocalStore(Path(store_spec[len("local:"):]), f"http://127.0.0.1:{port}/_store")
+    else:
+        store = R2Store()
+
+    fixtures = os.environ.get("POCKETFUL_TCGDEX_FIXTURES")
+    return Api(db, store, tcgdex.Client(Path(fixtures) if fixtures else None), project)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--port", type=int, default=8766)
+    ap.add_argument("--port", type=int, default=DEFAULT_PORT)
     ap.add_argument("--no-open", action="store_true")
-    ap.add_argument("--app", action="store_true",
-                    help="open in its own window and exit when it is closed")
+    ap.add_argument("--app", action="store_true", help="open in its own window and exit when it is closed")
     args = ap.parse_args()
 
     if args.app and (sys.stdout is None or not sys.stdout.isatty()):
-        # Under pythonw there is no console to print to, and http.server logs to stderr,
-        # which would be None. A log file is also the only way anyone finds out why the
-        # window never appeared.
+        # Under pythonw there is no console, and http.server logs to stderr, which would be
+        # None. A log file is also the only way anyone finds out why the window never appeared.
         stream = open(LOG, "a", encoding="utf-8", buffering=1)
         sys.stdout = sys.stderr = stream
         print(f"\n--- {now()} starting")
 
     url = f"http://127.0.0.1:{args.port}/"
-
-    # A second launch opens another window onto the editor that is already running,
-    # instead of failing on a port the first one holds.
     if already_running(args.port):
         print(f"Already running at {url}" + ("." if args.no_open else "; opening a window onto it."))
         if not args.no_open:
             open_window(url, args.app)
         return
 
-    if not SETS.is_dir():
-        raise SystemExit(
-            f"No {SETS}. Run `python tools/pull_catalog.py --static --all` first -- "
-            "there is nothing to edit until the catalog has been pulled."
-        )
-
-    # Bound to loopback rather than 0.0.0.0. This server writes to the repository on an
-    # unauthenticated PUT, which is entirely reasonable for a tool only you can reach and
-    # not something to put on a network.
+    api = make_api(args.port)
     with Server(("127.0.0.1", args.port), Handler) as httpd:
-        httpd.app_mode = args.app
-        CACHE.load()
-        over = read_overrides()
-        print(f"Card editor:  {url}")
-        print(f"{len(CACHE.by_card)} cards, {len(over['cards'])} overrides in "
-              f"{OVERRIDES.relative_to(ROOT)}")
+        httpd.api = api
+        print(f"Pocketful Editor: {url}  (database {api.project}, files on {api.store.kind})", flush=True)
         if args.app:
             threading.Thread(target=PRESENCE.watch, args=(httpd,), daemon=True).start()
         else:
-            print("Ctrl-C to stop.")
+            print("Ctrl-C to stop.", flush=True)
         if not args.no_open:
             threading.Timer(0.4, lambda: open_window(url, args.app)).start()
         try:

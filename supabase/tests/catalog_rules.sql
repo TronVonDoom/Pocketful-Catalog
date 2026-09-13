@@ -251,3 +251,22 @@ end $$;
 
 reset role;
 select pg_temp.expect(not exists (select 1 from storage.buckets), 'no Supabase storage: the app''s files live on R2');
+
+-- The editor's set summary counts what a set publishes --------------------------------------
+
+set role service_role;
+select pg_temp.expect(
+  (select cards = 1 and reviewed = 1 and flagged = 0 and printings = 3 and with_picture = 1
+   from set_summaries where set_id = 'ptcg-en-me05'),
+  'set_summaries counts the published set, without its withdrawn card');
+reset role;
+set role anon;
+do $$
+begin
+  begin
+    perform 1 from public.set_summaries;
+    raise exception 'anon could read set_summaries';
+  exception when insufficient_privilege then null;
+  end;
+end $$;
+reset role;

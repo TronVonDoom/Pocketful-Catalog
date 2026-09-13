@@ -1,0 +1,100 @@
+{
+ "id": "base1-58",
+ "localId": "58",
+ "name": "Pikachu",
+ "rarity": "Common",
+ "illustrator": "Mitsuhiro Arita",
+ "category": "Pokemon",
+ "image": "https://assets.tcgdex.net/en/base/base1/58",
+ "hp": 40,
+ "types": [
+  "Lightning"
+ ],
+ "stage": "Basic",
+ "description": "When several of these Pokémon gather, their electricity can cause lightning storms.",
+ "retreat": 1,
+ "dexId": [
+  25
+ ],
+ "variants": {
+  "normal": true,
+  "holo": false,
+  "reverse": false,
+  "firstEdition": true,
+  "wPromo": false
+ },
+ "variants_detailed": [
+  {
+   "type": "normal",
+   "subtype": "unlimited",
+   "size": "standard"
+  },
+  {
+   "type": "normal",
+   "subtype": "shadowless",
+   "size": "standard",
+   "stamp": [
+    "1st-edition"
+   ]
+  },
+  {
+   "type": "normal",
+   "subtype": "shadowless",
+   "size": "standard"
+  },
+  {
+   "type": "normal",
+   "subtype": "shadowless-red-cheek",
+   "size": "standard"
+  },
+  {
+   "type": "normal",
+   "subtype": "shadowless-red-cheek",
+   "size": "standard",
+   "stamp": [
+    "1st-edition"
+   ]
+  },
+  {
+   "type": "normal",
+   "subtype": "1999-2000-copyright",
+   "size": "standard"
+  },
+  {
+   "type": "normal",
+   "size": "jumbo"
+  },
+  {
+   "type": "normal",
+   "subtype": "unlimited",
+   "size": "standard",
+   "stamp": [
+    "poketour-99"
+   ]
+  }
+ ],
+ "attacks": [
+  {
+   "name": "Gnaw",
+   "cost": [
+    "Colorless"
+   ],
+   "damage": "10"
+  },
+  {
+   "name": "Thunder Jolt",
+   "cost": [
+    "Lightning",
+    "Colorless"
+   ],
+   "damage": "30",
+   "effect": "Flip a coin. If tails, Pikachu does 10 damage to itself."
+  }
+ ],
+ "weaknesses": [
+  {
+   "type": "Fighting",
+   "value": "×2"
+  }
+ ]
+}

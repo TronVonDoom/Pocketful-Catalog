@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pocketful Editor</title>
+<link rel="icon" href="icon.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header id="top">
+  <h1>Pocketful Editor</h1>
+  <select id="catalog" aria-label="Catalog"></select>
+  <span class="spacer"></span>
+  <span id="unsaved" hidden>Unsaved changes</span>
+  <span id="project" class="dim"></span>
+</header>
+<main>
+  <nav id="side" aria-label="Catalog"></nav>
+  <section id="view"><div class="loading">Loading…</div></section>
+</main>
+<div id="toasts" aria-live="polite"></div>
+<dialog id="dialog"></dialog>
+<script src="app.js"></script>
+</body>
+</html>
