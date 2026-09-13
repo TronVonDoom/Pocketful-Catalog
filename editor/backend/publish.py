@@ -78,9 +78,14 @@ def build_set_document(db: Db, the_set: dict, version: int) -> dict:
     for p in printings:
         by_card.setdefault(p["card_id"], []).append(p)
 
+    def word_sort(word: str | None) -> int:
+        return (words.get(word) or {}).get("sort", 0) if word else 0
+
+    # Plainest first, the order the app lists a card's printings in: unlimited before other
+    # editions (in the word list's order), plain before patterned or stamped, then by finish.
     def printing_order(p: dict) -> tuple:
-        return ((words.get(p["finish"]) or {}).get("sort", 0), p["edition"] or "", p["pattern"] or "",
-                p["stamps"] or [], p["error"] or "")
+        extras = (1 if p["pattern"] else 0) + len(p["stamps"] or []) + (1 if p["error"] else 0)
+        return (p["edition"] is not None, word_sort(p["edition"]), extras, word_sort(p["finish"]), p["variant"])
 
     def image_fields(image: dict | None) -> dict:
         return {"image": image["path"], "thumb": image.get("thumb_path")} if image else {}
@@ -225,7 +230,7 @@ def build_index(db: Db, public_url: str) -> dict:
                 "series": out_series,
             }))
 
-    words = {w["word"]: {"kind": w["kind"], "label": w["label"]} for w in db.get("variant_words")}
+    words = {w["word"]: {"kind": w["kind"], "label": w["label"], "sort": w["sort"]} for w in db.get("variant_words")}
     terms: dict[str, dict] = {}
     for t in db.get("terms"):
         terms.setdefault(t["kind"], {})[t["code"]] = t["labels"]
