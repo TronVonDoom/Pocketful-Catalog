@@ -33,8 +33,15 @@ exactly as it always has, and can never take a stamped copy's price for the plai
 Stamped cards are mostly filed outside their set's own group, so every group is fetched,
 not only the linked ones.
 
+With `--history DIR`, each set's price history (price_history.py) is read from DIR, today
+is recorded into it and it is written back; the price file then also carries `previous`,
+every figure from the last day before this one, so the app can say how far a card moved
+without downloading any history. The card-to-product match is written to
+dist/resolution.json either way, which is what a history backfill prices the past through.
+
 Usage:
     python tools/pull_prices.py              # every set
+    python tools/pull_prices.py --history dist/history
     python tools/pull_prices.py --sets mep base1
     python tools/pull_prices.py --offline    # from catalog/.tcgcsv only, asking nothing
 """
@@ -42,6 +49,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import datetime
 import gzip
 import json
 import time
@@ -49,6 +57,7 @@ from pathlib import Path
 
 import requests
 
+import price_history
 from tcgplayer import (
     CACHE, GROUPS, POKEMON, TCGCSV, card_number, finish_key, load_card_links, load_groups,
     plain_quotes, resolve, shared_groups, special_quotes, unlinked_context,
@@ -134,6 +143,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--sets", nargs="+", help="only these catalog set ids")
     ap.add_argument("--offline", action="store_true", help="read catalog/.tcgcsv instead of TCGCSV")
+    ap.add_argument("--history", type=Path, help="price history directory to record today into")
     args = ap.parse_args()
 
     if not GROUPS.exists():
@@ -184,6 +194,11 @@ def main() -> None:
     cards: dict[str, dict[str, int]] = {}
     special: dict[str, dict[str, dict[str, int]]] = {}
     matched_sets = skipped_sets = unmatched_cards = total_cards = by_hand = specials_priced = 0
+    resolution: dict[str, dict[str, dict]] = {}
+    today = time.strftime("%Y-%m-%d", time.gmtime())
+    previous_cards: dict[str, dict[str, int]] = {}
+    previous_special: dict[str, dict[str, dict[str, int]]] = {}
+    previous_dates: set[str] = set()
 
     for path in sorted(SETS.glob("*.json")):
         doc = json.loads(path.read_text(encoding="utf-8"))
@@ -204,6 +219,9 @@ def main() -> None:
             continue
 
         found = 0
+        set_cards_priced: dict[str, dict[str, int]] = {}
+        set_special_priced: dict[str, dict[str, dict[str, int]]] = {}
+        set_resolution: dict[str, dict] = {}
         for card in set_cards:
             answer = resolve(
                 card, doc, mapping=mapping, links=links, shared=shared, context=context,
@@ -213,17 +231,39 @@ def main() -> None:
             )
             product = answer["product"]
             plain = plain_quotes(quotes.get(product["productId"]) or {}) if product else {}
+            matched = {}
+            if product:
+                matched["product"] = product["productId"]
             if plain:
                 cards[card["id"]] = plain
+                set_cards_priced[card["id"]] = plain
                 found += 1
                 by_hand += answer["via"] == "link"
             for printing in answer["special"]:
                 if not printing["product"]:
                     continue
+                key = f"{printing['type']}~{printing['key']}"
+                matched.setdefault("special", {})[key] = {
+                    "product": printing["product"]["productId"], "via": printing["via"],
+                }
                 priced = special_quotes(printing, quotes.get(printing["product"]["productId"]))
                 if priced:
-                    special.setdefault(card["id"], {})[f"{printing['type']}~{printing['key']}"] = priced
+                    special.setdefault(card["id"], {})[key] = priced
+                    set_special_priced.setdefault(card["id"], {})[key] = priced
                     specials_priced += 1
+            if matched:
+                set_resolution[card["id"]] = matched
+        resolution[set_id] = set_resolution
+        if args.history:
+            history = price_history.load(args.history, set_id)
+            when, before_cards, before_special = price_history.previous(history, today)
+            if when:
+                previous_dates.add(when)
+                previous_cards.update(before_cards)
+                previous_special.update(before_special)
+            price_history.record(history, today, set_cards_priced, set_special_priced)
+            price_history.thin(history, datetime.date.fromisoformat(today))
+            price_history.save(args.history, history)
         unmatched_cards += len(set_cards) - found
         matched_sets += 1
         print(f"  {set_id:12} {found}/{len(set_cards)} priced"
@@ -238,8 +278,19 @@ def main() -> None:
         "cards": dict(sorted(cards.items())),
         "special": dict(sorted(special.items())),
     }
+    if previous_dates:
+        # Every figure from the last recorded day before this one. Normally that is
+        # yesterday; after a missed run it is the day before the gap, which is still the
+        # honest thing to measure a change against.
+        payload["previous"] = {
+            "date": max(previous_dates),
+            "cards": dict(sorted(previous_cards.items())),
+            "special": dict(sorted(previous_special.items())),
+        }
 
     DIST.mkdir(parents=True, exist_ok=True)
+    (DIST / "resolution.json").write_text(
+        json.dumps({"date": today, "sets": resolution}, separators=(",", ":")), encoding="utf-8")
     out = DIST / f"prices-v{SCHEMA}.json.gz"
     raw = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
     with gzip.open(out, "wb", compresslevel=9) as fh:

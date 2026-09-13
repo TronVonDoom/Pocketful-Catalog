@@ -4,10 +4,12 @@
 # only politeness -- TCGCSV's terms are explicit about it: a pull a day, ten thousand
 # requests, and "design your integration to ingest the data into your own database or
 # cache rather than" querying it live. This job is exactly the arrangement it asks for,
-# and at ~370 requests it sits comfortably inside the budget.
+# and at ~440 requests it sits comfortably inside the budget.
 #
 # Prices are never committed. They change every night, nobody reviews a diff of twenty
-# thousand numbers, and the tree is not how the app reads them anyway.
+# thousand numbers, and the tree is not how the app reads them anyway. The same goes for
+# their history (tools/price_history.py), which lives on its own release tag and is read
+# back from there each night, added to, and put back.
 name: Prices
 
 on:
@@ -16,9 +18,15 @@ on:
     # rather than republishing yesterday's an hour early.
     - cron: '0 21 * * *'
   workflow_dispatch:
+    inputs:
+      backfill:
+        description: 'Also rebuild price history from TCGCSV archives (one-off, ~15 minutes)'
+        type: boolean
+        default: false
   push:
     paths:
       - 'tools/pull_prices.py'
+      - 'tools/price_history.py'
       - 'tools/tcgplayer.py'
       - 'tools/variants.py'
       - 'catalog/tcgplayer-groups.json'
@@ -37,7 +45,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 90
 
     steps:
       - uses: actions/checkout@v4
@@ -54,8 +62,24 @@ jobs:
       - name: Map any new sets to TCGplayer
         run: python tools/map_groups.py
 
+      # Yesterday's history, so tonight's figures are added to it rather than replacing it.
+      # Absent on the very first run, which is simply a history that starts today.
+      - name: Fetch price history
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p dist/history
+          gh release download price-history --repo "$GITHUB_REPOSITORY" \
+            --pattern 'history-*.json.gz' --dir dist/history --clobber || true
+
       - name: Pull prices
-        run: python tools/pull_prices.py
+        run: python tools/pull_prices.py --history dist/history
+
+      - name: Backfill price history
+        if: github.event_name == 'workflow_dispatch' && inputs.backfill
+        run: |
+          sudo apt-get install -y p7zip-full >/dev/null
+          python tools/price_history.py --backfill --history dist/history
 
       # Committed only when it actually changed, which is when a set was newly mapped.
       # The prices themselves are not in the tree and never will be.
@@ -84,4 +108,18 @@ jobs:
                  --title "Market prices" \
                  --notes "TCGplayer market prices, from tcgcsv.com, refreshed daily and replaced in place. Card data lives on the \`catalog\` tag and does not expire; this does."
           gh release upload prices dist/prices-v1.json.gz \
+            --repo "$GITHUB_REPOSITORY" --clobber
+
+      # One file per set, so the app downloads the history of the cards it is drawing
+      # rather than of all twenty thousand.
+      - name: Publish price history
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view price-history --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
+            || gh release create price-history \
+                 --repo "$GITHUB_REPOSITORY" \
+                 --title "Price history" \
+                 --notes "Every card's TCGplayer market price over time, one file per set: daily for five weeks, weekly before that, back to February 2024. Rebuilt nightly."
+          gh release upload price-history dist/history/history-*.json.gz \
             --repo "$GITHUB_REPOSITORY" --clobber
