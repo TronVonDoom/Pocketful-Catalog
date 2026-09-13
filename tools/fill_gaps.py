@@ -20,6 +20,13 @@ Three tiers, best first, because no single source covers them all:
                         never filed -- Ancient Mew has no pokemontcg.io entry at all.
                         The ids are REST-only, so they are fetched per holed card --
                         only for the cards that actually need one.
+
+                        Failing that, the product the price pull prices the card from
+                        (tcgplayer.resolve): a link someone made in the editor, or the
+                        automatic match when its name agrees with the card's. TCGdex has
+                        stopped handing out product ids for new cards, so without this a
+                        freshly released promo sat with no picture while the editor showed
+                        its TCGplayer product -- photo and all -- one click away.
   3. Nothing            Recorded as a hole with a reason, and drawn as a real "no art"
                         placeholder rather than an empty pocket. Mostly Trainer Kits,
                         which are not sold as singles so no product photo exists.
@@ -35,6 +42,7 @@ Usage:
     python fill_gaps.py                 # every set with a hole
     python fill_gaps.py --sets miscp    # named sets
     python fill_gaps.py --tier2-only    # skip pokemontcg.io
+    python fill_gaps.py --matched-only  # only the TCGplayer product prices come from
 """
 
 from __future__ import annotations
@@ -42,11 +50,14 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import requests
+
+import tcgplayer
 
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog"
@@ -182,11 +193,79 @@ def tcgplayer_ids(s: requests.Session, card_ids: list[str]) -> dict[str, list[in
         return {cid: ids for cid, ids in pool.map(one, card_ids) if ids}
 
 
-def fill_set(s: requests.Session, path: Path, skip_tier1: bool) -> tuple[int, int, int]:
+class Matched:
+    """
+    The TCGplayer product the price pull would price a card from, for its photo.
+
+    Product lists come from TCGCSV one group at a time, and only for groups a holed card
+    needs -- a handful per run -- kept for the length of the run and shared between the
+    set workers.
+    """
+
+    def __init__(self, s: requests.Session) -> None:
+        self.s = s
+        self.mapping = tcgplayer.load_groups()
+        self.links = tcgplayer.load_card_links()
+        self.shared = tcgplayer.shared_groups(self.mapping)
+        self.by_hand = given_by_hand()
+        self._products: dict[int, list[dict]] = {}
+        self._lock = threading.Lock()
+
+    def products(self, group_id: int) -> list[dict]:
+        with self._lock:
+            if group_id not in self._products:
+                # map_groups.py's cache first, where there is one: a printed set's product
+                # list does not change, and a local run should not spend TCGCSV's allowance
+                # re-reading it.
+                cached = tcgplayer.CACHE / f"products-{group_id}.json"
+                if cached.exists():
+                    self._products[group_id] = json.loads(cached.read_text(encoding="utf-8"))
+                else:
+                    doc = get_json(self.s, f"{tcgplayer.TCGCSV}/{tcgplayer.POKEMON}/{group_id}/products", tries=3)
+                    self._products[group_id] = (doc or {}).get("results") or []
+                    time.sleep(0.12)
+            return self._products[group_id]
+
+    def photo(self, card: dict, set_doc: dict) -> str | None:
+        answer = tcgplayer.resolve(
+            card, set_doc, mapping=self.mapping, links=self.links, shared=self.shared,
+            products=self.products, elsewhere=lambda number: [], context={},
+        )
+        product = answer["product"]
+        if not product:
+            return None
+        # A link is a person's say-so. An automatic match has to agree on the name as
+        # well, because a wrong picture in someone's binder is worse than none.
+        if answer["via"] != "link" and not tcgplayer.names_agree(card, product):
+            return None
+        # A product listed with no photo serves a placeholder; not worth the HEAD to find out.
+        if product.get("imageCount") == 0:
+            return None
+        return TCGPLAYER_IMAGE.format(product["productId"])
+
+
+def given_by_hand() -> set[str]:
+    """
+    Cards someone gave a picture in the editor.
+
+    Not holes, whatever the pull says. Filling one here would change nothing the app sees
+    -- the override wins -- and would make the editor report that upstream had moved
+    under a correction nobody needs to revisit.
+    """
+    path = CATALOG / "overrides.json"
+    if not path.exists():
+        return set()
+    cards = json.loads(path.read_text(encoding="utf-8")).get("cards") or {}
+    return {cid for cid, entry in cards.items() if (entry.get("fields") or {}).get("imageAlt")}
+
+
+def fill_set(s: requests.Session, path: Path, skip_tier1: bool, matched: Matched,
+             matched_only: bool = False) -> tuple[int, int, int]:
     """Resolves one set's holes in place. Returns (tier1, tier2, still missing)."""
     doc = json.loads(path.read_text(encoding="utf-8"))
     set_id = doc["id"]
-    holes = [c for c in doc.get("cards", []) if not c.get("image") and not c.get("imageAlt")]
+    holes = [c for c in doc.get("cards", [])
+             if not c.get("image") and not c.get("imageAlt") and c.get("id") not in matched.by_hand]
     if not holes:
         return 0, 0, 0
 
@@ -196,7 +275,7 @@ def fill_set(s: requests.Session, path: Path, skip_tier1: bool) -> tuple[int, in
     if not skip_tier1:
         scans = ptcgio_set(s, SET_ALIASES.get(set_id, set_id))
 
-    products = tcgplayer_ids(s, [c["id"] for c in holes if not c.get("imageAlt")])
+    products = {} if matched_only else tcgplayer_ids(s, [c["id"] for c in holes if not c.get("imageAlt")])
 
     for card in holes:
         for key in number_keys(card.get("localId", "")):
@@ -215,6 +294,14 @@ def fill_set(s: requests.Session, path: Path, skip_tier1: bool) -> tuple[int, in
                 card["imageAltSource"] = "tcgplayer"
                 tier2 += 1
                 break
+        if card.get("imageAlt"):
+            continue
+
+        url = matched.photo(card, doc)
+        if url and head_ok(s, url):
+            card["imageAlt"] = url
+            card["imageAltSource"] = "tcgplayer"
+            tier2 += 1
 
     still = sum(1 for c in holes if not c.get("imageAlt"))
     if tier1 or tier2:
@@ -226,6 +313,9 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--sets", nargs="+", help="explicit set ids")
     ap.add_argument("--tier2-only", action="store_true", help="skip pokemontcg.io")
+    ap.add_argument("--matched-only", action="store_true",
+                    help="only the TCGplayer product the price pull matches; asks neither "
+                         "pokemontcg.io nor TCGdex")
     args = ap.parse_args()
 
     directory = CATALOG / "sets"
@@ -239,10 +329,12 @@ def main() -> None:
     )
     paths = [p for p in paths if p.exists()]
 
+    by_hand = given_by_hand()
     holed = []
     for p in paths:
         doc = json.loads(p.read_text(encoding="utf-8"))
-        if any(not c.get("image") and not c.get("imageAlt") for c in doc.get("cards", [])):
+        if any(not c.get("image") and not c.get("imageAlt") and c.get("id") not in by_hand
+               for c in doc.get("cards", [])):
             holed.append(p)
 
     if not holed:
@@ -251,9 +343,10 @@ def main() -> None:
 
     print(f"{len(holed)} sets with holes. Resolving...")
     s = session()
+    matched = Matched(s)
     totals = [0, 0, 0]
     with ThreadPoolExecutor(max_workers=WORKERS) as pool:
-        for path, (a, b, c) in zip(holed, pool.map(lambda p: fill_set(s, p, args.tier2_only), holed)):
+        for path, (a, b, c) in zip(holed, pool.map(lambda p: fill_set(s, p, args.tier2_only or args.matched_only, matched, args.matched_only), holed)):
             totals[0] += a
             totals[1] += b
             totals[2] += c

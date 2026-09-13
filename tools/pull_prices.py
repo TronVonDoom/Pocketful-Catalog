@@ -26,9 +26,17 @@ TCGplayer group each set is -- see map_groups.py, which works that out once -- a
 group a card is found by the number printed on it. The matching rules themselves live in
 tcgplayer.py, shared with the editor, along with the two ways a person can overrule them.
 
+A card's special printings are priced as well (variants.py: the Pokemon Center stamp, the
+Poke Ball pattern, the 1st Edition), under `special` rather than `cards`, keyed by card and
+then by `<type>~<printing>`. They are kept apart so an app that predates them reads `cards`
+exactly as it always has, and can never take a stamped copy's price for the plain one's.
+Stamped cards are mostly filed outside their set's own group, so every group is fetched,
+not only the linked ones.
+
 Usage:
-    python tools/pull_prices.py            # every mapped set
+    python tools/pull_prices.py              # every set
     python tools/pull_prices.py --sets mep base1
+    python tools/pull_prices.py --offline    # from catalog/.tcgcsv only, asking nothing
 """
 
 from __future__ import annotations
@@ -36,28 +44,29 @@ from __future__ import annotations
 import argparse
 import gzip
 import json
-import sys
 import time
 from pathlib import Path
 
 import requests
 
 from tcgplayer import (
-    GROUPS, POKEMON, TCGCSV, finish_key, load_card_links, load_groups, normalise_local,
-    pick_by_number,
+    CACHE, GROUPS, POKEMON, TCGCSV, card_number, finish_key, load_card_links, load_groups,
+    plain_quotes, resolve, shared_groups, special_quotes, unlinked_context,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog"
 SETS = CATALOG / "sets"
 DIST = ROOT / "dist"
-USER_AGENT = "Pocketful-catalog-builder/0.3 (+https://github.com/TronVonDoom/Pocketful)"
+USER_AGENT = "Pocketful-catalog-builder/0.4 (+https://github.com/TronVonDoom/Pocketful)"
 
 # Bumped when the shape changes in a way an older app cannot read. Tracked separately from
-# the catalog's schema: the two documents version independently and always have.
+# the catalog's schema: the two documents version independently and always have. Adding
+# `special` is not that -- an older app ignores it -- so this is still 1.
 SCHEMA = 1
 
-# TCGCSV asks for a pause between requests. A full run is about 370 of them.
+# TCGCSV asks for a pause between requests. A full run is about 440 of them: two per group,
+# for every group, since a stamped reprint is often filed where no set is linked.
 PAUSE = 0.12
 
 
@@ -84,44 +93,97 @@ def get_json(s: requests.Session, url: str, tries: int = 3):
     return None
 
 
+class Source:
+    """
+    TCGplayer's groups, products and prices, from TCGCSV or from the local cache.
+
+    `--offline` exists so the matching can be checked end to end as often as it is changed,
+    without spending a second of TCGCSV's daily allowance on it. What the cache lacks is
+    simply absent, which under-prices a local run and never mis-prices one.
+    """
+
+    def __init__(self, offline: bool) -> None:
+        self.offline = offline
+        self.s = None if offline else session()
+
+    def _cached(self, name: str) -> list[dict]:
+        path = CACHE / name
+        if not path.exists():
+            return []
+        doc = json.loads(path.read_text(encoding="utf-8"))
+        return doc.get("results") or [] if isinstance(doc, dict) else doc
+
+    def _get(self, suffix: str, name: str) -> list[dict]:
+        if self.offline:
+            return self._cached(name)
+        doc = get_json(self.s, f"{TCGCSV}/{POKEMON}/{suffix}")
+        time.sleep(PAUSE)
+        return (doc or {}).get("results") or []
+
+    def groups(self) -> list[dict]:
+        return self._get("groups", "groups.json")
+
+    def products(self, group_id: int) -> list[dict]:
+        return self._get(f"{group_id}/products", f"products-{group_id}.json")
+
+    def prices(self, group_id: int) -> list[dict]:
+        return self._get(f"{group_id}/prices", f"prices-{group_id}.json")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--sets", nargs="+", help="only these catalog set ids")
+    ap.add_argument("--offline", action="store_true", help="read catalog/.tcgcsv instead of TCGCSV")
     args = ap.parse_args()
 
     if not GROUPS.exists():
         raise SystemExit("No catalog/tcgplayer-groups.json. Run map_groups.py first.")
     mapping = load_groups()
     links = load_card_links()
+    shared = shared_groups(mapping)
+    source = Source(args.offline)
 
-    s = session()
+    groups = source.groups()
+    if not groups:
+        raise SystemExit("TCGCSV returned no groups; refusing to publish an empty price file.")
+    context = unlinked_context(groups, mapping)
 
-    # One fetch per group per run. A card linked by hand to a product in some other group
-    # costs that group's two requests once, however many cards point into it.
-    fetched: dict[int, tuple[list[dict], dict[int, dict[str, int]]]] = {}
+    # Every group, once. Product ids are unique across TCGplayer, so one quote table serves
+    # all of them.
+    products_of: dict[int, list[dict]] = {}
+    quotes: dict[int, dict[str, int]] = {}
+    unpriced: set[int] = set()
+    for g in groups:
+        group_id = g["groupId"]
+        products_of[group_id] = source.products(group_id)
+        rows = source.prices(group_id)
+        if not rows:
+            unpriced.add(group_id)
+        for row in rows:
+            market = row.get("marketPrice")
+            key = finish_key(row.get("subTypeName"))
+            if not market or market <= 0 or not key:
+                continue
+            quotes.setdefault(row["productId"], {})[key] = round(market * 100)
 
-    def group(group_id: int) -> tuple[list[dict], dict[int, dict[str, int]]]:
-        if group_id not in fetched:
-            products = (get_json(s, f"{TCGCSV}/{POKEMON}/{group_id}/products") or {}).get("results") or []
-            time.sleep(PAUSE)
-            prices = (get_json(s, f"{TCGCSV}/{POKEMON}/{group_id}/prices") or {}).get("results") or []
-            time.sleep(PAUSE)
-            by_product: dict[int, dict[str, int]] = {}
-            for row in prices:
-                market = row.get("marketPrice")
-                key = finish_key(row.get("subTypeName"))
-                if not market or market <= 0 or not key:
-                    continue
-                by_product.setdefault(row["productId"], {})[key] = round(market * 100)
-            fetched[group_id] = (products, by_product)
-        return fetched[group_id]
+    by_number: dict[str, list[dict]] = {}
+    for products in products_of.values():
+        for product in products:
+            number = card_number(product)
+            if number:
+                by_number.setdefault(number, []).append(product)
+
+    def usable(product: dict) -> bool:
+        # "Has a quote", so a plain product nobody has sold does not shadow a stamped one
+        # that has a price. Offline, a group whose prices were never cached is taken on
+        # trust instead, so the match can still be inspected; it has no quotes to publish.
+        if args.offline and product.get("groupId") in unpriced:
+            return True
+        return product.get("productId") in quotes
 
     cards: dict[str, dict[str, int]] = {}
-    matched_sets = 0
-    skipped_sets = 0
-    unmatched_cards = 0
-    total_cards = 0
-    by_hand = 0
+    special: dict[str, dict[str, dict[str, int]]] = {}
+    matched_sets = skipped_sets = unmatched_cards = total_cards = by_hand = specials_priced = 0
 
     for path in sorted(SETS.glob("*.json")):
         doc = json.loads(path.read_text(encoding="utf-8"))
@@ -132,40 +194,40 @@ def main() -> None:
             continue
 
         group_id = (mapping.get(set_id) or {}).get("groupId")
-        linked = sum(1 for c in set_cards if c.get("id") in links)
-        # A set with no group can still hold cards someone linked one at a time -- a
-        # Trainer Kit card TCGplayer happens to sell under a different product line.
-        if not group_id and not linked:
+        ids = {c.get("id") for c in set_cards}
+        linked = sum(1 for key in links if key.split("~", 1)[0] in ids)
+        # A set with no group can still hold cards someone linked one at a time -- a Trainer
+        # Kit card TCGplayer happens to sell under a different product line -- and cards
+        # whose stamped printings are filed in some other group entirely.
+        if not group_id and not linked and not any(c.get("variants_detailed") for c in set_cards):
             skipped_sets += 1
             continue
 
-        by_number: dict[str, dict] = {}
-        by_product: dict[int, dict[str, int]] = {}
-        if group_id:
-            products, by_product = group(group_id)
-            if not products:
-                print(f"  {set_id:12} no products for group {group_id}", file=sys.stderr)
-            by_number = pick_by_number(products, lambda p: p.get("productId") in by_product)
-
         found = 0
         for card in set_cards:
-            link = links.get(card.get("id"))
-            if link is not None:
-                # Beats the number match outright, and a null product is an answer too:
-                # "this card is not sold", which must not fall back to guessing by number.
-                quotes = None
-                if link.get("productId") and link.get("groupId"):
-                    quotes = group(link["groupId"])[1].get(link["productId"])
-            else:
-                product = by_number.get(normalise_local(card.get("localId")) or "")
-                quotes = by_product.get(product["productId"]) if product else None
-            if quotes:
-                cards[card["id"]] = quotes
+            answer = resolve(
+                card, doc, mapping=mapping, links=links, shared=shared, context=context,
+                products=lambda gid: products_of.get(gid) or [],
+                elsewhere=lambda number: by_number.get(number) or [],
+                usable=usable,
+            )
+            product = answer["product"]
+            plain = plain_quotes(quotes.get(product["productId"]) or {}) if product else {}
+            if plain:
+                cards[card["id"]] = plain
                 found += 1
-                by_hand += link is not None
+                by_hand += answer["via"] == "link"
+            for printing in answer["special"]:
+                if not printing["product"]:
+                    continue
+                priced = special_quotes(printing, quotes.get(printing["product"]["productId"]))
+                if priced:
+                    special.setdefault(card["id"], {})[f"{printing['type']}~{printing['key']}"] = priced
+                    specials_priced += 1
         unmatched_cards += len(set_cards) - found
         matched_sets += 1
-        print(f"  {set_id:12} {found}/{len(set_cards)} priced" + (f" ({linked} linked by hand)" if linked else ""))
+        print(f"  {set_id:12} {found}/{len(set_cards)} priced"
+              + (f" ({linked} linked by hand)" if linked else ""))
 
     payload = {
         "schema": SCHEMA,
@@ -174,6 +236,7 @@ def main() -> None:
         "via": "tcgcsv.com",
         "unit": "usd_cents",
         "cards": dict(sorted(cards.items())),
+        "special": dict(sorted(special.items())),
     }
 
     DIST.mkdir(parents=True, exist_ok=True)
@@ -184,8 +247,8 @@ def main() -> None:
 
     print(
         f"\n{len(cards)} of {total_cards} cards priced across {matched_sets} sets "
-        f"({skipped_sets} sets have no TCGplayer group, {unmatched_cards} cards unmatched, "
-        f"{by_hand} priced from a link made by hand)"
+        f"({skipped_sets} sets skipped, {unmatched_cards} cards unmatched, "
+        f"{by_hand} priced from a link made by hand), plus {specials_priced} special printings"
     )
     print(f"  {out.name:28} {len(raw) / 1048576:6.2f} MiB raw"
           f"  ->{out.stat().st_size / 1048576:6.2f} MiB gzipped")

@@ -100,6 +100,18 @@ LOG = HERE / "editor.log"
 
 sys.path.insert(0, str(ROOT / "tools"))
 import tcgplayer  # noqa: E402  (tools/ is not a package; see tools/tcgplayer.py)
+import variants  # noqa: E402
+
+# The one series in the catalog that is the Pokemon TCG Pocket phone game rather than
+# cardboard, as the app splits it (CatalogGames.kt). Its cards have no TCGplayer product,
+# no second source of art and nothing to correct against, so it is kept out of every to-do
+# list here and sorted below the printed game everywhere else. Its newest sets are also the
+# newest sets in the catalog, so without that they sat at the top of every list.
+POCKET_SERIES = "tcgp"
+
+
+def is_pocket(set_doc: dict | None) -> bool:
+    return ((set_doc or {}).get("serie") or {}).get("id") == POCKET_SERIES
 
 # Where committed artwork is served from once it is pushed. raw.githubusercontent.com
 # rather than a CDN in front of it: jsDelivr resolves a branch to a commit and caches that
@@ -160,6 +172,8 @@ VARIANT_KEYS = ("normal", "holo", "reverse", "firstEdition", "wPromo")
 # A card id has to survive being put in a URL and in a GraphQL string literal, which is
 # the same rule tools/pull_catalog.py applies. Anything else is not a card id we issued.
 CARD_ID = re.compile(r"^[A-Za-z0-9._-]{1,64}$")
+# A card link, or one special printing's: `mep-070~holo~pokemon-center`. See tcgplayer.link_key.
+LINK_KEY = re.compile(r"^[A-Za-z0-9._-]{1,64}(~[a-z]{1,16}~[A-Za-z0-9.+_-]{1,120})?$")
 ART_NAME = re.compile(r"^[A-Za-z0-9._-]{1,120}$")
 
 # What Publish commits: everything this editor writes, and nothing else. A half-finished
@@ -401,7 +415,10 @@ def is_stale(record: dict, entry: dict) -> bool:
     somebody else already made.
     """
     was = entry.get("upstream") or {}
-    return any(record.get(k) != v for k, v in was.items())
+    fields = entry.get("fields") or {}
+    # Upstream coming round to exactly what the override says is not a reason to look: it
+    # happens every time fill_gaps.py finds the same TCGplayer photo a person already chose.
+    return any(record.get(k) != v and record.get(k) != fields.get(k) for k, v in was.items())
 
 
 def has_art(card: dict) -> bool:
@@ -518,6 +535,7 @@ class TcgData:
         self._lock = threading.Lock()
         self._last = 0.0
         self._slim: list[dict] | None = None
+        self._raw: dict[str, list[dict]] | None = None
         self._prices: dict[int, dict[int, dict[str, int]]] = {}
 
     # -- fetching
@@ -546,6 +564,7 @@ class TcgData:
                 path.write_text(json.dumps(results), encoding="utf-8")
                 if name.startswith("products-"):
                     self._slim = None
+                    self._raw = None
                 return results
         if path.exists():
             return json.loads(path.read_text(encoding="utf-8"))
@@ -622,6 +641,25 @@ class TcgData:
             self._slim = slim
         return self._slim
 
+    def by_number(self, number: str) -> list[dict]:
+        """Every cached product with this printed number, in any group. Indexed once."""
+        if self._raw is None:
+            index: dict[str, list[dict]] = {}
+            for path in tcgplayer.CACHE.glob("products-*.json"):
+                try:
+                    rows = json.loads(path.read_text(encoding="utf-8"))
+                except (OSError, json.JSONDecodeError):
+                    continue
+                for product in rows:
+                    n = tcgplayer.card_number(product)
+                    if n:
+                        index.setdefault(n, []).append(product)
+            self._raw = index
+        return self._raw.get(number) or []
+
+    def context(self, mapping: dict) -> dict[int, str]:
+        return tcgplayer.unlinked_context(self.groups(), mapping)
+
     def overlap(self, cards: list[dict]) -> dict[int, float]:
         """
         For each group, the share of these cards it sells under the same number and name.
@@ -678,22 +716,83 @@ class TcgData:
 TCG = TcgData()
 
 
-def auto_match(set_doc: dict, card: dict, mapping: dict) -> tuple[dict | None, bool]:
+def resolve(set_doc: dict, card: dict, mapping: dict, links: dict,
+            priced: bool = True) -> tuple[dict, bool]:
     """
-    The product the nightly pull would price this card from, and whether prices were
-    available to decide it exactly as the pull does.
+    tcgplayer.resolve() over the editor's cache: the product the nightly pull would price
+    this card and each of its special printings from, and whether the card's own group had
+    prices to decide the plain match exactly as the pull does.
+
+    `priced=False` skips prices altogether, for questions that only need the product (its
+    photo) and should not cost a fetch per group.
     """
     group_id = (mapping.get(set_doc.get("id")) or {}).get("groupId")
-    if not group_id:
-        return None, True
-    products = TCG.products(group_id)
-    prices = TCG.prices(group_id)
-    usable = (lambda p: p.get("productId") in prices) if prices else (lambda p: True)
-    product = tcgplayer.pick_by_number(products, usable).get(
-        tcgplayer.normalise_local(card.get("localId")) or "")
+    prices = TCG.prices(group_id) if (group_id and priced) else {}
+    own = {p.get("productId") for p in TCG.products(group_id)} if prices else set()
+
+    def usable(product: dict) -> bool:
+        if product.get("productId") in own:
+            return product.get("productId") in prices
+        # Other groups' prices are not fetched just to browse a card, so a stamped copy
+        # found elsewhere is shown whether or not it has sold.
+        return True
+
+    answer = tcgplayer.resolve(
+        card, set_doc, mapping=mapping, links=links, shared=tcgplayer.shared_groups(mapping),
+        products=TCG.products, elsewhere=TCG.by_number, context=TCG.context(mapping), usable=usable,
+    )
+    return answer, bool(prices) or not group_id
+
+
+def product_payload(product: dict | None, special: dict | None = None) -> dict | None:
+    """A resolved product as the page draws it, priced the way the price file prices it."""
     if not product:
-        return None, bool(prices)
-    return {**TCG.slim(product, TCG.group(group_id)), "prices": prices.get(product["productId"])}, bool(prices)
+        return None
+    group_id = product.get("groupId")
+    quotes = TCG.prices(group_id).get(product.get("productId"))
+    quotes = tcgplayer.special_quotes(special, quotes) if special else tcgplayer.plain_quotes(quotes or {})
+    return {**TCG.slim(product, TCG.group(group_id)), "prices": quotes or None}
+
+
+def photo_for(set_doc: dict, card: dict, mapping: dict, links: dict) -> str | None:
+    """
+    The TCGplayer photo a card without art should get, or None.
+
+    The same rule fill_gaps.py uses: a product someone linked, or the automatic match when
+    its name agrees with the card's. A wrong picture in someone's binder is worse than none.
+    """
+    if is_pocket(set_doc):
+        return None
+    answer, _ = resolve(set_doc, card, mapping, links, priced=False)
+    product = answer["product"]
+    if not product or (answer["via"] != "link" and not tcgplayer.names_agree(card, product)):
+        return None
+    # TCGplayer lists most Trainer Kit cards with no photo at all; its image address then
+    # serves a placeholder, which is not a picture of the card.
+    if not product.get("imageCount"):
+        return None
+    return tcgplayer.PRODUCT_IMAGE.format(product["productId"])
+
+
+def give_photo(doc: dict, card: dict, url: str) -> bool:
+    """
+    Points a card without art at a TCGplayer photo, in the overrides document `doc`.
+
+    Written as `imageAltSource: tcgplayer`, exactly what fill_gaps.py writes into the pull,
+    so the next refresh that finds the same photo agrees with it rather than fighting it.
+    Nothing is downloaded: the app draws TCGplayer photos straight from TCGplayer already,
+    for twelve hundred cards. Returns whether anything changed.
+    """
+    entry = doc["cards"].get(card["id"]) or {"fields": {}, "upstream": {}}
+    # A picture someone hid on purpose ("Hide wrong picture") stays hidden.
+    if has_art(merged(card, entry)) or "imageAlt" in (entry.get("fields") or {}):
+        return False
+    fields, upstream = dict(entry.get("fields") or {}), dict(entry.get("upstream") or {})
+    for key, value in (("imageAlt", url), ("imageAltSource", "tcgplayer")):
+        fields[key] = value
+        upstream.setdefault(key, card.get(key))
+    doc["cards"][card["id"]] = {"fields": fields, "upstream": upstream, "editedAt": now()}
+    return True
 
 
 # --------------------------------------------------------------------------- publishing
@@ -1072,26 +1171,33 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             if len(needle) < 2:
                 return self._json({"cards": []})
             links = tcgplayer.load_card_links()
-            hits = []
+            found = []
             for set_doc, card in CACHE.by_card.values():
                 shown = merged(card, over["cards"].get(card.get("id")))
                 name = (shown.get("name") or "").lower()
                 if needle in name or needle == (card.get("localId") or "").lower() \
                         or needle in (card.get("id") or "").lower():
-                    hits.append(self._card_payload(card, over, set_doc, links))
-                    if len(hits) >= 200:
-                        break
-            hits.sort(key=lambda c: (not (c["card"].get("name") or "").lower().startswith(needle),
-                                     c["card"].get("name") or ""))
+                    found.append((set_doc, card, name))
+            # Ranked before the cap, not after. Sets load in file-name order and every Pocket
+            # set id is upper case, so "pikachu" used to fill all two hundred rows with the
+            # phone game before a printed card was reached. Printed cards first, then names
+            # that start with what was typed, then newest set.
+            found.sort(key=lambda f: (f[0].get("releaseDate") or ""), reverse=True)
+            found.sort(key=lambda f: (is_pocket(f[0]), not f[2].startswith(needle)))
+            hits = [self._card_payload(card, over, set_doc, links) for set_doc, card, _ in found[:200]]
             return self._json({"cards": hits})
 
         if path == "/api/no-art":
             links = tcgplayer.load_card_links()
-            rows = [
-                self._card_payload(card, over, set_doc, links)
-                for set_doc, card in CACHE.by_card.values()
-                if not has_art(merged(card, over["cards"].get(card.get("id"))))
-            ]
+            mapping = tcgplayer.load_groups()
+            rows = []
+            for set_doc, card in CACHE.by_card.values():
+                if is_pocket(set_doc) or has_art(merged(card, over["cards"].get(card.get("id")))):
+                    continue
+                row = self._card_payload(card, over, set_doc, links)
+                row["photo"] = photo_for(set_doc, card, mapping, links)
+                rows.append(row)
+            rows.sort(key=lambda r: (CACHE.by_set.get(r["setId"]) or {}).get("releaseDate") or "", reverse=True)
             return self._json({"cards": rows})
 
         if path == "/api/linked":
@@ -1129,24 +1235,38 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 return self._fail(404, f"no card {card_id}")
             set_doc, card = found
             mapping = tcgplayer.load_groups()
-            link = tcgplayer.load_card_links().get(card_id)
-            auto, exact = auto_match(set_doc, card, mapping)
-            linked = None
-            if link and link.get("productId") and link.get("groupId"):
+            links = tcgplayer.load_card_links()
+            auto, exact = resolve(set_doc, card, mapping, {})
+
+            def linked_payload(link: dict | None, special: dict | None = None) -> dict | None:
+                if not (link and link.get("productId") and link.get("groupId")):
+                    return None
                 product = next((p for p in TCG.products(link["groupId"])
                                 if p.get("productId") == link["productId"]), None)
                 if product:
-                    linked = {**TCG.slim(product, TCG.group(link["groupId"])),
-                              "prices": TCG.prices(link["groupId"]).get(link["productId"])}
-                else:
-                    linked = {"productId": link["productId"], "groupId": link["groupId"],
-                              "name": link.get("tcgplayerName"), "missing": True}
+                    return product_payload(product, special)
+                return {"productId": link["productId"], "groupId": link["groupId"],
+                        "name": link.get("tcgplayerName"), "missing": True}
+
+            link = links.get(card_id)
+            special = []
+            for printing in auto["special"]:
+                key = tcgplayer.link_key(card_id, printing)
+                special.append({
+                    "type": printing["type"], "key": printing["key"], "label": printing["label"],
+                    "linkKey": key,
+                    "auto": product_payload(printing["product"], printing),
+                    "autoVia": printing["via"],
+                    "link": links.get(key),
+                    "linked": linked_payload(links.get(key), printing),
+                })
             return self._json({
                 "setGroup": mapping.get(set_doc.get("id")),
-                "auto": auto,
+                "auto": product_payload(auto["product"]),
                 "exact": exact,
                 "link": link,
-                "linked": linked,
+                "linked": linked_payload(link),
+                "special": special,
             })
 
         if path == "/api/tcgplayer/groups":
@@ -1240,7 +1360,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         for prefix, handler in routes.items():
             if path.startswith(prefix):
                 key = self._tail(path, prefix)
-                if not CARD_ID.match(key):
+                valid = LINK_KEY if prefix == "/api/link/card/" else CARD_ID
+                if not valid.match(key):
                     return self._fail(400, "that is not an id")
                 try:
                     with WRITE_LOCK:
@@ -1334,15 +1455,24 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         prune_art(doc)
         return self._json({"ok": True, "entry": doc["sets"][set_id]})
 
-    def _put_card_link(self, card_id: str, body: dict) -> None:
+    def _put_card_link(self, key: str, body: dict) -> None:
+        # The key is a card id, or a card id and one of its special printings.
+        card_id, _, rest = key.partition("~")
         found = CACHE.by_card.get(card_id)
         if not found:
             return self._fail(404, f"no card {card_id} in the catalog")
         set_doc, card = found
+        printing = None
+        if rest:
+            printing = next((p for p in variants.special_printings(card)
+                             if tcgplayer.link_key(card_id, p) == key), None)
+            if printing is None:
+                return self._fail(404, f"{card_id} has no printing {rest}")
         product_id = body.get("productId")
         group_id = body.get("groupId")
 
         entry: dict = {"groupId": None, "productId": None, "linkedAt": now()}
+        photo = False
         if product_id is not None:
             try:
                 product_id, group_id = int(product_id), int(group_id)
@@ -1351,25 +1481,41 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             product = next((p for p in TCG.products(group_id) if p.get("productId") == product_id), None)
             if product is None:
                 raise ValueError(f"TCGplayer group {group_id} has no product {product_id}")
-            auto, _ = auto_match(set_doc, card, tcgplayer.load_groups())
+            mapping = tcgplayer.load_groups()
+            auto, _ = resolve(set_doc, card, mapping, {})
+            if printing is None:
+                auto_product = auto["product"]
+            else:
+                auto_product = next((p["product"] for p in auto["special"]
+                                     if tcgplayer.link_key(card_id, p) == key), None)
             doc = read_card_links()
             # The same rule as an override that agrees with upstream: pointing a card at
             # the product it already matches is not a link, so none is written.
-            if auto and auto.get("productId") == product_id:
-                doc["cards"].pop(card_id, None)
-                write_card_links(doc)
-                return self._json({"ok": True, "removed": True})
-            slim = TCG.slim(product, TCG.group(group_id))
-            entry.update({
-                "groupId": group_id, "productId": product_id,
-                "tcgplayerName": slim["name"], "number": slim["number"],
-            })
-            doc["cards"][card_id] = entry
+            if auto_product and auto_product.get("productId") == product_id:
+                doc["cards"].pop(key, None)
+            else:
+                slim = TCG.slim(product, TCG.group(group_id))
+                entry.update({
+                    "groupId": group_id, "productId": product_id,
+                    "tcgplayerName": slim["name"], "number": slim["number"],
+                })
+                doc["cards"][key] = entry
+            write_card_links(doc)
+            # A card linked to its product and still without a picture gets that product's
+            # photo in the same gesture. Linking was always the hard half; having to go on
+            # and press "TCGplayer photo" and Save for every one was the tedious half.
+            if printing is None:
+                over = read_overrides()
+                if give_photo(over, card, tcgplayer.PRODUCT_IMAGE.format(product_id)):
+                    write_overrides(over)
+                    photo = True
+            if key not in doc["cards"]:
+                return self._json({"ok": True, "removed": True, "photo": photo})
         else:
             doc = read_card_links()
-            doc["cards"][card_id] = entry
-        write_card_links(doc)
-        return self._json({"ok": True, "entry": entry})
+            doc["cards"][key] = entry
+            write_card_links(doc)
+        return self._json({"ok": True, "entry": entry, "photo": photo})
 
     def _put_set_link(self, set_id: str, body: dict) -> None:
         set_doc = CACHE.by_set.get(set_id)
@@ -1507,6 +1653,27 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                        "picture itself and choose Copy image address.")
             return self._bytes(data, kind.split(";")[0])
 
+        if path == "/api/fill-art":
+            # Every card without art that has a TCGplayer photo to take, in one write -- the
+            # button over "Cards without art". Same rule as linking one card: a product
+            # someone linked, or an automatic match whose name agrees.
+            wanted = set(body.get("ids") or [])
+            CACHE.load()
+            mapping, links = tcgplayer.load_groups(), tcgplayer.load_card_links()
+            with WRITE_LOCK:
+                over = read_overrides()
+                filled = 0
+                for card_id in sorted(wanted):
+                    found = CACHE.by_card.get(card_id) if CARD_ID.match(str(card_id)) else None
+                    if not found:
+                        continue
+                    url = photo_for(found[0], found[1], mapping, links)
+                    if url and give_photo(over, found[1], url):
+                        filled += 1
+                if filled:
+                    write_overrides(over)
+            return self._json({"ok": True, "filled": filled})
+
         if path == "/api/publish":
             message = str(body.get("message") or "").strip()
             if not message:
@@ -1525,7 +1692,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         for s in CACHE.sets:
             cards = s.get("cards") or []
             missing = sum(1 for c in cards if not has_art(merged(c, over["cards"].get(c.get("id")))))
-            no_art += missing
+            if not is_pocket(s):
+                no_art += missing
             shown = merged(s, over["sets"].get(s.get("id")))
             sets.append({
                 "id": s.get("id"),
@@ -1539,10 +1707,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                 "noArt": missing,
                 "linked": sum(1 for c in cards if c.get("id") in links),
                 "tcgplayer": mapping.get(s.get("id")),
+                "pocket": is_pocket(s),
             })
         unlinked = sum(
             1 for s in sets
-            if not (s["tcgplayer"] or {}).get("groupId")
+            if not s["pocket"] and not (s["tcgplayer"] or {}).get("groupId")
             and (s["tcgplayer"] or {}).get("via") not in ("not-sold", "manual")
         )
         return {
@@ -1587,6 +1756,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         if set_doc is not None:
             payload["setId"] = set_doc.get("id")
             payload["setName"] = set_doc.get("name")
+            payload["pocket"] = is_pocket(set_doc)
         return payload
 
 

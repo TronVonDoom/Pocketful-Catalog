@@ -59,6 +59,11 @@ The left column starts with the work to do, then your own edits, then every set 
 series (newest first). A purple dot marks a set you have edited; an amber one, a set with
 no TCGplayer group. The filter box at the top narrows the list.
 
+Pokémon TCG Pocket comes last, under its own heading, and is left out of both to-do lists
+and sorted below printed cards in search. It is the phone game: nothing in it has a
+TCGplayer product or a second source of art, and because its sets are the newest in the
+catalog it used to sit above everything else.
+
 - **Cards without art**: every card with no picture from any source.
 - **Sets not on TCGplayer**: sets whose cards get no price because no group was found.
 - **Corrected cards**, **Cards linked by hand**, **Sets you changed**: what you have done.
@@ -81,6 +86,13 @@ Select the card, then any of:
   from.
 
 The *Find one* links search Google Images, TCGplayer, Bulbapedia and PkmnCards for that card.
+
+Usually none of that is needed. **Linking a card** to a TCGplayer product gives it that
+product's photo in the same step, if it has no picture yet. And when **Cards without art**
+holds cards that are already matched to a product with the same name, a button over the
+list takes all of their photos at once. Both write the product photo's address as
+`imageAltSource: tcgplayer` — no file is committed — which is what `fill_gaps.py` writes
+for the same cards, so the next refresh agrees with them rather than flagging them.
 
 The picture is resized in the page, to fit 734×1024 at most (the size of the best scans
 already in the catalog), and saved as WebP. You get a warning if it is smaller than
@@ -155,6 +167,12 @@ all of TCGplayer ("charizard 4" narrows by number). A card link beats the number
 outright, even into another group. **Not sold** means the card carries no price at all,
 which is different from not having looked. Linking a card to the product it already
 matches stores nothing.
+
+**A special printing.** Under the card's own product, the panel lists its stamped and
+pattern printings — a Pokémon Center stamp, a Poké Ball reverse, a 1st Edition — each with
+the product it is priced from and the same *Change product…*, **Not sold** and **Use
+automatic match**. Those links go in `tcgplayer-cards.json` too, keyed
+`<card id>~<type>~<printing>`. See the main README's *Special printings*.
 
 Product lists come from the `catalog/.tcgcsv/` cache `map_groups.py` keeps. What is missing,
 recent sets that are still filling in, and prices older than 20 hours are fetched from

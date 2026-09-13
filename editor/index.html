@@ -161,6 +161,7 @@
   .prices { display: flex; flex-wrap: wrap; gap: 2px 10px; font-size: 12px; color: var(--ink2); margin-top: 2px; }
   .prices b { color: var(--ok); font-weight: 600; }
   .btnrow { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .special { border-top: 1px solid var(--line); padding: 8px 0 4px; margin-top: 8px; }
 
   .actions { display: flex; gap: 8px; position: sticky; bottom: 0; background: var(--panel);
              padding: 10px 0 14px; border-top: 1px solid var(--line); margin-top: 6px; }
@@ -346,7 +347,11 @@ function drawSide() {
     series.get(key).sets.push(s);
   }
   const newest = (g) => g.sets.reduce((d, s) => (s.releaseDate || "") > d ? s.releaseDate : d, "");
-  const ordered = [...series.values()].sort((a, b) => newest(b).localeCompare(newest(a)));
+  // Pokemon TCG Pocket last whatever its dates say. Its sets are the newest in the catalog,
+  // so newest-first put the phone game above every printed set, and nothing in it has a
+  // TCGplayer product or a second source of art to work on.
+  const pocket = (g) => g.sets.some((s) => s.pocket);
+  const ordered = [...series.values()].sort((a, b) => (pocket(a) - pocket(b)) || newest(b).localeCompare(newest(a)));
 
   let html = `<div class="filter"><input type="search" id="setFilter" placeholder="Filter sets" value="${esc(filter)}"></div>`;
   if (!filter) {
@@ -358,7 +363,12 @@ function drawSide() {
       + sideRow("linked", "Cards linked by hand", data.cardLinks)
       + sideRow("setedits", "Sets you changed", edits);
   }
+  let pocketHeading = false;
   for (const g of ordered) {
+    if (pocket(g) && !pocketHeading) {
+      html += `<div class="group">Pokémon TCG Pocket &middot; not printed</div>`;
+      pocketHeading = true;
+    }
     const sets = g.sets.filter((s) => !filter || (s.name || "").toLowerCase().includes(filter)
       || s.id.toLowerCase().includes(filter) || g.name.toLowerCase().includes(filter))
       .sort((a, b) => (b.releaseDate || "").localeCompare(a.releaseDate || ""));
@@ -366,7 +376,7 @@ function drawSide() {
     html += `<button class="serie" data-serie="${esc(g.id)}" title="Every set in this series, with its TCGplayer link">`
          +  `<span>${esc(g.name)}</span><span class="count">${sets.length} sets</span></button>`;
     for (const s of sets) {
-      const unlinked = !s.tcgplayer?.groupId && !["not-sold", "manual"].includes(s.tcgplayer?.via);
+      const unlinked = !s.pocket && !s.tcgplayer?.groupId && !["not-sold", "manual"].includes(s.tcgplayer?.via);
       html += `<button class="row" data-set="${esc(s.id)}">`
            +  (s.edited || s.setEdited ? `<span class="dot edit" title="edited">●</span>` : "")
            +  (unlinked ? `<span class="dot warn" title="not linked to TCGplayer">●</span>` : "")
@@ -415,13 +425,13 @@ async function go(view, { keepPanel = false } = {}) {
     if (view.kind === "set") await showSet(view.key);
     else if (view.kind === "series") showSets(state.index.sets.filter((s) => s.serie?.id === view.key),
       (state.index.sets.find((s) => s.serie?.id === view.key)?.serie?.name || view.key), "Every set in this series.");
-    else if (view.kind === "unlinked") showSets(state.index.sets.filter((s) => !s.tcgplayer?.groupId
+    else if (view.kind === "unlinked") showSets(state.index.sets.filter((s) => !s.pocket && !s.tcgplayer?.groupId
       && !["not-sold", "manual"].includes(s.tcgplayer?.via)), "Sets not on TCGplayer",
       "No TCGplayer group was found for these automatically, so none of their cards get a price. Link each to the right group, or mark it as not sold.");
     else if (view.kind === "setedits") showSets(state.index.sets.filter((s) => s.setEdited || s.tcgplayer?.via === "manual"),
       "Sets you changed", "Sets with a corrected name, date or logo, or a TCGplayer link made by hand.");
     else if (view.kind === "noart") await showCards("/api/no-art", "Cards without art",
-      "No picture from TCGdex, pokemontcg.io or TCGplayer. Pick one, then drop, paste or choose a picture for it.");
+      "No picture from TCGdex, pokemontcg.io or TCGplayer. Pick one, then drop, paste or choose a picture for it. Pokémon TCG Pocket is not listed: it was never printed.");
     else if (view.kind === "overrides") await showOverrides();
     else if (view.kind === "linked") await showCards("/api/linked", "Cards linked by hand",
       "Cards priced from a TCGplayer product you chose, rather than the automatic match by number.");
@@ -438,7 +448,8 @@ function cardTags(row) {
   const c = row.card || {};
   if (row.override) tags.push('<span class="tag edit">edited</span>');
   if (c.imageAltSource === "manual") tags.push('<span class="tag ok">your art</span>');
-  if (!c.image && !c.imageAlt) tags.push('<span class="tag bad">no art</span>');
+  if (!c.image && !c.imageAlt) tags.push(row.photo ? '<span class="tag ok">TCGplayer photo ready</span>' : '<span class="tag bad">no art</span>');
+  if (row.pocket) tags.push('<span class="tag dim">TCG Pocket</span>');
   if (row.link) tags.push(row.link.productId ? '<span class="tag link">linked</span>' : '<span class="tag dim">not sold</span>');
   if (row.stale) tags.push('<span class="tag stale">upstream moved</span>');
   if (row.orphan) tags.push('<span class="tag orphan">not in catalog</span>');
@@ -467,9 +478,25 @@ async function showCards(path, title, note) {
   const data = await api(path);
   state.rows = data.cards;
   state.setData = null;
+  const ready = data.cards.filter((r) => r.photo);
   $("list").innerHTML = `<h2 class="viewtitle">${esc(title)}<span class="sub">${data.cards.length}${data.cards.length >= 200 && path.includes("search") ? "+" : ""}</span></h2>`
-    + (note ? `<div class="note">${esc(note)}</div>` : "") + `<div id="cardlist"></div>`;
+    + (note ? `<div class="note">${esc(note)}</div>` : "")
+    + (ready.length ? `<div class="banner info">${ready.length} of these ${ready.length === 1 ? "is" : "are"} already matched to a TCGplayer product with the same name.`
+      + ` <button class="small primary" id="fillArt">Use their TCGplayer photos</button></div>` : "")
+    + `<div id="cardlist"></div>`;
+  if ($("fillArt")) $("fillArt").onclick = () => fillArt(ready.map((r) => r.card.id));
   paintCards(state.rows, $("cardlist"));
+}
+
+// The photos cards are already matched to, taken in one write instead of card by card.
+async function fillArt(ids) {
+  const button = $("fillArt");
+  if (button) { button.disabled = true; button.textContent = "Taking photos…"; }
+  try {
+    const res = await api("/api/fill-art", { method: "POST", json: { ids } });
+    toast(res.filled ? `${res.filled} ${res.filled === 1 ? "card has" : "cards have"} a TCGplayer photo now` : "Nothing needed a photo");
+    await refreshAfterWrite(state.selected?.type === "card" ? state.selected.id : null);
+  } catch (e) { toast(e.message, true); if (button) button.disabled = false; }
 }
 
 async function showOverrides() {
@@ -968,27 +995,65 @@ function drawTcg() {
     + `<div class="btnrow"><button class="small" id="tcgChange">${product ? "Change product…" : "Find product…"}</button>`
     + (t.link?.productId !== null || !t.link ? `<button class="small" id="tcgNotSold" title="This card is not sold on TCGplayer as a single, so it should carry no price">Not sold</button>` : "")
     + (t.link ? `<button class="small" id="tcgAuto">Use automatic match</button>` : "")
-    + `</div>`;
-  $("tcgChange").onclick = () => openProductPicker();
-  if ($("tcgNotSold")) $("tcgNotSold").onclick = () => linkCard({ productId: null });
-  if ($("tcgAuto")) $("tcgAuto").onclick = unlinkCard;
+    + `</div>`
+    + specialsHtml(t.special || []);
+  const id = state.selected.id;
+  $("tcgChange").onclick = () => openProductPicker({ key: id, label: null, current: product });
+  if ($("tcgNotSold")) $("tcgNotSold").onclick = () => linkCard({ productId: null }, id);
+  if ($("tcgAuto")) $("tcgAuto").onclick = () => unlinkCard(id);
+  for (const b of box.querySelectorAll("[data-sp]")) {
+    const sp = t.special[Number(b.dataset.sp)];
+    if (b.dataset.act === "change") b.onclick = () => openProductPicker({ key: sp.linkKey, label: sp.label, current: sp.link?.productId ? sp.linked : sp.auto });
+    if (b.dataset.act === "notsold") b.onclick = () => linkCard({ productId: null }, sp.linkKey);
+    if (b.dataset.act === "auto") b.onclick = () => unlinkCard(sp.linkKey);
+  }
 }
 
-async function linkCard(body) {
+// A card's stamped and pattern printings (tools/variants.py), each with the product it is
+// priced from and the same three ways to overrule it as the card itself.
+function specialsHtml(specials) {
+  if (!specials.length) return "";
+  let html = `<div class="title" style="margin-top:14px">Special printings</div>`
+    + `<div class="hint" style="margin-bottom:6px">Stamped and pattern copies of this card. Each is a variant of its own in the app, priced from its own product.</div>`;
+  specials.forEach((sp, i) => {
+    let line, shown = null;
+    if (sp.link && sp.link.productId) { line = `<span class="tag link">linked by hand</span>`; shown = sp.linked; }
+    else if (sp.link) line = `<span class="tag dim">marked not sold</span> &middot; carries no price`;
+    else if (sp.auto) {
+      line = sp.autoVia === "first-edition"
+        ? `<span class="tag dim">automatic</span> the 1st Edition printing of the card's own product`
+        : `<span class="tag dim">automatic match</span> by what TCGplayer writes after the name`;
+      shown = sp.auto;
+    } else line = `<span class="tag bad">no match</span> &middot; carries no price`;
+    html += `<div class="special"><div class="nm">${esc(sp.label)} <span class="sub">${esc(sp.type)}</span></div>`
+      + `<div style="margin:2px 0 6px">${line}</div>` + productHtml(shown)
+      + `<div class="btnrow"><button class="small" data-sp="${i}" data-act="change">${shown ? "Change product…" : "Find product…"}</button>`
+      + (sp.link?.productId !== null || !sp.link ? `<button class="small" data-sp="${i}" data-act="notsold">Not sold</button>` : "")
+      + (sp.link ? `<button class="small" data-sp="${i}" data-act="auto">Use automatic match</button>` : "")
+      + `</div></div>`;
+  });
+  return html;
+}
+
+async function linkCard(body, key) {
   const id = state.selected.id;
   try {
-    const res = await api("/api/link/card/" + encodeURIComponent(id), { method: "PUT", json: body });
-    toast(res.removed ? "That is already the automatic match, so no link is needed"
-      : body.productId === null ? "Marked as not sold on TCGplayer" : "Linked");
+    const res = await api("/api/link/card/" + encodeURIComponent(key), { method: "PUT", json: body });
+    toast((res.removed ? "That is already the automatic match, so no link is needed"
+      : body.productId === null ? "Marked as not sold on TCGplayer" : "Linked")
+      + (res.photo ? ", and the card has that product's photo now" : ""));
     closeModal();
-    await refreshLinks(id);
+    // A photo is an override, which the open form has to be redrawn from; a link alone is
+    // not, and redrawing would throw away anything typed and not yet saved.
+    if (res.photo && !state.dirty) await refreshAfterWrite(id);
+    else await refreshLinks(id);
   } catch (e) { toast(e.message, true); }
 }
 
-async function unlinkCard() {
+async function unlinkCard(key) {
   const id = state.selected.id;
   try {
-    await api("/api/link/card/" + encodeURIComponent(id), { method: "DELETE" });
+    await api("/api/link/card/" + encodeURIComponent(key), { method: "DELETE" });
     toast("Back to the automatic match");
     await refreshLinks(id);
   } catch (e) { toast(e.message, true); }
@@ -1036,12 +1101,12 @@ function openModal(html) {
 }
 const closeModal = () => $("scrim")?.remove();
 
-function openProductPicker() {
+function openProductPicker(target) {
   const row = state.row, t = state.tcg || {};
   const card = row.card;
-  const current = effectiveProduct();
+  const current = target.current;
   const groupId = t.setGroup?.groupId;
-  const scrim = openModal(`<header><h1>Link ${esc(card.name)} <span class="sub">#${esc(card.localId || "?")} &middot; ${esc(row.setName || "")}</span></h1><span class="spacer"></span>`
+  const scrim = openModal(`<header><h1>Link ${esc(card.name)}${target.label ? ` &middot; ${esc(target.label)}` : ""} <span class="sub">#${esc(card.localId || "?")} &middot; ${esc(row.setName || "")}</span></h1><span class="spacer"></span>`
     + `<div class="tabs">${groupId ? `<button data-tab="group">In ${esc(t.setGroup.tcgplayerName || "its group")}</button>` : ""}<button data-tab="search">Search all of TCGplayer</button></div></header>`
     + `<div style="padding:10px 16px 0"><input type="search" id="pickQ" autocomplete="off"></div>`
     + `<div class="body" id="pickBody"><div class="loading">Loading…</div></div>`
@@ -1062,7 +1127,7 @@ function openProductPicker() {
   const paint = (products, emptyText) => {
     $("pickBody").innerHTML = products.length ? products.map(pickRow).join("") : `<div class="empty">${emptyText}</div>`;
     for (const b of $("pickBody").querySelectorAll("[data-pid]")) {
-      b.onclick = () => linkCard({ productId: Number(b.dataset.pid), groupId: Number(b.dataset.gid) });
+      b.onclick = () => linkCard({ productId: Number(b.dataset.pid), groupId: Number(b.dataset.gid) }, target.key);
     }
   };
 

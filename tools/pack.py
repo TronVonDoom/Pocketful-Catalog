@@ -33,6 +33,8 @@ import json
 import time
 from pathlib import Path
 
+import variants
+
 ROOT = Path(__file__).resolve().parent.parent
 CATALOG = ROOT / "catalog"
 DIST = ROOT / "dist"
@@ -56,6 +58,10 @@ SCHEMA = 1
 # packed the app had to fetch a live card document to draw them. That made adding a card
 # to a binder a network round trip for data already sitting on the device, and made it
 # fail outright with no connection.
+#
+# `special` is not in this list because it is not a field of the pulled card: it is derived
+# from `variants_detailed` by variants.py and written after the override, so a correction
+# to a card cannot quietly delete the stamped printings beside it.
 CARD_FIELDS = (
     "id", "localId", "name", "rarity", "illustrator", "category",
     "image", "imageAlt", "imageAltSource", "variants",
@@ -125,6 +131,7 @@ def pack_static() -> None:
     sets = []
     holes = 0
     filled = 0
+    special = 0
 
     for path in sorted((CATALOG / "sets").glob("*.json")):
         doc = json.loads(path.read_text(encoding="utf-8"))
@@ -143,6 +150,14 @@ def pack_static() -> None:
                     trimmed.update(kept)
                     trimmed = {k: v for k, v in trimmed.items() if v is not None}
                     applied += 1
+
+            # The stamped and pattern printings beside the plain ones: MEP Tyrunt's Pokemon
+            # Center stamp, a Prismatic Evolutions common's Poke Ball reverse. The app files
+            # and prices each as a variant of its own. See variants.py.
+            printings = variants.shipped(card)
+            if printings:
+                trimmed["special"] = printings
+                special += len(printings)
 
             # Counted after the override, because filling a hole by hand is one of the
             # main things an override is for and a report that ignored them would go on
@@ -176,7 +191,7 @@ def pack_static() -> None:
     }
     total = sum(len(s["cards"]) for s in sets)
     print(f"{len(sets)} sets, {total} cards, {filled} filled from a second source, "
-          f"{holes} still without art")
+          f"{holes} still without art, {special} special printings")
     if overrides:
         stale = len(overrides) - applied
         note = f", {stale} matching no card in the catalog" if stale else ""

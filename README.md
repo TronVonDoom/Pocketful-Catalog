@@ -86,6 +86,43 @@ the whole set.
 187 of 218 sets map. Of the 31 that do not, 15 are Pocket and most of the rest are Trainer
 Kits — sets TCGplayer has no group for because it does not sell them.
 
+A number alone decides only inside a group that is one set. A two-deck Trainer Kit numbers
+both decks from one, so there the product has to agree on the name too, or the card carries
+no price — which is better than the other deck's price, and that is what 170 of them used
+to carry. Where a number holds both a card and its stamped copy, the plain one wins, and
+a stamp is recognised whether TCGplayer writes it `[Staff]` or `(Pokemon Center Exclusive)`.
+
+WotC-era groups quote "Unlimited Holofoil" and "1st Edition Holofoil" and no plain
+"Holofoil" at all, so the price file writes the unlimited figure under the plain key and
+keeps the 1st Edition one for the card's 1st Edition printing. Before that, an Unlimited
+Jungle Clefable was quoted at its 1st Edition price, three times what it trades for.
+
+## Special printings
+
+MEP Tyrunt is a holo promo, and it is also the same holo promo with a Pokémon Center stamp
+at ten times the price. A Prismatic Evolutions common has a Poké Ball and a Master Ball
+reverse. The five `variants` flags cannot say either, so the app had nowhere to file them.
+
+TCGdex can: every card carries `variants_detailed`, one entry per printing with its stamps,
+foil pattern and subtype. `tools/variants.py` reads that and names the printings that are
+not the plain normal, holo or reverse — a stamp every printing shares (the set logo on MEP
+promos) is part of the card, not a variation of it. About 4,600 printings across 3,300
+cards come out of it.
+
+`pack.py` ships them on each card as `special: [{type, key, label}]`, and the app files
+each as a variant of its own. `pull_prices.py` prices them under `special` in the price
+file, keyed `<type>~<key>` — kept out of `cards` so an older app never reads a stamped
+copy's price as the plain one's. A printing is found by what TCGplayer writes after the
+name (`(Poke Ball Pattern)`, `[Staff]`), in the card's own group first and then in the
+promo groups stamped cards are filed under — Countdown Calendar Promos, World
+Championship Decks, Base Set (Shadowless) — which is why the price pull reads every group
+rather than only the linked ones. A 1st Edition is a printing of the plain product rather
+than a product of its own, and is priced that way. Roughly 2,900 of the 4,600 find a
+product; most of the rest are set-logo stamps TCGplayer does not list separately.
+
+The editor shows each printing's product and can link any of them by hand, exactly like
+the card itself.
+
 Where the automatic answer is wrong, or missing, a person can overrule it at either level
 from the editor. A set linked by hand is recorded in `tcgplayer-groups.json` as
 `"via": "manual"`, which `map_groups.py` never re-derives. A card linked by hand to one
@@ -112,7 +149,10 @@ reason, or it fails the audit.
 2. **TCGplayer product photos**, keyed by the id TCGdex hands out in
    `variants_detailed[].thirdParty.tcgplayer`. Lower fidelity than a scan, but it
    reaches the oddities the card databases never filed — Ancient Mew has no
-   pokemontcg.io entry at all, and is filled from TCGplayer product `108589`.
+   pokemontcg.io entry at all, and is filled from TCGplayer product `108589`. TCGdex no
+   longer hands those ids out for new cards, so failing one, the photo of the product the
+   card is *priced* from is used: a link made in the editor, or the automatic match when
+   its name agrees with the card's.
 3. **Nothing**, recorded as a hole with a reason. Mostly Trainer Kits, which are not
    sold as singles, so no product photo exists either.
 
