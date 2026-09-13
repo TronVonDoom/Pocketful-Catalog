@@ -22,7 +22,7 @@ published, the app's catalog is empty, and that is expected.
 
 ```
   ┌────────────┐   reads/writes   ┌──────────────────────┐
-  │   Editor   │ ───────────────▶ │  Database (private)  │ ◀── importers (TCGdex, …)
+  │   Editor   │ ───────────────▶ │  Database (private)  │ ◀── imports you start, per set
   │ (your PC)  │                  │  Supabase Postgres   │ ◀── nightly price job
   └─────┬──────┘                  └──────────────────────┘
         │ Publish
