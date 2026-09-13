@@ -489,7 +489,13 @@ mostly have none, and will show none rather than a converted guess.
   be read, written or called without the admin key. `tools/test_database.py` checks this.
 - **The admin key lives at `C:\Users\TronVonDoom\keystores\pocketful-supabase.json`**,
   beside the release signing key, and as a GitHub secret for the nightly price job. It is
-  never in either repository and never in the app.
+  never in either repository and never in the app. The file holds the project `url`, the
+  `secret_key` (for the REST and storage APIs, which is all the editor and the nightly jobs
+  use) and the `database_password` (only for applying migrations). `tools/supabase_config.py`
+  reads it.
+- **Migrations connect to PostgreSQL directly**, which on Supabase is reachable over IPv6
+  only. This PC has IPv6. GitHub's runners do not, which is one more reason the nightly
+  jobs use the REST API rather than the database connection.
 - **Storage** has three public buckets (`catalog`, `images`, `prices`) that anyone can
   read and only the admin key can write, and one private bucket (`originals`).
 
@@ -501,13 +507,18 @@ pilot fits easily. English pictures and thumbnails will come to roughly 2–3 GB
 plan (about $25 a month) will be needed partway through English. Check
 [supabase.com/pricing](https://supabase.com/pricing) before relying on these numbers.
 
-## Testing the schema
+## Testing and applying the schema
 
 ```bash
-python tools/test_database.py
+python tools/test_database.py      # every migration and rule, on a throwaway local PostgreSQL
+python tools/migrate.py            # what the Supabase project has applied, and what it has not
+python tools/migrate.py --apply    # apply the rest, each in one transaction
 ```
 
-It builds a throwaway PostgreSQL in a temporary folder, stands in for the parts of
+A schema change is a new file in `supabase/migrations/`, never an edit to one already
+applied. `migrate.py` records what has run in the same table the Supabase CLI uses.
+
+`test_database.py` builds a throwaway PostgreSQL in a temporary folder, stands in for the parts of
 Supabase the migrations rely on (its roles, default grants and storage schema), applies
 every migration, runs `supabase/tests/`, and deletes it all again. Nothing touches
 Supabase or any other database. It needs PostgreSQL's command-line programs, which are
@@ -529,7 +540,8 @@ installed on this PC.
 
 ## Build order
 
-1. **Schema.** *Written and tested.* Waiting on the Supabase project to apply it to.
+1. **Schema.** *Done.* Tested locally and applied to the Supabase project on 2026-09-13
+   with `python tools/migrate.py --apply`.
 2. **Importers:** TCGdex English and today's catalog into `source_records`. Nothing is
    created as a series, set or card; that is your job in the editor.
 3. **Editor:** create series and sets, pick cards, review, printings, pictures, TCGplayer
