@@ -177,6 +177,8 @@ function ask({ title, body, ok = "OK", cancel = "Cancel", danger = false, fields
 }
 
 async function busy(button, work) {
+  // Always capture the button before awaiting anything: event.currentTarget is null after an await.
+  if (!button) return work().catch(fail);
   const label = button.textContent;
   button.disabled = true;
   button.textContent = "Working…";
@@ -739,8 +741,9 @@ async function viewSeries(id) {
         : h("p", { class: "dim", text: "No sets yet." })),
     h("div", { class: "savebar" }, save,
       !series.locked && !data.sets.length ? h("button", { class: "danger", text: "Delete series", onclick: async (e) => {
+        const button = e.currentTarget;
         if (!(await ask({ title: `Delete ${series.name}?`, body: "It has no sets, so nothing else goes with it.", ok: "Delete", danger: true }))) return;
-        await busy(e.currentTarget, async () => {
+        await busy(button, async () => {
           await DELETE(`/api/series/${enc(series.id)}`);
           S.guard = null;
           await refreshBoot();
@@ -948,8 +951,9 @@ function setDetails(data) {
     h("span", { class: "dim" }, h("kbd", { text: "Ctrl" }), "+", h("kbd", { text: "S" })),
     h("span", { class: "spacer" }),
     !theSet.locked ? h("button", { class: "danger", text: "Delete set", onclick: async (e) => {
+        const button = e.currentTarget;
       if (!(await ask({ title: `Delete ${theSet.name}?`, body: `Its ${plural(data.cards.length, "card")}, their printings and pictures go with it. It has never been published, so nothing depends on it.`, ok: "Delete", danger: true }))) return;
-      await busy(e.currentTarget, async () => {
+      await busy(button, async () => {
         await DELETE(`/api/sets/${enc(theSet.id)}`);
         S.guard = null;
         await refreshBoot();
@@ -1079,9 +1083,10 @@ async function setPublish(data) {
           : "Publishing writes version 1 and adds this set to what the app downloads." }),
         h("p", { class: "muted", text: "Everything that goes out is locked: its IDs cannot change and its cards and printings cannot be deleted, only withdrawn." }),
         h("button", { class: "primary", text: `Publish version ${theSet.version + 1}`, onclick: async (e) => {
+        const button = e.currentTarget;
           const go = await ask({ title: `Publish ${theSet.name}?`, body: `Version ${theSet.version + 1}, with ${plural(data.cards.filter((c) => !c.withdrawn).length, "card")}.`, ok: "Publish" });
           if (!go) return;
-          await busy(e.currentTarget, async () => {
+          await busy(button, async () => {
             const answer = await POST(`/api/sets/${enc(theSet.id)}/publish`);
             toast(`Published version ${answer.publish.version}: ${plural(answer.cards, "card")}, ${plural(answer.printings, "printing")}.`);
             await refreshBoot();
@@ -1427,8 +1432,9 @@ async function viewCard(id) {
         h("button", { class: "good", text: "Save, reviewed, next →", onclick: (e) => busy(e.currentTarget, () => reviewedAndNext()) }),
         h("span", { class: "spacer" }),
         locked ? null : h("button", { class: "danger", text: "Delete card", onclick: async (e) => {
+        const button = e.currentTarget;
           if (!(await ask({ title: `Delete ${card.name}?`, body: "Its printings and pictures go with it. It has never been published.", ok: "Delete", danger: true }))) return;
-          await busy(e.currentTarget, async () => {
+          await busy(button, async () => {
             await DELETE(`/api/cards/${enc(card.id)}`);
             S.guard = null;
             await refreshBoot();
