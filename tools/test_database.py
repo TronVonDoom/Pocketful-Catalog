@@ -47,6 +47,22 @@ create table storage.buckets (
   file_size_limit bigint,
   allowed_mime_types text[]
 );
+create table storage.objects (
+  id uuid primary key default gen_random_uuid(),
+  bucket_id text references storage.buckets (id),
+  name text
+);
+-- Supabase's own guard, copied: no direct delete from storage tables unless asked for.
+create function storage.protect_delete() returns trigger language plpgsql as $$
+begin
+  if coalesce(current_setting('storage.allow_delete_query', true), 'false') != 'true' then
+    raise exception 'Direct deletion from storage tables is not allowed. Use the Storage API instead.'
+      using errcode = '42501';
+  end if;
+  return null;
+end $$;
+create trigger protect_buckets_delete before delete on storage.buckets
+  for each statement execute function storage.protect_delete();
 """
 
 

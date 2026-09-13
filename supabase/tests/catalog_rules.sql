@@ -250,5 +250,4 @@ begin
 end $$;
 
 reset role;
-select pg_temp.expect((select count(*) from storage.buckets where public) = 3, 'three public buckets');
-select pg_temp.expect((select not public from storage.buckets where id = 'originals'), 'originals stay private');
+select pg_temp.expect(not exists (select 1 from storage.buckets), 'no Supabase storage: the app''s files live on R2');

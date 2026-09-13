@@ -29,16 +29,17 @@ published, the app's catalog is empty, and that is expected.
         ▼
   ┌──────────────────────┐   downloads   ┌───────┐
   │  Storage (public,    │ ────────────▶ │  App  │
-  │  read-only) Supabase │               └───────┘
+  │  read-only) R2       │               └───────┘
   └──────────────────────┘
 ```
 
-- **The database** is the source of truth. Every series, set, card, printing, picture,
-  TCGplayer link and review mark is here. It is private: only the editor and the
-  tools can reach it, using an admin key that lives on your PC.
+- **The database** is the source of truth. Every series, set, card, printing, picture
+  record, TCGplayer link and review mark is here. It is private: only the editor and the
+  tools can reach it, using an admin key that lives on your PC. It is in Supabase.
 - **Storage** holds what the app downloads: an index of published sets, one file per
-  published set, the pictures, and the prices. Anyone can read it and only the admin key
-  can write to it.
+  published set, the pictures, and the prices. Anyone can read it and only your R2 token
+  can write to it. It is on Cloudflare R2, so the app never depends on Supabase: a paused
+  Supabase project stops the editor, never the app.
 - **The app** never talks to the database and carries no key. It downloads files and
   keeps them, just as it does today. This keeps it working offline and fast, and a
   thousand users cost almost nothing.
@@ -305,14 +306,14 @@ Every picture, chosen or not, with where it came from.
 | `catalog_id`, `series_id`, `set_id`, `card_id`, `printing_id` | a card | what it is a picture of; exactly one is filled |
 | `role` | `front` | `front` (card, printing), `back` (catalog, series), `logo` (series, set), `symbol` (set) |
 | `chosen` | true | the one in use, one per subject and role; the rest are candidates |
-| `path`, `thumb_path` | `cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.webp` | where it is in the `images` bucket |
+| `path`, `thumb_path` | `images/cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.webp` | where it is in the public R2 bucket |
 | `width`, `height`, `bytes`, `sha256` | | |
 | `below_standard` | false | smaller than the standard size |
 | `source_id` | `tcgdex` | a row in `sources` |
 | `source_url` | | where it was taken from |
-| `original_path` | | the untouched original in the `originals` bucket, kept only when it cannot be downloaded again |
+| `original_path` | | the untouched original in the private R2 bucket, kept only when it cannot be downloaded again |
 
-A candidate can be just a `source_url`; a chosen picture has to be in storage.
+A candidate can be just a `source_url`; a chosen picture has to be in R2.
 
 ### `sources` and `source_records`
 
@@ -400,9 +401,10 @@ publish sends the picture out.
 
 ### What Publish does
 
-1. Writes `sets/ptcg-en-me05.v3.json.gz` to the `catalog` bucket.
-2. Rewrites `index.json` in the same bucket from the database: every published catalog,
-   series and set, with names, logos, card backs and versions.
+1. Uploads the set's chosen pictures and writes `catalog/sets/ptcg-en-me05.v3.json.gz`
+   to the public R2 bucket.
+2. Rewrites `catalog/index.json` there from the database: every published catalog, series
+   and set, with names, logos, card backs and versions.
 3. Calls `record_publish`, which checks the set again, bumps its version, marks it and its
    series published, locks every card and printing that went out, and records the publish.
 
@@ -415,17 +417,26 @@ writes a new version, and the app downloads only that set again.
 
 ## What the app downloads
 
-| Bucket | Path | What |
-|---|---|---|
-| `catalog` | `index.json` | every published catalog, series and set, with names, logos, card backs and versions |
-| `catalog` | `sets/ptcg-en-me05.v3.json.gz` | one published set |
-| `images` | `cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.webp` | a card picture |
-| `images` | `cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.thumb.webp` | its thumbnail |
-| `images` | `sets/ptcg-en/me05/logo.81bd40.webp` | a set logo |
-| `images` | `backs/ptcg-en.5e0a11.webp` | a card back |
-| `prices` | `prices.json.gz` | today's prices, by printing ID |
-| `prices` | `history/ptcg-en-me05.json.gz` | one set's price history |
-| `originals` | | untouched originals; private, never downloaded by the app |
+Everything is in one public R2 bucket, `pocketful`, under a folder per kind of file:
+
+| Path | What |
+|---|---|
+| `catalog/index.json` | every published catalog, series and set, with names, logos, card backs, versions, and the public address every other path is relative to |
+| `catalog/sets/ptcg-en-me05.v3.json.gz` | one published set |
+| `images/cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.webp` | a card picture |
+| `images/cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.thumb.webp` | its thumbnail |
+| `images/sets/ptcg-en/me05/logo.81bd40.webp` | a set logo |
+| `images/backs/ptcg-en.5e0a11.webp` | a card back |
+| `prices/prices.json.gz` | today's prices, by printing ID |
+| `prices/history/ptcg-en-me05.json.gz` | one set's price history |
+
+Untouched originals go in a second bucket, `pocketful-originals`, which is private and
+never downloaded by the app.
+
+The only address built into the app is that of `catalog/index.json`. The index names the
+public address every other path is relative to, so pictures, set files and prices can move
+by changing one value in it. Moving the index itself, to your own domain before launch,
+takes one app update, which a launch is anyway.
 
 A set file, trimmed:
 
@@ -439,7 +450,7 @@ A set file, trimmed:
   "name": "Pitch Black",
   "releaseDate": "2026-07-17",
   "printedTotal": 84,
-  "logo": "sets/ptcg-en/me05/logo.81bd40.webp",
+  "logo": "images/sets/ptcg-en/me05/logo.81bd40.webp",
   "cards": [
     {
       "id": "ptcg-en-me05-062",
@@ -451,7 +462,7 @@ A set file, trimmed:
       "types": ["metal"],
       "rarity": "rare",
       "illustrator": "Kinu Nishimura",
-      "image": "cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.webp",
+      "image": "images/cards/ptcg-en/me05/ptcg-en-me05-062.3f9a2c.webp",
       "printings": [
         { "id": "ptcg-en-me05-062_holo", "finish": "holo" },
         { "id": "ptcg-en-me05-062_reverse", "finish": "reverse" }
@@ -502,22 +513,38 @@ mostly have none, and will show none rather than a converted guess.
 - **The admin key lives at `C:\Users\TronVonDoom\keystores\pocketful-supabase.json`**,
   beside the release signing key, and as a GitHub secret for the nightly price job. It is
   never in either repository and never in the app. The file holds the project `url`, the
-  `secret_key` (for the REST and storage APIs, which is all the editor and the nightly jobs
-  use) and the `database_password` (only for applying migrations). `tools/supabase_config.py`
+  `secret_key` (for the REST API, which is all the editor and the nightly jobs use from
+  Supabase) and the `database_password` (only for applying migrations). `tools/supabase_config.py`
   reads it.
 - **Migrations connect to PostgreSQL directly**, which on Supabase is reachable over IPv6
   only. This PC has IPv6. GitHub's runners do not, which is one more reason the nightly
   jobs use the REST API rather than the database connection.
-- **Storage** has three public buckets (`catalog`, `images`, `prices`) that anyone can
-  read and only the admin key can write, and one private bucket (`originals`).
+- **R2 credentials live at `C:\Users\TronVonDoom\keystores\pocketful-r2.json`**: the S3
+  endpoint, an access key pair, the two bucket names and the public address. The token
+  behind them has Object Read & Write on the two buckets and nothing else. `tools/r2.py`
+  reads it.
+- **The public bucket `pocketful`** can be read by anyone and written only with that
+  token. **The private bucket `pocketful-originals`** cannot be read publicly at all.
+- **Supabase storage is not used.** Its buckets were removed before anything was written.
 
-## Supabase plan
+## Costs
 
-At the time of writing, the free plan includes a 500 MB database, 1 GB of file storage and
-5 GB of downloads a month, and pauses a project after a week with no activity. The Base Set
-pilot fits easily. English pictures and thumbnails will come to roughly 2–3 GB, so the Pro
-plan (about $25 a month) will be needed partway through English. Check
-[supabase.com/pricing](https://supabase.com/pricing) before relying on these numbers.
+**Supabase** holds only the database. At the time of writing, its free plan includes a
+500 MB database, which the catalog's text fits in comfortably, and pauses a project after a
+week with no activity. A pause only stops the editor until the project is resumed from the
+dashboard; the app does not use Supabase.
+
+**Cloudflare R2** holds everything the app downloads. At the time of writing, its free
+tier includes 10 GB of storage and millions of reads and writes a month, and downloads cost
+nothing. English pictures and thumbnails come to roughly 2–3 GB, so all of English fits
+free. Cloudflare needs a payment method on file to enable R2 even within the free tier.
+
+The public address is Cloudflare's `r2.dev` one for now. Cloudflare rate-limits it and says
+it is for development, so before launch the bucket gets your own domain (about $10 a year).
+
+Check [supabase.com/pricing](https://supabase.com/pricing) and
+[Cloudflare's R2 pricing](https://developers.cloudflare.com/r2/pricing/) before relying
+on any of these numbers.
 
 ## Testing and applying the schema
 
@@ -548,7 +575,7 @@ installed on this PC.
 | The editor | reworked to read and write the database; still a Windows app, still no dependencies |
 | The `catalog` release and weekly workflow | retired once the app reads the new catalog |
 | The `prices` workflow | keyed by printing ID and fed from the database |
-| The app's catalog download | reads `index.json` and set files from storage; collections store printing IDs; existing local data is cleared on the upgrade |
+| The app's catalog download | reads `catalog/index.json` and set files from R2; collections store printing IDs; existing local data is cleared on the upgrade |
 
 ## Build order
 
@@ -558,7 +585,7 @@ installed on this PC.
    you start it. Nothing is created as a series, set or card; that is your job in the editor.
 3. **Editor:** create series and sets, pick cards, review, printings, pictures, TCGplayer
    links, the Published-without-a-picture list.
-4. **Publish** to storage.
+4. **Publish** to R2.
 5. **App:** read the new catalog, store printing IDs, draw card backs, start fresh.
 6. **Prices** by printing ID.
 7. **Base Set pilot**, start to finish, timed.
@@ -576,6 +603,10 @@ Made on 2026-09-13:
    source, started by you, and nothing imported before this database carries over.
 6. **The starting vocabulary is kept**: 139 variant words, 71 terms and 5 sources,
    re-approved after that rule was set.
+7. **Everything the app downloads is on Cloudflare R2**, from the start, so nothing has to
+   move later and the app never depends on Supabase. Supabase is the private database only.
+   GitHub was considered and ruled out: repository size limits, rate limits on serving
+   files, and a copyright takedown there could reach the account that ships app updates.
 
 To decide when they come up:
 

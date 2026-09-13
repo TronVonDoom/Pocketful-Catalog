@@ -10,8 +10,8 @@ beside the app's release signing key, or wherever POCKETFUL_SUPABASE points:
       "database_password": "<the password chosen when the project was created>"
     }
 
-The secret key is for the REST and storage APIs, which is all the editor and the nightly
-jobs need. The database password is only for applying migrations, which talk to PostgreSQL
+The secret key is for the REST API, which is all the editor and the nightly jobs need from
+Supabase. Files the app downloads are not here but on Cloudflare R2; see tools/r2.py. The database password is only for applying migrations, which talk to PostgreSQL
 directly. That direct address is IPv6-only on Supabase; a network without IPv6 can instead
 put the session pooler's full connection string in "database_url", which wins when present.
 
