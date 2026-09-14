@@ -12,11 +12,13 @@
 # The audit runs on every push as well, where it is the actual gate: it touches no
 # network, so it cannot fail because the API was having an afternoon, and a failure
 # means the catalog on disk is wrong.
+#
+# Retired as a schedule: the catalog is now built in its own database and published from the
+# Pocketful Editor (docs/database.md), so nothing needs refreshing from TCGdex every week. The
+# old files stay auditable and the refresh can still be run by hand.
 name: Catalog
 
 on:
-  schedule:
-    - cron: '0 6 * * 1'
   workflow_dispatch:
   push:
     paths:

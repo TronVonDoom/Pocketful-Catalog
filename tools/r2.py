@@ -159,10 +159,20 @@ def quote_key(key: str) -> str:
     return "/".join(urllib.parse.quote(segment, safe="-_.~") for segment in key.split("/"))
 
 
+ENV_NAMES = {"endpoint": "POCKETFUL_R2_ENDPOINT", "access_key_id": "POCKETFUL_R2_ACCESS_KEY_ID",
+             "secret_access_key": "POCKETFUL_R2_SECRET_ACCESS_KEY", "public_bucket": "POCKETFUL_R2_PUBLIC_BUCKET",
+             "private_bucket": "POCKETFUL_R2_PRIVATE_BUCKET", "public_url": "POCKETFUL_R2_PUBLIC_URL"}
+
+
 def load() -> R2:
-    if not KEY_FILE.exists():
+    # GitHub Actions has no key file; its secrets arrive as environment variables instead.
+    from_env = {field: os.environ.get(name, "") for field, name in ENV_NAMES.items()}
+    if from_env["endpoint"] and from_env["access_key_id"]:
+        raw = {**from_env, "private_bucket": from_env["private_bucket"] or "pocketful-originals"}
+    elif not KEY_FILE.exists():
         raise SystemExit(f"No R2 credentials at {KEY_FILE}. See tools/r2.py.")
-    raw = json.loads(KEY_FILE.read_text(encoding="utf-8"))
+    else:
+        raw = json.loads(KEY_FILE.read_text(encoding="utf-8"))
     missing = [k for k in ("endpoint", "access_key_id", "secret_access_key",
                            "public_bucket", "private_bucket", "public_url") if not raw.get(k)]
     if missing:

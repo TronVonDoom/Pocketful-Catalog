@@ -255,7 +255,7 @@ Its picture is in `images`.
 | `card_id` | `ptcg-en-me05-062` | |
 | `variant` | `reverse` | the assembled name |
 | `edition`, `pattern`, `finish`, `stamps`, `error` | `reverse` | its parts, each a word from `variant_words` |
-| `tcgplayer_product`, `tcgplayer_printing`, `tcgplayer_via` | | TCGplayer product ID, its printing (Reverse Holofoil), and how it was matched |
+| `tcgplayer_product`, `tcgplayer_printing`, `tcgplayer_via` | | TCGplayer product ID, TCGplayer's name for the printing (Reverse Holofoil), and whether it was matched `auto` or set `manual` |
 | `identify` | | how to tell this printing apart, shown in the app |
 | `review`, `review_note`, `reviewed_at` | | as on cards |
 | `withdrawn` | false | as on cards |
@@ -483,14 +483,40 @@ address and nothing can go on showing the old one from a cache.
 
 ## Prices
 
-The nightly job stays in this repository and keeps reading TCGCSV. What changes is
-that it reads the TCGplayer links from the database instead of from JSON files, and keys
-the price file by **printing ID**. Only published printings are priced. The matching
-rules in `tools/tcgplayer.py` survive as the suggestion the editor makes during review.
-The link itself is confirmed by you, not guessed at publish time.
+**Linking.** A printing is priced from the TCGplayer product linked to it (`tcgplayer_product`,
+and `tcgplayer_printing`, TCGplayer's own name for the printing: "Holofoil", "1st Edition
+Holofoil"). The editor links a whole set when you press **Match printings** on its Details tab:
+it finds the set's TCGplayer group and links every printing it can, by the old catalog's rules
+in `tools/tcgplayer.py` (printed number, then name; stamps and patterns by what TCGplayer writes
+in brackets, in the set's group and then its promo groups) plus the printing's words:
 
-Japanese prices can come from TCGplayer's Japanese category later. Chinese cards will
-mostly have none, and will show none rather than a converted guess.
+| Printing | TCGplayer |
+|---|---|
+| `normal`, `holo`, `reverse` | Normal (or Unlimited), Holofoil (or Unlimited Holofoil), Reverse Holofoil |
+| `1st-edition` | 1st Edition / 1st Edition Holofoil, on the plain product or the same card in a sibling group |
+| `shadowless` | the same card in the "(Shadowless)" group |
+| a copyright line, a misprint | not linked automatically |
+
+A link matched this way is `auto`. One set by hand is `manual`, and matching never changes it.
+Links are not part of what the app downloads, so changing one never needs a new publish.
+
+**Publishing.** `tools/publish_prices.py` runs nightly on GitHub Actions (`.github/workflows/prices.yml`).
+It reads every published, not withdrawn, linked printing from the database, reads every Pokémon
+group's prices from TCGCSV once, and writes to R2:
+
+- `prices/prices.json.gz`: `{schema: 2, date, fetchedAt, currency, printings: {printing ID: cents},
+  previous: {date, printings}}`. `previous` is the last earlier day's figures, so a price can say
+  how it moved.
+- `prices/history/<set id>.json.gz`: `{schema: 2, set, dates: [...], printings: {printing ID: [cents or
+  null per date]}}`, every day for five weeks and one day a week before that.
+
+A printing with no link, or whose product TCGplayer does not quote in that printing, has no price
+rather than a borrowed one. Running the workflow by hand with **backfill** rebuilds history from
+TCGCSV's daily archives back to February 2024 for every linked printing.
+
+Japanese prices can come from TCGplayer's Japanese category (the job already reads category 85
+for `jp` printings). Chinese cards will mostly have none, and will show none rather than a
+converted guess.
 
 ## Pictures
 
@@ -583,11 +609,12 @@ installed on this PC.
    with `python tools/migrate.py --apply`.
 2. **Per-set import:** one set from one named source into `source_records`, run only when
    you start it. Nothing is created as a series, set or card; that is your job in the editor.
-3. **Editor:** create series and sets, pick cards, review, printings, pictures, TCGplayer
-   links, the Published-without-a-picture list.
-4. **Publish** to R2.
-5. **App:** read the new catalog, store printing IDs, draw card backs, start fresh.
-6. **Prices** by printing ID.
+3. **Editor.** *Done* (2026-09-13): series and sets, per-set import, card review, printings,
+   pictures, TCGplayer matching, the Published-without-a-picture list.
+4. **Publish** to R2. *Done.*
+5. **App.** *Done:* reads the published catalog from R2, stores printing IDs, draws card backs,
+   and sets aside saves from the TCGdex catalog.
+6. **Prices** by printing ID. *Done:* `tools/publish_prices.py`, nightly.
 7. **Base Set pilot**, start to finish, timed.
 
 ## Decisions

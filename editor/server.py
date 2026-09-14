@@ -23,9 +23,10 @@ Usage:
     python editor/server.py --app           # its own window; exits when that closes
     python editor/server.py --port 9100 --no-open
 
-For tests, three environment variables point it somewhere other than the real services:
+For tests, environment variables point it somewhere other than the real services:
 POCKETFUL_REST_URL and POCKETFUL_REST_KEY (a database API), POCKETFUL_STORE=local:<folder>
-(a folder instead of R2), and POCKETFUL_TCGDEX_FIXTURES=<folder> (recorded TCGdex answers).
+(a folder instead of R2), and POCKETFUL_TCGDEX_FIXTURES / POCKETFUL_TCGCSV_FIXTURES=<folder>
+(recorded TCGdex and TCGCSV answers).
 """
 
 from __future__ import annotations
@@ -57,9 +58,10 @@ LOG = HERE / "editor.log"
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(ROOT / "tools"))
 
-from backend import media, publish, tcgdex  # noqa: E402
+from backend import media, publish, tcgdex, tcgplayer_links  # noqa: E402
 from backend.db import Db, DbError, eq, in_list  # noqa: E402
 from backend.storage import LocalStore, R2Store  # noqa: E402
+from tcgcsv import Tcgcsv, TcgcsvError  # noqa: E402
 
 APP_NAME = "pocketful-editor-2"
 DEFAULT_PORT = 8767
@@ -198,11 +200,12 @@ def friendly(error: DbError) -> ApiError:
 
 
 class Api:
-    def __init__(self, db: Db, store, client: tcgdex.Client, project: str):
+    def __init__(self, db: Db, store, client: tcgdex.Client, project: str, tcg: Tcgcsv | None = None):
         self.db = db
         self.store = store
         self.client = client
         self.project = project
+        self.tcg = tcg or Tcgcsv()
 
     # -- helpers --------------------------------------------------------------------------
 
@@ -385,6 +388,36 @@ class Api:
         except tcgdex.SourceError as e:
             raise ApiError(400, str(e)) from None
         return {"accepted": result, **tcgdex.candidates(self.db, the_set)}
+
+    # -- TCGplayer -------------------------------------------------------------------------
+
+    def _language(self, the_set: dict) -> str:
+        series = self.db.one("series", {"id": eq(the_set["series_id"])})
+        return self.db.one("catalogs", {"id": eq(series["catalog_id"])})["language"]
+
+    def set_tcgplayer(self, id: str, suggest: str = "", **_) -> dict:
+        the_set = self._row("sets", id, "set")
+        out = {"group": {"groupId": the_set["tcgplayer_group"], "via": the_set["tcgplayer_via"]}
+               if the_set["tcgplayer_group"] else None}
+        if suggest:
+            try:
+                out["suggestions"] = tcgplayer_links.suggest_groups(self.tcg, self.db, the_set, self._language(the_set))
+            except TcgcsvError as e:
+                raise ApiError(502, str(e)) from None
+        return out
+
+    def set_tcgplayer_link(self, id: str, body: dict, **_) -> dict:
+        the_set = self._row("sets", id, "set")
+        group_id = read_value("group_id", INT, body.get("group_id"))
+        if not group_id:
+            raise ApiError(400, "Which TCGplayer group? Give its group ID.")
+        try:
+            return tcgplayer_links.link_set(self.tcg, self.db, the_set, self._language(the_set), group_id,
+                                            by_hand=bool(body.get("by_hand")))
+        except TcgcsvError as e:
+            raise ApiError(502, str(e)) from None
+        except ValueError as e:
+            raise ApiError(400, str(e)) from None
 
     # -- cards ----------------------------------------------------------------------------
 
@@ -624,6 +657,8 @@ ROUTES = [(method, re.compile("^" + pattern.format(id=SEGMENT.format("id"), kind
     ("GET", "/api/sets/{id}/candidates", "set_candidates"),
     ("POST", "/api/sets/{id}/import", "set_import"),
     ("POST", "/api/sets/{id}/accept", "set_accept"),
+    ("GET", "/api/sets/{id}/tcgplayer", "set_tcgplayer"),
+    ("POST", "/api/sets/{id}/tcgplayer", "set_tcgplayer_link"),
     ("POST", "/api/publish-index", "index_publish"),
     ("GET", "/api/tcgdex/sets", "tcgdex_sets"),
     ("GET", "/api/cards/{id}", "card_detail"),
@@ -881,7 +916,9 @@ def make_api(port: int) -> Api:
         store = R2Store()
 
     fixtures = os.environ.get("POCKETFUL_TCGDEX_FIXTURES")
-    return Api(db, store, tcgdex.Client(Path(fixtures) if fixtures else None), project)
+    tcgcsv_fixtures = os.environ.get("POCKETFUL_TCGCSV_FIXTURES")
+    return Api(db, store, tcgdex.Client(Path(fixtures) if fixtures else None), project,
+               Tcgcsv(fixtures=Path(tcgcsv_fixtures)) if tcgcsv_fixtures else Tcgcsv())
 
 
 def main() -> None:

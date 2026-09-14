@@ -45,7 +45,10 @@ them: it talks to this editor, and only the editor talks to Supabase and R2.
    picture is not card-shaped or is soft. Earlier pictures stay as choices. A card with no
    picture anywhere is marked so, and the app shows the card back: set that on the catalog's
    Overview.
-5. **Publish** lists everything in the way. When the list is empty, publishing writes the
+5. **TCGplayer** (the set's Details tab): **Find this set on TCGplayer**, then **Use and match**
+   links every printing it can to its TCGplayer product, which is what the nightly price job
+   prices. A link set by hand on a printing, marked "by hand", is never changed by matching.
+6. **Publish** lists everything in the way. When the list is empty, publishing writes the
    set's next version and the index the app reads, and locks what went out.
 
 **Words & terms** is where new variation words, rarities, types and subtypes are added, and
@@ -55,11 +58,11 @@ labels are written for each language.
 
 ```bash
 python tools/test_database.py    # the schema and its rules
-python tools/test_editor.py      # the editor, end to end
+python tools/test_editor.py      # the editor, end to end, with TCGplayer matching and the price job
 ```
 
 `test_editor.py` runs the editor against a throwaway PostgreSQL behind a local PostgREST (as
-Supabase does), a folder instead of R2, and recorded TCGdex answers in `editor/tests/fixtures`.
+Supabase does), a folder instead of R2, and recorded TCGdex and TCGCSV answers in `editor/tests/fixtures`.
 Nothing real is touched. The first run downloads PostgREST into `%LOCALAPPDATA%\pocketful-test`.
 
 ## Safety

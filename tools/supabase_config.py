@@ -52,6 +52,13 @@ class SupabaseConfig:
 
 
 def load() -> SupabaseConfig:
+    # GitHub Actions has no key file; its secrets arrive as environment variables instead.
+    env_url, env_key = os.environ.get("POCKETFUL_SUPABASE_URL"), os.environ.get("POCKETFUL_SUPABASE_SECRET_KEY")
+    if env_url and env_key:
+        parsed = urllib.parse.urlparse(env_url)
+        return SupabaseConfig(url=f"{parsed.scheme}://{parsed.netloc}", secret_key=env_key,
+                              database_password=os.environ.get("POCKETFUL_SUPABASE_DATABASE_PASSWORD"),
+                              database_url=None)
     if not KEY_FILE.exists():
         raise SystemExit(f"No Supabase credentials at {KEY_FILE}. See tools/supabase_config.py.")
     raw = json.loads(KEY_FILE.read_text(encoding="utf-8"))

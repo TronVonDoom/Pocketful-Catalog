@@ -901,7 +901,7 @@ function setDetails(data) {
   const suggestionSource = data.import ? `TCGdex ${data.import.key}` : null;
   const s = data.import?.suggestion || {};
   const form = new Form(theSet, ["series_id", "code", "name", "name_en", "kind", "release_date", "printed_total", "abbreviation",
-    "sort", "no_logo", "no_symbol", "tcgplayer_group", "tcgplayer_via", "notes"], setUnsavedIndicator);
+    "sort", "no_logo", "no_symbol", "notes"], setUnsavedIndicator);
   const holder = h("div");
   const seriesOptions = S.boot.series.filter((x) => x.catalog_id === data.catalog.id).map((x) => ({ value: x.id, label: x.name }));
 
@@ -919,8 +919,6 @@ function setDetails(data) {
           form.number("printed_total", "Printed total", { hint: "The number after the slash.", suggest: sug("printed_total", s.printed_total) }),
           form.text("abbreviation", "Printed set code", { hint: "Like PBL, where the cards print one. Never part of an ID.", suggest: sug("abbreviation", s.abbreviation) }),
           form.number("sort", "Order in the series"),
-          form.number("tcgplayer_group", "TCGplayer group ID"),
-          form.select("tcgplayer_via", "Group matched", [{ value: "manual", label: "by hand" }, { value: "auto", label: "automatically" }], { empty: "—" }),
           form.area("notes", "Notes", { rows: 2 }))),
       h("div", { class: "fields", style: { gridTemplateColumns: "1fr 260px", alignItems: "start" } },
         h("div", { class: "box" }, h("h3", { text: "Logo" }),
@@ -933,6 +931,7 @@ function setDetails(data) {
             suggestions: [{ label: "Use TCGdex's symbol", url: s.symbol_url, source_id: "tcgdex" }],
             onChanged: () => { form.set("no_symbol", false); form.original.no_symbol = false; } }),
           form.check("no_symbol", "This set has no symbol"))),
+      tcgplayerBox(theSet),
     );
   };
   draw();
@@ -963,6 +962,65 @@ function setDetails(data) {
   node._guard = () => form.dirty();
   node._keys = (e) => { if (e.ctrlKey && e.key.toLowerCase() === "s") { e.preventDefault(); save.click(); } };
   return node;
+}
+
+/**
+ * Linking a set's printings to TCGplayer, which is what prices them.
+ * Nothing is fetched until a button here is pressed.
+ */
+function tcgplayerBox(theSet) {
+  const box = h("div", { class: "box" });
+  const money = (cents) => (cents == null ? "" : `$${(cents / 100).toFixed(2)}`);
+  let state = { group: theSet.tcgplayer_group ? { groupId: theSet.tcgplayer_group, via: theSet.tcgplayer_via } : null };
+
+  const link = async (button, groupId, byHand) => {
+    await busy(button, async () => {
+      const answer = await POST(`/api/sets/${enc(theSet.id)}/tcgplayer`, { group_id: groupId, by_hand: byHand });
+      state = { group: { groupId: answer.group.groupId, name: answer.group.name, via: byHand ? "manual" : "auto" }, result: answer };
+      toast(`Linked ${plural(answer.linked, "printing")} of ${answer.printings} to TCGplayer.`);
+      draw();
+    });
+  };
+
+  function draw() {
+    const groupId = h("input", { type: "number", placeholder: "Group ID", value: state.group?.groupId ?? "", style: { width: "140px" } });
+    fill(box,
+      h("h3", {}, "TCGplayer", h("span", { class: "spacer" }),
+        state.group ? h("span", { class: "badge info", text: `group ${state.group.groupId}${state.group.name ? ` · ${state.group.name}` : ""}` }) : null),
+      h("p", { class: "muted", text: "The nightly price job prices every published printing from the TCGplayer product linked here. Matching links every printing it can; a link you set by hand on a printing is never changed." }),
+      h("div", { class: "row" },
+        h("button", { text: "Find this set on TCGplayer", onclick: (e) => busy(e.currentTarget, async () => {
+          const answer = await GET(`/api/sets/${enc(theSet.id)}/tcgplayer?suggest=1`);
+          state = { ...state, suggestions: answer.suggestions };
+          if (!answer.suggestions.length) toast("TCGplayer has no group with a name like this set's. Give its group ID instead.", "warn");
+          draw();
+        }) }),
+        h("span", { class: "dim", text: "or" }), groupId,
+        h("button", { class: "primary", text: state.group ? "Match printings again" : "Use this group", onclick: (e) => {
+          if (!groupId.value) return toast("Give the TCGplayer group ID.", "warn");
+          link(e.currentTarget, Number(groupId.value), state.group?.groupId !== Number(groupId.value) || state.group?.via === "manual");
+        } })),
+      state.suggestions ? h("table", { class: "list", style: { marginTop: "10px" } },
+        h("thead", {}, h("tr", {}, ["Group", "Code", "Holds", ""].map((t) => h("th", { text: t })))),
+        h("tbody", {}, state.suggestions.map((g) => h("tr", {},
+          h("td", {}, h("div", { text: g.name }), h("div", { class: "dim mono", text: `group ${g.groupId}` })),
+          h("td", { class: "mono", text: g.abbreviation || "" }),
+          h("td", { class: "num", text: `${g.matched} of ${g.cards} cards` }),
+          h("td", {}, h("button", { class: "small", text: "Use and match", onclick: (e) => link(e.currentTarget, g.groupId, false) })))))) : null,
+      state.result ? h("details", { open: true, style: { marginTop: "10px" } },
+        h("summary", { text: `${state.result.linked} of ${state.result.printings} printings linked` }),
+        h("table", { class: "list" },
+          h("thead", {}, h("tr", {}, ["Printing", "TCGplayer product", "Printing", "Market", ""].map((t) => h("th", { text: t })))),
+          h("tbody", {}, state.result.results.map((r) => h("tr", { class: r.status === "no match" ? "muted" : "" },
+            h("td", {}, h("a", { class: "mono", href: `#/card/${enc(r.printing.split("_")[0])}`, text: r.printing })),
+            h("td", {}, r.productId ? h("a", { href: `https://www.tcgplayer.com/product/${r.productId}`, target: "_blank", text: r.productName || `product ${r.productId}` }) : ""),
+            h("td", { text: r.printingName || "" }),
+            h("td", { class: "num", text: money(r.market) }),
+            h("td", {}, h("span", { class: `badge ${r.status === "linked" ? "reviewed" : r.status === "no match" ? "warn" : "info"}`, text: r.status }))))))) : null,
+    );
+  }
+  draw();
+  return box;
 }
 
 async function setImport(data) {
@@ -1301,9 +1359,11 @@ async function viewCard(id) {
         partSelect("error", "Misprint", "None"),
         h("div", { class: "wide" }, stamps),
         pf.text("identify", "How to tell it apart", { wide: true, placeholder: "e.g. no drop shadow to the right of the art box" }),
-        pf.number("tcgplayer_product", "TCGplayer product ID"),
+        pf.number("tcgplayer_product", "TCGplayer product ID", {
+          suggest: pf.original.tcgplayer_product ? h("a", { href: `https://www.tcgplayer.com/product/${pf.original.tcgplayer_product}`, target: "_blank", text: "View on TCGplayer ↗" }) : null }),
         pf.text("tcgplayer_printing", "TCGplayer printing", { placeholder: "Reverse Holofoil" }),
-        pf.select("tcgplayer_via", "Product matched", [{ value: "manual", label: "by hand" }, { value: "auto", label: "automatically" }], { empty: "—" }),
+        pf.select("tcgplayer_via", "Product matched", [{ value: "manual", label: "by hand" }, { value: "auto", label: "automatically" }], { empty: "—",
+          hint: "Set a product by hand and choose \"by hand\", and matching will never change it." }),
         pf.check("withdrawn", "Withdrawn"),
       ),
       h("details", {}, h("summary", { text: pictures.some((i) => i.chosen) ? "Its own picture" : "Give it its own picture (only if it looks different)" }),

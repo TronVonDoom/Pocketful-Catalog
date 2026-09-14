@@ -1,51 +1,47 @@
-# Rebuilds the price file from TCGplayer, daily, and republishes it in place.
+# Prices every published printing from TCGplayer, nightly, and publishes the result beside the
+# catalog on Cloudflare R2: prices/prices.json.gz and one prices/history/<set>.json.gz per set.
+# See tools/publish_prices.py and docs/database.md.
 #
-# One client asks so that every installed copy of the app does not have to. That is not
-# only politeness -- TCGCSV's terms are explicit about it: a pull a day, ten thousand
-# requests, and "design your integration to ingest the data into your own database or
-# cache rather than" querying it live. This job is exactly the arrangement it asks for,
-# and at ~440 requests it sits comfortably inside the budget.
+# One client asks so that every installed copy of the app does not have to, which is also what
+# TCGCSV's terms ask for: a pull a day, ingested rather than queried live. Only printings that
+# have been published and linked to a TCGplayer product in the editor are priced.
 #
-# Prices are never committed. They change every night, nobody reviews a diff of twenty
-# thousand numbers, and the tree is not how the app reads them anyway. The same goes for
-# their history (tools/price_history.py), which lives on its own release tag and is read
-# back from there each night, added to, and put back.
+# Nothing is committed. Credentials are repository secrets: the Supabase project URL and secret
+# key (read-only use: the job only reads links), and the R2 endpoint and token.
 name: Prices
 
 on:
   schedule:
-    # 21:00 UTC. TCGCSV rebuilds around 20:00, so this runs after today's numbers exist
-    # rather than republishing yesterday's an hour early.
+    # 21:00 UTC. TCGCSV rebuilds around 20:00, so this runs after today's figures exist.
     - cron: '0 21 * * *'
   workflow_dispatch:
     inputs:
       backfill:
-        description: 'Also rebuild price history from TCGCSV archives (one-off, ~15 minutes)'
+        description: 'Also rebuild price history from TCGCSV archives back to February 2024 (slow)'
         type: boolean
         default: false
-  push:
-    paths:
-      - 'tools/pull_prices.py'
-      - 'tools/price_history.py'
-      - 'tools/tcgplayer.py'
-      - 'tools/variants.py'
-      - 'catalog/tcgplayer-groups.json'
-      - 'catalog/tcgplayer-cards.json'
-      - '.github/workflows/prices.yml'
 
 permissions:
-  contents: write
+  contents: read
 
-# A second run starting while the first is still fetching would double the load on the
-# service this job exists to be gentle with.
+# A second run starting while the first is still fetching would double the load on the service
+# this job exists to be gentle with.
 concurrency:
   group: prices
   cancel-in-progress: false
 
 jobs:
-  refresh:
+  publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 120
+    env:
+      POCKETFUL_SUPABASE_URL: ${{ secrets.POCKETFUL_SUPABASE_URL }}
+      POCKETFUL_SUPABASE_SECRET_KEY: ${{ secrets.POCKETFUL_SUPABASE_SECRET_KEY }}
+      POCKETFUL_R2_ENDPOINT: ${{ secrets.POCKETFUL_R2_ENDPOINT }}
+      POCKETFUL_R2_ACCESS_KEY_ID: ${{ secrets.POCKETFUL_R2_ACCESS_KEY_ID }}
+      POCKETFUL_R2_SECRET_ACCESS_KEY: ${{ secrets.POCKETFUL_R2_SECRET_ACCESS_KEY }}
+      POCKETFUL_R2_PUBLIC_BUCKET: ${{ secrets.POCKETFUL_R2_PUBLIC_BUCKET }}
+      POCKETFUL_R2_PUBLIC_URL: ${{ secrets.POCKETFUL_R2_PUBLIC_URL }}
 
     steps:
       - uses: actions/checkout@v4
@@ -53,73 +49,21 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: pip
 
-      - run: pip install -r requirements.txt
+      # TCGCSV's product lists change rarely, so they are kept between runs; tools/tcgcsv.py
+      # asks again only for what is older than its time-to-live.
+      - name: Restore the TCGCSV cache
+        uses: actions/cache@v4
+        with:
+          path: catalog/.tcgcsv/v2
+          key: tcgcsv-${{ github.run_id }}
+          restore-keys: tcgcsv-
 
-      # Only fills gaps: a set already mapped is left alone, so the ordinary run makes no
-      # TCGdex requests at all. A newly released set is the case this is here for.
-      - name: Map any new sets to TCGplayer
-        run: python tools/map_groups.py
-
-      # Yesterday's history, so tonight's figures are added to it rather than replacing it.
-      # Absent on the very first run, which is simply a history that starts today.
-      - name: Fetch price history
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          mkdir -p dist/history
-          gh release download price-history --repo "$GITHUB_REPOSITORY" \
-            --pattern 'history-*.json.gz' --dir dist/history --clobber || true
-
-      - name: Pull prices
-        run: python tools/pull_prices.py --history dist/history
-
-      - name: Backfill price history
+      - name: Tools for the backfill
         if: github.event_name == 'workflow_dispatch' && inputs.backfill
         run: |
           sudo apt-get install -y p7zip-full >/dev/null
-          python tools/price_history.py --backfill --history dist/history
+          pip install requests
 
-      # Committed only when it actually changed, which is when a set was newly mapped.
-      # The prices themselves are not in the tree and never will be.
-      - name: Record any new set mappings
-        run: |
-          if ! git diff --quiet -- catalog/tcgplayer-groups.json; then
-            git config user.name  "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add catalog/tcgplayer-groups.json
-            git commit -m "Map newly released sets to TCGplayer groups"
-            git push
-          fi
-
-      - name: Publish
-        env:
-          GH_TOKEN: ${{ github.token }}
-        # A fixed tag, replaced in place, so the app has one URL that always means "the
-        # current prices" and never has to search a release list. Separate from the
-        # catalog tag on purpose: these two documents have completely different
-        # lifetimes, and sharing a release would tie the one that never expires to the
-        # one that expires nightly.
-        run: |
-          gh release view prices --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
-            || gh release create prices \
-                 --repo "$GITHUB_REPOSITORY" \
-                 --title "Market prices" \
-                 --notes "TCGplayer market prices, from tcgcsv.com, refreshed daily and replaced in place. Card data lives on the \`catalog\` tag and does not expire; this does."
-          gh release upload prices dist/prices-v1.json.gz \
-            --repo "$GITHUB_REPOSITORY" --clobber
-
-      # One file per set, so the app downloads the history of the cards it is drawing
-      # rather than of all twenty thousand.
-      - name: Publish price history
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release view price-history --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 \
-            || gh release create price-history \
-                 --repo "$GITHUB_REPOSITORY" \
-                 --title "Price history" \
-                 --notes "Every card's TCGplayer market price over time, one file per set: daily for five weeks, weekly before that, back to February 2024. Rebuilt nightly."
-          gh release upload price-history dist/history/history-*.json.gz \
-            --repo "$GITHUB_REPOSITORY" --clobber
+      - name: Publish prices
+        run: python tools/publish_prices.py ${{ (github.event_name == 'workflow_dispatch' && inputs.backfill) && '--backfill' || '' }}

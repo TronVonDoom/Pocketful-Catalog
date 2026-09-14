@@ -42,6 +42,8 @@ from test_database import find_bin, throwaway_database  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 EDITOR = ROOT / "editor" / "server.py"
 FIXTURES = ROOT / "editor" / "tests" / "fixtures" / "tcgdex"
+TCGCSV_FIXTURES = ROOT / "editor" / "tests" / "fixtures" / "tcgcsv"
+PRICE_JOB = ROOT / "tools" / "publish_prices.py"
 
 DB_PORT = 55439
 REST_PORT = 55440
@@ -327,6 +329,85 @@ def walk(store: Path) -> None:
     lists = expect(call("GET", "/api/lists/no-picture?catalog=ptcg-en"), 200, "list published cards without a picture")
     check(sorted(c["number"] for c in lists["cards"]) == ["58", "96"], "Pikachu and the energy are on the list", lists)
 
+    # TCGplayer ----------------------------------------------------------------------------
+    # The set was renamed above, so its name no longer matches TCGplayer's; its printed code does.
+    expect(call("PATCH", "/api/sets/ptcg-en-base01", {"abbreviation": "BS"}), 200, "give the set its printed code")
+    status_before = next(x for x in expect(call("GET", "/api/bootstrap"), 200, "read the overview")["sets"]
+                         if x["id"] == "ptcg-en-base01")["status"]
+    suggestions = expect(call("GET", "/api/sets/ptcg-en-base01/tcgplayer?suggest=1"), 200, "find the set on TCGplayer")
+    suggestions = suggestions.get("suggestions") or []
+    check(bool(suggestions) and suggestions[0]["groupId"] == 604 and suggestions[0]["matched"] == 4,
+          "TCGplayer's Base Set comes first, holding all four cards", suggestions)
+    expect(call("PATCH", "/api/printings/ptcg-en-base01-2_holo",
+                {"tcgplayer_product": 1, "tcgplayer_printing": "Holofoil", "tcgplayer_via": "manual"}), 200, "link one printing by hand")
+    linked = expect(call("POST", "/api/sets/ptcg-en-base01/tcgplayer", {"group_id": 604}), 200, "match the set's printings")
+    found = {r["printing"]: r for r in linked.get("results", [])}
+
+    def link_of(printing):
+        return found.get(printing) or {}
+
+    check(link_of("ptcg-en-base01-1_holo").get("productId") == 42346 and link_of("ptcg-en-base01-1_holo").get("printingName") == "Holofoil"
+          and link_of("ptcg-en-base01-1_holo").get("market") == 6914, "a plain holo links to its product's Holofoil", link_of("ptcg-en-base01-1_holo"))
+    check(link_of("ptcg-en-base01-1_1st-edition-holo").get("productId") == 88801
+          and link_of("ptcg-en-base01-1_1st-edition-holo").get("printingName") == "1st Edition Holofoil",
+          "a Base Set 1st Edition is found in its sibling group", link_of("ptcg-en-base01-1_1st-edition-holo"))
+    check(link_of("ptcg-en-base01-1_shadowless-holo").get("productId") == 88801
+          and link_of("ptcg-en-base01-1_shadowless-holo").get("printingName") == "Holofoil",
+          "a shadowless printing is found in the Shadowless group", link_of("ptcg-en-base01-1_shadowless-holo"))
+    check(link_of("ptcg-en-base01-1_1999-2000-copyright-holo").get("status") == "no match",
+          "a copyright line has no TCGplayer printing and is left unlinked", link_of("ptcg-en-base01-1_1999-2000-copyright-holo"))
+    check(link_of("ptcg-en-base01-2_holo").get("status") == "linked by hand, left alone" and link_of("ptcg-en-base01-2_holo").get("productId") == 1,
+          "a link made by hand is never changed", link_of("ptcg-en-base01-2_holo"))
+    check(link_of("ptcg-en-base01-58_normal").get("productId") == 42402 and link_of("ptcg-en-base01-96_normal").get("productId") == 42440,
+          "Pikachu and the energy link by number", [link_of("ptcg-en-base01-58_normal"), link_of("ptcg-en-base01-96_normal")])
+    check(link_of("ptcg-en-base01-58_normal-poketour-99").get("status") == "no match",
+          "a stamp TCGplayer does not list stays unlinked", link_of("ptcg-en-base01-58_normal-poketour-99"))
+    boot = expect(call("GET", "/api/bootstrap"), 200, "read the overview after matching")
+    base = next(x for x in boot["sets"] if x["id"] == "ptcg-en-base01")
+    check(base["status"] == status_before, "linking to TCGplayer is not an unpublished change", base)
+    expect(call("PATCH", "/api/printings/ptcg-en-base01-2_holo", {"tcgplayer_product": 42360}), 200, "correct the hand link")
+
+    # Nightly prices -----------------------------------------------------------------------
+    job_env = {**os.environ, "POCKETFUL_REST_URL": f"http://127.0.0.1:{REST_PORT}", "POCKETFUL_REST_KEY": service_jwt(),
+               "POCKETFUL_STORE": f"local:{store}", "POCKETFUL_TCGCSV_FIXTURES": str(TCGCSV_FIXTURES),
+               "POCKETFUL_TODAY": "2026-09-14", "PYTHONIOENCODING": "utf-8"}
+    job = subprocess.run([sys.executable, str(PRICE_JOB)], env=job_env, capture_output=True, text=True, timeout=120)
+    check(job.returncode == 0, "the nightly price job runs", job.stdout + job.stderr)
+    prices_file = store / "public" / "prices" / "prices.json.gz"
+    history_file = store / "public" / "prices" / "history" / "ptcg-en-base01.json.gz"
+    day1 = json.loads(gzip.decompress(prices_file.read_bytes())) if prices_file.exists() else {}
+    printed = day1.get("printings", {})
+    check(day1.get("schema") == 2 and day1.get("date") == "2026-09-14" and "previous" not in day1,
+          "the price file is schema 2, for today, with nothing earlier", {k: day1.get(k) for k in ("schema", "date", "previous")})
+    check(printed.get("ptcg-en-base01-1_holo") == 6914 and printed.get("ptcg-en-base01-1_1st-edition-holo") == 520000
+          and printed.get("ptcg-en-base01-2_holo") == 22487 and printed.get("ptcg-en-base01-58_normal") == 1427,
+          "every linked printing is priced by printing ID", printed)
+    check("ptcg-en-base01-1_1999-2000-copyright-holo" not in printed and "ptcg-en-base01-58_normal-poketour-99" not in printed,
+          "an unlinked printing has no price rather than a borrowed one", sorted(printed))
+    history = json.loads(gzip.decompress(history_file.read_bytes())) if history_file.exists() else {}
+    check(history.get("dates") == ["2026-09-14"] and history.get("printings", {}).get("ptcg-en-base01-1_holo") == [6914],
+          "the set's price history starts today", history)
+
+    moved = Path(tempfile.mkdtemp(prefix="pocketful-tcgcsv-"))
+    shutil.copytree(TCGCSV_FIXTURES, moved, dirs_exist_ok=True)
+    rows = json.loads((moved / "prices-604.json").read_text(encoding="utf-8"))
+    for row in rows["results"]:
+        if row["productId"] == 42346:
+            row["marketPrice"] = 70.0
+    (moved / "prices-604.json").write_text(json.dumps(rows), encoding="utf-8")
+    for today in ("2026-09-15", "2026-09-15"):
+        job = subprocess.run([sys.executable, str(PRICE_JOB)], capture_output=True, text=True, timeout=120,
+                             env={**job_env, "POCKETFUL_TCGCSV_FIXTURES": str(moved), "POCKETFUL_TODAY": today})
+        check(job.returncode == 0, f"the price job runs on {today}", job.stdout + job.stderr)
+    shutil.rmtree(moved, ignore_errors=True)
+    day2 = json.loads(gzip.decompress(prices_file.read_bytes()))
+    check(day2["printings"].get("ptcg-en-base01-1_holo") == 7000 and day2.get("previous", {}).get("date") == "2026-09-14"
+          and day2["previous"]["printings"].get("ptcg-en-base01-1_holo") == 6914,
+          "the next day's file carries yesterday's figures, even after running twice", {k: day2.get(k) for k in ("date", "previous")})
+    history = json.loads(gzip.decompress(history_file.read_bytes()))
+    check(history["dates"] == ["2026-09-14", "2026-09-15"] and history["printings"]["ptcg-en-base01-1_holo"] == [6914, 7000],
+          "history gains one day, and a rerun replaces it rather than adding another", history)
+
     # Re-import notices a change ---------------------------------------------------------
     changed_dir = Path(tempfile.mkdtemp(prefix="pocketful-fixtures-"))
     shutil.copytree(FIXTURES, changed_dir, dirs_exist_ok=True)
@@ -358,7 +439,8 @@ def main() -> None:
             def start_editor(fixtures: Path) -> subprocess.Popen:
                 editor_env = {**os.environ, "POCKETFUL_REST_URL": f"http://127.0.0.1:{REST_PORT}",
                               "POCKETFUL_REST_KEY": service_jwt(), "POCKETFUL_STORE": f"local:{store}",
-                              "POCKETFUL_TCGDEX_FIXTURES": str(fixtures), "PYTHONIOENCODING": "utf-8"}
+                              "POCKETFUL_TCGDEX_FIXTURES": str(fixtures), "POCKETFUL_TCGCSV_FIXTURES": str(TCGCSV_FIXTURES),
+                              "PYTHONIOENCODING": "utf-8"}
                 log = open(work / "editor.log", "a")
                 process = subprocess.Popen([sys.executable, str(EDITOR), "--port", str(EDITOR_PORT), "--no-open"],
                                            env=editor_env, stdout=log, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL)
