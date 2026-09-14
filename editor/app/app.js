@@ -1045,7 +1045,11 @@ function tcgplayerBox(theSet) {
     await busy(button, async () => {
       const answer = await POST(`/api/sets/${enc(theSet.id)}/tcgplayer`, { group_id: groupId, by_hand: byHand });
       state = { group: { groupId: answer.group.groupId, name: answer.group.name, via: byHand ? "manual" : "auto" }, result: answer };
-      toast(`Linked ${plural(answer.linked, "printing")} of ${answer.printings} to TCGplayer.`);
+      if (!answer.printings) {
+        toast("The TCGplayer group is saved, but this set has no cards yet, so there was nothing to match. Import or add its cards, then click Match printings again.", "warn", 12000);
+      } else {
+        toast(`Linked ${plural(answer.linked, "printing")} of ${answer.printings} to TCGplayer.`);
+      }
       draw();
     });
   };
