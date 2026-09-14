@@ -827,27 +827,94 @@ function setCards(data) {
   ];
   let active = sessionStorage.getItem("cardFilter") || "all";
   let search = "";
+  const selected = new Set();
   const tbody = h("tbody");
   const bar = h("div", { class: "filters" });
+  const bulk = h("div", { class: "row", style: { marginBottom: "10px" } });
+  const all = h("input", { type: "checkbox", title: "Select every card shown" });
+
+  const shownCards = () => {
+    const test = (filters.find((f) => f[0] === active) || filters[0])[2];
+    const needle = search.trim().toLowerCase();
+    return data.cards.filter((c) => test(c) && (!needle || c.name.toLowerCase().includes(needle) || c.number.includes(needle)));
+  };
+
+  // Runs one task per card, a few at a time, with a running count on the bar.
+  async function forEachSelected(label, task, button) {
+    const cards = data.cards.filter((c) => selected.has(c.id));
+    if (!cards.length) return;
+    button.disabled = true;
+    let done = 0, failed = 0;
+    const queue = cards.slice();
+    const status = h("span", { class: "muted" });
+    bulk.append(status);
+    const worker = async () => {
+      while (queue.length) {
+        const card = queue.shift();
+        try { await task(card); } catch (e) { failed++; console.error(card.id, e); }
+        done++;
+        status.textContent = `${label}: ${done} of ${cards.length}${failed ? `, ${failed} failed` : ""}`;
+      }
+    };
+    await Promise.all([worker(), worker(), worker()]);
+    toast(`${label}: ${cards.length - failed} done${failed ? `, ${failed} failed (see the console)` : ""}.`, failed ? "warn" : "ok");
+    await refreshBoot();
+    render();
+  }
+
+  function drawBulk() {
+    fill(bulk,
+      h("span", { class: "muted", text: selected.size ? `${plural(selected.size, "card")} selected` : "Select cards for bulk actions" }),
+      h("button", { class: "small", text: "Use TCGdex pictures", disabled: !selected.size, onclick: async (e) => {
+        const button = e.currentTarget;
+        const { candidates } = await GET(`/api/sets/${enc(theSet.id)}/candidates`);
+        const urls = Object.fromEntries(candidates.filter((c) => c.matched && c.image_url).map((c) => [c.matched, c.image_url]));
+        const skipped = [...selected].filter((id) => thumbs[id] || !urls[id]).length;
+        if (skipped) toast(`${skipped} selected card(s) already have a picture or have none on TCGdex, and are skipped.`, "warn");
+        [...selected].forEach((id) => { if (thumbs[id] || !urls[id]) selected.delete(id); });
+        await forEachSelected("Pictures", async (card) => {
+          const url = urls[card.id];
+          const blob = await POST("/api/fetch-image", { url });
+          const prepared = await preparePicture(blob, "front", { keepOriginal: false });
+          await POST("/api/images", { subject_kind: "card", subject_id: card.id, role: "front", image: prepared.image,
+            thumb: prepared.thumb, source_id: "tcgdex", source_url: url });
+        }, button);
+      } }),
+      h("button", { class: "small", text: "Mark reviewed", disabled: !selected.size, onclick: (e) =>
+        forEachSelected("Reviewed", async (card) => {
+          if (card.review !== "reviewed") await PATCH(`/api/cards/${enc(card.id)}`, { review: "reviewed" });
+          for (const p of printingsByCard[card.id] || []) {
+            if (p.review !== "reviewed" && !p.withdrawn) await PATCH(`/api/printings/${enc(p.id)}`, { review: "reviewed" });
+          }
+        }, e.currentTarget) }),
+      h("button", { class: "small", text: "Mark no picture", disabled: !selected.size, onclick: (e) =>
+        forEachSelected("No picture", async (card) => {
+          if (!thumbs[card.id] && !card.no_image) await PATCH(`/api/cards/${enc(card.id)}`, { no_image: true });
+        }, e.currentTarget) }),
+      selected.size ? h("button", { class: "small link", text: "Clear selection", onclick: () => { selected.clear(); drawRows(); } }) : null,
+    );
+  }
 
   function draw() {
-    const test = (filters.find((f) => f[0] === active) || filters[0])[2];
-    const needle = search.trim().toLowerCase();
-    const shown = data.cards.filter((c) => test(c) && (!needle || c.name.toLowerCase().includes(needle) || c.number.includes(needle)));
-    fill(bar, 
+    fill(bar,
       filters.map(([key, label, t]) => h("button", { class: key === active ? "on" : "", text: `${label} ${data.cards.filter(t).length}`,
         onclick: () => { active = key; sessionStorage.setItem("cardFilter", key); draw(); } })),
-      h("input", { type: "search", placeholder: "Find by name or number", value: search, oninput: (e) => { search = e.target.value; drawRows(shown); } }),
+      h("input", { type: "search", placeholder: "Find by name or number", value: search, oninput: (e) => { search = e.target.value; drawRows(); } }),
     );
-    drawRows(shown);
+    drawRows();
   }
+
   function drawRows() {
-    const test = (filters.find((f) => f[0] === active) || filters[0])[2];
-    const needle = search.trim().toLowerCase();
-    const shown = data.cards.filter((c) => test(c) && (!needle || c.name.toLowerCase().includes(needle) || c.number.includes(needle)));
-    fill(tbody, ...shown.map((c) => {
+    const shown = shownCards();
+    all.checked = shown.length > 0 && shown.every((c) => selected.has(c.id));
+    all.onchange = () => { shown.forEach((c) => (all.checked ? selected.add(c.id) : selected.delete(c.id))); drawRows(); };
+    fill(tbody, shown.map((c) => {
       const thumb = thumbs[c.id];
+      const box = h("input", { type: "checkbox", checked: selected.has(c.id) });
+      box.addEventListener("click", (e) => e.stopPropagation());
+      box.addEventListener("change", () => { box.checked ? selected.add(c.id) : selected.delete(c.id); drawRows(); });
       return h("tr", { class: `click${c.withdrawn ? " muted" : ""}`, onclick: () => { location.hash = `#/card/${enc(c.id)}`; } },
+        h("td", { onclick: (e) => e.stopPropagation() }, box),
         h("td", {}, thumb ? h("img", { class: "thumb", src: imageUrl(thumb.thumb_path || thumb.path), loading: "lazy", alt: "" })
           : h("div", { class: "nothumb", text: c.no_image ? "back" : "no picture" })),
         h("td", { class: "mono", text: c.printed_number || c.number }),
@@ -856,8 +923,8 @@ function setCards(data) {
         h("td", { class: "dim", text: (printingsByCard[c.id] || []).map((p) => p.variant).join(", ") }),
         h("td", {}, reviewBadge(c.review), c.withdrawn ? h("span", { class: "badge", text: "withdrawn" }) : null,
           c.review === "flagged" && c.review_note ? h("div", { class: "dim", text: c.review_note }) : null));
-    }));
-    if (!shown.length) tbody.append(h("tr", {}, h("td", { colspan: 6, class: "dim", text: data.cards.length ? "No cards match." : "No cards yet." })));
+    }), shown.length ? null : h("tr", {}, h("td", { colspan: 7, class: "dim", text: data.cards.length ? "No cards match." : "No cards yet." })));
+    drawBulk();
   }
 
   const node = h("div", {},
@@ -869,7 +936,8 @@ function setCards(data) {
       data.cards.some((c) => c.review !== "reviewed" && !c.withdrawn)
         ? h("a", { class: "btn", href: `#/card/${enc((data.cards.find((c) => c.review !== "reviewed" && !c.withdrawn)).id)}`, text: "Review the next unreviewed card" }) : null),
     bar,
-    h("table", { class: "list" }, h("thead", {}, h("tr", {}, h("th", { text: "" }), h("th", { text: "No." }), h("th", { text: "Name" }),
+    bulk,
+    h("table", { class: "list" }, h("thead", {}, h("tr", {}, h("th", {}, all), h("th", { text: "" }), h("th", { text: "No." }), h("th", { text: "Name" }),
       h("th", { text: "Rarity" }), h("th", { text: "Printings" }), h("th", { text: "Review" }))), tbody),
   );
   draw();
