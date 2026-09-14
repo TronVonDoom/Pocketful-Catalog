@@ -25,7 +25,7 @@ import json
 import re
 
 from . import media
-from .db import Db, eq
+from .db import Db, eq, together
 
 SCHEMA = 2
 IMMUTABLE = "public, max-age=31536000, immutable"
@@ -64,15 +64,19 @@ def chosen_images(db: Db, column: str, ids: list[str]) -> dict[tuple[str, str], 
 
 
 def build_set_document(db: Db, the_set: dict, version: int) -> dict:
-    cards = db.get("cards", {"set_id": eq(the_set["id"]), "withdrawn": "is.false"})
+    set_id = eq(the_set["id"])
+    cards, printings, words, set_images, card_images, printing_images = together(
+        lambda: db.get("cards", {"set_id": set_id, "withdrawn": "is.false"}),
+        lambda: db.get("printings", {"select": "*,cards!inner()", "cards.set_id": set_id,
+                                     "cards.withdrawn": "is.false", "withdrawn": "is.false"}),
+        lambda: {w["word"]: w for w in db.get("variant_words")},
+        lambda: chosen_images(db, "set_id", [the_set["id"]]),
+        lambda: {(row["card_id"], row["role"]): row for row in db.get(
+            "images", {"select": "*,cards!inner()", "cards.set_id": set_id, "chosen": "is.true"})},
+        lambda: {(row["printing_id"], row["role"]): row for row in db.get(
+            "images", {"select": "*,printings!inner(cards!inner())", "printings.cards.set_id": set_id, "chosen": "is.true"})},
+    )
     cards.sort(key=lambda c: (c["sort"] is None, c["sort"] or 0, natural(c["number"])))
-    card_ids = [c["id"] for c in cards]
-    printings = db.get_in("printings", "card_id", card_ids, {"withdrawn": "is.false"}) if card_ids else []
-    words = {w["word"]: w for w in db.get("variant_words")}
-
-    set_images = chosen_images(db, "set_id", [the_set["id"]])
-    card_images = chosen_images(db, "card_id", card_ids)
-    printing_images = chosen_images(db, "printing_id", [p["id"] for p in printings])
 
     by_card: dict[str, list[dict]] = {}
     for p in printings:
@@ -184,14 +188,18 @@ def publish_set(db: Db, store, set_id: str) -> dict:
 
 
 def build_index(db: Db, public_url: str) -> dict:
-    catalogs = sorted(db.get("catalogs"), key=lambda c: (c["sort"], c["id"]))
-    series = db.get("series", {"status": eq("published")})
-    sets = db.get("sets", {"version": "gt.0"})
-    publishes = {(p["set_id"], p["version"]): p for p in db.get_in("publishes", "set_id", [s["id"] for s in sets])} if sets else {}
-
-    catalog_images = chosen_images(db, "catalog_id", [c["id"] for c in catalogs])
-    series_images = chosen_images(db, "series_id", [s["id"] for s in series])
-    set_images = chosen_images(db, "set_id", [s["id"] for s in sets])
+    catalogs, series, sets, word_rows, term_rows = together(
+        lambda: sorted(db.get("catalogs"), key=lambda c: (c["sort"], c["id"])),
+        lambda: db.get("series", {"status": eq("published")}),
+        lambda: db.get("sets", {"version": "gt.0"}),
+        lambda: db.get("variant_words"),
+        lambda: db.get("terms"))
+    publish_rows, catalog_images, series_images, set_images = together(
+        lambda: db.get_in("publishes", "set_id", [s["id"] for s in sets]) if sets else [],
+        lambda: chosen_images(db, "catalog_id", [c["id"] for c in catalogs]),
+        lambda: chosen_images(db, "series_id", [s["id"] for s in series]),
+        lambda: chosen_images(db, "set_id", [s["id"] for s in sets]))
+    publishes = {(p["set_id"], p["version"]): p for p in publish_rows}
 
     def path(images: dict, subject: str, role: str) -> str | None:
         image = images.get((subject, role))
@@ -230,9 +238,9 @@ def build_index(db: Db, public_url: str) -> dict:
                 "series": out_series,
             }))
 
-    words = {w["word"]: {"kind": w["kind"], "label": w["label"], "sort": w["sort"]} for w in db.get("variant_words")}
+    words = {w["word"]: {"kind": w["kind"], "label": w["label"], "sort": w["sort"]} for w in word_rows}
     terms: dict[str, dict] = {}
-    for t in db.get("terms"):
+    for t in term_rows:
         terms.setdefault(t["kind"], {})[t["code"]] = t["labels"]
     return {"schema": SCHEMA, "generatedAt": now(), "publicUrl": public_url,
             "catalogs": out_catalogs, "words": words, "terms": terms}

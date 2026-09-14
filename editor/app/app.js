@@ -839,6 +839,17 @@ function setCards(data) {
     return data.cards.filter((c) => test(c) && (!needle || c.name.toLowerCase().includes(needle) || c.number.includes(needle)));
   };
 
+  // One change to every selected card, made by the server in a few requests.
+  async function bulkChange(action, done, button) {
+    const cards = [...selected];
+    if (!cards.length) return;
+    await busy(button, async () => {
+      const answer = await POST(`/api/sets/${enc(theSet.id)}/bulk`, { action, cards });
+      toast(done(answer));
+      await Promise.all([refreshBoot(), render()]);
+    });
+  }
+
   // Runs one task per card, a few at a time, with a running count on the bar.
   async function forEachSelected(label, task, button) {
     const cards = data.cards.filter((c) => selected.has(c.id));
@@ -856,10 +867,9 @@ function setCards(data) {
         status.textContent = `${label}: ${done} of ${cards.length}${failed ? `, ${failed} failed` : ""}`;
       }
     };
-    await Promise.all([worker(), worker(), worker()]);
+    await Promise.all([worker(), worker(), worker(), worker()]);
     toast(`${label}: ${cards.length - failed} done${failed ? `, ${failed} failed (see the console)` : ""}.`, failed ? "warn" : "ok");
-    await refreshBoot();
-    render();
+    await Promise.all([refreshBoot(), render()]);
   }
 
   function drawBulk() {
@@ -881,16 +891,9 @@ function setCards(data) {
         }, button);
       } }),
       h("button", { class: "small", text: "Mark reviewed", disabled: !selected.size, onclick: (e) =>
-        forEachSelected("Reviewed", async (card) => {
-          if (card.review !== "reviewed") await PATCH(`/api/cards/${enc(card.id)}`, { review: "reviewed" });
-          for (const p of printingsByCard[card.id] || []) {
-            if (p.review !== "reviewed" && !p.withdrawn) await PATCH(`/api/printings/${enc(p.id)}`, { review: "reviewed" });
-          }
-        }, e.currentTarget) }),
+        bulkChange("reviewed", (a) => `Marked ${plural(a.cards, "card")} and ${plural(a.printings, "printing")} reviewed.`, e.currentTarget) }),
       h("button", { class: "small", text: "Mark no picture", disabled: !selected.size, onclick: (e) =>
-        forEachSelected("No picture", async (card) => {
-          if (!thumbs[card.id] && !card.no_image) await PATCH(`/api/cards/${enc(card.id)}`, { no_image: true });
-        }, e.currentTarget) }),
+        bulkChange("no-picture", (a) => `Marked ${plural(a.cards, "card")} as having no picture. Cards with a picture are left alone.`, e.currentTarget) }),
       selected.size ? h("button", { class: "small link", text: "Clear selection", onclick: () => { selected.clear(); drawRows(); } }) : null,
     );
   }
@@ -1299,15 +1302,16 @@ async function viewCard(id) {
       savedCard = await PATCH(`/api/cards/${enc(card.id)}`, patch);
       form.saved(savedCard);
     }
-    for (const pf of printingForms) {
+    await Promise.all(printingForms.map(async (pf) => {
       if (review === "reviewed" && pf.model.review !== "reviewed" && !pf.model.withdrawn) pf.model.review = "reviewed";
       const pp = pf.patch();
       if (Object.keys(pp).length) {
         const row = await PATCH(`/api/printings/${enc(pf.original.id)}`, pp);
         pf.saved(row);
       }
-    }
-    await refreshBoot();
+    }));
+    // The sidebar's counts catch up on their own; nothing on this page waits for them.
+    refreshBoot().catch(fail);
     if (!quiet) toast(review === "reviewed" ? "Saved and marked reviewed." : "Saved.");
     if (savedCard.id !== card.id) { S.guard = null; location.hash = `#/card/${enc(savedCard.id)}`; return savedCard; }
     drawAll();

@@ -241,10 +241,22 @@ def walk(store: Path) -> None:
     refused = call("POST", "/api/sets/ptcg-en-base01/publish", {})
     check(refused[0] == 409 and refused[1].get("problems"), "publishing is refused while anything stands in the way", refused)
 
-    for c in detail["cards"]:
-        expect(call("PATCH", f"/api/cards/{c['id']}", {"review": "reviewed"}), 200, f"review {c['id']}")
-    for p in detail["printings"]:
-        call("PATCH", f"/api/printings/{p['id']}", {"review": "reviewed"})
+    expect(call("POST", "/api/sets/ptcg-en-base01/bulk", {"action": "reviewed"}), 400, "a bulk change needs its cards")
+    expect(call("POST", "/api/sets/ptcg-en-base01/bulk", {"action": "delete", "cards": ["ptcg-en-base01-1"]}), 400,
+           "a bulk change is only one the editor offers")
+    reviewed = expect(call("POST", "/api/sets/ptcg-en-base01/bulk",
+                           {"action": "reviewed", "cards": [c["id"] for c in detail["cards"]] + ["ptcg-en-base02-1"]}),
+                      200, "mark every card reviewed at once")
+    check(reviewed == {"cards": 4, "printings": len(detail["printings"])},
+          "all four cards and every printing were marked, and a card from another set was not", reviewed)
+    after = expect(call("GET", "/api/sets/ptcg-en-base01"), 200, "read the set after reviewing")
+    check(all(c["review"] == "reviewed" and c["reviewed_at"] and not c["review_note"] for c in after["cards"])
+          and all(p["review"] == "reviewed" for p in after["printings"]),
+          "every card and printing is reviewed, and the flag's note is gone",
+          [(c["id"], c["review"], c["review_note"]) for c in after["cards"]])
+    again = expect(call("POST", "/api/sets/ptcg-en-base01/bulk", {"action": "reviewed", "cards": [detail["cards"][0]["id"]]}),
+                   200, "mark a reviewed card reviewed again")
+    check(again == {"cards": 0, "printings": 0}, "nothing already reviewed is written again", again)
     expect(call("PATCH", "/api/sets/ptcg-en-base01", {"no_symbol": True}), 200, "mark the set as having no symbol")
 
     # Pictures ---------------------------------------------------------------------------
@@ -278,8 +290,21 @@ def walk(store: Path) -> None:
     check(next(i for i in pictures if i["chosen"])["id"] == soft["id"], "choosing swaps which picture is in use", pictures)
     expect(call("POST", "/api/images", {"subject_kind": "set", "subject_id": "ptcg-en-base01", "role": "logo",
                                         "image": fake_webp(400, 160)}), 201, "give the set a logo")
-    expect(call("PATCH", "/api/cards/ptcg-en-base01-58", {"no_image": True}), 200, "mark Pikachu as having no picture")
-    expect(call("PATCH", "/api/cards/ptcg-en-base01-96", {"no_image": True}), 200, "mark the energy as having no picture")
+    holo_picture = expect(call("POST", "/api/images", {"subject_kind": "printing", "subject_id": "ptcg-en-base01-1_holo",
+                                                       "role": "front", "image": fake_webp(734, 1022), "thumb": fake_webp(245, 341)}),
+                          201, "give Alakazam's holo printing a picture of its own")
+    check(holo_picture["path"].startswith("images/cards/ptcg-en-base01/ptcg-en-base01-1_holo."),
+          "a printing's picture is filed under its card's set", holo_picture["path"])
+    card_pictures = expect(call("GET", "/api/cards/ptcg-en-base01-1"), 200, "read Alakazam")["images"]
+    check({i["id"] for i in card_pictures} == {front["id"], holo_picture["id"]}
+          and all(set(i) == set(front) for i in card_pictures),
+          "the card lists its own picture and its printing's, as plain picture records", card_pictures)
+    no_picture = expect(call("POST", "/api/sets/ptcg-en-base01/bulk", {"action": "no-picture", "cards": [
+        "ptcg-en-base01-1", "ptcg-en-base01-58", "ptcg-en-base01-96"]}), 200, "mark cards as having no picture at once")
+    check(no_picture["cards"] == 2, "Pikachu and the energy are marked, and Alakazam, which has a picture, is not", no_picture)
+    marked = {c["id"]: c["no_image"] for c in expect(call("GET", "/api/sets/ptcg-en-base01"), 200, "read the set")["cards"]}
+    check(marked == {"ptcg-en-base01-1": False, "ptcg-en-base01-2": False, "ptcg-en-base01-58": True, "ptcg-en-base01-96": True},
+          "exactly those two are marked", marked)
 
     problems = expect(call("GET", "/api/sets/ptcg-en-base01/problems"), 200, "ask again")["problems"]
     check([p["problem"] for p in problems] == ["cards without a picture need a card back for this catalog or series"],
@@ -297,6 +322,7 @@ def walk(store: Path) -> None:
           "the set file has the logo, no symbol, and every card", {k: doc.get(k) for k in ("schema", "logo", "symbol")})
     alakazam_doc = doc["cards"][0]
     check(alakazam_doc["image"] == front["path"] and alakazam_doc["printings"][0]["id"] == "ptcg-en-base01-1_holo"
+          and alakazam_doc["printings"][0].get("image") == holo_picture["path"]
           and alakazam_doc["printedNumber"] == "1/102",
           "a card carries its picture, printed number and printings, plainest first", alakazam_doc)
     check("image" not in doc["cards"][2], "a card with no picture has no image, so the app draws the back", doc["cards"][2])
@@ -467,6 +493,10 @@ def main() -> None:
             card = expect(call("GET", "/api/cards/ptcg-en-base01-1"), 200, "open the changed card")
             check(card["sources"][0]["changed"] and card["sources"][0]["fields"]["hp"] == 90 and card["card"]["hp"] == 80,
                   "the card shows TCGdex's new HP beside the reviewed one", {"source": card["sources"][0]["fields"]["hp"], "card": card["card"]["hp"]})
+            expect(call("POST", "/api/sets/ptcg-en-base01/bulk", {"action": "reviewed", "cards": ["ptcg-en-base01-1"]}),
+                   200, "bulk-mark the already reviewed card")
+            card = expect(call("GET", "/api/cards/ptcg-en-base01-1"), 200, "open it after the bulk change")
+            check(card["sources"][0]["changed"], "a bulk change that alters nothing keeps TCGdex's change showing")
             expect(call("PATCH", "/api/cards/ptcg-en-base01-1", {"review": "reviewed"}), 200, "review it again")
             card = expect(call("GET", "/api/cards/ptcg-en-base01-1"), 200, "open it once more")
             check(not card["sources"][0]["changed"], "reviewing again clears the change")

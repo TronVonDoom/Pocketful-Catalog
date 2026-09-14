@@ -28,7 +28,7 @@ import sys
 import unicodedata
 from pathlib import Path
 
-from .db import Db, eq
+from .db import Db, each, eq
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
 import tcgplayer  # noqa: E402
@@ -142,7 +142,7 @@ def link_set(tcg: Tcgcsv, db: Db, the_set: dict, language: str, group_id: int, b
         by_card.setdefault(p["card_id"], []).append(p)
 
     results = []
-    linked = 0
+    links = []
     for card in cards:
         own_printings = by_card.get(card["id"], [])
         as_card = _as_card(card, own_printings)
@@ -155,12 +155,12 @@ def link_set(tcg: Tcgcsv, db: Db, the_set: dict, language: str, group_id: int, b
                 results.append(_result(p, None, None, None, "no match"))
                 continue
             product, printing_name, cents = found
-            db.update("printings", {"id": eq(p["id"])}, {"tcgplayer_product": product["productId"],
-                                                          "tcgplayer_printing": printing_name,
-                                                          "tcgplayer_via": "auto"})
-            linked += 1
+            links.append((p["id"], {"tcgplayer_product": product["productId"], "tcgplayer_printing": printing_name,
+                                    "tcgplayer_via": "auto"}))
             results.append(_result(p, product, printing_name, cents, "linked"))
-    return {"group": {"groupId": group_id, "name": own.get("name")}, "linked": linked,
+    # Each printing gets its own product, so they are written a few at a time, not in one request.
+    each(lambda link: db.update("printings", {"id": eq(link[0])}, link[1]), links)
+    return {"group": {"groupId": group_id, "name": own.get("name")}, "linked": len(links),
             "printings": len(results), "results": results}
 
 

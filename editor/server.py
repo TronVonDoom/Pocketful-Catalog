@@ -59,7 +59,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(ROOT / "tools"))
 
 from backend import media, publish, tcgdex, tcgplayer_links  # noqa: E402
-from backend.db import Db, DbError, eq, in_list  # noqa: E402
+from backend.db import Db, DbError, chunked, each, eq, in_list, together  # noqa: E402
 from backend.storage import LocalStore, R2Store  # noqa: E402
 from tcgcsv import Tcgcsv, TcgcsvError  # noqa: E402
 
@@ -226,22 +226,26 @@ class Api:
         return {"app": APP_NAME}
 
     def bootstrap(self, **_) -> dict:
-        catalogs = self.db.get("catalogs", {"order": "sort,id"})
+        catalogs, series, sets, summaries, words, terms, sources = together(
+            lambda: self.db.get("catalogs", {"order": "sort,id"}),
+            lambda: self.db.get("series", {"order": "sort,code"}),
+            lambda: self.db.get("sets", {"select": "id,series_id,code,name,kind,release_date,status,version,sort,locked",
+                                         "order": "sort,release_date.nullslast,code"}),
+            lambda: self.db.get("set_summaries"),
+            lambda: self.db.get("variant_words", {"order": "kind,sort,word"}),
+            lambda: self.db.get("terms", {"order": "kind,sort,code"}),
+            lambda: self.db.get("sources", {"order": "id"}),
+        )
         return {
             "project": {"database": self.project, "storage": self.store.kind, "publicUrl": self.store.public_url},
-            "catalogs": catalogs,
-            "series": self.db.get("series", {"order": "sort,code"}),
-            "sets": self.db.get("sets", {"select": "id,series_id,code,name,kind,release_date,status,version,sort,locked",
-                                         "order": "sort,release_date.nullslast,code"}),
-            "summaries": self.db.get("set_summaries"),
-            "words": self.db.get("variant_words", {"order": "kind,sort,word"}),
-            "terms": self.db.get("terms", {"order": "kind,sort,code"}),
-            "sources": self.db.get("sources", {"order": "id"}),
+            "catalogs": catalogs, "series": series, "sets": sets, "summaries": summaries,
+            "words": words, "terms": terms, "sources": sources,
         }
 
     def catalog(self, id: str, **_) -> dict:
-        catalog = self._row("catalogs", id, "catalog")
-        return {"catalog": catalog, "images": self._images("catalog_id", [id])}
+        catalog, images = together(lambda: self._row("catalogs", id, "catalog"),
+                                   lambda: self._images("catalog_id", [id]))
+        return {"catalog": catalog, "images": images}
 
     def list_review(self, catalog: str = "", **_) -> dict:
         cards = self.db.get("cards", {"select": "id,set_id,number,name,review,review_note,locked",
@@ -250,20 +254,20 @@ class Api:
         return {"cards": cards}
 
     def list_no_picture(self, catalog: str = "", **_) -> dict:
-        published = [s["id"] for s in self.db.get("sets", {"select": "id", "version": "gt.0",
-                                                            "id": f"like.{catalog}-*"})]
-        cards = self.db.get_in("cards", "set_id", published, {
-            "select": "id,set_id,number,name", "no_image": "is.true", "withdrawn": "is.false",
-            "order": "set_id,sort.nullslast,number"}) if published else []
+        cards = self.db.get("cards", {
+            "select": "id,set_id,number,name,sets!inner()", "sets.version": "gt.0", "set_id": f"like.{catalog}-*",
+            "no_image": "is.true", "withdrawn": "is.false", "order": "set_id,sort.nullslast,number"})
         return {"cards": cards}
 
     # -- series ---------------------------------------------------------------------------
 
     def series_detail(self, id: str, **_) -> dict:
-        series = self._row("series", id, "series")
-        sets = self.db.get("sets", {"series_id": eq(id), "order": "sort,release_date.nullslast,code"})
+        series, sets, images = together(
+            lambda: self._row("series", id, "series"),
+            lambda: self.db.get("sets", {"series_id": eq(id), "order": "sort,release_date.nullslast,code"}),
+            lambda: self._images("series_id", [id]))
         summaries = self.db.get_in("set_summaries", "set_id", [s["id"] for s in sets]) if sets else []
-        return {"series": series, "sets": sets, "summaries": summaries, "images": self._images("series_id", [id])}
+        return {"series": series, "sets": sets, "summaries": summaries, "images": images}
 
     def series_create(self, body: dict, **_) -> dict:
         return self.db.insert("series", read_fields(body, SERIES_FIELDS, True, "series"))[0]
@@ -285,24 +289,33 @@ class Api:
     # -- sets -----------------------------------------------------------------------------
 
     def set_detail(self, id: str, **_) -> dict:
-        the_set = self._row("sets", id, "set")
-        series = self.db.one("series", {"id": eq(the_set["series_id"])})
-        catalog = self.db.one("catalogs", {"id": eq(series["catalog_id"])})
-        cards = self.db.get("cards", {"set_id": eq(id), "order": "sort.nullslast,number"})
+        # Everything is asked by the set's ID at once: the series and catalog come embedded in
+        # the set, and printings and pictures are found through their cards' set_id, so no
+        # question waits on the answer to another.
+        set_row, cards, printings, set_images, card_images, record, summary, publishes = together(
+            lambda: self.db.one("sets", {"id": eq(id), "select": "*,series(*,catalogs(*))"}),
+            lambda: self.db.get("cards", {"set_id": eq(id), "order": "sort.nullslast,number"}),
+            lambda: self.db.get("printings", {"select": "*,cards!inner()", "cards.set_id": eq(id)}),
+            lambda: self._images("set_id", [id]),
+            lambda: self.db.get("images", {"select": "*,cards!inner()", "cards.set_id": eq(id), "chosen": "is.true",
+                                           "order": "created_at.desc"}),
+            lambda: tcgdex.set_import(self.db, {"id": id}),
+            lambda: self.db.one("set_summaries", {"set_id": eq(id)}),
+            lambda: self.db.get("publishes", {"set_id": eq(id), "order": "version.desc",
+                                              "select": "version,published_at,cards,printings,file"}),
+        )
+        if not set_row:
+            raise ApiError(404, f"No set \"{id}\".")
+        series = set_row.pop("series")
+        catalog = series.pop("catalogs")
         cards.sort(key=lambda c: (c["sort"] is None, c["sort"] or 0, publish.natural(c["number"])))
-        card_ids = [c["id"] for c in cards]
-        printings = self.db.get_in("printings", "card_id", card_ids) if card_ids else []
-        images = self._images("set_id", [id]) + [
-            i for i in self._images("card_id", card_ids) if i["chosen"]]
-        record = tcgdex.set_import(self.db, the_set)
         return {
-            "set": the_set, "series": series, "catalog": catalog, "cards": cards, "printings": printings,
-            "images": images,
-            "summary": self.db.one("set_summaries", {"set_id": eq(id)}),
+            "set": set_row, "series": series, "catalog": catalog, "cards": cards, "printings": printings,
+            "images": set_images + card_images,
+            "summary": summary,
             "import": {"source": record["source_id"], "key": record["key"], "fetched_at": record["fetched_at"],
                        "changed": record["changed"], "suggestion": tcgdex.suggest_set(record["data"])} if record else None,
-            "publishes": self.db.get("publishes", {"set_id": eq(id), "order": "version.desc",
-                                                   "select": "version,published_at,cards,printings,file"}),
+            "publishes": publishes,
         }
 
     def set_create(self, body: dict, **_) -> dict:
@@ -422,17 +435,26 @@ class Api:
     # -- cards ----------------------------------------------------------------------------
 
     def card_detail(self, id: str, **_) -> dict:
-        card = self._row("cards", id, "card")
-        the_set = self.db.one("sets", {"id": eq(card["set_id"])})
-        printings = self.db.get("printings", {"card_id": eq(id), "order": "created_at"})
-        images = self._images("card_id", [id]) + self._images("printing_id", [p["id"] for p in printings])
-        order = self.db.get("cards", {"set_id": eq(card["set_id"]), "select": "id,number,sort"})
+        card, printings, card_images, printing_images = together(
+            lambda: self.db.one("cards", {"id": eq(id), "select": "*,sets(*)"}),
+            lambda: self.db.get("printings", {"card_id": eq(id), "order": "created_at"}),
+            lambda: self._images("card_id", [id]),
+            lambda: self.db.get("images", {"select": "*,printings!inner()", "printings.card_id": eq(id),
+                                           "order": "created_at.desc"}),
+        )
+        if not card:
+            raise ApiError(404, f"No card \"{id}\".")
+        the_set = card.pop("sets")
+        images = card_images + printing_images
+        order, sources = together(
+            lambda: self.db.get("cards", {"set_id": eq(card["set_id"]), "select": "id,number,sort"}),
+            lambda: tcgdex.card_sources(self.db, card, the_set))
         order.sort(key=lambda c: (c["sort"] is None, c["sort"] or 0, publish.natural(c["number"])))
         ids = [c["id"] for c in order]
         at = ids.index(id)
         return {
             "card": card, "set": the_set, "printings": printings, "images": images,
-            "sources": tcgdex.card_sources(self.db, card, the_set),
+            "sources": sources,
             "previous": ids[at - 1] if at > 0 else None,
             "next": ids[at + 1] if at + 1 < len(ids) else None,
             "position": at + 1, "count": len(ids),
@@ -448,8 +470,51 @@ class Api:
         if not rows:
             raise ApiError(404, f"No card \"{id}\".")
         if fields.get("review") == "reviewed":
-            tcgdex.mark_reviewed(self.db, rows[0]["id"])
+            tcgdex.mark_reviewed(self.db, [rows[0]["id"]])
         return rows[0]
+
+    def set_bulk(self, id: str, body: dict, **_) -> dict:
+        """
+        One change to many of a set's cards in a few requests rather than a few per card:
+        marked reviewed with their printings, or marked as having no picture. Cards that are
+        not in this set are skipped, and so are cards the change would not alter.
+        """
+        wanted = body.get("cards")
+        if not isinstance(wanted, list) or not wanted or not all(isinstance(c, str) for c in wanted):
+            raise ApiError(400, "Choose at least one card.")
+        action = body.get("action")
+        if action not in ("reviewed", "no-picture"):
+            raise ApiError(400, "A bulk change marks cards reviewed, or as having no picture.")
+        wanted = list(dict.fromkeys(wanted))
+        in_set, pictured = together(
+            lambda: {c["id"] for c in self.db.get("cards", {"set_id": eq(id), "select": "id"})},
+            lambda: {i["card_id"] for i in self.db.get_in("images", "card_id", wanted, {
+                "role": eq("front"), "chosen": "is.true", "select": "card_id"})} if action == "no-picture" else set())
+        ids = [c for c in wanted if c in in_set]
+
+        if action == "no-picture":
+            ids = [c for c in ids if c not in pictured]
+            cards = each(lambda chunk: self.db.update("cards", {"id": in_list(chunk), "no_image": "is.false", "select": "id"},
+                                                      {"no_image": True}), chunked(ids))
+            return {"cards": sum(map(len, cards)), "printings": 0}
+
+        stamp = {"review": "reviewed", "reviewed_at": now(), "review_note": None}
+        chunks = chunked(ids)
+
+        def review_cards() -> list[str]:
+            # Only a card this review changes has its source data taken as reviewed, as when
+            # one card is saved: an already reviewed card keeps its "TCGdex changed it" mark.
+            changed = [row["id"] for rows in each(lambda chunk: self.db.update(
+                "cards", {"id": in_list(chunk), "review": "neq.reviewed", "select": "id"}, stamp), chunks) for row in rows]
+            if changed:
+                tcgdex.mark_reviewed(self.db, changed)
+            return changed
+
+        cards, printings = together(
+            review_cards,
+            lambda: each(lambda chunk: self.db.update("printings", {"card_id": in_list(chunk), "review": "neq.reviewed",
+                                                                    "withdrawn": "is.false", "select": "id"}, stamp), chunks))
+        return {"cards": len(cards), "printings": sum(map(len, printings))}
 
     def card_delete(self, id: str, **_) -> dict:
         card = self._row("cards", id, "card")
@@ -505,13 +570,15 @@ class Api:
         if role not in media.MAX_SIZE:
             raise ApiError(400, "A picture is a front, back, logo or symbol.")
         table, column = self.SUBJECTS[kind]
-        subject = self._row(table, subject_id, kind)
+        subject = self.db.one(table, {"id": eq(subject_id), "select": "*,cards(set_id)" if kind == "printing" else "*"})
+        if not subject:
+            raise ApiError(404, f"No {kind} \"{subject_id}\".")
 
         set_id = None
         if kind == "card":
             set_id = subject["set_id"]
         elif kind == "printing":
-            set_id = self._row("cards", subject["card_id"], "card")["set_id"]
+            set_id = subject.pop("cards")["set_id"]
 
         try:
             data = base64.b64decode(body.get("image") or "", validate=True)
@@ -545,13 +612,11 @@ class Api:
                     original_path = media.original_key(media.sha256(original), original_type)
                 except media.MediaError as e:
                     raise ApiError(400, str(e)) from None
-            self.store.put_public(key, data, "image/webp", publish.IMMUTABLE)
-            thumb_path = None
-            if thumb:
-                thumb_path = media.thumb_key(key)
-                self.store.put_public(thumb_path, thumb, "image/webp", publish.IMMUTABLE)
-            if original_path:
-                self.store.put_private(original_path, original, original_type)
+            thumb_path = media.thumb_key(key) if thumb else None
+            together(
+                lambda: self.store.put_public(key, data, "image/webp", publish.IMMUTABLE),
+                *([lambda: self.store.put_public(thumb_path, thumb, "image/webp", publish.IMMUTABLE)] if thumb else []),
+                *([lambda: self.store.put_private(original_path, original, original_type)] if original_path else []))
             self.db.update("images", {column: eq(subject_id), "role": eq(role), "chosen": "is.true"}, {"chosen": False})
             row = self.db.insert("images", {
                 column: subject_id, "role": role, "chosen": True, "path": key, "thumb_path": thumb_path,
@@ -657,6 +722,7 @@ ROUTES = [(method, re.compile("^" + pattern.format(id=SEGMENT.format("id"), kind
     ("GET", "/api/sets/{id}/candidates", "set_candidates"),
     ("POST", "/api/sets/{id}/import", "set_import"),
     ("POST", "/api/sets/{id}/accept", "set_accept"),
+    ("POST", "/api/sets/{id}/bulk", "set_bulk"),
     ("GET", "/api/sets/{id}/tcgplayer", "set_tcgplayer"),
     ("POST", "/api/sets/{id}/tcgplayer", "set_tcgplayer_link"),
     ("POST", "/api/publish-index", "index_publish"),

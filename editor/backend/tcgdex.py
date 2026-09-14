@@ -32,7 +32,7 @@ import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
-from .db import Db, eq
+from .db import Db, chunked, each, eq, together
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
 from variants import common_stamps  # noqa: E402
@@ -201,10 +201,11 @@ def prune(value):
 
 class Vocabulary:
     def __init__(self, db: Db):
-        self.words = {w["word"]: w["kind"] for w in db.get("variant_words")}
+        words, terms = together(lambda: db.get("variant_words"), lambda: db.get("terms"))
+        self.words = {w["word"]: w["kind"] for w in words}
         self.terms: dict[str, set[str]] = {}
         self.rarity_by_label: dict[str, str] = {}
-        for t in db.get("terms"):
+        for t in terms:
             self.terms.setdefault(t["kind"], set()).add(t["code"])
             if t["kind"] == "rarity":
                 self.rarity_by_label[(t["labels"] or {}).get("en", "").lower()] = t["code"]
@@ -433,8 +434,7 @@ def import_set(db: Db, client: Client, our_set: dict, catalog: dict, key: str) -
 
     rows = [{"source_id": SOURCE, "language": language, "kind": "card", "key": card_id,
              "data": data, "fetched_at": fetched} for card_id, data in cards.items()]
-    for i in range(0, len(rows), 100):
-        db.upsert("source_records", rows[i:i + 100], "source_id,language,kind,key")
+    each(lambda chunk: db.upsert("source_records", chunk, "source_id,language,kind,key"), chunked(rows, 100), workers=4)
 
     missing = [i for i in ids if i not in cards]
     return {"key": detail["id"], "name": detail.get("name"), "cards": len(cards), "missing": missing}
@@ -448,13 +448,15 @@ def candidates(db: Db, our_set: dict, vocab: Vocabulary | None = None) -> dict:
     record = set_import(db, our_set)
     if not record:
         return {"import": None, "candidates": []}
-    vocab = vocab or Vocabulary(db)
     detail = record["data"]
     listed = [c["id"] for c in detail.get("cards") or []]
-    records = {r["key"]: r for r in db.get_in(
-        "source_records", "key", listed,
-        {"source_id": eq(SOURCE), "language": eq(record["language"]), "kind": eq("card")})}
-    ours = db.get("cards", {"set_id": eq(our_set["id"]), "select": "id,number,name,review"})
+    given = vocab
+    vocab, found, ours = together(
+        lambda: given or Vocabulary(db),
+        lambda: db.get_in("source_records", "key", listed,
+                          {"source_id": eq(SOURCE), "language": eq(record["language"]), "kind": eq("card")}),
+        lambda: db.get("cards", {"set_id": eq(our_set["id"]), "select": "id,number,name,review"}))
+    records = {r["key"]: r for r in found}
     by_number = {c["number"]: c for c in ours}
     by_id = {c["id"]: c for c in ours}
 
@@ -509,10 +511,11 @@ def accept(db: Db, our_set: dict, keys: list[str]) -> dict:
     if not record:
         raise SourceError("this set has not been imported from TCGdex")
     vocab = Vocabulary(db)
-    listing = {c["key"]: c for c in candidates(db, our_set, vocab)["candidates"]}
-    records = {r["key"]: r for r in db.get_in(
-        "source_records", "key", keys,
-        {"source_id": eq(SOURCE), "language": eq(record["language"]), "kind": eq("card")})}
+    listing, found = together(
+        lambda: {c["key"]: c for c in candidates(db, our_set, vocab)["candidates"]},
+        lambda: db.get_in("source_records", "key", keys,
+                          {"source_id": eq(SOURCE), "language": eq(record["language"]), "kind": eq("card")}))
+    records = {r["key"]: r for r in found}
 
     skipped: dict[str, str] = {}
     made = []
@@ -534,9 +537,8 @@ def accept(db: Db, our_set: dict, keys: list[str]) -> dict:
         row = {"set_id": our_set["id"], **{c: suggestion["fields"][c] for c in CARD_COLUMNS}, "notes": note}
         made.append((key, row, suggestion["printings"]))
 
-    created = []
-    for i in range(0, len(made), 50):
-        created += db.insert("cards", [row for _, row, _ in made[i:i + 50]])
+    created = [card for batch in each(lambda chunk: db.insert("cards", [row for _, row, _ in chunk]),
+                                      chunked(made, 50), workers=4) for card in batch]
     by_number = {c["number"]: c["id"] for c in created}
 
     printing_rows = []
@@ -549,24 +551,25 @@ def accept(db: Db, our_set: dict, keys: list[str]) -> dict:
         r = records[key]
         matched_rows.append({"source_id": SOURCE, "language": r["language"], "kind": "card", "key": key,
                              "data": r["data"], "matched": card_id, "matched_hash": r["data_hash"]})
-    for i in range(0, len(printing_rows), 200):
-        db.insert("printings", printing_rows[i:i + 200])
-    for i in range(0, len(matched_rows), 100):
-        db.upsert("source_records", matched_rows[i:i + 100], "source_id,language,kind,key")
+    together(
+        lambda: each(lambda chunk: db.insert("printings", chunk), chunked(printing_rows, 200), workers=4),
+        lambda: each(lambda chunk: db.upsert("source_records", chunk, "source_id,language,kind,key"),
+                     chunked(matched_rows, 100), workers=4))
 
     return {"created": len(created), "printings": len(printing_rows), "skipped": skipped}
 
 
 def card_sources(db: Db, card: dict, our_set: dict) -> list[dict]:
     """What each import said about this card, in the catalog's own fields, for comparing."""
+    records, set_record, vocab = together(
+        lambda: [r for r in db.get("source_records", {"matched": eq(card["id"]), "kind": eq("card")})
+                 if r["source_id"] == SOURCE],
+        lambda: set_import(db, our_set),
+        lambda: Vocabulary(db))
+    if not set_record:
+        return []
     out = []
-    vocab = None
-    for r in db.get("source_records", {"matched": eq(card["id"]), "kind": eq("card")}):
-        set_record = db.one("source_records", {"source_id": eq(r["source_id"]), "kind": eq("set"),
-                                               "matched": eq(our_set["id"])})
-        if r["source_id"] != SOURCE or not set_record:
-            continue
-        vocab = vocab or Vocabulary(db)
+    for r in records:
         suggestion = suggest_card(r["data"], set_record["data"], our_set["kind"], vocab)
         out.append({"source": r["source_id"], "key": r["key"], "fetched_at": r["fetched_at"],
                     "changed": r.get("changed"), **suggestion,
@@ -574,7 +577,8 @@ def card_sources(db: Db, card: dict, our_set: dict) -> list[dict]:
     return out
 
 
-def mark_reviewed(db: Db, card_id: str) -> None:
-    """The card's current source data is what was reviewed, so it stops counting as changed."""
-    for r in db.get("source_records", {"matched": eq(card_id), "kind": eq("card"), "select": "id,data_hash"}):
-        db.update("source_records", {"id": eq(str(r["id"]))}, {"matched_hash": r["data_hash"]})
+def mark_reviewed(db: Db, card_ids: list[str]) -> None:
+    """The cards' current source data is what was reviewed, so it stops counting as changed."""
+    changed = db.get_in("source_records", "matched", card_ids,
+                        {"kind": eq("card"), "changed": "is.true", "select": "id,data_hash"})
+    each(lambda r: db.update("source_records", {"id": eq(str(r["id"]))}, {"matched_hash": r["data_hash"]}), changed)
